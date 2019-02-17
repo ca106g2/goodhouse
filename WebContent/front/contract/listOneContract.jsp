@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.goodhouse.contract.model.*"%>
 
 <%
-//ContractServlet.java(Concroller), ¦s¤JreqªºconVOª«¥ó
+//ContractServlet.java(Concroller), å­˜å…¥reqçš„conVOç‰©ä»¶
   ContractVO conVO = (ContractVO) request.getAttribute("conVO"); 
 %>
 

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.goodhouse.contract.model.*"%>
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>¦X¬ù¤ÀÃş¸ê®Æ - listAllContract.jsp</title>
+<title>åˆç´„åˆ†é¡è³‡æ–™ - listAllContract.jsp</title>
 <style>
   table {
 	width: 800px;
@@ -36,13 +36,13 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>¦X¬ù¤ÀÃş¸ê®Æ - listAllContract.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>åˆç´„åˆ†é¡è³‡æ–™ - listAllContract.jsp</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -52,11 +52,11 @@
 
 <table>
 	<tr>
-		<th>¦X¬ù¤ÀÃş½s¸¹</th>
-		<th>¦X¬ù¤ÀÃş¦WºÙ</th>
-		<th>¦X¬ù¤º®e</th>
-		<th>­×§ï</th>
-		<th>§R°£</th>
+		<th>åˆç´„åˆ†é¡ç·¨è™Ÿ</th>
+		<th>åˆç´„åˆ†é¡åç¨±</th>
+		<th>åˆç´„å…§å®¹</th>
+		<th>ä¿®æ”¹</th>
+		<th>åˆªé™¤</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="conVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -67,13 +67,13 @@
 			<td>${conVO.con_content}</td>	
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/contract/contract.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="­×§ï">
+			     <input type="submit" value="ä¿®æ”¹">
 			     <input type="hidden" name="empno"  value="${conVO.con_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/contract/contract.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="§R°£">
+			     <input type="submit" value="åˆªé™¤">
 			     <input type="hidden" name="empno"  value="${conVO.con_id}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>

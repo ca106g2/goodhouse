@@ -1,11 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="BIG5">
-<title>GoodHouse Contract¡GHome</title>
+<title>GoodHouse Contractï¼šHome</title>
 
 <style>
   table#table-1 {
@@ -37,10 +37,10 @@
 
 <p>This is the Home page for GoodHouse Contract: Home</p>
 
-<h3>¸ê®Æ¬d¸ß:</h3>
+<h3>è³‡æ–™æŸ¥è©¢:</h3>
 
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 	    <c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -55,27 +55,27 @@
    
   <li>
      <FORM METHOD="post" ACTION="contract.do" >
-       <b>¿ï¾Ü¦X¬ù¤ÀÃş½s¸¹:</b>
+       <b>é¸æ“‡åˆç´„åˆ†é¡ç·¨è™Ÿ:</b>
        <select size="1" name="con_id">
          <c:forEach var="conVO" items="${conSvc.all}" > 
           <option value="${conVO.con_id}">${conVO.con_id}
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="°e¥X">
+       <input type="submit" value="é€å‡º">
     </FORM>
   </li>
   
   <li>
      <FORM METHOD="post" ACTION="contract.do" >
-       <b>¿ï¾Ü¦X¬ù¤ÀÃş¦WºÙ:</b>
+       <b>é¸æ“‡åˆç´„åˆ†é¡åç¨±:</b>
        <select size="1" name="con_name">
          <c:forEach var="conVO" items="${conSvc.all}" > 
           <option value="${conVO.con_id}">${conVO.con_name}
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="°e¥X">
+       <input type="submit" value="é€å‡º">
      </FORM>
   </li>
 </ul>
