@@ -7,7 +7,7 @@ public class KeyWordVO implements java.io.Serializable{
 	private String kw_id;//關鍵字編號
 	private String kw_keyword;//關鍵字
 	private Integer kw_count;//關鍵字被搜尋次數
-	
+//	
 	public String getKw_id() {
 		return kw_id;
 	}
