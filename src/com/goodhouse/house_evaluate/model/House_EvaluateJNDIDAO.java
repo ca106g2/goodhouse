@@ -19,7 +19,7 @@ public class House_EvaluateJNDIDAO implements House_EvaluateDAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/goodhouse");
 		}catch(NamingException e) {
 			e.printStackTrace();
 		}
