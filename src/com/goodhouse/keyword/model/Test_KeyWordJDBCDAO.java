@@ -9,7 +9,7 @@ public class Test_KeyWordJDBCDAO {
 		KeyWordJDBCDAO dao = new KeyWordJDBCDAO(); 
 		
 		KeyWordVO kwVO = new KeyWordVO();
-		
+//		
 		
 		//新增
 		kwVO.setKw_keyword("找出租");
