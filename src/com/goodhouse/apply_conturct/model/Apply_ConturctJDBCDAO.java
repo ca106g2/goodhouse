@@ -1,4 +1,4 @@
-package com.goodhouse.house_track.model;
+package com.goodhouse.apply_conturct.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,49 +8,55 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-public class House_TrackJDBCDAO implements House_TrackDAO_interface{
-
+public class Apply_ConturctJDBCDAO implements Apply_ConturctDAO_interface{
+	
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String userid = "GOODHOUSE";
 	String passwd = "123456";
 	
-	private static final String INSERT_STMT=
-			"INSERT INTO HOUSE_TRACK (HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS) VALUES ('HT'||LPAD(HOU_TRA_SEQ.NEXTVAL,8,0),?,?,?)";
-	private static final String UPDATE = 
-			"UPDATE HOUSE_TRACK SET MEM_ID=?, HOU_ID=?, HOU_TRA_STATUS=? WHERE HOU_TRA_ID=?";
+	private static final String INSERT_STMT =
+			"INSERT INTO APPLY_CONTURCT (APP_CON_ID,ELE_CON_ID,MEM_ID,HOU_ID,APP_CON_CONTENT,APP_CON_STATUS,APP_CON_OTHER) VALUES (APP_CON_SEQ.NEXTVAL,?,?,?,?,?,? )";
+	private static final String UPDATE =
+			"UPDATE APPLY_CONTURCT SET ELE_CON_ID=?,MEM_ID=?,HOU_ID=?,APP_CON_CONTENT=?,APP_CON_STATUS=?,APP_CON_OTHER=? WHERE APP_CON_ID=?";
 	private static final String DELETE =
-			"DELETE FROM HOUSE_TRACK WHERE HOU_TRA_ID=?";
-	private static final String GET_ONE_STMT =
-			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK WHERE HOU_TRA_ID=?";
-	private static final String GET_ALL_STMT =
-			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK ORDER BY HOU_TRA_ID";
+			"DELETE FROM APPLY_CONTURCT WHERE APP_CON_ID=?";
+	private static final String GET_ONE_STMT = 
+			"SELECT APP_CON_ID,ELE_CON_ID,MEM_ID,HOU_ID,APP_CON_CONTENT,APP_CON_STATUS,APP_CON_OTHER FROM APPLY_CONTURCT WHERE APP_CON_ID=?";
+	private static final String GET_ALL_STMT = 
+			"SELECT APP_CON_ID,ELE_CON_ID,MEM_ID,HOU_ID,APP_CON_CONTENT,APP_CON_STATUS,APP_CON_OTHER FROM APPLY_CONTURCT ORDER BY APP_CON_ID";
+	
 	@Override//新增
-	public void insert(House_TrackVO houTraVO) {
+	public void insert(Apply_ConturctVO appConVO) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
+			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
-			//INSERT INTO HOUSE_TRACK (HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS) VALUES ('HT'||LPAD(HOU_TRA_SEQ.NEXTVAL,8,0),?,?,?)
-			pstmt.setString(1, houTraVO.getMem_id());
-			pstmt.setString(2, houTraVO.getHou_id());
-			pstmt.setString(3, houTraVO.getHou_tra_status());
+			//INSERT INT APPLY_CONTURCT (APP_CON_ID,ELE_CON_ID,MEM_ID,HOU_ID,APP_CON_CONTENT,APP_CON_STATUS,APP_CON_OTHEER) VALUES (APP_CON_SEQ.NEXTVAL,?,?,?,?,?,? 
+			pstmt.setString(1, appConVO.getEle_con_id());
+			pstmt.setString(2, appConVO.getMem_id());
+			pstmt.setString(3, appConVO.getHou_id());
+			pstmt.setString(4, appConVO.getApp_con_content());
+			pstmt.setString(5, appConVO.getApp_con_status());
+			pstmt.setString(6, appConVO.getApp_con_other());
 			
+
 			pstmt.executeUpdate();
-			
-		}catch(ClassNotFoundException e) {
+
+			// Handle any SQL errors
+		} catch (ClassNotFoundException e){
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
-		}catch(SQLException se) {
+		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-		}finally {
+			// Clean up JDBC resources
+		} finally {
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -66,34 +72,40 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 				}
 			}
 		}
-		
-		
-		
 	}
 
 	@Override//修改
-	public void update(House_TrackVO houTraVO) {
+	public void update(Apply_ConturctVO appConVO) {
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
+			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
-			//UPDATE HOUSE_TRACK SET MEM_ID=?, HOU_ID=?, HOU_TRA_STATUS=? WHERE HOU_TRA_ID=?
-			pstmt.setString(1, houTraVO.getMem_id());
-			pstmt.setString(2, houTraVO.getHou_id());
-			pstmt.setString(3, houTraVO.getHou_tra_status());
-			pstmt.setString(4, houTraVO.getHou_tra_id());
-			
+			//UPDATE APPLY_CONTURCT SET ELE_CON_ID=?,MEM_ID=?,HOU_ID=?,APP_CON_CONTENT=?,APP_CON_STATUS=?,APP_CON_OTHER=? WHERE APP_CON_ID=?
+
+			pstmt.setString(1, appConVO.getEle_con_id());
+			pstmt.setString(2, appConVO.getMem_id());
+			pstmt.setString(3, appConVO.getHou_id());
+			pstmt.setString(4, appConVO.getApp_con_content());
+			pstmt.setString(5, appConVO.getApp_con_status());
+			pstmt.setString(6, appConVO.getApp_con_other());
+			pstmt.setString(7, appConVO.getApp_con_id());
+
 			pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e){
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
-		}catch (SQLException se) {
+		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-		}finally {
+			// Clean up JDBC resources
+		} finally {
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -112,25 +124,25 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 	}
 
 	@Override//刪除
-	public void delete(String hou_tra_id) {
+	public void delete(String app_con_id) {
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
-
+			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
-			//DELETE FROM HOUSE_TRACK WHERE HOU_TRA_ID=?
-			pstmt.setString(1, hou_tra_id);
+			//DELETE FROM APPLY_CONTURCT WHERE APP_CON_ID=?
+			pstmt.setObject(1, app_con_id);
 
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e){
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -154,37 +166,39 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 	}
 
 	@Override//單一查詢
-	public House_TrackVO findByPrimaryKey(String hou_tra_id) {
-		// TODO Auto-generated method stub
-		House_TrackVO houTraVO = null;
+	public Apply_ConturctVO findByPrimaryKey(String app_con_id) {
+		
+		Apply_ConturctVO appConVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-
+			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-			//SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACT WHERE HOU_TRA_ID=?
-			pstmt.setString(1, hou_tra_id);
+
+			pstmt.setString(1, app_con_id);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
-				houTraVO = new House_TrackVO();
-				houTraVO.setMem_id(rs.getString("mem_id"));
-				houTraVO.setHou_id(rs.getString("hou_id"));
-				houTraVO.setHou_tra_status(rs.getString("hou_tra_status"));
-			
+				appConVO = new Apply_ConturctVO();
+				appConVO.setApp_con_id(rs.getString("app_con_id"));
+				appConVO.setEle_con_id(rs.getString("ele_con_id"));
+				appConVO.setMem_id(rs.getString("mem_id"));
+				appConVO.setHou_id(rs.getString("hou_id"));
+				appConVO.setApp_con_content(rs.getString("app_con_content"));
+				appConVO.setApp_con_status(rs.getString("app_con_status"));
+				appConVO.setApp_con_other(rs.getString("app_con_other"));
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e){
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -212,42 +226,43 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 				}
 			}
 		}
-		return houTraVO;
+		return appConVO;
 	}
 
-	@Override
-	public List<House_TrackVO> getAll() {
+	@Override//查詢全部
+	public List<Apply_ConturctVO> getAll() {
 		
-		List<House_TrackVO> list = new ArrayList<House_TrackVO>();
-		House_TrackVO houTraVO = null;
+		List<Apply_ConturctVO> list = new ArrayList<Apply_ConturctVO>();
+		Apply_ConturctVO appConVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-
+			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
-			//SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK ORDER BY HOU_TRA_ID
+			//SELECT APP_CON_ID,ELE_CON_ID,MEM_ID,HOU_ID,APP_CON_CONTENT,APP_CON_STATUS,APP_CON_OTHER FROM APPLY_CONTURCT ORDER BY APP_CON_ID
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				houTraVO = new House_TrackVO();
-				houTraVO.setHou_tra_id(rs.getString("hou_tra_id"));
-				houTraVO.setMem_id(rs.getString("mem_id"));
-				houTraVO.setHou_id(rs.getString("hou_id"));
-				houTraVO.setHou_tra_status(rs.getString("hou_tra_status"));
-;
-				list.add(houTraVO); // Store the row in the list
+				appConVO = new Apply_ConturctVO();
+				appConVO.setApp_con_id(rs.getString("app_con_id"));
+				appConVO.setEle_con_id(rs.getString("ele_con_id"));
+				appConVO.setMem_id(rs.getString("mem_id"));
+				appConVO.setHou_id(rs.getString("hou_id"));
+				appConVO.setApp_con_content(rs.getString("app_con_content"));
+				appConVO.setApp_con_status(rs.getString("app_con_status"));
+				appConVO.setApp_con_other(rs.getString("app_con_other"));
+				list.add(appConVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e){
 			throw new RuntimeException("Couldn't load database driver. "
 					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -277,6 +292,4 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 		}
 		return list;
 	}
-
-	
 }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.goodhouse.house_track.model.House_TrackVO;
+import com.goodhouse.house_evaluate.*;
 
 public class House_EvaluateJDBCDAO implements House_EvaluateDAO_interface{
 	
@@ -75,6 +75,43 @@ public class House_EvaluateJDBCDAO implements House_EvaluateDAO_interface{
 	public void update(House_EvaluateVO heVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE);
+			
+			pstmt.setString(1,heVO.getMem_id());
+			pstmt.setString(2, heVO.getHou_id());
+			pstmt.setString(3, heVO.getHou_eva_grade());
+			pstmt.setString(4, heVO.getHou_eva_content());
+			pstmt.setString(5, heVO.getHou_eva_id());
+			
+			//UPDATE HOUSE_EVALUATE SET MEM_ID = ? , HOU_ID = ? , HOU_EVA_GRADE = ? , HOU_EVA_CONTENT = ?  WHERE HOU_EVA_ID = ?
+			pstmt.executeUpdate();
+			
+		}catch(ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+		}catch(SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		}finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 	}
 	@Override//刪除
 	public void delete(String hou_eva_id) {
@@ -140,7 +177,7 @@ public class House_EvaluateJDBCDAO implements House_EvaluateDAO_interface{
 				heVO = new House_EvaluateVO();
 				heVO.setMem_id(rs.getString("mem_id"));
 				heVO.setHou_id(rs.getString("hou_id"));
-				heVO.setHou_eva_grade(rs.getString("hou_eva_status"));
+				heVO.setHou_eva_grade(rs.getString("hou_eva_grade"));
 				heVO.setHou_eva_content(rs.getString("hou_eva_content"));
 				
 			
@@ -203,7 +240,7 @@ public class House_EvaluateJDBCDAO implements House_EvaluateDAO_interface{
 				heVO.setHou_eva_id(rs.getString("hou_eva_id"));
 				heVO.setMem_id(rs.getString("mem_id"));
 				heVO.setHou_id(rs.getString("hou_id"));
-				heVO.setHou_eva_grade(rs.getString("hou_eva_frade"));
+				heVO.setHou_eva_grade(rs.getString("hou_eva_grade"));
 				heVO.setHou_eva_content(rs.getString("hou_eva_content"));
 ;
 				list.add(heVO); // Store the row in the list

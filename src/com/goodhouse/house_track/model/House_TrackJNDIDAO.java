@@ -8,14 +8,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-
-public class House_TrackJDBCDAO implements House_TrackDAO_interface{
-
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "GOODHOUSE";
-	String passwd = "123456";
+public class House_TrackJNDIDAO implements House_TrackDAO_interface{
+	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/goodhouse");
+		}catch(NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private static final String INSERT_STMT=
 			"INSERT INTO HOUSE_TRACK (HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS) VALUES ('HT'||LPAD(HOU_TRA_SEQ.NEXTVAL,8,0),?,?,?)";
@@ -27,6 +35,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK WHERE HOU_TRA_ID=?";
 	private static final String GET_ALL_STMT =
 			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK ORDER BY HOU_TRA_ID";
+	
 	@Override//新增
 	public void insert(House_TrackVO houTraVO) {
 		
@@ -34,8 +43,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			//INSERT INTO HOUSE_TRACK (HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS) VALUES ('HT'||LPAD(HOU_TRA_SEQ.NEXTVAL,8,0),?,?,?)
 			pstmt.setString(1, houTraVO.getMem_id());
@@ -44,9 +52,6 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			
 			pstmt.executeUpdate();
 			
-		}catch(ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
 		}catch(SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -77,8 +82,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			//UPDATE HOUSE_TRACK SET MEM_ID=?, HOU_ID=?, HOU_TRA_STATUS=? WHERE HOU_TRA_ID=?
 			pstmt.setString(1, houTraVO.getMem_id());
@@ -87,9 +91,6 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			pstmt.setString(4, houTraVO.getHou_tra_id());
 			
 			pstmt.executeUpdate();
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
 		}catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -118,8 +119,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 			//DELETE FROM HOUSE_TRACK WHERE HOU_TRA_ID=?
 			pstmt.setString(1, hou_tra_id);
@@ -127,10 +127,6 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -163,8 +159,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			//SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACT WHERE HOU_TRA_ID=?
 			pstmt.setString(1, hou_tra_id);
@@ -181,10 +176,6 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -227,8 +218,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 			//SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK ORDER BY HOU_TRA_ID
@@ -244,10 +234,6 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -278,5 +264,4 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 		return list;
 	}
 
-	
 }

@@ -22,10 +22,11 @@ public class KeywordService {
 		return kwVO;
 	}
 	//修改
-	public KeyWordVO updateKW(String kw_keyword,Integer kw_count) {
+	public KeyWordVO updateKW(String kw_id,String kw_keyword,Integer kw_count) {
 		
 		KeyWordVO kwVO = new KeyWordVO();
 		
+		kwVO.setKw_id(kw_id);
 		kwVO.setKw_keyword(kw_keyword);
 		kwVO.setKw_count(kw_count);
 		dao.update(kwVO);

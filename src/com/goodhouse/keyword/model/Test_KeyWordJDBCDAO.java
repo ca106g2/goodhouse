@@ -12,23 +12,23 @@ public class Test_KeyWordJDBCDAO {
 		
 		
 		//新增
-//		kwVO.setKw_keyword("找出租");
-//		kwVO.setKw_count(1);
-//		dao.insert(kwVO);
+		kwVO.setKw_keyword("找出租");
+		kwVO.setKw_count(1);
+		dao.insert(kwVO);
 		
 		//修改
 //		KeyWordVO kwVO2 = new KeyWordVO();
 //		
-//		kwVO2.setKw_id("3");	
+//		kwVO2.setKw_id("KW00000002");	
 //		kwVO2.setKw_keyword("透天修改");
 //		kwVO2.setKw_count(3);
 //		dao.update(kwVO2);
 		
 		//刪除
-//		dao.delete("2");
+//		dao.delete("KW00000010");
 		
 		//單一查詢
-//		KeyWordVO kwVO3 = dao.findByPrimaryKey("3");
+//		KeyWordVO kwVO3 = dao.findByPrimaryKey("KW00000003");
 //		System.out.println(kwVO3.getKw_id());
 //		System.out.println(kwVO3.getKw_keyword());
 //		System.out.println(kwVO3.getKw_count());
@@ -36,14 +36,14 @@ public class Test_KeyWordJDBCDAO {
 //		System.out.println("----------------------");
 		
 		//查詢全部
-		List<KeyWordVO> list = dao.getAll();
-		
-		for(KeyWordVO aKeyWordVO : list) {
-			System.out.println(aKeyWordVO.getKw_id() + ",");
-			System.out.println(aKeyWordVO.getKw_keyword() + ",");
-			System.out.println(aKeyWordVO.getKw_count() + ",");
-			System.out.println();
-		}
+//		List<KeyWordVO> list = dao.getAll();
+//		
+//		for(KeyWordVO aKeyWordVO : list) {
+//			System.out.println(aKeyWordVO.getKw_id() + ",");
+//			System.out.println(aKeyWordVO.getKw_keyword() + ",");
+//			System.out.println(aKeyWordVO.getKw_count() + ",");
+//			System.out.println();
+//		}
 		
 	}
 

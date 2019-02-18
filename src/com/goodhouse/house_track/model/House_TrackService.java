@@ -23,10 +23,11 @@ public class House_TrackService {
 	}
 	
 	//修改
-	public House_TrackVO updateHT(String mem_id,String hou_id,String hou_tra_status) {
+	public House_TrackVO updateHT(String hou_tra_id,String mem_id,String hou_id,String hou_tra_status) {
 		
 		House_TrackVO houTraVO = new House_TrackVO();
 		
+		houTraVO.setHou_tra_id(hou_tra_id);
 		houTraVO.setHou_id(hou_id);
 		houTraVO.setMem_id(mem_id);
 		houTraVO.setHou_tra_status(hou_tra_status);

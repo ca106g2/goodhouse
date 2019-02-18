@@ -8,7 +8,7 @@ public class Test_House_EvaluateDAO {
 
 	public static void main(String[] args) {
 		
-		House_EvaluateJNDIDAO dao = new House_EvaluateJNDIDAO();
+		House_EvaluateJDBCDAO dao = new House_EvaluateJDBCDAO();
 		
 		House_EvaluateVO heVO = new House_EvaluateVO();
 	
@@ -20,25 +20,25 @@ public class Test_House_EvaluateDAO {
 //		dao.insert(heVO);
 		
 		//修改
-//		heVO.setHou_eva_id("EVA0000001");
-//		heVO.setMem_id("M000000001");
-//		heVO.setHou_id("HOU0000001");
-//		heVO.setHou_eva_grade("G1非常不好");
-//		heVO.setHou_eva_content("房子壁癌超級嚴重");
-//		
-//		dao.update(heVO);
+		heVO.setHou_eva_id("EVA0000001");
+		heVO.setMem_id("M000000001");
+		heVO.setHou_id("HOU0000001");
+		heVO.setHou_eva_grade("G1非常不好");
+		heVO.setHou_eva_content("房子壁癌超級嚴重");
+		
+		dao.update(heVO);
 		
 		//刪除
 //		dao.delete("EVA0000010");
 		
 		//單一查詢
 		
-		House_EvaluateVO heVO1 = dao.findByPrimmaryKey("");
-		System.out.println(heVO1.getHou_eva_id());
-		System.out.println(heVO1.getMem_id());
-		System.out.println(heVO1.getHou_id());
-		System.out.println(heVO1.getHou_eva_grade());
-		System.out.println(heVO1.getHou_eva_content());
+//		House_EvaluateVO heVO1 = dao.findByPrimmaryKey("EVA0000005");
+//		System.out.println(heVO1.getHou_eva_id());
+//		System.out.println(heVO1.getMem_id());
+//		System.out.println(heVO1.getHou_id());
+//		System.out.println(heVO1.getHou_eva_grade());
+//		System.out.println(heVO1.getHou_eva_content());
 		
 		System.out.println("------------------------------------------");
 		

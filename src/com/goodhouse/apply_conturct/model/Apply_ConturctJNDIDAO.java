@@ -126,7 +126,7 @@ public class Apply_ConturctJNDIDAO implements Apply_ConturctDAO_interface{
 	}
 
 	@Override//刪除
-	public void delete(Apply_ConturctVO app_con_id) {
+	public void delete(String app_con_id) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;

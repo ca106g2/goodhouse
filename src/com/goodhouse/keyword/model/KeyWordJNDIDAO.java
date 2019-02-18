@@ -1,55 +1,57 @@
-package com.goodhouse.contract.model;
+package com.goodhouse.keyword.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
-public class ContractJDBCDAO implements ContractDAO_interface{
+public class KeyWordJNDIDAO implements KeyWordDAO_interface{
 	
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "GOODHOUSE";
-	String passwd = "123456";
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/goodhouse");
+		}catch(NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	private static final String INSERT_STMT = //新增指令
-			"INSERT INTO CONTRACT (CON_ID,CON_NAME,CON_CONTENT) VALUES ('CON'||LPAD(CON_SEQ.NEXTVAL,7,0),?,?)";
-	private static final String UPDATE = //修改指令
-			"UPDATE CONTRACT SET CON_NAME=? , CON_CONTENT = ? WHERE CON_ID = ?";
-	private static final String DELETE = //刪除指令
-			"DELETE FROM CONTRACT WHERE CON_ID = ? ";	
-	private static final String GET_ONE_STMT = //查詢指令
-			"SELECT CON_ID,CON_NAME,CON_CONTENT FROM CONTRACT WHERE CON_ID=?";
-	private static final String GET_ALL_STMT = //查詢指令
-			"SELECT CON_ID,CON_NAME,CON_CONTENT FROM CONTRACT ORDER BY CON_ID";
-	
-
-
-	
+	private static final String INSERT_STMT = //新增
+			"INSERT INTO KEYWORD (KW_ID,KW_KEYWORD,KW_COUNT) VALUES ('KW'||LPAD(KW_SEQ.NEXTVAL,8,0),?,?)";
+	private static final String UPDATE = //修改
+			"UPDATE KEYWORD SET KW_KEYWORD = ? , KW_COUNT = ? WHERE KW_ID = ?";
+	private static final String DELETE = //刪除
+			"DELETE FROM KEYWORD WHERE KW_ID = ? ";
+	private static final String GET_ONE_STMT = //單一查詢
+			"SELECT KW_ID,KW_KEYWORD,KW_COUNT FROM KEYWORD WHERE KW_ID=?";
+	private static final String GET_ALL_STMT = //查詢全部
+			"SELECT KW_ID,KW_KEYWORD,KW_COUNT FROM KEYWORD ORDER BY KW_ID";
 	
 	@Override//新增
-	public void insert(ContractVO conVO) {
-		
+	public void insert(KeyWordVO kwVO) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-			//INSERT INTO CONTRACT (CON_ID,CON_NAME,CON_CONTENT) VALUES ('CON'||LPAD(CON_SEQ.NEXTVAL,7,0),?,?)
+			//INSERT INTO KEYWORD (KW_ID,KW_KEYWORD,KW_COUNT) VALUES ('KW'||LPAD(KW_SEQ.NEXTVAL,8,0,?,?)
 			
-			pstmt.setString(1,conVO.getCon_name());
-			pstmt.setString(2, conVO.getCon_content());
+			pstmt.setString(1,kwVO.getKw_keyword());
+			pstmt.setInt(2, kwVO.getKw_count());
 			
 			pstmt.executeUpdate();
 			
-		}catch (ClassNotFoundException e){
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
 		}catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -73,26 +75,22 @@ public class ContractJDBCDAO implements ContractDAO_interface{
 	}
 
 	@Override//修改
-	public void update(ContractVO conVO) {
-		
+	public void update(KeyWordVO kwVO) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-			//UPDATE CONTRACT SET CON_NAME=? , CON_CONTENT = ? WHERE CON_ID = ?
+			//UPDATE KEYWORD SET KW_KEYWORD = ? , KW_COUNT = ? WHERE KW_ID = ?
 			
-			pstmt.setString(1,conVO.getCon_name());
-			pstmt.setString(2, conVO.getCon_content());
-			pstmt.setString(3, conVO.getCon_id());
+			pstmt.setString(1,kwVO.getKw_keyword());
+			pstmt.setInt(2, kwVO.getKw_count());
+			pstmt.setString(3, kwVO.getKw_id());
 			
 			pstmt.executeUpdate();
 			
-		}catch(ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
 		}catch(SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -114,24 +112,21 @@ public class ContractJDBCDAO implements ContractDAO_interface{
 		}
 	}
 
-	@Override//刪除資料
-	public void delete(String con_id) {
+	@Override//刪除
+	public void delete(String kw_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con =ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
+			//DELETE FROM KEYWORD WHERE KW_ID = ? 
 			
-			pstmt.setString(1, con_id);
+			pstmt.setString(1, kw_id);
 			
 			pstmt.executeUpdate();
 			
 			
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
 		}catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -151,38 +146,32 @@ public class ContractJDBCDAO implements ContractDAO_interface{
 				}
 			}
 		}
-		
 	}
 
 	@Override//單一查詢
-	public ContractVO findByPrimaryKey(String con_id) {
-		
-		ContractVO conVO = null;
+	public KeyWordVO findByPrimaryKey(String kw_id) {
+		KeyWordVO kwVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-			//SELECT CON_ID,CON_NAME,CON_CONTENT FROM CONTRACT WHERE CON_ID=?
+			//SELECT KW_ID,KW_KEYWORD,KW_COUNT FROM KEYWORD WHERE KW_ID=?
 			
-			pstmt.setString(1, con_id);
+			pstmt.setString(1, kw_id);
 			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				conVO = new ContractVO();
-				conVO.setCon_id(rs.getString("CON_ID"));
-				conVO.setCon_name(rs.getString("CON_NAME"));
-				conVO.setCon_content(rs.getString("CON_CONTENT"));
+				kwVO = new KeyWordVO();
+				kwVO.setKw_id(rs.getString("KW_ID"));
+				kwVO.setKw_keyword(rs.getString("KW_KEYWORD"));
+				kwVO.setKw_count(rs.getInt("KW_COUNT"));
 				
 			}
 			
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -210,39 +199,35 @@ public class ContractJDBCDAO implements ContractDAO_interface{
 			}
 		}
 		
-		return conVO;
+		return kwVO;
 	}
 
-	@Override//查詢全部
-	public List<ContractVO> getAll() {
-		List<ContractVO> list = new ArrayList();
-		ContractVO conVO = null;
+	@Override//全部查詢
+	public List<KeyWordVO> getAll() {
+		List<KeyWordVO> list = new ArrayList();
+		KeyWordVO kwVO = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
-			//SELECT CON_ID,CON_NAME,CON_CONTENT FROM CONTRACT ORDER BY CON_ID
+			//SELECT KW_ID,KW_KEYWORD,KW_COUNT FROM KEYWORD ORDER BY KW_ID
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				conVO = new ContractVO();
-				conVO.setCon_id(rs.getString("CON_ID"));
-				conVO.setCon_name(rs.getString("CON_NAME"));
-				conVO.setCon_content(rs.getString("CON_CONTENT"));
-				list.add(conVO);
+				kwVO = new KeyWordVO();
+				kwVO.setKw_id(rs.getString("KW_ID"));
+				kwVO.setKw_keyword(rs.getString("KW_KEYWORD"));
+				kwVO.setKw_count(rs.getInt("KW_COUNT"));
+				list.add(kwVO);
 				
 			}
 			
 			
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-		} catch(SQLException se) {
+		}catch(SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 		} finally {
@@ -271,5 +256,4 @@ public class ContractJDBCDAO implements ContractDAO_interface{
 		
 		return list;
 	}
-	
 }
