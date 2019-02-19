@@ -18,22 +18,22 @@ public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT = //新增指令
-			"INSERT INTO ELE_CONTRACT (ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAND_IDNUMBER,HOU_ID," + 
+			"INSERT INTO ELE_CONTRACT (ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAN_IDNUMBER,HOU_ID," + 
 			"ELE_RENT_MONEY,ELE_DEPOSIT_MONEY,ELE_RENT_TIME,ELE_RENT_F_DAY,ELE_RENT_L_DAY,ELE_SINGDATE," + 
 			"ELE_CON_STATUS,BILL_PAYMENTTYPE,ELE_CON_NOTE) VALUES ('ECON'||LPAD(ELE_CON_SEQ.NEXTVAL,6,0)," + 
-			"?,?,?,?,?,?,?,?,?,TO_DATE(SYSDATE, 'YYYY/MM/DD'),TO_DATE(SYSDATE, 'YYYY/MM/DD'),TO_DATE(SYSDATE, 'YYYY/MM/DD'),?,?,?);";
+			"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = //修改指令
-			"UPDATE ELE_CONTRACT SET CON_ID = ? , MEM_ID = ? , MEM_IDNUMBER = ? , LAN_ID = ? , LAND_IDNUMBER = ? , " +
+			"UPDATE ELE_CONTRACT SET CON_ID = ? , MEM_ID = ? , MEM_IDNUMBER = ? , LAN_ID = ? , LAN_IDNUMBER = ? , " +
 			"HOU_ID = ? , ELE_RENT_MONEY = ? , ELE_DEPOSIT_MONEY = ? , ELE_RENT_TIME = ? , ELE_RENT_F_DAY = ? , " +
 			" ELE_RENT_L_DAY = ? , ELE_SINGDATE = ? , ELE_CON_STATUS = ?, BILL_PAYMENTTYPE = ? , ELE_CON_NOTE = ?  WHERE ELE_CON_ID = ?";
 	private static final String DELETE = //刪除指令
-			"DELETE FROM ELE_CONRACT WHERE ELE_CON_ID = ? ";
+			"DELETE FROM ELE_CONTRACT WHERE ELE_CON_ID = ? ";
 	private static final String GET_ONE_STMT = //查詢指令
-			"SELECT ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAND_IDNUMBER,HOU_ID," + 
+			"SELECT ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAN_IDNUMBER,HOU_ID," + 
 			" ELE_RENT_MONEY,ELE_DEPOSIT_MONEY,ELE_RENT_TIME,ELE_RENT_F_DAY,ELE_RENT_L_DAY,ELE_SINGDATE, " + 
 			" ELE_CON_STATUS,BILL_PAYMENTTYPE,ELE_CON_NOTE FROM ELE_CONTRACT WHERE ELE_CON_ID=?";
 	private static final String GET_ALL_STMT = //查詢指令
-			"SELECT ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAND_IDNUMBER,HOU_ID," + 
+			"SELECT ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAN_IDNUMBER,HOU_ID," + 
 			" ELE_RENT_MONEY,ELE_DEPOSIT_MONEY,ELE_RENT_TIME,ELE_RENT_F_DAY,ELE_RENT_L_DAY,ELE_SINGDATE, " + 
 			" ELE_CON_STATUS,BILL_PAYMENTTYPE,ELE_CON_NOTE FROM ELE_CONTRACT ORDER BY KW_ID";
 	
@@ -48,10 +48,10 @@ public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 			/*
-			"INSERT INTO ELE_CONTRACT (ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAND_IDNUMBER,HOU_ID," + 
+			"INSERT INTO ELE_CONTRACT (ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAN_IDNUMBER,HOU_ID," + 
 			"ELE_RENT_MONEY,ELE_DEPOSIT_MONEY,ELE_RENT_TIME,ELE_RENT_F_DAY,ELE_RENT_L_DAY,ELE_SINGDATE," + 
 			"ELE_CON_STATUS,BILL_PAYMENTTYPE,ELE_CON_NOTE) VALUES ('ECON'||LPAD(ELE_CON_SEQ.NEXTVAL,6,0)," + 
-			"?,?,?,?,?,?,?,?,?,TO_DATE(SYSDATE, 'YYYY/MM/DD'),TO_DATE(SYSDATE, 'YYYY/MM/DD'),TO_DATE(SYSDATE, 'YYYY/MM/DD'),?,?,?);";
+			"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 			*/
 			pstmt.setString(1, ecVO.getCon_id());
 			pstmt.setString(2, ecVO.getMem_id());
@@ -122,7 +122,7 @@ public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 			pstmt.setString(15, ecVO.getEle_con_note());
 			pstmt.setString(16, ecVO.getEle_con_id());
 			/*
-			"UPDATE ELE_CONTRACT SET CON_ID = ? , MEM_ID = ? , MEM_IDNUMBER = ? , LAN_ID = ? , LAND_IDNUMBER = ? , " +
+			"UPDATE ELE_CONTRACT SET CON_ID = ? , MEM_ID = ? , MEM_IDNUMBER = ? , LAN_ID = ? , LAN_IDNUMBER = ? , " +
 			"HOU_ID = ? , ELE_RENT_MONEY = ? , ELE_DEPOSIT_MONEY = ? , ELE_RENT_TIME = ? , ELE_RENT_F_DAY = ? , " +
 			" ELE_RENT_L_DAY = ? , ELE_SINGDATE = ? , ELE_CON_STATUS = ?, BILL_PAYMENTTYPE = ? , ELE_CON_NOTE = ?  WHERE ELE_CON_ID = ?";
 			*/
@@ -161,7 +161,7 @@ public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
-			//DELETE FROM KEYWORD WHERE KW_ID = ? 
+			//DELETE FROM ELE_CONTRACT WHERE ELE_CON_ID = ?  
 			
 			pstmt.setString(1, ele_con_id);
 			
@@ -216,7 +216,7 @@ public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 				ecVO.setMem_id(rs.getString("MEM_ID"));
 				ecVO.setMem_idnumber(rs.getString("MEM_IDNUMBER"));
 				ecVO.setLan_id(rs.getString("LAN_ID"));
-				ecVO.setLan_idnumber(rs.getString("LAND_IDNUMBER"));
+				ecVO.setLan_idnumber(rs.getString("LAN_IDNUMBER"));
 				ecVO.setHou_id(rs.getString("HOU_ID"));
 				ecVO.setEle_rent_money(rs.getInt("ELE_RENT_MONEY"));
 				ecVO.setEle_deposit_money(rs.getInt("ELE_DEPOSIT_MONEY"));
@@ -229,7 +229,7 @@ public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 				ecVO.setEle_con_note(rs.getString("ELE_CON_NOTE"));
 				
 				/*
-				 "SELECT ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAND_IDNUMBER,HOU_ID," + 
+				 "SELECT ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAN_IDNUMBER,HOU_ID," + 
 				 " ELE_RENT_MONEY,ELE_DEPOSIT_MONEY,ELE_RENT_TIME,ELE_RENT_F_DAY,ELE_RENT_L_DAY,ELE_SINGDATE, " + 
 				 " ELE_CON_STATUS,BILL_PAYMENTTYPE,ELE_CON_NOTE FROM ELE_CONTRACT WHERE ELE_CON_ID=?";
 				 */
@@ -290,7 +290,7 @@ public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 				ecVO.setMem_id(rs.getString("MEM_ID"));
 				ecVO.setMem_idnumber(rs.getString("MEM_IDNUMBER"));
 				ecVO.setLan_id(rs.getString("LAN_ID"));
-				ecVO.setLan_idnumber(rs.getString("LAND_IDNUMBER"));
+				ecVO.setLan_idnumber(rs.getString("LAN_IDNUMBER"));
 				ecVO.setHou_id(rs.getString("HOU_ID"));
 				ecVO.setEle_rent_money(rs.getInt("ELE_RENT_MONEY"));
 				ecVO.setEle_deposit_money(rs.getInt("ELE_DEPOSIT_MONEY"));
@@ -302,7 +302,7 @@ public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 				ecVO.setBill_paymenttype(rs.getString("BILL_PAYMENTTYPE"));
 				ecVO.setEle_con_note(rs.getString("ELE_CON_NOTE"));
 				/*
-				 "SELECT ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAND_IDNUMBER,HOU_ID," + 
+				 "SELECT ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAN_IDNUMBER,HOU_ID," + 
 			     " ELE_RENT_MONEY,ELE_DEPOSIT_MONEY,ELE_RENT_TIME,ELE_RENT_F_DAY,ELE_RENT_L_DAY,ELE_SINGDATE, " + 
 				 " ELE_CON_STATUS,BILL_PAYMENTTYPE,ELE_CON_NOTE FROM ELE_CONTRACT ORDER BY KW_ID";
 				 */

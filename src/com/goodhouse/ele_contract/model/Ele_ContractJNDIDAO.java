@@ -28,7 +28,7 @@ public class Ele_ContractJNDIDAO implements Ele_ContractDAO_interface{
 			"INSERT INTO ELE_CONTRACT (ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAND_IDNUMBER,HOU_ID," + 
 			"ELE_RENT_MONEY,ELE_DEPOSIT_MONEY,ELE_RENT_TIME,ELE_RENT_F_DAY,ELE_RENT_L_DAY,ELE_SINGDATE," + 
 			"ELE_CON_STATUS,BILL_PAYMENTTYPE,ELE_CON_NOTE) VALUES ('ECON'||LPAD(ELE_CON_SEQ.NEXTVAL,6,0)," + 
-			"?,?,?,?,?,?,?,?,?,TO_DATE(SYSDATE, 'YYYY/MM/DD'),TO_DATE(SYSDATE, 'YYYY/MM/DD'),TO_DATE(SYSDATE, 'YYYY/MM/DD'),?,?,?);";
+			"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = //修改指令
 			"UPDATE ELE_CONTRACT SET CON_ID = ? , MEM_ID = ? , MEM_IDNUMBER = ? , LAN_ID = ? , LAND_IDNUMBER = ? , " +
 			"HOU_ID = ? , ELE_RENT_MONEY = ? , ELE_DEPOSIT_MONEY = ? , ELE_RENT_TIME = ? , ELE_RENT_F_DAY = ? , " +
@@ -57,7 +57,7 @@ public class Ele_ContractJNDIDAO implements Ele_ContractDAO_interface{
 			"INSERT INTO ELE_CONTRACT (ELE_CON_ID,CON_ID,MEM_ID,MEM_IDNUMBER,LAN_ID,LAND_IDNUMBER,HOU_ID," + 
 			"ELE_RENT_MONEY,ELE_DEPOSIT_MONEY,ELE_RENT_TIME,ELE_RENT_F_DAY,ELE_RENT_L_DAY,ELE_SINGDATE," + 
 			"ELE_CON_STATUS,BILL_PAYMENTTYPE,ELE_CON_NOTE) VALUES ('ECON'||LPAD(ELE_CON_SEQ.NEXTVAL,6,0)," + 
-			"?,?,?,?,?,?,?,?,?,TO_DATE(SYSDATE, 'YYYY/MM/DD'),TO_DATE(SYSDATE, 'YYYY/MM/DD'),TO_DATE(SYSDATE, 'YYYY/MM/DD'),?,?,?);";
+			"?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 			*/
 			pstmt.setString(1, ecVO.getCon_id());
 			pstmt.setString(2, ecVO.getMem_id());
