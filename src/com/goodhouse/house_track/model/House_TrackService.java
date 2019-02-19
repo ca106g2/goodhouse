@@ -22,6 +22,11 @@ public class House_TrackService {
 		return houTraVO;
 	}
 	
+	//預留給 Struts 2 用的
+	public void addHT(House_TrackVO htVO) {
+		dao.insert(htVO);
+	}
+	
 	//修改
 	public House_TrackVO updateHT(String hou_tra_id,String mem_id,String hou_id,String hou_tra_status) {
 		
@@ -36,6 +41,10 @@ public class House_TrackService {
 		return houTraVO;
 	}
 	
+	//預留給 Struts 2 用的
+	public void updateHT(House_TrackVO htVO) {
+		dao.update(htVO);
+	}
 	//刪除
 	public void deleteHT(String hou_tra_id) {
 		dao.delete(hou_tra_id);

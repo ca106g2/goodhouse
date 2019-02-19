@@ -28,6 +28,11 @@ public class Apply_ConturctService {
 		return appCVO;
 	}
 	
+	//預留給 Struts 2 用的
+	public void addAppC(Apply_ConturctVO appCVO) {
+		dao.insert(appCVO);
+	}
+	
 	//修改
 	public Apply_ConturctVO updateAppC(String app_con_id , String ele_con_id , String mem_id ,String hou_id  , String app_con_content , String app_con_status ,String app_con_other ) {
 		
@@ -44,6 +49,11 @@ public class Apply_ConturctService {
 		dao.update(appCVO);
 		
 		return appCVO;
+	}
+	
+	//預留給 Struts 2 用的
+	public void updateAppC(Apply_ConturctVO appCVO) {
+		dao.update(appCVO);
 	}
 	
 	//刪除

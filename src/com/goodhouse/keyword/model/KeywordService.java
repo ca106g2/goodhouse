@@ -21,6 +21,12 @@ public class KeywordService {
 		
 		return kwVO;
 	}
+	
+	//預留給 Struts 2 用的
+	public void addKW(KeyWordVO kwVO) {
+		dao.insert(kwVO);
+	}
+	
 	//修改
 	public KeyWordVO updateKW(String kw_id,String kw_keyword,Integer kw_count) {
 		
@@ -33,6 +39,11 @@ public class KeywordService {
 		
 		return kwVO;
 	}
+	//預留給 Struts 2 用的
+	public void updateKW(KeyWordVO kwVO) {
+		dao.update(kwVO);
+	}
+	
 	//刪除
 	public void deleteKW(String kw_id) {
 		 dao.delete(kw_id);

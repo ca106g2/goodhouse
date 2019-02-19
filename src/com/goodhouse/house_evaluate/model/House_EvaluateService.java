@@ -24,6 +24,11 @@ public class House_EvaluateService {
 		return heVO;
 	}
 	
+	//預留給 Struts 2 用的
+	public void addHE(House_EvaluateVO heVO) {
+		dao.insert(heVO);
+	}
+	
 	//修改
 	public House_EvaluateVO updateHE(String mem_id,String hou_id,String hou_eva_grade,String hou_eva_content) {
 		
@@ -36,6 +41,11 @@ public class House_EvaluateService {
 		
 		dao.update(heVO);
 		return heVO;
+	}
+	
+	//預留給 Struts 2 用的
+	public void updateHE(House_EvaluateVO heVO) {
+		dao.update(heVO);
 	}
 	
 	//刪除

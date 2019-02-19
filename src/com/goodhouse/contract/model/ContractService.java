@@ -8,6 +8,7 @@ public class ContractService {
 		dao = new ContractJDBCDAO();
 	}
 	
+	//新增
 	public ContractVO addCon(String con_name,String con_content) {
 		
 		ContractVO conVO = new ContractVO();
@@ -19,6 +20,12 @@ public class ContractService {
 		return conVO;
 	}
 	
+	//預留給 Struts 2 用的
+	public void addCon(ContractVO conVO) {
+		dao.insert(conVO);
+	}
+	
+	//修改
 	public ContractVO updateCon(String con_id,String con_name,String con_content) {
 		
 		ContractVO conVO = new ContractVO();
@@ -30,6 +37,11 @@ public class ContractService {
 		dao.update(conVO);
 		
 		return conVO;
+	}
+	
+	//預留給 Struts 2 用的
+	public void updateCon(ContractVO conVO) {
+		dao.update(conVO);
 	}
 	
 	public void deleteCon(String con_id) {
