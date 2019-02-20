@@ -82,20 +82,20 @@ public class TestMem extends HttpServlet {
 	
 //		System.out.println("===================================================================");
 //		
-//		ev = es.getOneMem("M000000009");
-//		
-//		System.out.println(ev.getMem_name());
-//		System.out.println(ev.getMem_birthday());
-//		System.out.println(ev.getMem_password());
-//		System.out.println(ev.getMem_address());
-//		System.out.println(ev.getMem_zipcode());
-//		System.out.println(ev.getMem_telephone());
-//		System.out.println(ev.getMem_phone());
-//		System.out.println(ev.getMem_email());
-//		System.out.println(ev.getMem_status());
-//		System.out.println(ev.getMem_picture());
-//		System.out.println(ev.getGood_total());
-//		System.out.println(ev.getMem_id());
+		ev = es.getOneMem("M000000009");
+		
+		System.out.println(ev.getMem_name());
+		System.out.println(ev.getMem_birthday());
+		System.out.println(ev.getMem_password());
+		System.out.println(ev.getMem_address());
+		System.out.println(ev.getMem_zipcode());
+		System.out.println(ev.getMem_telephone());
+		System.out.println(ev.getMem_phone());
+		System.out.println(ev.getMem_email());
+		System.out.println(ev.getMem_status());
+		System.out.println(ev.getMem_picture());
+		System.out.println(ev.getGood_total());
+		System.out.println(ev.getMem_id());
 //		
 		
 		List <MemVO>list = new ArrayList<MemVO>();
