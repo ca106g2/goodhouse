@@ -1,0 +1,15 @@
+<!-- 	
+		<th>圖片一</th>
+		<th>圖片二</th>
+		<th>圖片三</th> -->
+<!------------------------------------------------------- 等房東serivces -->		
+<!--	<jsp:useBeamn id="房東Svc" scope="page" class="com.goodhouse.ad.model.房東"/>
+	<tr>
+		<td>房東:<font color=red><b>*</b></font></td>
+		<td><select size="1" name="房東no">
+			<c:forEach var="房東VO" items="${房東Svc.all}">
+				<option value="${房東VO.房東no}"
+				${(param.房東no==房東VO.房東no)? 'selected':''}>${房東VO.房東name}
+			</c:forEach>
+		</select></td>-->
+<!------------------------------------------------------------------------->
