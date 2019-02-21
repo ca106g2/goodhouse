@@ -169,6 +169,7 @@ public class House_EvaluateJNDIDAO implements House_EvaluateDAO_interface{
 			while (rs.next()) {
 				// empVo 也稱為 Domain objects
 				heVO = new House_EvaluateVO();
+				heVO.setHou_eva_id(rs.getString("hou_eva_id"));
 				heVO.setMem_id(rs.getString("mem_id"));
 				heVO.setHou_id(rs.getString("hou_id"));
 				heVO.setHou_eva_grade(rs.getString("hou_eva_grade"));

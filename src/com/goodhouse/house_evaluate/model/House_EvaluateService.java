@@ -30,10 +30,11 @@ public class House_EvaluateService {
 	}
 	
 	//修改
-	public House_EvaluateVO updateHE(String mem_id,String hou_id,String hou_eva_grade,String hou_eva_content) {
+	public House_EvaluateVO updateHE(String hou_eva_id,String mem_id,String hou_id,String hou_eva_grade,String hou_eva_content) {
 		
 		House_EvaluateVO heVO = new House_EvaluateVO();
 		
+		heVO.setHou_eva_id(hou_eva_id);
 		heVO.setMem_id(mem_id);
 		heVO.setHou_id(hou_id);
 		heVO.setHou_eva_grade(hou_eva_grade);
