@@ -58,8 +58,8 @@ public class TestMem extends HttpServlet {
 //		System.out.println("===================================================================");
 ////		
 //
-//		ev = es.updateMem("幹幹幹", Date.valueOf("1998-08-08") , "ddd555", "台北市信義路一號", "55998",282858777,985555777,"cow18@abc.com","2",bao.toByteArray(),2000,"2","M000000005");
-//		
+//		ev = es.updateMem("幹幹幹", Date.valueOf("1998-08-08") , "ddd555", "台北市信義路一號", "55998",282858777,985555777,"cow18@abc.com","2",bao.toByteArray(),2000,"2","M000000008");
+////		
 //		System.out.println(ev.getMem_name());
 //		System.out.println(ev.getMem_birthday());
 //		System.out.println(ev.getMem_password());
@@ -77,8 +77,8 @@ public class TestMem extends HttpServlet {
 //		
 //		System.out.println("===================================================================");
 //		
-//		es.deleteMem("M000000009");
-//		System.out.println(ev.getMem_id());
+		es.deleteMem("M000000014");
+		System.out.println(ev.getMem_id());
 	
 //		System.out.println("===================================================================");
 //		
