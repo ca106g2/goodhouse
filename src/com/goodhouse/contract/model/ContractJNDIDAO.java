@@ -26,15 +26,15 @@ public class ContractJNDIDAO implements ContractDAO_interface{
 	}
 	
 	private static final String INSERT_STMT = //新增指令
-			"INSERT INTO CONTRACT (CON_ID,CON_NAME,CON_CONTENT) VALUES ('CON'||LPAD(CON_SEQ.NEXTVAL,7,0),?,?)";
+			"INSERT INTO CONTRACT (CON_ID,CON_NAME,CON_CONTENT,CON_STATUS) VALUES ('CON'||LPAD(CON_SEQ.NEXTVAL,7,0),?,?,?)";
 	private static final String UPDATE = //修改指令
-			"UPDATE CONTRACT SET CON_NAME=? , CON_CONTENT = ? WHERE CON_ID = ?";
+			"UPDATE CONTRACT SET CON_NAME=? , CON_CONTENT = ? , CON_STATUS = ? WHERE CON_ID = ?";
 	private static final String DELETE = //刪除指令
 			"DELETE FROM CONTRACT WHERE CON_ID = ? ";	
 	private static final String GET_ONE_STMT = //查詢指令
-			"SELECT CON_ID,CON_NAME,CON_CONTENT FROM CONTRACT WHERE CON_ID=?";
+			"SELECT CON_ID,CON_NAME,CON_CONTENT,CON_STATUS FROM CONTRACT WHERE CON_ID=?";
 	private static final String GET_ALL_STMT = //查詢指令
-			"SELECT CON_ID,CON_NAME,CON_CONTENT FROM CONTRACT ORDER BY CON_ID";
+			"SELECT CON_ID,CON_NAME,CON_CONTENT,CON_STATUS FROM CONTRACT ORDER BY CON_ID";
 	
 	@Override//新增
 	public void insert(ContractVO conVO) {
@@ -45,10 +45,11 @@ public class ContractJNDIDAO implements ContractDAO_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-			//INSERT INTO CONTRACT (CON_ID,CON_NAME,CON_CONTENT) VALUES ('CON'||LPAD(CON_SEQ.NEXTVAL,7,0),?,?)
+			//INSERT INTO CONTRACT (CON_ID,CON_NAME,CON_CONTENT,CON_STATUS) VALUES ('CON'||LPAD(CON_SEQ.NEXTVAL,7,0),?,?,?)
 			
 			pstmt.setString(1,conVO.getCon_name());
 			pstmt.setString(2, conVO.getCon_content());
+			pstmt.setString(3, conVO.getCon_status());
 			
 			pstmt.executeUpdate();
 			
@@ -83,11 +84,12 @@ public class ContractJNDIDAO implements ContractDAO_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-			//UPDATE CONTRACT SET CON_NAME=? , CON_CONTENT = ? WHERE CON_ID = ?
+			//UPDATE CONTRACT SET CON_NAME=? , CON_CONTENT = ? , CON_STATUS = ? WHERE CON_ID = ?
 			
-			pstmt.setString(1,conVO.getCon_name());
+			pstmt.setString(1, conVO.getCon_name());
 			pstmt.setString(2, conVO.getCon_content());
-			pstmt.setString(3, conVO.getCon_id());
+			pstmt.setString(3, conVO.getCon_status());
+			pstmt.setString(4, conVO.getCon_id());
 			
 			pstmt.executeUpdate();
 			
@@ -159,7 +161,7 @@ public class ContractJNDIDAO implements ContractDAO_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
-			//SELECT CON_ID,CON_NAME,CON_CONTENT FROM CONTRACT WHERE CON_ID=?
+			//SELECT CON_ID,CON_NAME,CON_CONTENT,CON_STATUS FROM CONTRACT WHERE CON_ID=?
 			
 			pstmt.setString(1, con_id);
 			
@@ -170,6 +172,7 @@ public class ContractJNDIDAO implements ContractDAO_interface{
 				conVO.setCon_id(rs.getString("CON_ID"));
 				conVO.setCon_name(rs.getString("CON_NAME"));
 				conVO.setCon_content(rs.getString("CON_CONTENT"));
+				conVO.setCon_status(rs.getString("CON_STATUS"));
 				
 			}
 			
@@ -215,7 +218,7 @@ public class ContractJNDIDAO implements ContractDAO_interface{
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
-			//SELECT CON_ID,CON_NAME,CON_CONTENT FROM CONTRACT ORDER BY CON_ID
+			//SELECT CON_ID,CON_NAME,CON_CONTENT,CON_STATUS FROM CONTRACT ORDER BY CON_ID
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -223,6 +226,7 @@ public class ContractJNDIDAO implements ContractDAO_interface{
 				conVO.setCon_id(rs.getString("CON_ID"));
 				conVO.setCon_name(rs.getString("CON_NAME"));
 				conVO.setCon_content(rs.getString("CON_CONTENT"));
+				conVO.setCon_status(rs.getString("CON_STATUS"));
 				list.add(conVO);
 				
 			}

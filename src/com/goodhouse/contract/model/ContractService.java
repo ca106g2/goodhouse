@@ -5,16 +5,17 @@ import java.util.List;
 public class ContractService {
 	private ContractDAO_interface dao;
 	public ContractService() {
-		dao = new ContractJDBCDAO();
+		dao = new ContractJNDIDAO();
 	}
 	
 	//新增
-	public ContractVO addCon(String con_name,String con_content) {
+	public ContractVO addCon(String con_name,String con_content,String con_status) {
 		
 		ContractVO conVO = new ContractVO();
 		
 		conVO.setCon_name(con_name);
 		conVO.setCon_content(con_content);
+		conVO.setCon_content(con_status);
 		
 		dao.insert(conVO);
 		return conVO;
@@ -26,13 +27,14 @@ public class ContractService {
 	}
 	
 	//修改
-	public ContractVO updateCon(String con_id,String con_name,String con_content) {
+	public ContractVO updateCon(String con_id,String con_name,String con_content,String con_status) {
 		
 		ContractVO conVO = new ContractVO();
 		
 		conVO.setCon_id(con_id);;
 		conVO.setCon_name(con_name);
 		conVO.setCon_content(con_content);
+		conVO.setCon_status(con_status);
 		
 		dao.update(conVO);
 		

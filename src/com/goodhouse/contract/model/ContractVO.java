@@ -6,7 +6,8 @@ public class ContractVO implements java.io.Serializable{
 	
 	private String con_id;//合約分類編號
 	private String con_name;//合約分類名稱
-	private String con_content;//合約內容}
+	private String con_content;//合約內容
+	private String con_status;//合約分類狀態
 	public String getCon_id() {
 		return con_id;
 	}
@@ -24,6 +25,12 @@ public class ContractVO implements java.io.Serializable{
 	}
 	public void setCon_content(String con_content) {
 		this.con_content = con_content;
+	}
+	public String getCon_status() {
+		return con_status;
+	}
+	public void setCon_status(String con_status) {
+		this.con_status = con_status;
 	}
 	
 	
