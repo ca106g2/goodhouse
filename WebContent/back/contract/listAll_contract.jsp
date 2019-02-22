@@ -13,8 +13,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
-<title>合約分類資料 - listAllContract.jsp</title>
+<meta charset="UTF-8">
+<title>合約分類資料 - listAll_contract.jsp</title>
 <style>
   table {
 	width: 800px;
@@ -36,7 +36,7 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>合約分類資料 - listAllContract.jsp</h3>
+		 <h3>合約分類資料 - listAll_contract.jsp</h3>
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -55,8 +55,8 @@
 		<th>合約分類編號</th>
 		<th>合約分類名稱</th>
 		<th>合約內容</th>
-		<th>修改</th>
-		<th>刪除</th>
+		<th>合約分類狀態</th>
+		<th>修改/停用</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="conVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -64,18 +64,13 @@
 		<tr>
 			<td>${conVO.con_id}</td>
 			<td>${conVO.con_name}</td>
-			<td>${conVO.con_content}</td>	
+			<td>${conVO.con_content}</td>
+			<td>${conVO.con_status}</td>	
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/contract/contract.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="empno"  value="${conVO.con_id}">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/contract/contract.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="修改/停用">
+			     <input type="hidden" name="con_id"  value="${conVO.con_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/contract/contract.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="empno"  value="${conVO.con_id}">
-			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 		</tr>
 	</c:forEach>

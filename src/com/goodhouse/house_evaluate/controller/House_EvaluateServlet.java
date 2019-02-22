@@ -288,18 +288,22 @@ public class House_EvaluateServlet extends HttpServlet{
 				
 				//會員資料比對
 				String mem_id = null;
+				//取得使用者輸入的名字
 				String mem_name = req.getParameter("mem_name");
-				
+				//檢查使用者有沒有輸入資料
 				if(mem_name == null || mem_name.trim().length() == 0 ) {
 					errorMsgs.add("姓名請勿空白");
 				}
 				
+				//利用service的getAll方法取出所有會員的資料
 				for(MemVO mVO : mSvc.getAll()) {
-					if(mVO.getMem_name().equals(mem_name)) {
+					//把每筆所取出的資料跟使用者輸入的名字做比對
+					if(mem_name.equals(mVO.getMem_name())) {
+						//符合資料庫裡有的名字才取出會員ID
 						mem_id = mVO.getMem_id();
 					} 
 				}
-				
+				//檢查取出的會員id是否為空值
 				if(mem_id == null){
 					errorMsgs.add("姓名輸入錯誤");
 				}
