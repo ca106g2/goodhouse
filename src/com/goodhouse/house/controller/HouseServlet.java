@@ -1,119 +1,60 @@
 package com.goodhouse.house.controller;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.*;
-import javax.naming.*;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
-import javax.sql.DataSource;
 
 import com.goodhouse.house.model.*;
+
 @MultipartConfig
 public class HouseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public HouseServlet() {
 		super();
 	}
-	
-	Connection con;
-	DataSource ds = null;
-	public static final String photo1 = "SELECT hou_f_picture FROM HOUSE WHERE hou_id='";
-	public static final String photo2 = "SELECT hou_s_picture FROM HOUSE WHERE hou_id='";
-	public static final String photo3 = "SELECT hou_t_picture FROM HOUSE WHERE hou_id='";
-	public void init() throws ServletException{
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/goodhouse");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("image/jpeg");
 		ServletOutputStream out = res.getOutputStream();
-		Statement stmt =null;
-		ResultSet rs = null;
+		
 		try {
-			con = ds.getConnection();
-			stmt =con.createStatement();
-			String hou_id = req.getParameter("hou_id").trim();
-			if(Integer.parseInt(req.getParameter("photo")) == 1) 
-			{
-				rs = stmt.executeQuery(photo1+hou_id+"'");
-				}else if(Integer.parseInt(req.getParameter("photo")) == 2)
-				{
-					rs = stmt.executeQuery(photo2+hou_id+"'");
-					}else if(Integer.parseInt(req.getParameter("photo"))==3) 
-					{
-						rs = stmt.executeQuery(photo3+hou_id+"'");
-						}else {
-							InputStream in = getServletContext().getResourceAsStream("/back/house/image/test.jpg");
-							byte[] buf = new byte[in.available()];
-							in.read(buf);
-							out.write(buf);
-							in.close();
-						}
-				
-			if(rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream(1));
-				byte[] buf = new byte[4*1024];
-				int len;
-				while((len = in.read(buf))!=-1) {
-					out.write(buf, 0, len);
-				}
-				in.close();
-			}else{
-				InputStream in = getServletContext().getResourceAsStream("/back/house/image/test.jpg");
-				byte[] buf = new byte[in.available()];
-				in.read(buf);
-				out.write(buf);
-				in.close();
+			String hou_id = req.getParameter("hou_id");
+			//抓取jsp的hou_id請求
+			HouseService houSvc = new HouseService();
+			//宣告HouseService
+			HouseVO houVO = houSvc.getOneHouse(hou_id);
+			//宣告HouseVO並將HouseService裡面getOneHouse方法(抓取jsp的hou_id請求)丟入HOUVO取得此ID的所有欄位記憶體位子
+			byte[] photo=null;
+			if(Integer.parseInt(req.getParameter("photo"))==1) {
+				//判斷JSP(listAllHouse.jsp)src後面的photo是放甚麼參數
+				photo=houVO.getHou_f_picture();
+			}else if(Integer.parseInt(req.getParameter("photo"))==2) {
+				photo=houVO.getHou_s_picture();
+			}else if(Integer.parseInt(req.getParameter("photo"))==3) {
+				photo=houVO.getHou_t_picture();
 			}
-			rs.close();
-			stmt.close();
-		} catch (Exception e) {
+			out.write(photo);
+			//寫出對應圖片
+		}catch (Exception e) {
 			InputStream in = getServletContext().getResourceAsStream("/back/house/image/test.jpg");
-			byte[] buf = new byte[in.available()];
-			in.read(buf);
-			out.write(buf);
+			byte[] pt = new byte[4 * 1024];
+			int i;
+			while ((i = in.read(pt)) != -1) {
+				out.write(pt, 0, i);
+			}
 			in.close();
-		}finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (stmt != null) {
-				try {
-					stmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception se) {
-					se.printStackTrace(System.err);
-				}
-			}
 		}
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
+		
 //**********************insert		
 		if ("insert".equals(action)) {
 
@@ -134,7 +75,7 @@ public class HouseServlet extends HttpServlet {
 				if (hou_size == null || hou_size.trim().length() == 0) {
 					hou_size = "無填寫";
 				} else if (!hou_size.trim().matches(hou_sizeReg)) {
-					errorMsgs.put("hou_size", "格式不正確");
+					errorMsgs.put("hou_size", "請勿用逗點或其他符號");
 				}
 
 				String hou_property = req.getParameter("hou_property").trim();
@@ -167,7 +108,7 @@ public class HouseServlet extends HttpServlet {
 					errorMsgs.put("hou_rent", "租金請填寫數字");
 				}
 				String lan_id = new String(req.getParameter("lan_id").trim());
-				
+
 				/**********************************/
 				// 圖片一
 				Part hou_f_picture = req.getPart("hou_f_picture");
@@ -175,31 +116,31 @@ public class HouseServlet extends HttpServlet {
 				ByteArrayOutputStream baf = new ByteArrayOutputStream();
 				int f;
 				byte bf[] = new byte[8192];
-				while((f=buf.read(bf)) != -1) {
+				while ((f = buf.read(bf)) != -1) {
 					baf.write(bf);
 				}
 				baf.toByteArray();
-				/**************圖片一end********************/
+				/************** 圖片一end ********************/
 				/**********************************/
-				//圖片二
+				// 圖片二
 				Part hou_s_picture = req.getPart("hou_s_picture");
 				BufferedInputStream bus = new BufferedInputStream(hou_s_picture.getInputStream());
 				ByteArrayOutputStream bas = new ByteArrayOutputStream();
 				int s;
 				byte bs[] = new byte[8192];
-				while((s=bus.read(bs))!=-1) {
+				while ((s = bus.read(bs)) != -1) {
 					bas.write(bs);
 				}
 				bas.toByteArray();
-				/**************圖片二end********************/
+				/************** 圖片二end ********************/
 				/**********************************/
-				//圖片三
+				// 圖片三
 				Part hou_t_picture = req.getPart("hou_t_picture");
 				BufferedInputStream but = new BufferedInputStream(hou_t_picture.getInputStream());
 				ByteArrayOutputStream bat = new ByteArrayOutputStream();
 				int t;
 				byte bt[] = new byte[8192];
-				while((t=but.read(bt))!=-1) {
+				while ((t = but.read(bt)) != -1) {
 					bat.write(bt);
 				}
 				bat.toByteArray();
@@ -214,7 +155,8 @@ public class HouseServlet extends HttpServlet {
 
 				HouseService houSvc = new HouseService();
 				houSvc.addHouse(hou_name, hou_type, hou_size, hou_property, hou_parkspace, hou_cook, hou_managefee,
-						hou_address, lan_id, hou_rent, baf.toByteArray() ,bas.toByteArray(),bat.toByteArray() , hou_note);
+						hou_address, lan_id, hou_rent, baf.toByteArray(), bas.toByteArray(), bat.toByteArray(),
+						hou_note);
 
 				String url = "/back/house/listAllHouse.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -227,9 +169,9 @@ public class HouseServlet extends HttpServlet {
 			}
 
 		}
-		//**********************insert end
+		// **********************insert end
 
-		//**********************delete		
+		// **********************delete
 		if ("delete".equals(action)) {// 來自listAllEmp.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -255,7 +197,7 @@ public class HouseServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		//**********************delete	end
+		// **********************delete end
 
 		// **********************getOne_For_Display
 		if ("getOne_For_Display".equals(action)) {
@@ -300,16 +242,15 @@ public class HouseServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				errorMsgs.add("尋找資料失敗" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back/house/select_page.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back/house/select_page.jsp");
 				failureView.forward(req, res);
 			}
 
 		}
 
 		// **********************getOne_For_Display end
-		
-		// **********************getOne_For_Update 
+
+		// **********************getOne_For_Update
 		if ("getOne_For_Update".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 
@@ -319,7 +260,7 @@ public class HouseServlet extends HttpServlet {
 
 				HouseService houSvc = new HouseService();
 				HouseVO houVO = houSvc.getOneHouse(hou_id);
-				
+
 				req.setAttribute("houVO", houVO);
 				String url = "/back/house/update_hou_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -334,7 +275,7 @@ public class HouseServlet extends HttpServlet {
 		}
 		// **********************getOne_For_Update end
 
-		//**********************update	
+		// **********************update
 		if ("update".equals(action)) {
 
 			List<String> errorMsgs = new LinkedList<String>();
@@ -387,68 +328,67 @@ public class HouseServlet extends HttpServlet {
 					errorMsgs.add("租金請填寫數字");
 				}
 				String hou_note = new String(req.getParameter("hou_note").trim());
-				
+
 				/**********************************/
 				// 圖片一
 //				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@");//除錯標記
 				Part hou_f_picture = req.getPart("hou_f_picture");
 				byte[] pictf;
-				if(hou_f_picture.getSize()==0) {
+				if (hou_f_picture.getSize() == 0) {
 					HouseService houSvc = new HouseService();
-					HouseVO houVO =houSvc.getOneHouse(hou_id);
+					HouseVO houVO = houSvc.getOneHouse(hou_id);
 					pictf = houVO.getHou_f_picture();
-				}else{
+				} else {
 //				System.out.println(hou_f_picture);//除錯確認是否hou_f_picture有抓到記憶體位置	
 //				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@");//除錯標記
-				BufferedInputStream buf = new BufferedInputStream(hou_f_picture.getInputStream());
-				ByteArrayOutputStream baf = new ByteArrayOutputStream();
-				int f;
-				byte bf[] = new byte[8192];
-				while((f=buf.read(bf)) != -1) {
-					baf.write(bf);
+					BufferedInputStream buf = new BufferedInputStream(hou_f_picture.getInputStream());
+					ByteArrayOutputStream baf = new ByteArrayOutputStream();
+					int f;
+					byte bf[] = new byte[8192];
+					while ((f = buf.read(bf)) != -1) {
+						baf.write(bf);
+					}
+					pictf = baf.toByteArray();
 				}
-				pictf=baf.toByteArray();
-				}
-				/**************圖片一end********************/
+				/************** 圖片一end ********************/
 				/**********************************/
-				//圖片二
+				// 圖片二
 				Part hou_s_picture = req.getPart("hou_s_picture");
 				byte[] picts;
-				if(hou_s_picture.getSize()==0) {
+				if (hou_s_picture.getSize() == 0) {
 					HouseService houSvc = new HouseService();
 					HouseVO houVO = houSvc.getOneHouse(hou_id);
-					picts=houVO.getHou_s_picture();
-				}else {
-				BufferedInputStream bus = new BufferedInputStream(hou_s_picture.getInputStream());
-				ByteArrayOutputStream bas = new ByteArrayOutputStream();
-				int s;
-				byte bs[] = new byte[8192];
-				while((s=bus.read(bs))!=-1) {
-					bas.write(bs);
+					picts = houVO.getHou_s_picture();
+				} else {
+					BufferedInputStream bus = new BufferedInputStream(hou_s_picture.getInputStream());
+					ByteArrayOutputStream bas = new ByteArrayOutputStream();
+					int s;
+					byte bs[] = new byte[8192];
+					while ((s = bus.read(bs)) != -1) {
+						bas.write(bs);
+					}
+					picts = bas.toByteArray();
 				}
-				picts=bas.toByteArray();
-				}
-				/**************圖片二end********************/
+				/************** 圖片二end ********************/
 				/**********************************/
-				//圖片三
+				// 圖片三
 				Part hou_t_picture = req.getPart("hou_t_picture");
 				byte[] pictt;
-				if(hou_t_picture.getSize() == 0) {
+				if (hou_t_picture.getSize() == 0) {
 					HouseService houSvc = new HouseService();
 					HouseVO houVO = houSvc.getOneHouse(hou_id);
-					pictt=houVO.getHou_s_picture();
-				}else {
-				BufferedInputStream but = new BufferedInputStream(hou_t_picture.getInputStream());
-				ByteArrayOutputStream bat = new ByteArrayOutputStream();
-				int t;
-				byte bt[] = new byte[8192];
-				while((t=but.read(bt))!=-1) {
-					bat.write(bt);
+					pictt = houVO.getHou_t_picture();
+				} else {
+					BufferedInputStream but = new BufferedInputStream(hou_t_picture.getInputStream());
+					ByteArrayOutputStream bat = new ByteArrayOutputStream();
+					int t;
+					byte bt[] = new byte[8192];
+					while ((t = but.read(bt)) != -1) {
+						bat.write(bt);
+					}
+					pictt = bat.toByteArray();
 				}
-				pictt=bat.toByteArray();
-				}
-				/***************圖片三 end*******************/	
-			
+				/*************** 圖片三 end *******************/
 
 				HouseVO houVO = new HouseVO();
 				houVO.setHou_id(hou_id);
@@ -466,34 +406,31 @@ public class HouseServlet extends HttpServlet {
 				houVO.setHou_t_picture(picts);
 				houVO.setHou_s_picture(pictt);
 				req.setAttribute("houVO", houVO);
-				
+
 				if (!errorMsgs.isEmpty()) {
-					//req.setAttribute("houVO", houVO);
-					
-					RequestDispatcher failureView = 
-							req.getRequestDispatcher("/back/house/update_hou_input.jsp");
+					// req.setAttribute("houVO", houVO);
+
+					RequestDispatcher failureView = req.getRequestDispatcher("/back/house/update_hou_input.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 				HouseService housSvc = new HouseService();
-				houVO = housSvc.updateHouse(hou_id, hou_name, hou_type, hou_size,
-						hou_property, hou_parkspace, hou_cook,
-						hou_managefee, hou_address, hou_rent, hou_note//,null,null,null);
-						,pictf,picts,pictt);//
-				
+				houVO = housSvc.updateHouse(hou_id, hou_name, hou_type, hou_size, hou_property, hou_parkspace, hou_cook,
+						hou_managefee, hou_address, hou_rent, hou_note// ,null,null,null);
+						, pictf, picts, pictt);//
+
 				System.out.println(houVO);
 				req.setAttribute("houVO", houVO);
 				RequestDispatcher successView = req.getRequestDispatcher("/back/house/listOneHouse.jsp");
 				successView.forward(req, res);
 			} catch (Exception e) {
 				e.printStackTrace();
-				errorMsgs.add("update失敗"+ e.getMessage());
-				RequestDispatcher failureView = 
-						req.getRequestDispatcher("/back/house/update_hou_input.jsp");
+				errorMsgs.add("update失敗" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back/house/update_hou_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
-		//**********************update	end
+		// **********************update end
 
 	}
 }
