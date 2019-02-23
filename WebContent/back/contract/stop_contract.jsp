@@ -41,26 +41,31 @@
 			<tr>
 				<td>合約分類名稱</td><br>
 				<td>
-					<input type="text" name="con_name" value="${conVO.con_name}">
+					<p type="text" >${conVO.con_name}</p>
 				</td>
 			</tr>
 			<tr>
 				<td>合約內容</td><br>
 				<td>
-					<input type="text" name="con_content" value="${conVO.con_content}">
+					<p type="text" >${conVO.con_content}</p>
 				</td>
 			</tr>
 			<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"/>
 			<tr>
 				<td>合約使用狀態</td><br>
 				<td>
-					<p type="hidden" name="con_status" value="${conVO.con_status}">${conVO.con_status}</p>
+					<select name="con_status">
+						<c:forEach var="con_status" items="${Con_statusList}">
+							<option value="${con_status.status_no_name}" ${(con_status.status_no_name == conVO.con_status)?'selected':''}>${con_status.status_name}
+						</c:forEach>
+					</select>
 				</td>
 			</tr>
 		</table>
 		<input type="hidden" name="action" value="update" >
 		<input type="hidden" name="con_id" value="${conVO.con_id}">
-		<input type="hidden" name="con_status" value="${conVO.con_status}">
+		<input type="hidden" name="con_name" value="${conVO.con_name}">
+		<input type="hidden" name="con_content" value="${conVO.con_content}">
 		<input type="submit" value="送出修改">
 	
 	</form>

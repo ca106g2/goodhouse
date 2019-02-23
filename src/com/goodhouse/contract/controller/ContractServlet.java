@@ -188,6 +188,7 @@ public class ContractServlet extends HttpServlet{
 			}
 		}
 		
+		//新增
 		if("insert".equals(action)) {
 			//來自add_contract.jsp的請求
 			List<String> errorMsgs = new LinkedList<String>();
@@ -243,6 +244,40 @@ public class ContractServlet extends HttpServlet{
 				failureView.forward(req, res);
 			}
 			
+		}
+		
+		//停用(取代掉刪除功能)
+		if ("getOne_For_Stop".equals(action)) {
+			// 來自listAll_contract.jsp的請求
+			
+						List<String> errorMsgs = new LinkedList<String>();
+						// Store this set in the request scope, in case we need to
+						// send the ErrorPage view.
+						req.setAttribute("errorMsgs", errorMsgs);
+						
+						try {
+							/********1開始接收參數****************/
+							String con_id = new String(req.getParameter("con_id"));
+							
+							/**********2開始查詢資料************/
+							
+							ContractService conSvc = new ContractService();
+							ContractVO conVO = conSvc.getOneCon(con_id);
+							
+							/**********3查詢完成，開始轉交資料************/
+							req.setAttribute("conVO", conVO);
+							String url = "/back/contract/stop_contract.jsp";
+							RequestDispatcher successView = req.getRequestDispatcher(url);
+							successView.forward(req,res);
+							
+							
+						} catch (Exception e) {
+							errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+							RequestDispatcher failureView = req
+									.getRequestDispatcher("/back/contract/listAll_contract.jsp");
+							failureView.forward(req, res);
+						}
+						
 		}
 	}
 }

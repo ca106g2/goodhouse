@@ -56,7 +56,8 @@
 		<th>合約分類名稱</th>
 		<th>合約內容</th>
 		<th>合約分類狀態</th>
-		<th>修改/停用</th>
+		<th>修改</th>
+		<th>停用</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="conVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -68,9 +69,16 @@
 			<td>${conVO.con_status}</td>	
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/contract/contract.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改/停用">
+			     <input type="submit" value="修改">
 			     <input type="hidden" name="con_id"  value="${conVO.con_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			</td>
+			<td>
+				<form method="post" action="<%=request.getContextPath()%>/back/contract/contract.do" style="margin-bottom:0px;">
+					<input type="submit" value="停用">
+					<input type="hidden" name="con_id" value="${conVO.con_id}">
+					<input type="hidden" name="action" value="getOne_For_Stop">
+				</form>
 			</td>
 		</tr>
 	</c:forEach>
