@@ -10,7 +10,7 @@ public class Ele_ContractService {
 	private Ele_ContractDAO_interface dao;
 	
 	public Ele_ContractService() {
-		dao = new Ele_ContractJDBCDAO();
+		dao = new Ele_ContractJNDIDAO();
 	}
 	
 	//新增
@@ -92,4 +92,9 @@ public class Ele_ContractService {
 	public List<Ele_ContractVO> getAll(){
 		return dao.getAll();
 	}
+	
+	public List<Ele_ContractVO> getMemAll(String mem_id){
+		return dao.findByOther(mem_id);
+	}
+	
 }

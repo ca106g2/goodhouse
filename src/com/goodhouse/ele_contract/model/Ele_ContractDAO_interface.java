@@ -9,6 +9,6 @@ public interface Ele_ContractDAO_interface {
 	public void delete(String ele_con_id);
 	public Ele_ContractVO findByPrimaryKey(String ele_con_id);
 	public List<Ele_ContractVO> getAll();
-	
+	public List<Ele_ContractVO> findByOther(String mem_id);
 	
 }
