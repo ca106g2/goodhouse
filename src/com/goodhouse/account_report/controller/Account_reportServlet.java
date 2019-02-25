@@ -8,7 +8,7 @@ import com.goodhouse.account_report.model.*;
 import com.goodhouse.employee.model.EmpService;
 import com.goodhouse.employee.model.EmpVO;
 
-public class Account_reportServlet extends HttpServlet {
+public class Account_reportServlet extends HttpServlet { 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
 	}
