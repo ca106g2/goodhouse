@@ -101,13 +101,13 @@ pageContext.setAttribute("list",list);
 			<td>${memVO.good_total}</td>
 			<td>${memVO.mem_sex}</td>
 			<td>
-				<FORM METHOD ="post" ACTION="<%=request.getContextPath()%>/front/employee/emp.do" style="margin-bottom: 0px;">
+				<FORM METHOD ="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" style="margin-bottom: 0px;">
 					<input type="submit" value="修改">
 					<input type="hidden" name="mem_id"  value="${empVO.mem_id}">
 			     	<input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/employee/emp.do" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="mem_id"  value="${memVO.mem_id}">
 			     <input type="hidden" name="action" value="delete"></FORM>

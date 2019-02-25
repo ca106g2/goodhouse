@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>      
+
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Mem :Home</title>
+<title>Lan :Home</title>
 
 <style>
   table#table-1 {
@@ -25,16 +26,16 @@
     color: blue;
     display: inline;
   }
-</style >
-
+</style>
 </head>
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>IBM Mem: Home</h3><h4></h4></td></tr>
+   <tr><td><h3>IBM Lan: Home</h3><h4>( MVC )</h4></td></tr>
 </table>
 
-<h3>會員資料查詢:</h3>
+<h3>資料查詢:</h3>
+<%-- 錯誤表列 --%>
 
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -46,36 +47,40 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllMem.jsp'>List</a> all Mems.  <br><br></li>
-
+  <li><a href='listAllLan.jsp'>List</a> all Lans.  <br><br></li>
+  
+  
   <li>
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" >
-        <b>輸入會員編號 (如:M000000001):</b>
-        <input type="text" name="mem_id">
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/landlord/lan.do" >
+        <b>輸入房東編號 (如:L000000001):</b>
+        <input type="text" name="lan_id">
         <input type="hidden" name="action" value="getOne_For_Display">
         <input type="submit" value="送出">
     </FORM>
   </li>
 
-  <jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
+  <jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService" />
+   
+
   
   <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" >
-       <b>選擇會員編號:</b>
-       <select size="1" name="mem_id">
-         <c:forEach var="memVO" items="${memSvc.all}" > 
-          <option value="${memVO.mem_id}">${memVO.mem_id}
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/landlord/lan.do" >
+       <b>選擇房東編號:</b>
+       <select size="1" name="lan_id">
+         <c:forEach var="lanVO" items="${lanSvc.all}" > 
+          <option value="${lanVO.lan_id}">${lanVO.lan_id}
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
        <input type="submit" value="送出">
-    </FORM>
+     </FORM>
   </li>
-  	
-<h3>會員管理</h3>
+</ul>
+
+h3>員工管理</h3>
 
 <ul>
-  <li><a href='addMem.jsp'>Add</a> a new Mem.</li>
+  <li><a href='addLan.jsp'>Add</a> a new Lan.</li>
 </ul>
 
 </body>

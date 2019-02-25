@@ -1,6 +1,9 @@
 package com.goodhouse.member.controller;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.goodhouse.employee.model.EmpService;
 import com.goodhouse.employee.model.EmpVO;
@@ -41,9 +45,10 @@ public class MemberServlet extends HttpServlet {
 		List<String>errorMsgs = new LinkedList<String>();
 		req.setAttribute("errorMsgs",errorMsgs);
 		
-	}
+	
 	/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 	try {
+		
 			String mem_name = req.getParameter("mem_name");
 			String mem_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 			if(mem_name == null || mem_name.trim().length() == 0) {
@@ -51,19 +56,82 @@ public class MemberServlet extends HttpServlet {
 			}else if(!mem_name.trim().matches(mem_nameReg)) {
 				errorMsgs.add("會員姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 			}
-			
-			Date mem_birthday = new Date(req.getParameter("mem_birthday").trim());
-			String mem_password = req.getParameter("mem_password").trim();
-			String mem_address = req.getParameter("mem_address").trim();
-			String mem_zipcode = req.getParameter("mem_zipcode").trim();
-			Integer mem_telephone = new Integer(req.getParameter("mem_telephone").trim());
-			Integer  mem_phone = new Integer(req.getParameter(" mem_phone").trim());
-			String mem_email = req.getParameter("mem_email").trim();
-			String mem_status = req.getParameter("mem_status").trim();
-			Byte mem_picture = req.getParameter("mem_picture").trim();
-			Integer  good_total = new Integer(req.getParameter(" good_total").trim());
-			String mem_sex = req.getParameter("mem_sex").trim();
 		
+			java.sql.Date mem_birthday = null;
+			try {
+				mem_birthday = java.sql.Date.valueOf(req.getParameter("mem_birthday"));	
+			}catch(IllegalArgumentException e) {
+				mem_birthday = new java.sql.Date(System.currentTimeMillis());
+				errorMsgs.add("請輸入日期");
+			}
+			
+			
+			String mem_password = req.getParameter("mem_password").trim();
+			if(mem_password == null || mem_password.trim().length()==0) {
+				errorMsgs.add("密碼請勿空白");
+			}
+			String mem_address = req.getParameter("mem_address").trim();
+			if(mem_address == null || mem_address.trim().length()==0) {
+				errorMsgs.add("地址請勿空白");
+			}
+			String mem_zipcode = req.getParameter("mem_zipcode").trim();
+			if(mem_zipcode == null || mem_zipcode.trim().length()==0) {
+				errorMsgs.add("郵遞區號請勿空白");
+			}
+//			
+			Integer mem_telephone = null;
+			try {
+				mem_telephone = new Integer(req.getParameter("mem_telephone").trim());
+			}catch(Exception e) {
+				errorMsgs.add("電話請填數字");
+			}
+			
+			
+			Integer  mem_phone = null;
+					try{
+						mem_phone = new Integer(req.getParameter(" mem_phone").trim());
+					}catch(Exception e) {
+						errorMsgs.add("手機請填數字");
+					}
+			String mem_email = req.getParameter("mem_email").trim();
+			if(mem_email == null || mem_email.trim().length()== 0) {
+				errorMsgs.add("請填入email");
+			}
+			String mem_status = req.getParameter("mem_status").trim();
+			if( mem_status == null || mem_status.trim().length()== 0) {
+				errorMsgs.add("請填入正確狀態");
+			}
+			
+			
+			byte mem_picture[] = null;
+			try {
+				Part part = req.getPart("mem_picture");
+				if(part.getSubmittedFileName() != "") {
+					BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
+					ByteArrayOutputStream bao = new ByteArrayOutputStream();
+					int len;
+					byte[] b = new byte[8192];
+					while((len = bif.read(b)) != -1) {
+						bao.write(b);
+					}
+					mem_picture = bao.toByteArray();
+				}
+			}catch(Exception e) {
+				errorMsgs.add("上傳照片失敗，請重新上傳");
+			}
+			
+			Integer  good_total = null;
+					try{
+						good_total = new Integer(req.getParameter(" good_total").trim());
+					}catch(Exception e) {
+						errorMsgs.add("積分請填數字");
+					}
+			
+			String mem_sex = req.getParameter("mem_sex").trim();
+			if(mem_sex == null || mem_sex.trim().length()== 0) {
+				errorMsgs.add("請填入正確狀態");
+			}
+			
 			MemVO memVO = new MemVO();
 			memVO.setMem_name(mem_name);
 			memVO.setMem_birthday(mem_birthday);
@@ -78,17 +146,17 @@ public class MemberServlet extends HttpServlet {
 			memVO.setGood_total(good_total);
 			memVO.setMem_sex(mem_sex);
 			
-			if(!erroeMsgs.isEmpty()) {
+			if(!errorMsgs.isEmpty()) {
 				req.setAttribute("memVO", memVO);
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/member/addEmp.jsp");
+						.getRequestDispatcher("/front/member/addMem.jsp");
 				failureView.forward(req, res);
 				return;
 			}
 			
 			/***************************2.開始新增資料***************************************/
 			MemService memSvc = new MemService();
-			memVO = memSvc.addEmp(mem_name, mem_birthday,mem_password,mem_address,mem_zipcode,mem_telephone,mem_phone,mem_email,mem_status,mem_picture,good_total,mem_sex);
+			memVO = memSvc.addMem(mem_name, mem_birthday,mem_password,mem_address,mem_zipcode,mem_telephone,mem_phone,mem_email,mem_status,mem_picture,good_total,mem_sex);
 			
 		
 			/***************************3.新增完成,準備轉交(Send the Success view)***********/
@@ -102,8 +170,9 @@ public class MemberServlet extends HttpServlet {
 		
 		errorMsgs.add(e.getMessage());
 		RequestDispatcher failureView = req
-				.getRequestDispatcher("/front/member/addEmp.jsp");
+				.getRequestDispatcher("/front/member/addMem.jsp");
 	failureView.forward(req, res);
+	}
 	}
 	//==================================	
 		if("update".equals(action)) {
@@ -111,25 +180,95 @@ public class MemberServlet extends HttpServlet {
 				req.setAttribute("errorMsgs", errorMsgs );
 		
 				try {
+					String mem_id = req.getParameter("mem_id");
+					if(mem_id == null || mem_id.trim().length() == 0) {
+						errorMsgs.add("會員姓名請勿空白");
+					}
+					
+					
 					String mem_name = req.getParameter("mem_name");
 					String mem_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-				if(mem_name == null || mem_name.trim().length() == 0) {
-					errorMsgs.add("會員姓名請勿空白");
-				}else if(!mem_name.trim().matches(mem_nameReg)) {
-					errorMsgs.add("會員姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
-				}
+					if(mem_name == null || mem_name.trim().length() == 0) {
+						errorMsgs.add("會員姓名請勿空白");
+					}else if(!mem_name.trim().matches(mem_nameReg)) {
+						errorMsgs.add("會員姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					}
 				
-				Date mem_birthday = new Date(req.getParameter("mem_birthday").trim());
-				String mem_password = req.getParameter("mem_password").trim();
-				String mem_address = req.getParameter("mem_address").trim();
-				String mem_zipcode = req.getParameter("mem_zipcode").trim();
-				Integer mem_telephone = new Integer(req.getParameter("mem_telephone").trim());
-				Integer  mem_phone = new Integer(req.getParameter(" mem_phone").trim());
-				String mem_email = req.getParameter("mem_email").trim();
-				String mem_status = req.getParameter("mem_status").trim();
-				Byte mem_picture = req.getParameter("mem_picture").trim();
-				Integer  good_total = new Integer(req.getParameter(" good_total").trim());
-				String mem_sex = req.getParameter("mem_sex").trim();
+					java.sql.Date mem_birthday = null;
+					try {
+						mem_birthday = java.sql.Date.valueOf(req.getParameter("mem_birthday"));	
+					}catch(IllegalArgumentException e) {
+						mem_birthday = new java.sql.Date(System.currentTimeMillis());
+						errorMsgs.add("請輸入日期");
+					}
+					
+					
+					String mem_password = req.getParameter("mem_password").trim();
+					if(mem_password == null || mem_password.trim().length()==0) {
+						errorMsgs.add("密碼請勿空白");
+					}
+					String mem_address = req.getParameter("mem_address").trim();
+					if(mem_address == null || mem_address.trim().length()==0) {
+						errorMsgs.add("地址請勿空白");
+					}
+					String mem_zipcode = req.getParameter("mem_zipcode").trim();
+					if(mem_zipcode == null || mem_zipcode.trim().length()==0) {
+						errorMsgs.add("郵遞區號請勿空白");
+					}
+//					
+					Integer mem_telephone = null;
+					try {
+						mem_telephone = new Integer(req.getParameter("mem_telephone").trim());
+					}catch(Exception e) {
+						errorMsgs.add("電話請填數字");
+					}
+					
+					
+					Integer  mem_phone = null;
+							try{
+								mem_phone = new Integer(req.getParameter(" mem_phone").trim());
+							}catch(Exception e) {
+								errorMsgs.add("手機請填數字");
+							}
+					String mem_email = req.getParameter("mem_email").trim();
+					if(mem_email == null || mem_email.trim().length()== 0) {
+						errorMsgs.add("請填入email");
+					}
+					String mem_status = req.getParameter("mem_status").trim();
+					if( mem_status == null || mem_status.trim().length()== 0) {
+						errorMsgs.add("請填入正確狀態");
+					}
+					
+					
+					byte mem_picture[] = null;
+					try {
+						Part part = req.getPart("mem_picture");
+						if(part.getSubmittedFileName() != "") {
+							BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
+							ByteArrayOutputStream bao = new ByteArrayOutputStream();
+							int len;
+							byte[] b = new byte[8192];
+							while((len = bif.read(b)) != -1) {
+								bao.write(b);
+							}
+							mem_picture = bao.toByteArray();
+						}
+					}catch(Exception e) {
+						errorMsgs.add("上傳照片失敗，請重新上傳");
+					}
+					
+					Integer  good_total = null;
+							try{
+								good_total = new Integer(req.getParameter(" good_total").trim());
+							}catch(Exception e) {
+								errorMsgs.add("積分請填數字");
+							}
+					
+					String mem_sex = req.getParameter("mem_sex").trim();
+					if(mem_sex == null || mem_sex.trim().length()== 0) {
+						errorMsgs.add("請填入正確狀態");
+					}
+					
 			
 				MemVO memVO = new MemVO();
 				memVO.setMem_name(mem_name);
@@ -144,6 +283,7 @@ public class MemberServlet extends HttpServlet {
 				memVO.setMem_picture(mem_picture);
 				memVO.setGood_total(good_total);
 				memVO.setMem_sex(mem_sex);
+				memVO.setMem_id(mem_id);
 				
 				if(!errorMsgs.isEmpty()) {
 					req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -155,7 +295,7 @@ public class MemberServlet extends HttpServlet {
 				
 				/***************************2.開始修改資料***************************************/
 				MemService memSvc = new MemService();
-				memVO = memSvc.addEmp(mem_name, mem_birthday,mem_password,mem_address,mem_zipcode,mem_telephone,mem_phone,mem_email,mem_status,mem_picture,good_total,mem_sex);
+				memVO = memSvc.updateMem(mem_name, mem_birthday,mem_password,mem_address,mem_zipcode,mem_telephone,mem_phone,mem_email,mem_status,mem_picture,good_total,mem_sex,mem_id);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("memVO", memVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/front/member/listOneMem.jsp";
@@ -177,7 +317,7 @@ public class MemberServlet extends HttpServlet {
 			List<String>errorMsgs = new LinkedList<String>();
 			
 			req.setAttribute("errorMsgs",errorMsgs);
-		}
+		
 		
 		try {
 			String mem_id = req.getParameter("mem_id");
@@ -190,9 +330,10 @@ public class MemberServlet extends HttpServlet {
 				failureView.forward(req, res);
 				return;//程式中斷
 			}
+		
 			/***************************2.開始新增資料***************************************/
 			MemService memSvc = new MemService();
-			MemVO  memVO = memSvc.getOneEmp(mem_id);
+			MemVO  memVO = memSvc.getOneMem(mem_id);
 			if(mem_id == null) {
 				errorMsgs.add("查無資料");
 			}
@@ -215,7 +356,7 @@ public class MemberServlet extends HttpServlet {
 					.getRequestDispatcher("/front/member/select_page.jsp");
 		failureView.forward(req, res);
 		}
-	
+		}
 		//==================================================================
 		
 		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求

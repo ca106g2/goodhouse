@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.goodhouse.employee.model.*"%>    
-<!DOCTYPE html>
-
+<%@ page import="com.goodhouse.member.model.*"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%
-  MemVO memVO = (MemVO) request.getAttribute("empVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+  MemVO memVO = (MemVO) request.getAttribute("memVO"); 
 %>
 
 <html>
 <head>
-<title>員工資料 - listOneEmp.jsp</title>
 <meta charset="UTF-8">
+<title>員工資料 - listOneMem.jsp</title>
+
 
 <style>
   table#table-1 {
@@ -51,11 +52,18 @@
 <h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>員工資料 - ListOneEmp.jsp</h3>
+		 <h3>員工資料 - ListOneMem.jsp</h3>
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
-
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red">請修正以下錯誤:</font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>
 <table>
 	<tr>
 		<th>會員編號</th>
@@ -86,11 +94,7 @@
 		<td><%=memVO.getMem_picture()%></td>
 		<td><%=memVO.getGood_total()%></td>
 		<td><%=memVO.getMem_sex()%></td>
-		
-		
-		
-		
-		
+	
 	</tr>
 </table>
 

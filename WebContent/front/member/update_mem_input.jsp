@@ -12,7 +12,7 @@
 <head>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>會員資料修改 - update_emp_input.jsp</title>
+<title>會員資料修改 - update_mem_input.jsp</title>
 <meta charset="UTF-8">
 
 <style>
@@ -68,7 +68,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="mem.do" name="form1">
 <table>
 	<tr>
 		<td>會員編號:<font color=red><b>*</b></font></td>

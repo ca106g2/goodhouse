@@ -48,12 +48,26 @@ import com.goodhouse.employee.model.*;
 				errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
             }
 			
-			Integer emp_phone = new Integer(req.getParameter("emp_phone").trim());
+			Integer emp_phone = null;
+			try {
+				 emp_phone = new Integer(req.getParameter("emp_phone").trim());
+			}catch(Exception e) {
+				errorMsgs.add("請輸入電話");
+			}
+			
 			
 			String emp_account = req.getParameter("emp_account").trim();
+			if(emp_account == null ||emp_account.trim().length()==0 ) {
+				errorMsgs.add("帳號請勿空白");
+			}
 			String emp_password = req.getParameter("emp_password").trim();
-			String emp_status = req.getParameter("emp_status").trim();
-
+			if(emp_password == null || emp_password.trim().length()==0) {
+				errorMsgs.add("密碼不能空白");
+			}
+			String emp_status =  req.getParameter("emp_status").trim();
+			
+			
+			
 			EmpVO empVO = new EmpVO();
 			empVO.setEmp_name(emp_name);
 			empVO.setEmp_phone(emp_phone);
@@ -92,9 +106,11 @@ import com.goodhouse.employee.model.*;
 		List<String>errorMsgs = new LinkedList<String>();
 		req.setAttribute("errorMsgs", errorMsgs );
 		
+		
+		
 		try {
-			/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-			String emp_id = (req.getParameter("emp_id").trim());
+			
+			String emp_id = req.getParameter("emp_id").trim();
 			
 			String emp_name = req.getParameter("emp_name");
 			String emp_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -104,17 +120,32 @@ import com.goodhouse.employee.model.*;
 				errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
             }
 			
-			Integer emp_phone = new Integer(req.getParameter("emp_phone").trim());
+			Integer emp_phone = null;
+			try {
+				 emp_phone = new Integer(req.getParameter("emp_phone").trim());
+			}catch(Exception e) {
+				errorMsgs.add("請輸入電話");
+			}
+			
 			
 			String emp_account = req.getParameter("emp_account").trim();
+			if(emp_account == null ||emp_account.trim().length()==0 ) {
+				errorMsgs.add("帳號請勿空白");
+			}
 			String emp_password = req.getParameter("emp_password").trim();
-			String emp_status = req.getParameter("emp_status").trim();
-
+			if(emp_password == null || emp_password.trim().length()==0) {
+				errorMsgs.add("密碼不能空白");
+			}
 			
-
+			
+			String emp_status =  req.getParameter("emp_status").trim();
+		
+			
+			
 			
 
 			EmpVO empVO = new EmpVO();
+			
 			empVO.setEmp_id(emp_id);
 			empVO.setEmp_name(emp_name);
 			empVO.setEmp_phone(emp_phone);
@@ -134,7 +165,7 @@ import com.goodhouse.employee.model.*;
 			
 			/***************************2.開始修改資料*****************************************/
 			EmpService empSvc = new EmpService();
-			empVO = empSvc.updateEmp(emp_id, emp_name, emp_phone, emp_account, emp_password, emp_status);
+			empVO = empSvc.updateEmp( emp_id, emp_name, emp_phone, emp_account, emp_password, emp_status);
 			
 			/***************************3.修改完成,準備轉交(Send the Success view)*************/
 			req.setAttribute("empVO", empVO); // 資料庫update成功後,正確的的empVO物件,存入req
@@ -146,7 +177,7 @@ import com.goodhouse.employee.model.*;
 		} catch (Exception e) {
 			errorMsgs.add("修改資料失敗:"+e.getMessage());
 			RequestDispatcher failureView = req
-					.getRequestDispatcher("/emp/update_emp_input.jsp");
+					.getRequestDispatcher("back/employee/update_emp_input.jsp");
 			failureView.forward(req, res);
 		}
 	}
