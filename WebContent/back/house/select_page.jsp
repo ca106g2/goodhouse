@@ -64,10 +64,10 @@
    
   <li>
      <FORM METHOD="post" ACTION="hou.do" >
-      <b>房屋編號:</b>
+      <b>房屋名稱:</b>
        <select size="1" name="hou_id">
          <c:forEach var="houVO" items="${houSvc.all}" > 
-          <option value="${houVO.hou_id}">${houVO.hou_id}
+          <option value="${houVO.hou_id}">${houVO.hou_name}
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">

@@ -37,7 +37,7 @@
 
 <style>
   table {
-	width: 800px;
+	width: 1000px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -46,7 +46,7 @@
     border: 1px solid #CCCCFF;
   }
   th, td {
-    padding: 5px;
+    padding: 1px;
     text-align: center;
   }
 </style>

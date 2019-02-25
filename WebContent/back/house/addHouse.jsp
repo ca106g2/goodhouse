@@ -147,6 +147,7 @@ $("#d1").change(function(){
 	readURL(this,"#picture1");
 	   $("#picture1").show();
 	     });
+
 $("#d2").change(function(){
 	readURL(this,"#picture2");
 	   $("#picture2").show();
@@ -165,4 +166,5 @@ $("#d3").change(function(){
 	reader.readAsDataURL(input.files[0]);
 	}
 	}
+	
 </script>
