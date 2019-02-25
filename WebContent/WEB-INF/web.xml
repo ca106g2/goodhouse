@@ -40,4 +40,18 @@
 		<url-pattern>/back/contract/contract.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 電子合約註冊 -->
+	<servlet>
+		<servlet-name>Eel_Contract</servlet-name>
+		<servlet-class>com.goodhouse.ele_contract.controller.Ele_ContractServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Eel_Contract</servlet-name>
+		<url-pattern>/back/ele_contract/ele_contract.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Eel_Contract</servlet-name>
+		<url-pattern>/front/ele_contract/ele_contract.do</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
