@@ -17,6 +17,8 @@ import com.goodhouse.contract.model.ContractService;
 import com.goodhouse.contract.model.ContractVO;
 import com.goodhouse.ele_contract.model.Ele_ContractService;
 import com.goodhouse.ele_contract.model.Ele_ContractVO;
+import com.goodhouse.landlord.model.LanService;
+import com.goodhouse.landlord.model.LanVO;
 import com.goodhouse.member.model.MemService;
 import com.goodhouse.member.model.MemVO;
 
@@ -89,7 +91,7 @@ public class Ele_ContractServlet extends HttpServlet{
 			}
 		}
 		
-		//用姓名查詢出該會員的所有電子合約資料
+		//後台使用者：用姓名查詢出該會員的所有電子合約資料
 		if("getOne_For_Name".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -164,7 +166,7 @@ public class Ele_ContractServlet extends HttpServlet{
 			}
 		}
 		
-		//新增
+		//新增前的查詢
 		if("select_contract".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -211,7 +213,7 @@ public class Ele_ContractServlet extends HttpServlet{
 			}
 			
 		}
-		
+		//新增
 		if(("insert").equals("action")) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -219,6 +221,73 @@ public class Ele_ContractServlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
+				
+				/*****1接收請求參數******************/
+				String con_id = req.getParameter("con_id");
+				
+				String mem_name = req.getParameter("mem_name");
+				String mem_id = null;
+				if(mem_name == null || mem_name.trim().length()== 0) {
+					errorMsgs.add("租屋者姓名請勿空白");
+				}
+				
+				//查詢會員資料庫資料
+				MemService mSvc = new MemService();
+				for(MemVO mVO : mSvc.getAll()) {
+					if(mem_name.equals(mVO.getMem_name())) {
+						mem_id = mVO.getMem_id();
+					}
+				}
+				//檢查會員id是否為空直
+				if(mem_id == null) {
+					errorMsgs.add("姓名輸入錯誤 或 無此會員，請重新輸入");
+				}
+
+				String mem_idnumber = req.getParameter("mem_idnumber");
+				//比對輸入的身分證字號格式是錯誤
+				String mem_idnumberReg = "^[A-Z]{1}[0-9]{9}$";
+				if (mem_idnumber == null || mem_idnumber.trim().length() == 0) {
+					errorMsgs.add("身份證字號不能空白");
+				} else if(!mem_idnumber.matches(mem_idnumberReg)) {
+					errorMsgs.add("身份證字號格式為 一個大寫英文字母 + 9個數字 所組成 ");
+				}
+				
+				//比對房東姓名
+				String lan_id = null;
+				String lan_name = req.getParameter("lan_name");
+				if(lan_name == null || lan_name.trim().length() == 0) {
+					errorMsgs.add("房東姓名不能空白");
+				}
+				
+				MemService mSvc1 = new MemService();
+				LanService lanSvc = new LanService();
+				//利用房東姓名去比對是否為會員
+				for(MemVO mVO : mSvc1.getAll()) {
+					if(lan_name.equals(mVO.getMem_name())) {
+						mem_id = mVO.getMem_id();
+						//利用取出的會員id來去比對是否為房東
+						for(LanVO lanVO : lanSvc.getAll()) {
+							if(mem_id.equals(lanVO.getMem_id())) {
+								lan_id = lanVO.getLan_id();
+							}
+						}
+					}
+				}
+				
+				if(lan_id == null || lan_id.trim().length() == 0) {
+					errorMsgs.add("姓名輸入錯誤(與會員姓名一致)");
+				}
+				
+				//比對房東身分證字號
+				String lan_idnumber = req.getParameter("lan_idnumber");
+				String lan_idnumberReg = "^[A-Z]{1}[0-9]{9}$";
+				if(lan_idnumber == null || lan_idnumber.trim().length() == 0) {
+					errorMsgs.add("房東身份證字號不能空白");
+				}else if(!lan_idnumber.matches(lan_idnumberReg)) {
+					errorMsgs.add("身份證字號格式為 一個大寫英文字母 + 9個數字 所組成 ");
+				}
+				
+				//比對房屋資料
 				
 			}catch (Exception e) {
 				errorMsgs.add(e.getMessage());
