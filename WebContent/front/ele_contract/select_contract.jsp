@@ -58,7 +58,6 @@
 					</tr>
 				</table>
 			</form>
-			
 		</div>
 		<div class="row col-3">
 		</div>

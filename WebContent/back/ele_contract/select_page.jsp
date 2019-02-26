@@ -41,7 +41,7 @@
 
 	<!-- 工作區開始 -->
 	
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row justfy-content-center">
 			<div class="row col-2">
 				<h3>電子合約</h3>

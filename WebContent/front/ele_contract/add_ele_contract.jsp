@@ -5,7 +5,7 @@
 <%@ page import="com.goodhouse.contract.model.*" %>
 
 <%
-	ContractVO conVO = (ContractVO) request.getAttribute("conVO");
+	ContractVO conVO = (ContractVO) session.getAttribute("conVO");
 	Ele_ContractVO eleConVO = (Ele_ContractVO) request.getAttribute("eleConVO");
 %>
 
@@ -15,7 +15,7 @@
 <!-- Required meta tags -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/file/jquery-1.12.4.min.js"></script>
+<script src="<%=request.getContextPath()%>/File/jquery-1.12.4.min.js"></script>
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
@@ -70,23 +70,25 @@
 						</h4>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<%-- 錯誤表列 --%>
+						<c:if test="${not empty errorMsgs}">
+							<font style="color:red">請修正以下錯誤:</font>
+							<ul>
+								<c:forEach var="message" items="${errorMsgs}">
+									<ul style="color:red">${message}</ul>
+								</c:forEach>
+							</ul>
+						</c:if>
+					</td>
+				</tr>
 			</table>
 		</div>
-		<div class="row col-8" >
-				<%-- 錯誤表列 --%>
-				<c:if test="${not empty errorMsgs}">
-					<font style="color:red">請修正以下錯誤:</font>
-					<ul>
-						<c:forEach var="message" items="${errorMsgs}">
-							<li style="color:red">${message}</li>
-						</c:forEach>
-					</ul>
-				</c:if>
-				
-				<form action="post" action="ele_contract.do" name="form1">
-					<p name="con_content" value="${conVO.con_content}">
-						<table>
-							
+		<div class="row col-8 justfy-content-center" >
+				<p type="hidden" name="con_content" value="<%=conVO.getCon_content()%>" >
+				<form method="post" action="ele_contract.do" name="form1">
+						<table style="width:800px">
 							<tr>
 								<td>請選擇合約分類<font color=red><b>*</b></font></td>
 								<td>
@@ -107,7 +109,6 @@
 							</tr>
 							<tr>
 							
-							<td>會員姓名:<font color="red"><b>*</b></font></td>
 							
 								<td>房東姓名<font color=red><b>*</b></font></td>
 								<td>
@@ -120,20 +121,26 @@
 									<input type="text" name="lan_idnumber" />
 								</td>
 							</tr>
-							<!-- <td>
-									<select size="1" name="mem_id">
-										<c:forEach var="memVO" items="${memSvc.all}">
-											<option value="${memVO.mem_id}" ${(good_ordVO == memVO.mem_id)? 'selected':'' }>${memVO.mem_name}
+							<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
+							<!-- 
+							<tr>
+								<td>房屋<font color=red><b>*</b></font></td>
+								<td>
+									<select size="1" name="hou_id">
+										<c:forEach var="houVO" items="${houSvc.all}">
+											<option value="${houVO.hou_id}"${(eleConVO.lan_id == houVO.lan_id)? 'selected' : ''}>${houVO.hou_name}
 										</c:forEach>
 									</select>
 								</td>
-								
-							-->
+							</tr>
+							 -->
 							<tr>
-								<td name="hou_id">房屋<font color=red><b>*</b></font></td>
+								<td>房屋<font color=red><b>*</b></font></td>
 								<td>
-									<select>
-										<option />
+									<select size="1" name="hou_id" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:225px;">
+										<c:forEach var="houVO" items="${houSvc.all}">
+											<option value="${houVO.hou_id}"}>${houVO.hou_name}
+										</c:forEach>
 									</select>
 								</td>
 							</tr>
@@ -176,7 +183,7 @@
 							<tr>
 								<td>合約狀態<font color=red><b>*</b></font></td>
 								<td>
-									<select name="ele_con_status">
+									<select name="ele_con_status" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:225px;">
 										<c:forEach var="ele_con_status" items="${Ele_con_statusList}">
 											<option value="${ele_con_status.status_no_name}" >${ele_con_status.status_name}
 										</c:forEach>
@@ -187,7 +194,7 @@
 							<tr>
 								<td>繳費型態<font color=red><b>*</b></font></td>
 								<td>
-									<select name="bill_paymenttype">
+									<select name="bill_paymenttype" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:225px;">
 										<c:forEach var="bill_paymenttype" items="${Bill_PaymentTypeList}">
 											<option value="${bill_paymenttype.type_no_name}" >${bill_paymenttype.type_name}
 										</c:forEach>
@@ -202,11 +209,10 @@
 							</tr>
 						</table>
 					</p>	
-						<input type="hidden" name="insert">
-						<input type="hidden" name="con_id" value="<%=conVO.getCon_name()%>"/>
+						<input type="hidden" name="action" value="insert">
+						<input type="hidden" name="con_id" value="<%=conVO.getCon_id()%>"/>
 						<input type="submit" name="送出新增">
 				</form>
-				<p name="con_id" value="${conVO.con_id}"></p>
 		</div>
 	</div>
 </div>

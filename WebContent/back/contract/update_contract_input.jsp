@@ -54,7 +54,7 @@
 			<tr>
 				<td>合約使用狀態</td><br>
 				<td>
-					<p type="hidden" name="con_status" value="${conVO.con_status}">${conVO.con_status}</p>
+					<p>${conVO.con_status}</p>
 				</td>
 			</tr>
 		</table>
