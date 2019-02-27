@@ -1,0 +1,10 @@
+<!-- 
+	<tr>
+		<td>檢舉編號:<font color=red><b>*</b></font></td>
+		<td><select size="1" name="deptno">
+			<c:forEach var="deptVO" items="${acreSvc.all}">
+				<option value="${acreVO.acc_rep_id}">${acreVO.acc_rep_id}
+			</c:forEach>
+		</select></td>
+	</tr>
+ -->

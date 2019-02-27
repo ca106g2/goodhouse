@@ -7,8 +7,12 @@ import javax.servlet.http.*;
 import com.goodhouse.account_report.model.*;
 import com.goodhouse.employee.model.EmpService;
 import com.goodhouse.employee.model.EmpVO;
+import com.goodhouse.landlord.model.LanService;
+import com.goodhouse.landlord.model.LanVO;
+import com.goodhouse.member.model.MemService;
+import com.goodhouse.member.model.MemVO;
 
-public class Account_reportServlet extends HttpServlet { 
+public class Account_reportServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
 	}
@@ -218,8 +222,8 @@ public class Account_reportServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
 				EmpService empSvc = new EmpService();
-				
-				String emp_id = null;
+				MemService memSvc = new MemService();
+				LanService lanSvc = new LanService();
 
 //				String emp_idReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{10,10}$";
 //				if (emp_id == null || emp_id.trim().length() == 0) {
@@ -227,39 +231,56 @@ public class Account_reportServlet extends HttpServlet {
 //				} else if (!emp_id.trim().matches(emp_idReg)) {
 //					errorMsgs.add("員工帳號格式錯誤或長度不正確");
 //				}
-				
+				String emp_id = null;
 				String emp_name = new String (req.getParameter("emp_name"));
+				String emp_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z)]{1,5}$";
 				String emp_name_test = null;
 				if(emp_name == null || emp_name.trim().length() == 0) {
-					errorMsgs.add("員工姓名格式錯誤");
-					
+					errorMsgs.add("員工姓名格式錯誤");	
+				}else if (!emp_name.trim().matches(emp_nameReg)) {
+					errorMsgs.add("員工帳號格式錯誤或長度不正確");
 				}
 				for(EmpVO mvo : empSvc.getAll()) {
 					if(mvo.getEmp_name().equals(emp_name)) {
-						emp_id =mvo.getEmp_id();
-						emp_name_test= emp_id;
+						emp_id =mvo.getEmp_id();	
 					}
 				}				
-				if (emp_name_test!=emp_id || emp_name_test==null) {
-					errorMsgs.add("查無此資料");
+			
+				String mem_id=null;
+				String mem_name =req.getParameter("mem_name").trim();
+				String mem_idReg = "^[(\u4e00-\u9fa5)(a-zA-Z)]{1,5}$";
+				if (mem_name == null || mem_name.trim().length() == 0) {
+					errorMsgs.add("房客姓名錯誤");
+				} else if (!mem_name.trim().matches(mem_idReg)) {
+					errorMsgs.add("房客格式錯誤或長度不正確");
+				}
+				for(MemVO memvo : memSvc.getAll()) {
+					if(memvo.getMem_name().equals(mem_name)) {
+						mem_id = memvo.getMem_id();
+					}
 				}
 				
 				
-				String mem_id =req.getParameter("mem_id").trim();
-				String mem_idReg = "^[(a-zA-Z0-9_)]{1,10}$";
-				if (mem_id == null || mem_id.trim().length() == 0) {
-					errorMsgs.add("檢舉帳號不可空白");
-				} else if (!mem_id.trim().matches(mem_idReg)) {
-					errorMsgs.add("檢舉帳號格式錯誤或長度不正確");
-				}
+				String lan_id=req.getParameter("lan_id").trim();
+				
+//				String lan_name = req.getParameter("lan_name").trim();
+//				String lan_idReg = "^[(\u4e00-\u9fa5)(a-zA-Z)]{1,5}$";
+//				if(lan_name == null || lan_name.trim().length()==0) {
+//					errorMsgs.add("房東姓名錯誤");		
+//				} else if (!lan_name.trim().matches(lan_idReg)) {
+//					errorMsgs.add("房東格式錯誤或長度不正確");
+//				}
+//				for(LanVO lanvo : lanSvc.getAll()) {	
+//					if(lanvo.getLan_id().equals(lan_name)) {
+//						
+//					}
+//					
+//				}
 
-				String lan_id = req.getParameter("lan_id").trim();
-				String lan_idReg = "^[(a-zA-Z0-9_)]{1,10}$";
-				if (lan_id == null || lan_id.trim().length() == 0) {
-					errorMsgs.add("檢舉帳號不可空白");
-				} else if (!lan_id.trim().matches(lan_idReg)) {
-					errorMsgs.add("檢舉帳號格式錯誤或長度不正確");
-				}
+				
+				
+				
+				
 
 				String acc_rep_status = req.getParameter("acc_rep_status").trim();
 				if (acc_rep_status == null || acc_rep_status.trim().length() == 0) {

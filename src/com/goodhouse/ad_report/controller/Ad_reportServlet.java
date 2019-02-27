@@ -20,7 +20,8 @@ public class Ad_reportServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
+		MemService memSvc = new MemService();
+		EmpService empSvc = new EmpService();
 //***********************getOne_Ad_report
 		if ("getOne_Ad_report".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -121,7 +122,7 @@ public class Ad_reportServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			
-			try {
+//			try {
 			String ad_rep_id = new String(req.getParameter("ad_rep_id").trim());
 			
 			String ad_idReg= "^[a-zA-Z0-9] {10,10}$";
@@ -133,8 +134,44 @@ public class Ad_reportServlet extends HttpServlet {
 			}
 			
 			
-			String mem_id = new String(req.getParameter("mem_id").trim());
-			String emp_id = new String(req.getParameter("emp_id").trim());
+			//------------------會員姓名檢測轉換會員ID--------------------------//
+			String mem_id=null;
+			String mem_name_test= null;
+			String mem_name= new String(req.getParameter("mem_name"));
+			//String nameReg ="^[(\u4e00-\u9fa5)(a-zA-Z)]$";
+			if(mem_name == null || mem_name.trim().length()==0) {
+				errorMsgs.add("請勿空白");
+			}// if(!mem_name.trim().matches(nameReg)) 
+			for(MemVO mvo:memSvc.getAll()) {
+				if(mvo.getMem_name().equals(mem_name)) 
+					mem_id=mvo.getMem_id();
+				mem_name_test = mem_id;
+			}
+			if ( mem_name_test!=mem_id) {
+				errorMsgs.add("查無此資料");
+			}
+			
+			//---------------------END-----------------------//
+			
+			//-----------------員工姓名檢測轉換員工ID---------------------------//
+			
+			String emp_id =null;
+			String emp_name = new String (req.getParameter("emp_name"));
+			String emp_name_test = null;
+			if(emp_name == null || emp_name.trim().length() == 0) {
+				errorMsgs.add("員工姓名格式錯誤");		
+			}
+			for(EmpVO empvo : empSvc.getAll()) {
+				if(empvo.getEmp_name().equals(emp_name)) {
+					emp_id =empvo.getEmp_id();
+					emp_name_test= emp_id;
+				}
+			}				
+			if (emp_name_test!=emp_id) {
+				errorMsgs.add("查無此資料");
+			}
+
+			//---------------------END-----------------------//
 			String ad_rep_reason = new String(req.getParameter("ad_rep_reason"));
 			String ad_rep_status = new String(req.getParameter("ad_rep_status"));		
 			
@@ -168,20 +205,19 @@ public class Ad_reportServlet extends HttpServlet {
 			req.setAttribute("ad_repVO",ad_repVO);
 			RequestDispatcher successView = req.getRequestDispatcher("/back/ad_report/listOneAd_rep.jsp");
 			successView.forward(req, res);
-		}catch (Exception e) {
-			e.printStackTrace();
-			errorMsgs.add("更新失敗"+e.getMessage());
-			RequestDispatcher failureView = req.getRequestDispatcher("/back/ad_report/update_ad_report_input.jsp");
-			failureView.forward(req, res);
-			}
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//			errorMsgs.add("更新失敗"+e.getMessage());
+//			RequestDispatcher failureView = req.getRequestDispatcher("/back/ad_report/update_ad_report_input.jsp");
+//			failureView.forward(req, res);
+//			}
 		}
 		
 		
 		if("insert".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-			MemService memSvc = new MemService();
-			EmpService empSvc = new EmpService();
+
 			try {
 				
 				String ad_rep_id = null;
