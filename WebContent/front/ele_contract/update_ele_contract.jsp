@@ -12,7 +12,7 @@
 <!-- Required meta tags -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/file/jquery-1.12.4.min.js"></script>
+<script src="<%=request.getContextPath()%>/File/jquery-1.12.4.min.js"></script>
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
@@ -96,9 +96,7 @@
 							<tr>
 								<td>房東身份證字號<font color=red><b>*</b></font></td>
 								<td>
-									<td>
-										<input type="text" name="lan_idnumber" value="<%=(eleConVO == null) ? "" : eleConVO.getLan_idnumber()%>"/>
-									</td>
+									<input type="text" name="lan_idnumber" value="<%=(eleConVO == null) ? "" : eleConVO.getLan_idnumber()%>"/>
 								</td>
 							</tr>
 							<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
@@ -144,19 +142,19 @@
 							<tr>
 								<td>租賃起訖日<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_rent_f_day" id="ele_rent_f_day"/>
+									<input type="text" name="ele_rent_f_day" id="ele_rent_f_day" />
 								</td>
 							</tr>
 							<tr>
 								<td>租賃結束日<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_rent_l_day" id="ele_rent_l_day"/>
+									<input type="text" name="ele_rent_l_day" id="ele_rent_l_day" value="<%=(eleConVO == null) ? "" : eleConVO.getEle_rent_l_day()%>"/>
 								</td>
 							</tr>
 							<tr>
 								<td>簽約日期<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_singdate" id="ele_singdate"/>
+									<input type="text" name="ele_singdate" id="ele_singdate" value="<%=(eleConVO == null) ? "" : eleConVO.getEle_singdate()%>"/>
 								</td>
 							</tr>
 							<tr>
@@ -210,8 +208,50 @@
 	}
 
 %>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+<script>
+
+$.datetimepicker.setLocale('zh');
+$('#ele_rent_f_day').datetimepicker({
+   theme: '',              //theme: 'dark',
+    timepicker:false,       //timepicker:true,
+    step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+    format:'Y-m-d',         //format:'Y-m-d H:i:s',
+	   value: '<%=eleConVO.getEle_rent_f_day()%>', // value:   new Date(),
+   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
+   //startDate:	            '2017/07/10',  // 起始日
+   minDate:               '-1970-01-01', // 去除今日(不含)之前
+   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+});
 
 
+$('#ele_rent_l_day').datetimepicker({
+	   theme: '',              //theme: 'dark',
+	   timepicker:false,       //timepicker:true,
+	   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+	   format:'Y-m-d',         //format:'Y-m-d H:i:s',
+	   value: '<%=eleConVO.getEle_rent_l_day()%>', // value:   new Date(),
+	   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
+	   //startDate:	            '2017/07/10',  // 起始日
+	   minDate:               '-1970-01-01', // 去除今日(不含)之前
+	   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+	});
+	
+$('#ele_singdate').datetimepicker({
+	   theme: '',              //theme: 'dark',
+	   timepicker:false,       //timepicker:true,
+	   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+	   format:'Y-m-d',         //format:'Y-m-d H:i:s',
+	   value: '<%=eleConVO.getEle_singdate()%>', // value:   new Date(),
+	   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
+	   //startDate:	            '2017/07/10',  // 起始日
+	   minDate:               '-1970-01-01', // 去除今日(不含)之前
+	   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+	});
+
+</script>
 
 
 	<!-- 工作區結束 -->

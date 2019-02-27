@@ -51,10 +51,9 @@ h4 {
 	<div class="container">
 		<div class="row justfy-content-center">
 			<div class="row col-3">
-				<h3>電子合約</h3>
+				<h4>房東電子合約管理</h4>
 			</div>
 			<div class="row col-6">
-				<h3>資料查詢</h3><br>
 
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
@@ -66,19 +65,18 @@ h4 {
 					</ul>
 				</c:if>
 				<ul>
-					<li><a href="listAll_ele_contract.jsp">List All</a></li>
+					<li><a href="lan_listAll_ele_contract.jsp">List All</a></li>
 
 					<li>
 						<form method="post" action="ele_contract.do">
-							<b>輸入電子合約編號</b><br> <input type="text" name="ele_contract">
-							<input type="hidden" name="action" value="getOne_For_Display">
+							<b>輸入電子合約編號</b><br> 
+							<input type="text" name="ele_con_id" >
+							<input type="hidden" name="action" value="getOne_front">
 							<input type="submit" value="送出">
 						</form>
 					</li>
 					<il> <a href="select_contract.jsp">新增電子合約</a> </il>
 				</ul>
-
-
 			</div>
 			<div class="row col-3"></div>
 		</div>

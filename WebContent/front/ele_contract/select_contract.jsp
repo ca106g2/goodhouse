@@ -26,6 +26,7 @@
 <div class="container-fluid">
 	<div class="row justfy-content-center">
 		<div class="row col-3">
+			<p>回首頁<a href="lan_select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100" height="30 !important" ></a></p>
 			<%-- 錯誤表列 --%>
 			<c:if test="${not empty errorMsgs}">
 				<font style="color:red">請修正以下錯誤:</font>
