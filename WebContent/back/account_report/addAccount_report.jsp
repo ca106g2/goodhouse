@@ -46,18 +46,31 @@
 			<tr>
 				<td>員工姓名:</td>
 				<td><input type="TEXT" name="emp_name" size="45"
-					value="<%=(acreVO == null) ? " " : acreVO.getEmp_id()%>" /></td>
+					value="<%=(acreVO == null) ? "LILY" : acreVO.getEmp_id()%>" /></td>
 			</tr>
 
 			<tr>
 				<td>房客:</td>
-				<td><input type="TEXT" name="mem_id" size="45"
-					value="<%=(acreVO == null) ? "M000000001" : acreVO.getMem_id()%>" /></td>
+				<td><input type="TEXT" name="mem_name" size="45"
+					value="<%=(acreVO == null) ? "M000000009" : acreVO.getMem_id()%>" /></td>
 			</tr>
+			
+			
+			<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
+			<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
+			
 			<tr>
 				<td>房東:</td>
-				<td><input type="TEXT" name="lan_id" size="45"
-					value="<%=(acreVO == null) ? "L000000001" : acreVO.getLan_id()%>" /></td>
+				<td>
+					<select name="lan_id">
+						<c:forEach var="lanVO" items="${lanSvc.all}">
+							<c:forEach var="memVO" items="${memSvc.all}">
+								<c:if test="${lanVO.mem_id == memVO.mem_id}">
+				                   <option value="${lanVO.lan_id}">${memVO.mem_name }
+			                    </c:if>
+							</c:forEach>
+						</c:forEach>
+					</select>
 			</tr>
 			<tr>
 				<td>檢舉狀態:</td>
@@ -77,6 +90,7 @@
 		<br> <input type="hidden" name="action" value="insert"> <input
 			type="submit" value="送出新增">
 	</FORM>
+
 </body>
 
 <% 

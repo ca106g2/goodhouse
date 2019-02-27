@@ -56,10 +56,11 @@
 				<td>檢舉房客</td>
 				<br>
 				<td>
+				
 					<%
 						MemVO memVO = memSvc.getOneMem(ad_repVO.getMem_id());
 					%>
-					<%=memVO.getMem_name() %>
+					<p name="mem_name"><%=memVO.getMem_name() %></p>
 				</td>
 			</tr>
 			<jsp:useBean id="empSvc" scope="page" class="com.goodhouse.employee.model.EmpService"/>
@@ -70,7 +71,7 @@
 					<% 
 						EmpVO empvo = empSvc.getOneEmp(ad_repVO.getEmp_id());
 					%>
-					<%=empvo.getEmp_name() %>
+					<p name="emp_name"><%=empvo.getEmp_name() %></p>
 				</td>
 			</tr>
 			<tr>
@@ -103,6 +104,8 @@
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="ad_rep_id" value="<%=ad_repVO.getAd_rep_id() %>">
 		<input type="hidden" name="ad_rep_id" value="${ad_repVO.ad_rep_id}">
+		<input type="hidden" name="mem_name" value="<%=memVO.getMem_name() %>">
+		<input type="hidden" name="emp_name" value="<%=empvo.getEmp_name() %>">
 		<input type="hidden" name="ad_id" value="${ad_repVO.ad_id}">
 
 		<input type="submit" value="送出修改">

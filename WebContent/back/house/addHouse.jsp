@@ -109,8 +109,8 @@
 	</tr>
 		<tr>
 		<td>房屋租金</td>
-		<td><input type="text" name="hou_rent" size="45"
-			 value="${param.hou_rent}"/></td><td>${errorMsgs.hou_rent}</td>
+		<td><input type="text" name="hou_rent_str" size="45"
+			 value="${param.hou_rent}"/></td><td>${errorMsgs.hou_rent_str}</td>
 	</tr>
 		<tr>
 		<td>備註</td>

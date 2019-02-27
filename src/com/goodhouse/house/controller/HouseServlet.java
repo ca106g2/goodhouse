@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.naming.*;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
@@ -27,26 +30,26 @@ public class HouseServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("image/jpeg");
 		ServletOutputStream out = res.getOutputStream();
-		
+
 		try {
 			String hou_id = req.getParameter("hou_id");
-			//抓取jsp的hou_id請求
+			// 抓取jsp的hou_id請求
 			HouseService houSvc = new HouseService();
-			//宣告HouseService
+			// 宣告HouseService
 			HouseVO houVO = houSvc.getOneHouse(hou_id);
-			//宣告HouseVO並將HouseService裡面getOneHouse方法(抓取jsp的hou_id請求)丟入HOUVO取得此ID的所有欄位記憶體位子
-			byte[] photo=null;
-			if(Integer.parseInt(req.getParameter("photo"))==1) {
-				//判斷JSP(listAllHouse.jsp)src後面的photo是放甚麼參數
-				photo=houVO.getHou_f_picture();
-			}else if(Integer.parseInt(req.getParameter("photo"))==2) {
-				photo=houVO.getHou_s_picture();
-			}else if(Integer.parseInt(req.getParameter("photo"))==3) {
-				photo=houVO.getHou_t_picture();
+			// 宣告HouseVO並將HouseService裡面getOneHouse方法(抓取jsp的hou_id請求)丟入HOUVO取得此ID的所有欄位記憶體位子
+			byte[] photo = null;
+			if (Integer.parseInt(req.getParameter("photo")) == 1) {
+				// 判斷JSP(listAllHouse.jsp)src後面的photo是放甚麼參數
+				photo = houVO.getHou_f_picture();
+			} else if (Integer.parseInt(req.getParameter("photo")) == 2) {
+				photo = houVO.getHou_s_picture();
+			} else if (Integer.parseInt(req.getParameter("photo")) == 3) {
+				photo = houVO.getHou_t_picture();
 			}
 			out.write(photo);
-			//寫出對應圖片
-		}catch (Exception e) {
+			// 寫出對應圖片
+		} catch (Exception e) {
 			InputStream in = getServletContext().getResourceAsStream("/back/house/image/test.jpg");
 			byte[] pt = new byte[4 * 1024];
 			int i;
@@ -60,7 +63,7 @@ public class HouseServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		
+
 //**********************insert		
 		if ("insert".equals(action)) {
 
@@ -97,8 +100,11 @@ public class HouseServlet extends HttpServlet {
 					errorMsgs.put("hou_cook", "開火不可空白");
 				}
 				String hou_managefee = req.getParameter("hou_managefee").trim();
+				String hou_managefeeReg = "^[0-9][0-9]{1,6}$";
 				if (hou_managefee == null || hou_managefee.trim().length() == 0) {
-					errorMsgs.put("hou_managefee", "管理費不可空白");
+					errorMsgs.put("hou_managefee", "管理費不可空白若無請填0");
+				} else if (!hou_managefee.trim().matches(hou_managefeeReg)) {
+					errorMsgs.put("hou_managefee", "請填正整數2~6碼");
 				}
 				String hou_address = req.getParameter("hou_address").trim();
 				String hou_addressReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,200}$";
@@ -107,14 +113,28 @@ public class HouseServlet extends HttpServlet {
 				} else if (!hou_address.trim().matches(hou_addressReg)) {
 					errorMsgs.put("hou_address", "格式不正確");
 				}
+//-------------------------------------------房屋金額用字串接在後端判斷完後改變型態存入資料庫				
+				String hou_rent_str = req.getParameter("hou_rent_str").trim();
+				String hou_rent_Reg = "^[1-9][0-9]{2,6}$";
+				if (hou_rent_str == null || hou_rent_str.trim().length() == 0) {
+					errorMsgs.put("hou_rent_str", "租金不可空白");
+				} else if (!hou_rent_str.trim().matches(hou_rent_Reg)) {
+					errorMsgs.put("hou_rent_str", "請填正整數2~6碼");
+				}
+				//System.out.println("字串" + hou_rent_str);//檢測用
 				Integer hou_rent = null;
 				try {
-					hou_rent = new Integer(req.getParameter("hou_rent").trim());
-				} catch (NumberFormatException es) {
-					errorMsgs.put("hou_rent", "租金請填寫數字");
+					hou_rent = Integer.parseInt(hou_rent_str);
+				}catch(NumberFormatException e){
+					
 				}
+				//System.out.println("11數字" + hou_rent);//檢測用
+				//-------------------------------------------end_of_test
 				String lan_id = new String(req.getParameter("lan_id").trim());
-
+				String hou_note = new String(req.getParameter("hou_note").trim());
+				if(hou_note==null|| hou_note.trim().length()==0) {
+					hou_note=null;
+				}
 				/**********************************/
 				// 圖片一
 				Part hou_f_picture = req.getPart("hou_f_picture");
@@ -127,6 +147,7 @@ public class HouseServlet extends HttpServlet {
 				}
 				baf.toByteArray();
 				/************** 圖片一end ********************/
+				
 				/**********************************/
 				// 圖片二
 				Part hou_s_picture = req.getPart("hou_s_picture");
@@ -139,6 +160,7 @@ public class HouseServlet extends HttpServlet {
 				}
 				bas.toByteArray();
 				/************** 圖片二end ********************/
+				
 				/**********************************/
 				// 圖片三
 				Part hou_t_picture = req.getPart("hou_t_picture");
@@ -151,7 +173,8 @@ public class HouseServlet extends HttpServlet {
 				}
 				bat.toByteArray();
 				/**********************************/
-				String hou_note = new String(req.getParameter("hou_note").trim());
+				
+
 
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/back/house/addHouse.jsp");
@@ -287,7 +310,7 @@ public class HouseServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 
 			req.setAttribute("errorMsgs", errorMsgs);
-			try {
+//			try {
 				String hou_id = new String(req.getParameter("hou_id").trim());
 
 				String hou_name = req.getParameter("hou_name").trim();
@@ -317,8 +340,11 @@ public class HouseServlet extends HttpServlet {
 					errorMsgs.add("開火不可空白");
 				}
 				String hou_managefee = req.getParameter("hou_managefee").trim();
+				String hou_managefeeReg = "^[0-9][0-9]{0,6}$";
 				if (hou_managefee == null || hou_managefee.trim().length() == 0) {
-					errorMsgs.add("管理費不可空白");
+					errorMsgs.add("管理費不可空白若無請填0");
+				} else if (!hou_managefee.trim().matches(hou_managefeeReg)) {
+					errorMsgs.add("請填正整數");
 				}
 				String hou_address = req.getParameter("hou_address").trim();
 				String hou_addressReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,200}$";
@@ -327,14 +353,29 @@ public class HouseServlet extends HttpServlet {
 				} else if (!hou_address.trim().matches(hou_addressReg)) {
 					errorMsgs.add("格式不正確");
 				}
-				Integer hou_rent = null;
-				try {
-					hou_rent = new Integer(req.getParameter("hou_rent").trim());
-				} catch (NumberFormatException es) {
-					errorMsgs.add("租金請填寫數字");
-				}
-				String hou_note = new String(req.getParameter("hou_note").trim());
 
+
+				
+				// -------------------------------------------房屋金額用字串接在後端判斷完後改變型態存入資料庫
+				Integer hou_rent = new Integer(req.getParameter("hou_rent"));
+				
+				String hou_rent_str = String.valueOf(hou_rent);
+				String hou_rent_Reg = "^[1-9][0-9]{2,6}$";
+				if (hou_rent_str == null || hou_rent_str.trim().length() == 0) {
+					errorMsgs.add("租金不可空白");
+				} else if (!hou_rent_str.trim().matches(hou_rent_Reg)) {
+					errorMsgs.add("請填正整數2~6碼");
+				}
+				System.out.println("字串" + hou_rent_str);
+				hou_rent = Integer.parseInt(hou_rent_str);
+				System.out.println("11數字" + hou_rent);
+				
+				// -------------------------------------------end_of_test
+
+				String hou_note = new String(req.getParameter("hou_note").trim());
+				if(hou_note==null|| hou_note.trim().length()==0) {
+					hou_note=null;
+				}
 				/**********************************/
 				// 圖片一
 //				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@");//除錯標記
@@ -422,19 +463,18 @@ public class HouseServlet extends HttpServlet {
 				}
 				HouseService housSvc = new HouseService();
 				houVO = housSvc.updateHouse(hou_id, hou_name, hou_type, hou_size, hou_property, hou_parkspace, hou_cook,
-						hou_managefee, hou_address, hou_rent, hou_note// ,null,null,null);
-						, pictf, picts, pictt);//
+						hou_managefee, hou_address, hou_rent, hou_note, pictf, picts, pictt);
 
 				System.out.println(houVO);
 				req.setAttribute("houVO", houVO);
 				RequestDispatcher successView = req.getRequestDispatcher("/back/house/listOneHouse.jsp");
 				successView.forward(req, res);
-			} catch (Exception e) {
-				e.printStackTrace();
-				errorMsgs.add("update失敗" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back/house/update_hou_input.jsp");
-				failureView.forward(req, res);
-			}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				errorMsgs.add("update失敗" + e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("/back/house/update_hou_input.jsp");
+//				failureView.forward(req, res);
+//			}
 		}
 		// **********************update end
 
