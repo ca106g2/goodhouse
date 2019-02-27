@@ -112,7 +112,9 @@
 							<td>${eleConVO.bill_paymenttype}</td>
 							<td>${eleConVO.ele_con_note}</td>
 							<td>
-								<form method="post" action="<%=request.getContextPath()%>/back/ele_contract/ele_contract.do" style="margin-bottom: 0px;" >
+								<form method="post" action="ele_contract.do" style="margin-bottom: 0px;" >
+								    <input type="hidden" name="ele_con_id"  value="${eleConVO.ele_con_id}">
+									<input type="hidden" name="action" value="getOne_For_Update">
 									<input type="submit" value="н╫зя">
 								</form>
 							</td>

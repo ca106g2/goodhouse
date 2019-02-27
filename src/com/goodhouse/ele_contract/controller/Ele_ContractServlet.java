@@ -119,7 +119,6 @@ public class Ele_ContractServlet extends HttpServlet{
 					}
 				}
 				
-				System.out.println(mem_id);
 				//檢查取出的會員id是否為空值
 				if(mem_id == null){
 					errorMsgs.add("姓名輸入錯誤");
@@ -225,7 +224,6 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				/*****1接收請求參數******************/
 				String con_id = req.getParameter("con_id");
-				System.out.println(con_id);
 				
 				String mem_name = req.getParameter("mem_name");
 				String mem_id = null;
@@ -407,5 +405,107 @@ public class Ele_ContractServlet extends HttpServlet{
 			
 		}
 		
+		//單一修改前的查詢
+		if("getOne_For_Update".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/*****1接收請求參數*************************/
+				String ele_con_id = req.getParameter("ele_con_id");
+				
+				/*****2開始查資料*********************/
+				Ele_ContractService eleConSvc = new Ele_ContractService();
+				Ele_ContractVO eleConVO = eleConSvc.getOneEC(ele_con_id);
+				
+				/*****3查詢成功準備轉交資料************************/
+				
+				req.setAttribute("eleConVO", eleConVO);
+				String url = "/front/ele_contract/update_ele_contract.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+				
+			} catch (Exception e) {
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front/ele_contract/update_ele_contract.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		//修改資料
+		if("update".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/*****1接收請求參數*********************/
+				//電子合約編號
+				String ele_con_id = req.getParameter("ele_con_id");
+				//合約分類編號
+				String con_id = req.getParameter("con_id");
+				//會員編號
+				String mem_id = req.getParameter("mem_id");
+				//會員身分證字號
+				String mem_idnumber = req.getParameter("mem_idnumber");
+				String mem_idnumberReg = "^[A-Z]{1}[1-2]{1}[0-9]{8}$";
+				if (mem_idnumber == null || mem_idnumber.trim().length() == 0) {
+					errorMsgs.add("會員身份證字號不能空白");
+				} else if(!mem_idnumber.matches(mem_idnumberReg)) {
+					errorMsgs.add("會員身分證字號格式(一個大寫英文字母 + 9個數字 所組成)是錯誤，請重新輸入 ");
+				}
+				//房東編號
+				String lan_id = req.getParameter("lan_id");
+				//房東身分證字號
+				String lan_idnumber = req.getParameter("lan_idnumber");
+				String lan_idnumberReg = "^[A-Z]{1}[1-2]{1}[0-9]{8}$";
+				if(lan_idnumber == null || lan_idnumber.trim().length() == 0) {
+					errorMsgs.add("房東身份證字號不能空白");
+				}else if(!lan_idnumber.matches(lan_idnumberReg)) {
+					errorMsgs.add("房東身分證字號格式(一個大寫英文字母 + 9個數字 所組成)是錯誤，請重新輸入 ");
+				}
+				//房屋編號
+				String hou_id = req.getParameter("hou_id");
+				//租金
+				String rent_money = req.getParameter("ele_rent_money").trim();
+				String rent_moneyReq = "^[0-9]*$";
+				if(!rent_money.matches(rent_moneyReq)) {
+					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
+				}
+				Integer ele_rent_money = Integer.parseInt(rent_money);
+				if(ele_rent_money <= 0 ) {
+					errorMsgs.add("租金不能空白、0或負數，請重新輸入");
+				}
+				//押金比對
+				String deposit_money = req.getParameter("ele_deposit_money");
+				String deposit_moneyReq = "^[0-9]*$";
+				if(!deposit_money.matches(deposit_moneyReq)) {
+					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
+				} 
+				Integer ele_deposit_money = Integer.parseInt(deposit_money);
+				if(ele_deposit_money <= 0) {
+					errorMsgs.add("押金不能空白、0或負數，請重新輸入");
+				} 
+				//租賃期限比對
+				String rent_time = req.getParameter("ele_rent_time");
+				String rent_timeReq = "^[0-9]*$";
+				if(!rent_time.matches(rent_timeReq)) {
+					errorMsgs.add("租賃期限不能含有字元或符號，只能是數字，請重新輸入");
+				}
+				Integer ele_rent_time = Integer.parseInt(rent_time);
+				if(ele_rent_time <= 0) {
+					errorMsgs.add("租賃期限不能空白、0或負數，請重新輸入");
+				} 
+				
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front/ele_contract/update_ele_contract.jsp");
+				failureView.forward(req, res);
+			}
+			
+		}
 	}
 }

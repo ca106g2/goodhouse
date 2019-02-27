@@ -3,19 +3,19 @@
     int rowNumber=0;      //總筆數
     int pageNumber=0;     //總頁數       
     int whichPage=1;      //第幾頁
-    int pageIndexArray[]=null;
+    int pageIndexArray[] = null;
     int pageIndex=0; 
 %>
 
 <%  
     rowNumber=list.size();
     if (rowNumber%rowsPerPage !=0)
-         pageNumber=rowNumber/rowsPerPage + 1;
-    else pageNumber=rowNumber/rowsPerPage;    
+         pageNumber = rowNumber/rowsPerPage + 1;
+    else pageNumber = rowNumber/rowsPerPage;    
 
-    pageIndexArray=new int[pageNumber]; 
+    pageIndexArray = new int[pageNumber]; 
     for (int i=1 ; i<=pageIndexArray.length ; i++)
-         pageIndexArray[i-1]=i*rowsPerPage-rowsPerPage;
+         pageIndexArray[i-1] = i*rowsPerPage - rowsPerPage;
 %>
 
 <%  try {
@@ -30,6 +30,8 @@
               pageIndex=pageIndexArray[pageNumber-1];
          }
     } 
+    
+     
 %>
 
 <%if (pageNumber>0){%>

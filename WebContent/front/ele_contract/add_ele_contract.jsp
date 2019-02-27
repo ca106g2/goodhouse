@@ -58,7 +58,7 @@
 
 	<!-- 工作區開始 -->
 
-<div class="container-fluid">
+<div class="container">
 	<div class="row justfy-content-center">
 		<div class="row col-4">
 			<table id="table-1">
@@ -66,7 +66,7 @@
 					<td>
 						<h3>新增電子合約 - add_ele_contract.jsp</h3>
 						<h4>
-						 <a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a>
+						 <a href="select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100" height="32" border="0">回首頁</a>
 						</h4>
 					</td>
 				</tr>
@@ -90,7 +90,7 @@
 				<form method="post" action="ele_contract.do" name="form1">
 						<table style="width:800px">
 							<tr>
-								<td>請選擇合約分類<font color=red><b>*</b></font></td>
+								<td>合約分類名稱<font color=red><b>*</b></font></td>
 								<td>
 									<p><%=conVO.getCon_name()%></p>
 								</td>
@@ -104,7 +104,7 @@
 							<tr>
 								<td>租屋者身分證字號(會員)<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="mem_idnumber" />
+									<input type="text" name="mem_idnumber" value="<%= (eleConVO==null)? "" : eleConVO.getMem_idnumber()%>"/>
 								</td>
 							</tr>
 							<tr>
@@ -118,7 +118,7 @@
 							<tr>
 								<td>房東身份證字號<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="lan_idnumber" />
+									<input type="text" name="lan_idnumber" value="<%=(eleConVO==null)? "" : eleConVO.getLan_idnumber()%>"/>
 								</td>
 							</tr>
 							<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
@@ -147,37 +147,37 @@
 							<tr>
 								<td>每期租金<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_rent_money" />
+									<input type="text" name="ele_rent_money" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_money()%>"/>
 								</td>
 							</tr>
 							<tr>
 								<td>押金<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_deposit_money" />
+									<input type="text" name="ele_deposit_money" value="<%=(eleConVO==null)? "" : eleConVO.getEle_deposit_money()%>"/>
 								</td>
 							</tr>
 							<tr>
 								<td>租賃期限<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_rent_time" />
+									<input type="text" name="ele_rent_time" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_time()%>"/>
 								</td>
 							</tr>
 							<tr>
 								<td>租賃起訖日<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_rent_f_day" id="ele_rent_f_day"/>
+									<input type="text" name="ele_rent_f_day" id="ele_rent_f_day" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_f_day()%>"/>
 								</td>
 							</tr>
 							<tr>
 								<td>租賃結束日<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_rent_l_day" id="ele_rent_l_day"/>
+									<input type="text" name="ele_rent_l_day" id="ele_rent_l_day" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_l_day()%>"/>
 								</td>
 							</tr>
 							<tr>
 								<td>簽約日期<font color=red><b>*</b></font></td>
 								<td>
-									<input type="text" name="ele_singdate" id="ele_singdate"/>
+									<input type="text" name="ele_singdate" id="ele_singdate" value="<%=(eleConVO==null)? "" : eleConVO.getEle_singdate()%>"/>
 								</td>
 							</tr>
 							<tr>
@@ -204,7 +204,7 @@
 							<tr>
 								<td>合約備註</td>
 								<td>
-									<textarea name="ele_con_note" rows="3" cols="30"></textarea>
+									<textarea name="ele_con_note" rows="3" cols="30" value="<%=(eleConVO==null)? "" : eleConVO.getEle_con_note()%>"><%=(eleConVO==null)? "" : eleConVO.getEle_con_note()%></textarea>
 								</td>
 							</tr>
 						</table>

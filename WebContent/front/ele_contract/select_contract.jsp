@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.goodhouse.contract.model.*" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,8 +46,8 @@
 						<td>請選擇合約分類</td>
 						<td>
 							<select name="con_id">
-								<c:forEach var="ContractVO" items="${conSvc.all}">
-									<option value="${ContractVO.con_id}" ${(ContractVO.con_id == conVO.con_id)?'selected':''}>${ContractVO.con_name}
+								<c:forEach var="conVO" items="${conSvc.all}">
+									<option value="${conVO.con_id}" ${(conVO.con_id == conVO.con_id)?'selected':''}>${conVO.con_name}
 								</c:forEach>					
 							</select>
 						</td>
