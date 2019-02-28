@@ -22,7 +22,7 @@
 	<!-- Required meta tags -->
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<script src="<%=request.getContextPath()%>/file/jquery-1.12.4.min.js"></script>
+	<script src="<%=request.getContextPath()%>/File/jquery-1.12.4.min.js"></script>
 	<!-- Bootstrap CSS start-->
 	<link rel="stylesheet"
 		href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
@@ -97,11 +97,11 @@
 						
 					</tr>
 					<%@ include file="page1.file" %> 
-<%-- 					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.ContractService"/> --%>
+					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"></jsp:useBean>
 					<c:forEach var="eleConVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<tr>
 							<td>${eleConVO.ele_con_id}</td>
-							<td>${eleConVO.con_id}</td>
+							<td>${conSvc.getOneCon(eleConVO.con_id).con_name}</td>
 							<td>${eleConVO.mem_id}</td>
 							<td>${eleConVO.mem_idnumber}</td>
 							<td>${eleConVO.lan_id}</td>
