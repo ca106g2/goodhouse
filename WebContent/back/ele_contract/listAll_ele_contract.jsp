@@ -97,7 +97,7 @@
 						
 					</tr>
 					<%@ include file="page1.file" %> 
-					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.ContractService"/>
+<%-- 					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.ContractService"/> --%>
 					<c:forEach var="eleConVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<tr>
 							<td>${eleConVO.ele_con_id}</td>
