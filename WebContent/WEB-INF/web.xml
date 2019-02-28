@@ -125,4 +125,17 @@
   		<url-pattern>/back/ad_report/ad_rep.do</url-pattern>
   	</servlet-mapping>
   
+  <!--帳單註冊  -->
+	<servlet>
+		<servlet-name>Bill</servlet-name>
+		<servlet-class>com.goodhouse.bill.controller.BillServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Bill</servlet-name>
+		<url-pattern>/front/bill/bill.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Bill</servlet-name>
+		<url-pattern>/back/bill/bill.do</url-pattern>
+	</servlet-mapping>
 </web-app>
