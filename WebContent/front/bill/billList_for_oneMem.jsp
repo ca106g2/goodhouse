@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.goodhouse.ele_contract.model.*"%>
+<%@ page import="com.goodhouse.bill.model.*"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
 
 
@@ -44,14 +44,14 @@
 
 	<!-- 工作區開始 -->
 	
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row justfy-content-center">
-			<div class="row col-2">
+			<div class="row col-3">
 				<table id="table-1">
-					<p>回首頁<a href="select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
+					<p>回首頁<a href="mem_select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
 					<tr>
 						<td>
-							所有電子合約資料 - listSome_ele_contract.jsp
+							某會員的所有帳單資料 - billList_for_oneMem.jsp
 						</td>
 					</tr>
 				</table>
@@ -65,68 +65,51 @@
 					</ul>
 				</c:if>
 			</div>
-			<div class="row col-10	" >
+			<div class="row col-9" >
 				<table>
 					<tr>
-						<td>電子合約編號</td>
-						<td>合約分類編號</td>
-						<td>會員編號</td>
-						<td>會員身份證字號</td>
-						<td>房東編號</td>
-						<td>房東身份證字號</td>
-						<td>房屋編號</td>
-						<td>每期租金</td>
-						<td>押金</td>
-						<td>租賃期限</td>
-						<td>租賃起訖日</td>
-						<td>租賃結束日</td>
-						<td>簽約日期</td>
-						<td>合約狀態</td>
+						<td>帳單編號</td>
+						<td>會員姓名</td>
+						<td>員工編號</td>
+						<td>繳交費用</td>
+						<td>繳交日期</td>
+						<td>帳單產生時間</td>
+						<td>帳單繳費狀態</td>
+						<td>付款方式</td>
 						<td>繳費型態</td>
-						<td>備註</td>
 						
 					</tr>
-						
+						<jsp:useBean id="mSvc" scope="page" class="com.goodhouse.member.model.MemService" />
+						<jsp:useBean id="eleConSvc" scope="page" class="com.goodhouse.ele_contract.model.Ele_ContractService" />
 						<%
-							List<Ele_ContractVO> list = (List<Ele_ContractVO>) session.getAttribute("list");
+							List<BillVO> billList = (List<BillVO>) request.getAttribute("billList");
 							
-							for(int i = 0 ; i < list.size() ; i++){
-								Ele_ContractVO eleConVO = list.get(i);
-								String ele_con_id = eleConVO.getEle_con_id();
-								String con_id = eleConVO.getCon_id();
-								String mem_id = eleConVO.getMem_id();
-								String mem_idnumber = eleConVO.getMem_idnumber();
-								String lan_id = eleConVO.getLan_id();
-								String lan_idnumber = eleConVO.getLan_idnumber();
-								String hou_id = eleConVO.getHou_id();
-								Integer ele_rent_money = eleConVO.getEle_rent_money();
-								Integer ele_deposit_money = eleConVO.getEle_deposit_money();
-								Integer ele_rent_time = eleConVO.getEle_rent_time();
-								Date ele_rent_f_day = eleConVO.getEle_rent_f_day();
-								Date ele_rent_l_day = eleConVO.getEle_rent_l_day();
-								Date ele_singdate = eleConVO.getEle_singdate();
-								String ele_con_status = eleConVO.getEle_con_status();
-								String bill_paymenttype = eleConVO.getBill_paymenttype();
-								String ele_con_note = eleConVO.getEle_con_note();
+							
+							for(int i = 0 ; i < billList.size() ; i++){
 								
+								BillVO billVO = billList.get(i);
+								
+								String bill_id = billVO.getBill_id();
+								String ele_con_id = billVO.getEle_con_id();
+								String emp_id = billVO.getEmp_id();
+								Integer bill_pay = billVO.getBill_pay();
+								Date bill_date = billVO.getBill_date();
+								Date bill_producetime = billVO.getBill_producetime();
+								String bill_status = billVO.getBill_status();
+								String bill_paymethod = billVO.getBill_paymethod();
+								String bill_paymenttype = billVO.getBill_paymenttype();
 						%>
 							<tr>
-								<td><%=ele_con_id%></td>
-								<td><%=con_id%></td>
-								<td><%=mem_id%></td>
-								<td><%=mem_idnumber%></td>
-								<td><%=lan_id%></td>
-								<td><%=lan_idnumber%></td>
-								<td><%=hou_id%></td>
-								<td><%=ele_rent_money%></td>
-								<td><%=ele_deposit_money%></td>
-								<td><%=ele_rent_time%></td>
-								<td><%=ele_rent_f_day%></td>
-								<td><%=ele_rent_l_day%></td>
-								<td><%=ele_singdate%></td>
-								<td><%=ele_con_status%></td>
+								<td><%=bill_id%></td>
+								<td><%=mSvc.getOneMem( eleConSvc.getOneEC(ele_con_id).getMem_id() ).getMem_name() %></td>
+								<td><%=emp_id%></td>
+								<td><%=bill_pay%></td>
+								<td><%=bill_date%></td>
+								<td><%=bill_producetime%></td>
+								<td><%=bill_status%></td>
+								<td><%=bill_paymethod%></td>
 								<td><%=bill_paymenttype%></td>
-								<td><%=ele_con_note%></td>
+								
 							</tr>
 						<% 
 							}

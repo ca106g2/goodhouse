@@ -122,7 +122,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//檢查取出的會員id是否為空值
 				if(mem_id == null){
-					errorMsgs.add("姓名輸入錯誤");
+					errorMsgs.add("查無資料或姓名輸入錯誤，請重新輸入");
 				}
 				
 				if(!errorMsgs.isEmpty()) {
@@ -146,7 +146,7 @@ public class Ele_ContractServlet extends HttpServlet{
 					}
 				}
 
-				if(mem_id == null) {
+				if(ele_con_id == null) {
 					errorMsgs.add("查無資料");
 				}
 				

@@ -1,8 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.goodhouse.ele_contract.model.*"%>
-
+<%@ page import="com.goodhouse.member.model.*"%>
+<%@ page import="com.goodhouse.contract.model.*"%>
+<%@ page import="com.goodhouse.house.model.*"%>
+<%@ page import="com.goodhouse.landlord.model.*"%>
 <%
 	Ele_ContractService eleConSvc = new Ele_ContractService();
 	List<Ele_ContractVO> list = eleConSvc.getAll();
@@ -10,6 +13,7 @@
 	
 	
 %>
+
 
 
 <!doctype html>
@@ -48,22 +52,22 @@
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<h1></h1>
 
-	<!-- ¤u§@°Ï¶}©l -->
+	<!-- å·¥ä½œå€é–‹å§‹ -->
 	
 	<div class="container-fluid">
 		<div class="row justfy-content-center">
 			<div class="row col-2">
 				<table id="table-1">
-					<p>¦^­º­¶<a href="select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
+					<p>å›žé¦–é <a href="select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
 					<tr>
 						<td>
-							©Ò¦³¹q¤l¦X¬ù¸ê®Æ - listAll_ele_contract.jsp
+							æ‰€æœ‰é›»å­åˆç´„è³‡æ–™ - listAll_ele_contract.jsp
 						</td>
 					</tr>
 				</table>
-				<%-- ¿ù»~ªí¦C --%>
+				<%-- éŒ¯èª¤è¡¨åˆ— --%>
 				<c:if test="${not empty errorMsgs}">
-					<font style="color:red">½Ð­×¥¿¥H¤U¿ù»~:</font>
+					<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 					<ul>
 						<c:forEach var="message" items="${errorMsgs}">
 							<li style="color:red">${message}</li>
@@ -71,28 +75,29 @@
 					</ul>
 				</c:if>
 			</div>
-			<div class="row col-10	" >
+			<div class="row col-10" >
 				<table>
 					<tr>
-						<td>¹q¤l¦X¬ù½s¸¹</td>
-						<td>¦X¬ù¤ÀÃþ½s¸¹</td>
-						<td>·|­û½s¸¹</td>
-						<td>·|­û¨­¥÷ÃÒ¦r¸¹</td>
-						<td>©ÐªF½s¸¹</td>
-						<td>©ÐªF¨­¥÷ÃÒ¦r¸¹</td>
-						<td>©Ð«Î½s¸¹</td>
-						<td>¨C´Á¯²ª÷</td>
-						<td>©ãª÷</td>
-						<td>¯²¸î´Á­­</td>
-						<td>¯²¸î°_°W¤é</td>
-						<td>¯²¸îµ²§ô¤é</td>
-						<td>Ã±¬ù¤é´Á</td>
-						<td>¦X¬ùª¬ºA</td>
-						<td>Ãº¶O«¬ºA</td>
-						<td>³Æµù</td>
+						<td>é›»å­åˆç´„ç·¨è™Ÿ</td>
+						<td>åˆç´„åˆ†é¡žç·¨è™Ÿ</td>
+						<td>æœƒå“¡ç·¨è™Ÿ</td>
+						<td>æœƒå“¡èº«ä»½è­‰å­—è™Ÿ</td>
+						<td>æˆ¿æ±ç·¨è™Ÿ</td>
+						<td>æˆ¿æ±èº«ä»½è­‰å­—è™Ÿ</td>
+						<td>æˆ¿å±‹ç·¨è™Ÿ</td>
+						<td>æ¯æœŸç§Ÿé‡‘</td>
+						<td>æŠ¼é‡‘</td>
+						<td>ç§Ÿè³ƒæœŸé™</td>
+						<td>ç§Ÿè³ƒèµ·è¨–æ—¥</td>
+						<td>ç§Ÿè³ƒçµæŸæ—¥</td>
+						<td>ç°½ç´„æ—¥æœŸ</td>
+						<td>åˆç´„ç‹€æ…‹</td>
+						<td>ç¹³è²»åž‹æ…‹</td>
+						<td>å‚™è¨»</td>
 						
 					</tr>
 					<%@ include file="page1.file" %> 
+					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.ContractService"/>
 					<c:forEach var="eleConVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 						<tr>
 							<td>${eleConVO.ele_con_id}</td>
@@ -121,12 +126,12 @@
 		</div>
 	</div>
 	
-	<!-- ¤u§@°Ïµ²§ô -->
+	<!-- å·¥ä½œå€çµæŸ -->
 	
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
+	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"

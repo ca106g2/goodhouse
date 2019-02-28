@@ -1,46 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.goodhouse.ele_contract.model.*"%>
-
 <!doctype html>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/file/jquery-1.12.4.min.js"></script>
+<script src="<%=request.getContextPath()%>/File/jquery-1.12.4.min.js"></script>
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/File/all.css"
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/File/all.css"
 	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
 	crossorigin="anonymous">
 <!-- Bootstrap CSS end-->
 <title></title>
-<style>
-table#table-1 {
-	width: 450px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-	border: 3px ridge Gray;
-	height: 80px;
-	text-align: center;
-}
-
-table#table-1 h4 {
-	color: red;
-	display: block;
-	margin-bottom: 1px;
-}
-
-h4 {
-	color: blue;
-	display: inline;
-}
-</style>
-
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -50,11 +26,7 @@ h4 {
 
 	<div class="container">
 		<div class="row justfy-content-center">
-			<div class="row col-3">
-				<h4>房客電子合約管理</h4>
-			</div>
-			<div class="row col-6">
-
+			<div class="row col-12">
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<font style="color: red">請修正以下錯誤:</font>
@@ -65,24 +37,29 @@ h4 {
 					</ul>
 				</c:if>
 				<ul>
-					<li><a href="mem_listAll_ele_contract.jsp">List All</a></li>
+					<li><a href="back_listAll_bill.jsp">List All</a></li>
 
 					<li>
-						<form method="post" action="ele_contract.do">
-							<b>輸入電子合約編號</b><br> 
-							<input type="text" name="ele_con_id" >
-							<input type="hidden" name="action" value="getOne_front">
+						<form method="post" action="bill.do">
+							<b>輸入帳單編號</b><br> 
+							<input type="text" name="bill_id" >
+							<input type="hidden" name="action" value="back_getBy_bill_id">
 							<input type="submit" value="送出">
 						</form>
 					</li>
+					<li>
+						<form method="post" action="bill.do">
+							<b>輸入姓名</b><br>
+							<input type="text" name="mem_name">
+							<input type="hidden" name="action" value="back_getBy_mem_name">
+							<input type="submit" value="送出">
+						</form>
+					</li>
+					
 				</ul>
 			</div>
-			<div class="row col-3"></div>
 		</div>
 	</div>
-
-
-
 
 
 
@@ -94,7 +71,7 @@ h4 {
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
 	<script
-		src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
+		src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
