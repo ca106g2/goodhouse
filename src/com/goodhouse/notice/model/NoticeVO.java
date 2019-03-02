@@ -40,3 +40,4 @@ public class NoticeVO implements java.io.Serializable {
 	}
 
 }
+//git上傳註解用無意義

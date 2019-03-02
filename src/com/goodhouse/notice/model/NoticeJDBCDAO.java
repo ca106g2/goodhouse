@@ -294,3 +294,4 @@ public class NoticeJDBCDAO implements NoticeDAO_interface {
 	}
 
 }
+//git上傳註解用無意義

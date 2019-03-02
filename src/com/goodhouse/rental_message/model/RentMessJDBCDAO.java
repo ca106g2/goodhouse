@@ -310,3 +310,4 @@ public class RentMessJDBCDAO implements RentMessDAO_interface {
 	}
 
 }
+//git上傳註解用無意義

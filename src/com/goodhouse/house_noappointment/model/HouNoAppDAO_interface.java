@@ -15,3 +15,4 @@ public interface HouNoAppDAO_interface {
 	public List<HouNoAppVO> getAll();
 
 }
+//git上傳註解用無意義

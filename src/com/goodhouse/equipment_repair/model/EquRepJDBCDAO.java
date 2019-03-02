@@ -368,3 +368,4 @@ public class EquRepJDBCDAO implements EquRepDAO_interface {
 	}
 
 }
+//git上傳註解用無意義

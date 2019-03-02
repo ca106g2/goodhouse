@@ -14,3 +14,4 @@ public interface NoticeDAO_interface {
 	public List<NoticeVO> getAll();
 
 }
+//git上傳註解用無意義

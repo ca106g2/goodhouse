@@ -14,6 +14,7 @@ var DateFormatter;
 (function () {
     "use strict";
 
+    
     var _compare, _lpad, _extend, _indexOf, defaultSettings, DAY, HOUR;
     DAY = 1000 * 60 * 60 * 24;
     HOUR = 3600;

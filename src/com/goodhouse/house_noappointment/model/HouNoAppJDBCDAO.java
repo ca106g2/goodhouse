@@ -305,3 +305,4 @@ public class HouNoAppJDBCDAO implements HouNoAppDAO_interface {
 	}
 
 }
+//git上傳註解用無意義

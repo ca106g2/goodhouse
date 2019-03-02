@@ -174,7 +174,7 @@
     <servlet-name>AppointServlet</servlet-name>
     <url-pattern>/back/appoint/appoint.do</url-pattern>
   </servlet-mapping>
-  <!--通知訊息註冊  -->
+  <!--通知訊息註冊  //git上傳註解用無意義-->
   <servlet>
     <servlet-name>NoticeServlet</servlet-name>
     <servlet-class>com.goodhouse.notice.controller.NoticeServlet</servlet-class>

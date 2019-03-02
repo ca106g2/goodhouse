@@ -35,7 +35,7 @@ public class AppointServlet extends HttpServlet {
 				if (str == null || (str.trim() ).length() == 0) {
 					errorMsgs.add("�п�J�w����{��s��");
 				}
-				// Send the use back to the form, if there were errors
+				// Send the use back to the form, if there were errors //git上傳註解用無意義
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back/appoint/select_page.jsp");

@@ -26,7 +26,7 @@ public class HouNoAppServlet extends HttpServlet {
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
+			// send the ErrorPage view.//git上傳註解用無意義
 			req.setAttribute("errorMsgs", errorMsgs);//����Okey �k��O����
 
 			try {

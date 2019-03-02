@@ -35,7 +35,7 @@ public class EquRepServlet extends HttpServlet {
 			if (picture != null) {
 			out.write(picture);
 			} else {
-				//res.sendError(HttpServletResponse.SC_NOT_FOUND);
+				//res.sendError(HttpServletResponse.SC_NOT_FOUND);//git上傳註解用無意義
 				InputStream in = getServletContext().getResourceAsStream("/back/NoData/no.png");
 				byte[] buf = new byte[in.available()];
 				in.read(buf);

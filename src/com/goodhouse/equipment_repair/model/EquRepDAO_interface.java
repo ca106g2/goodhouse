@@ -11,3 +11,4 @@ public interface EquRepDAO_interface {
 	
 
 }
+//git上傳註解用無意義
