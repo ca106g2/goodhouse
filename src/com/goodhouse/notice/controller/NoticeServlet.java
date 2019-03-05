@@ -22,64 +22,64 @@ public class NoticeServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		if ("getOne_For_Display".equals(action)) { // �Ӧ�select_page.jsp���ШD
+		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);//����Okey �k��O����
+			req.setAttribute("errorMsgs", errorMsgs);//左邊是key 右邊是物件
 
 			try {
-				/***************************1.�����ШD�Ѽ� - ��J�榡�����~�B�z**********************/
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String str = req.getParameter("notice_id");
 				if (str == null || (str.trim() ).length() == 0) {
-					errorMsgs.add("�п�J�q���ƶ��s��");
+					errorMsgs.add("請輸入通知事項編號");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back/notice/select_page.jsp");
 					failureView.forward(req, res);
-					return;//�{�����_
+					return;//程式中斷
 				}
 				
 				String notice_id = null;
 				try {
 					notice_id = new String(str);
 				} catch (Exception e) {
-					errorMsgs.add("�q���ƶ��s���榡�����T");
+					errorMsgs.add("通知事項編號格式不正確");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back/notice/select_page.jsp");
 					failureView.forward(req, res);
-					return;//�{�����_
+					return;//程式中斷
 				}
 				
-				/***************************2.�}�l�d�߸��*****************************************/
+				/***************************2.開始查詢資料*****************************************/
 				NoticeService  noticeSvc = new NoticeService();
 				NoticeVO noticeVO = noticeSvc.getOneNotice(notice_id);
 				if (noticeVO == null) {
-					errorMsgs.add("�d�L���");
+					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back/notice/select_page.jsp");
 					failureView.forward(req, res);
-					return;//�{�����_
+					return;//程式中斷
 				}
 				
-				/***************************3.�d�ߧ���,�ǳ����(Send the Success view)*************/
-				req.setAttribute("noticeVO", noticeVO); // ��Ʈw���X��NoticeVO����,�s�Jreq
+				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("noticeVO", noticeVO); // 資料庫取出的NoticeVO物件,存入req
 				String url = "/back/notice/listOneNotice.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // ���\��� listOneRentMess.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneRentMess.jsp
 				successView.forward(req, res);
 
-				/***************************��L�i�઺���~�B�z*************************************/
+				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
-				errorMsgs.add("�L�k���o���:" + e.getMessage());
+				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back/notice/select_page.jsp");
 				failureView.forward(req, res);
@@ -87,28 +87,28 @@ public class NoticeServlet extends HttpServlet {
 		}
 		
 		
-		if ("getOne_For_Update".equals(action)) { // �Ӧ�listAllNotice.jsp���ШD
+		if ("getOne_For_Update".equals(action)) { // 來自listAllNotice.jsp的請求
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
-				/***************************1.�����ШD�Ѽ�****************************************/
+				/***************************1.接收請求參數****************************************/
 				String notice_id = new String(req.getParameter("notice_id"));
-				/***************************2.�}�l�d�߸��****************************************/
+				/***************************2.開始查詢資料****************************************/
 				NoticeService noticeSvc = new NoticeService();
 				NoticeVO noticeVO = noticeSvc.getOneNotice(notice_id);
-				/***************************3.�d�ߧ���,�ǳ����(Send the Success view)************/
-				req.setAttribute("noticeVO", noticeVO);         // ��Ʈw���X��noticeVO����,�s�Jreq
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("noticeVO", noticeVO);         // 資料庫取出的NoticeVO物件,存入req
 				String url = "/back/notice/update_notice_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// ���\��� update_notice_input.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_notice_input.jsp
 				successView.forward(req, res);
 
-				/***************************��L�i�઺���~�B�z**********************************/
+				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				e.printStackTrace();
-				errorMsgs.add("�L�k���o�n�ק諸���:" + e.getMessage());
+				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back/notice/listAllNotice.jsp");
 				failureView.forward(req, res);
@@ -116,35 +116,35 @@ public class NoticeServlet extends HttpServlet {
 		}
 		
 		
-		if ("update".equals(action)) { // �Ӧ�update_notice_input.jsp���ШD
+		if ("update".equals(action)) {  // 來自update_notice_input.jsp的請求
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 		
 			try {
-				/***************************1.�����ШD�Ѽ� - ��J�榡�����~�B�z**********************/
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String notice_id = new String(req.getParameter("notice_id").trim());
 				
 				String mem_id = req.getParameter("mem_id");
 				String mem_idReg = "^[M][0-9]{9}$";
 				if (mem_id == null || mem_id.trim().length() == 0) {
-					errorMsgs.add("�|���s��: �ФŪť�");
-				} else if(!mem_id.trim().matches(mem_idReg)) { //�H�U�m�ߥ��h(�W)��ܦ�(regular-expression)
-					errorMsgs.add("�|���s��: �u��O�^��r��L�}�Y�M�Ʀr , �B�`���ץ��ݬO10");
+					errorMsgs.add("會員編號: 請勿空白");
+				} else if(!mem_id.trim().matches(mem_idReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("會員編號: 只能是英文字母L開頭和數字 , 且總長度必需是10");
 	            }
 				
 				String notice_message = req.getParameter("notice_message");
 				if (notice_message == null || notice_message.trim().length() == 0) {
-					errorMsgs.add("�q�����e: �ФŪť�");
+					errorMsgs.add("通知內容: 請勿空白");
 				}
 				
 				String notice_status = req.getParameter("notice_status");
 				String notice_statusReg = "^[N][0-9]{1}$";
 				if (notice_status == null || notice_status.trim().length() == 0) {
-					errorMsgs.add("�q�����A: �ФŪť�");
-				}else if(!notice_status.trim().matches(notice_statusReg)) { //�H�U�m�ߥ��h(�W)��ܦ�(regular-expression)
-					errorMsgs.add("�q�����A: �u��O�^��r��N�}�Y�M�Ʀr , �B�`���ץ��ݬO2");
+					errorMsgs.add("通知狀態: 請勿空白");
+				}else if(!notice_status.trim().matches(notice_statusReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("通知狀態: 只能是英文字母N開頭和數字 , 且總長度必需是2");
 	            }
 
 				NoticeVO noticeVO = new NoticeVO();
@@ -155,33 +155,33 @@ public class NoticeServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("noticeVO", noticeVO); // �t����J�榡���~��noticeVO����,�]�s�Jreq
+					req.setAttribute("noticeVO", noticeVO); // 含有輸入格式錯誤的noticeVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back/notice/update_notice_input.jsp");
 					failureView.forward(req, res);
-					return; //�{�����_
+					return; //程式中斷
 				}
 				
-				/***************************2.�}�l�ק���*****************************************/
+				/***************************2.開始修改資料*****************************************/
 				NoticeService noticeSvc = new NoticeService();
 				noticeVO = noticeSvc.updateNotice(notice_id, mem_id, notice_message, notice_status);
 				
-				/***************************3.�ק粒��,�ǳ����(Send the Success view)*************/
-				req.setAttribute("noticeVO", noticeVO); // ��Ʈwupdate���\��,���T����noticeVO����,�s�Jreq
+				/***************************3.修改完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("noticeVO", noticeVO); // 資料庫update成功後,正確的的noticeVO物件,存入req
 				String url = "/back/notice/listOneNotice.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // �ק令�\��,���listOneNotice.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneNotice.jsp
 				successView.forward(req, res);
 
-				/***************************��L�i�઺���~�B�z*************************************/
+				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
-				errorMsgs.add("�ק��ƥ���:"+e.getMessage());
+				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back/notice/update_notice_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
 
-        if ("insert".equals(action)) { // �Ӧ�addNotice.jsp���ШD  
+        if ("insert".equals(action)) { // 來自addNotice.jsp的請求  
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -189,29 +189,29 @@ public class NoticeServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			try {
-				/***********************1.�����ШD�Ѽ� - ��J�榡�����~�B�z*************************/
+				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				
 				
 				String mem_id = req.getParameter("mem_id");
 				String mem_idReg = "^[M][0-9]{9}$";
 				if (mem_id == null || mem_id.trim().length() == 0) {
-					errorMsgs.add("�|���s��: �ФŪť�");
-				} else if(!mem_id.trim().matches(mem_idReg)) { //�H�U�m�ߥ��h(�W)��ܦ�(regular-expression)
-					errorMsgs.add("�|���s��: �u��O�^��r��L�}�Y�M�Ʀr , �B�`���ץ��ݬO10");
+					errorMsgs.add("會員編號: 請勿空白");
+				} else if(!mem_id.trim().matches(mem_idReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("會員編號: 只能是英文字母L開頭和數字 , 且總長度必需是10");
 	            }
 				
 				
 				String notice_message = req.getParameter("notice_message");
 				if (notice_message == null || notice_message.trim().length() == 0) {
-					errorMsgs.add("�q�����e: �ФŪť�");
+					errorMsgs.add("通知內容: 請勿空白");
 				}
 				
 				String notice_status = req.getParameter("notice_status");
 				String notice_statusReg = "^[N][0-9]{1}$";
 				if (notice_status == null || notice_status.trim().length() == 0) {
-					errorMsgs.add("�q�����A: �ФŪť�");
-				}else if(!notice_status.trim().matches(notice_statusReg)) { //�H�U�m�ߥ��h(�W)��ܦ�(regular-expression)
-					errorMsgs.add("�q�����A: �u��O�^��r��N�}�Y�M�Ʀr , �B�`���ץ��ݬO2");
+					errorMsgs.add("通知狀態: 請勿空白");
+				}else if(!notice_status.trim().matches(notice_statusReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("通知狀態: 只能是英文字母N開頭和數字 , 且總長度必需是2");
 	            }
 				
 				NoticeVO noticeVO = new NoticeVO();
@@ -221,23 +221,23 @@ public class NoticeServlet extends HttpServlet {
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("noticeVO", noticeVO); // �t����J�榡���~��NoticeVO����,�]�s�Jreq
+					req.setAttribute("noticeVO", noticeVO); // 含有輸入格式錯誤的noticeVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back/notice/addNotice.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 				
-				/***************************2.�}�l�s�W���***************************************/
+				/***************************2.開始新增資料***************************************/
 				NoticeService noticeSvc = new NoticeService();
 				noticeVO = noticeSvc.addNotice(mem_id, notice_message, notice_status);
 				
-				/***************************3.�s�W����,�ǳ����(Send the Success view)***********/
+				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/back/notice/listAllNotice.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // �s�W���\�����listAllNotice.jsp
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllNotice.jsp
 				successView.forward(req, res);				
 				
-				/***************************��L�i�઺���~�B�z**********************************/
+				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
@@ -248,7 +248,7 @@ public class NoticeServlet extends HttpServlet {
 		}
 		
 		
-		if ("delete".equals(action)) { // �Ӧ�listAllNotice.jsp
+		if ("delete".equals(action)) { // 來自listAllNotice.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -256,21 +256,21 @@ public class NoticeServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 	
 			try {
-				/***************************1.�����ШD�Ѽ�***************************************/
+				/***************************1.接收請求參數***************************************/
 				String notice_id = new String(req.getParameter("notice_id"));
 				
-				/***************************2.�}�l�R�����***************************************/
+				/***************************2.開始刪除資料***************************************/
 				NoticeService noticeSvc = new NoticeService();
 				noticeSvc.deleteNotice(notice_id);
 				
-				/***************************3.�R������,�ǳ����(Send the Success view)***********/								
+				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/back/notice/listAllNotice.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// �R�����\��,���^�e�X�R�����ӷ�����
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
-				/***************************��L�i�઺���~�B�z**********************************/
+				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
-				errorMsgs.add("�R����ƥ���:"+e.getMessage());
+				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back/notice/listAllNotice.jsp");
 				failureView.forward(req, res);

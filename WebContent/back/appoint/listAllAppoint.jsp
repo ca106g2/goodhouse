@@ -10,6 +10,7 @@
     List<AppointVO> list = appointSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
+<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
 
 
 <html>
@@ -87,6 +88,12 @@
 		<tr>
 			<td>${appointVO.appoint_id}</td>
 			<td>${appointVO.mem_id}</td>
+			<td><c:forEach var="memVO" items="${memSvc.all}">
+                    <c:if test="${appointVO.mem_id==memVO.mem_id}">
+	                    ${memVO.mem_id}【${memVO.mem_name} - ${memVO.mem_sex}】
+                    </c:if>
+                </c:forEach>
+			</td>
 			<td>${appointVO.lan_id}</td>
 			<td>${appointVO.hou_id}</td>
 			<td>${appointVO.hou_app_time}</td>
