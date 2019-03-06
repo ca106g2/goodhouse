@@ -35,7 +35,8 @@ public class LanDAO implements LanDAO_interface {
 	private static final String UPDATE=
 			"UPDATE LANDLORD set MEM_ID=?,LAN_RECEIPT=?,LAN_ACCOUNT=?,LAN_ACCOUNTSTATUS=?,LAN_CIZITEN=? where LAN_ID=?";
 	
-
+	private static final String GET_ONE_BY_MEM_ID=
+			"SELECT * FROM LANDLORD where MEM_ID=?";
 	@Override
 	public void insert(LanVO lanVo) {
 		// TODO Auto-generated method stub
@@ -265,5 +266,62 @@ public class LanDAO implements LanDAO_interface {
 		}
 	}
 	return list;
+	}
+
+	@Override//利用mem_id找lan_id
+	public LanVO findByMem_id(String mem_id) {
+		LanVO lanVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con= ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_BY_MEM_ID);
+			//private static final String GET_ONE_BY_MEM_ID=
+			//"SELECT * FROM LANDLORD where MEM_ID=?";
+			pstmt.setString(1,mem_id);
+			
+			rs = pstmt.executeQuery();
+		    
+				while(rs.next()) {
+				lanVO =  new LanVO();
+				lanVO.setLan_id(rs.getString("lan_id"));
+				lanVO.setMem_id(rs.getString("mem_id"));
+				lanVO.setLan_receipt(rs.getString("lan_receipt"));
+				lanVO.setLan_account(rs.getString("lan_account"));
+				lanVO.setLan_accountstatus(rs.getString("lan_accountstatus"));
+				lanVO.setLan_ciziten(rs.getBytes("lan_ciziten"));
+				} 
+			
+		    }catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return lanVO;
 	}
 }

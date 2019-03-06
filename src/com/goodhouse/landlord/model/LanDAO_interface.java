@@ -8,6 +8,7 @@ public interface LanDAO_interface {
 	public void delete(String lan_id);
 	public LanVO findByPrimaryKey(String lan_id);
 	public List<LanVO>getAll();
+	public LanVO findByMem_id(String mem_id);
 	
 	
 }
