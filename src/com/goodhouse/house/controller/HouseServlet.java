@@ -491,7 +491,7 @@ public class HouseServlet extends HttpServlet {
 				Map<String, String[]> map = req.getParameterMap();
 				
 				HouseService houSvc = new HouseService();
-				List<HouseVO> list = houSvc.getAll(map);
+				List<HouseVO> list = houSvc.getAll();
 				
 				session.setAttribute("listHou_ByCompositeQuery", list);
 				RequestDispatcher successView = req.getRequestDispatcher("/front/house/listHou_ByCompositeQuery.jsp");
