@@ -83,7 +83,16 @@
    		<servlet-name>Good_ordServlet</servlet-name>
     	<url-pattern>/back/good_ord/go.do</url-pattern>
   	</servlet-mapping>
-  
+
+   <!-- 房屋註冊 前端 -->
+  <servlet>
+    <servlet-name>FrontHouseServlet</servlet-name>
+    <servlet-class>com.goodhouse.house.controller.HouseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FrontHouseServlet</servlet-name>
+    <url-pattern>/front/house/hou.do</url-pattern>
+  </servlet-mapping>
   
    <!-- 房屋註冊 -->
   	<servlet>
@@ -124,7 +133,18 @@
   		<servlet-name>Ad_reportServlet</servlet-name>
   		<url-pattern>/back/ad_report/ad_rep.do</url-pattern>
   	</servlet-mapping>
-  
+   <!-- 廣告註冊 -->
+  <servlet>
+  	<servlet-name>AdServlet</servlet-name>
+  	<servlet-class>com.goodhouse.ad.controller.AdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AdServlet</servlet-name>
+  	<url-pattern>/back/ad/ad.do</url-pattern>
+  </servlet-mapping>  	
+  	
+
+ 
   <!--帳單註冊  -->
 	<servlet>
 		<servlet-name>Bill</servlet-name>
