@@ -7,11 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import jdbc.util.CompositeQuery.jdbcutil_CompositeQuery_House;
 
 
 public class HouseDAO implements HouseDAO_interface {
@@ -310,6 +313,67 @@ public class HouseDAO implements HouseDAO_interface {
 				list.add(houseVO);
 			}
 		} catch (SQLException se) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+
+		return list;
+	}
+	
+	@Override
+	public List<HouseVO> getAll(Map<String, String[]> map){
+		List<HouseVO>  list = new ArrayList<HouseVO>();
+		HouseVO houseVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con = ds.getConnection();
+			String finalSQL = "select * from house"
+					+ jdbcutil_CompositeQuery_House.get_WhereCondition(map)
+					+ "order by hou_id";
+			pstmt = con.prepareStatement(finalSQL);
+			System.out.println(finalSQL);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				houseVO = new HouseVO();
+				houseVO.setHou_id(rs.getString("hou_id"));
+				houseVO.setHou_name(rs.getString("hou_name"));
+				houseVO.setHou_type(rs.getString("hou_type"));
+				houseVO.setHou_parkspace(rs.getString("hou_parkspace"));
+				houseVO.setHou_cook(rs.getString("hou_cook"));
+				houseVO.setHou_address(rs.getString("hou_address"));
+				houseVO.setLan_id(rs.getString("lan_id"));
+				list.add(houseVO);
+			}
+		} catch (SQLException se) {
+			se.printStackTrace();
 			// TODO Auto-generated catch block
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 

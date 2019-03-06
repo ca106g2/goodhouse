@@ -1,0 +1,5 @@
+				<select name="ad_sort_id">
+						<c:forEach var="ad_sortVO" items="${ad_sorSvc.all}">
+								<option value="${adVO.ad_sort_id}">${ad_sorVO.ad_chargetype}	
+						</c:forEach>
+				</select>

@@ -2,6 +2,7 @@ package com.goodhouse.house.model;
 
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 
 public class HouseService {
 	private HouseDAO_interface dao;
@@ -73,5 +74,8 @@ public class HouseService {
 	
 	public List<HouseVO> getAll(){
 		return dao.getAll();
+	}
+	public List<HouseVO> getAll(Map<String, String[]> map){
+		return dao.getAll(map);
 	}
 }

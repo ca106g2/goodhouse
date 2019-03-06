@@ -310,7 +310,7 @@ public class HouseServlet extends HttpServlet {
 			List<String> errorMsgs = new LinkedList<String>();
 
 			req.setAttribute("errorMsgs", errorMsgs);
-//			try {
+			try {
 				String hou_id = new String(req.getParameter("hou_id").trim());
 
 				String hou_name = req.getParameter("hou_name").trim();
@@ -469,14 +469,40 @@ public class HouseServlet extends HttpServlet {
 				req.setAttribute("houVO", houVO);
 				RequestDispatcher successView = req.getRequestDispatcher("/back/house/listOneHouse.jsp");
 				successView.forward(req, res);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//				errorMsgs.add("update失敗" + e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("/back/house/update_hou_input.jsp");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				e.printStackTrace();
+				errorMsgs.add("update失敗" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back/house/update_hou_input.jsp");
+				failureView.forward(req, res);
+			}
 		}
 		// **********************update end
+		
+		
+		//***********************複合式查詢
+		
+		if("listHou_ByCompositeQuery".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			HttpSession session = req.getSession();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				
+				Map<String, String[]> map = req.getParameterMap();
+				
+				HouseService houSvc = new HouseService();
+				List<HouseVO> list = houSvc.getAll(map);
+				
+				session.setAttribute("listHou_ByCompositeQuery", list);
+				RequestDispatcher successView = req.getRequestDispatcher("/front/house/listHou_ByCompositeQuery.jsp");
+				successView.forward(req, res);
+				
+			}catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("https://www.google.com");
+				failureView.forward(req, res);		
+			}
+		}
 
 	}
 }
