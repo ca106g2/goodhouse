@@ -36,17 +36,17 @@
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>
-           <img src="<%=request.getContextPath()%>/share_pic/logo_color.png" style="width:55px ; height:55px;"></image>
+           
            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                    <li class="nav-item active">
-                       <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                       <a class="nav-link" href="#"><img src="<%=request.getContextPath()%>/share_pic/logo_color.png" style="width:40px ; height:37px;"/>首頁</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">註冊</a>
+                       <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">註冊</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">登入/登出</a>
+                       <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">登入</a>
                    </li>
                    <li class="nav-item">
                        <a class="nav-link" href="#">會員中心</a>
@@ -74,10 +74,6 @@
 
 
 
-<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+
 </body>
 </html>
