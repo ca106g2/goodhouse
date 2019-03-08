@@ -104,7 +104,7 @@ public class HouseServlet extends HttpServlet {
 				if (hou_managefee == null || hou_managefee.trim().length() == 0) {
 					errorMsgs.put("hou_managefee", "管理費不可空白若無請填0");
 				} else if (!hou_managefee.trim().matches(hou_managefeeReg)) {
-					errorMsgs.put("hou_managefee", "請填正整數2~6碼");
+					errorMsgs.put("hou_managefee", "請填管理費");
 				}
 				String hou_address = req.getParameter("hou_address").trim();
 				String hou_addressReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,200}$";
@@ -344,7 +344,7 @@ public class HouseServlet extends HttpServlet {
 				if (hou_managefee == null || hou_managefee.trim().length() == 0) {
 					errorMsgs.add("管理費不可空白若無請填0");
 				} else if (!hou_managefee.trim().matches(hou_managefeeReg)) {
-					errorMsgs.add("請填正整數");
+					errorMsgs.add("請填管理費必須填數字");
 				}
 				String hou_address = req.getParameter("hou_address").trim();
 				String hou_addressReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,200}$";
