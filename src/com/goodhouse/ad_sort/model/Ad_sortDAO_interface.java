@@ -2,6 +2,8 @@ package com.goodhouse.ad_sort.model;
 
 import java.util.*;
 
+import com.goodhouse.house.model.HouseVO;
+
 public interface Ad_sortDAO_interface {
 		public void insert(Ad_sortVO ad_sortVO);
 		public void update(Ad_sortVO ad_sortVO);

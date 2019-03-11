@@ -85,7 +85,7 @@
 		<td><input type="TEXT" name="hou_size" size="45" value="<%=houVO.getHou_size()%>" /></td>
 	</tr>
 		<tr>
-		<td>產權證名</td>
+		<td>房屋狀態</td>
 		<td><input type="TEXT" name="hou_property" size="45" value="<%=houVO.getHou_property()%>" /></td>
 	</tr>
 		<tr>

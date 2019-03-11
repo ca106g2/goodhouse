@@ -1,6 +1,9 @@
 package com.goodhouse.ad_sort.model;
 
 import java.util.List;
+import java.util.Map;
+
+import com.goodhouse.house.model.HouseVO;
 
 /*	private String ad_sort_id;
 	private String ad_forfree;
@@ -27,10 +30,10 @@ public class Ad_sortService {
 	 public Ad_sortVO updateAd_sort(String ad_sort_id, String ad_forfree,
 			 String ad_chargetype, Integer ad_charge) {
 		 Ad_sortVO ad_sortVO = new Ad_sortVO();
-		 ad_sortVO.getAd_sort_id();
-		 ad_sortVO.getAd_forfree();
-		 ad_sortVO.getAd_chargetype();
-		 ad_sortVO.getAd_charge();
+		 ad_sortVO.setAd_sort_id(ad_sort_id);
+		 ad_sortVO.setAd_forfree(ad_forfree);
+		 ad_sortVO.setAd_chargetype(ad_chargetype);
+		 ad_sortVO.setAd_charge(ad_charge);
 		 dao.update(ad_sortVO);
 		 return ad_sortVO;
 		 
@@ -46,4 +49,5 @@ public class Ad_sortService {
 	 public List<Ad_sortVO> getAll(){
 		 return dao.getAll();
 	 }
+
 }

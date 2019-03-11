@@ -16,6 +16,28 @@
 <head>
 <meta http-equiv="X-UA-Compatible" conten"IE=edge,chrom=1">
 <script src="https://ajax.googleapis.com/ajax/libs"></script>
+ <script language="javascript">
+    function _onchange() {
+        var sel = document.getElementById("paytype");
+        if (sel.value == "ADS0000001") {
+            document.getElementById("paystofe").style.display = "none";
+            document.getElementById("paystofe").style.display = "none";
+            document.getElementById("paystofe").style.display = "none";
+        } else if (sel.value == "ADS0000002") {
+            document.getElementById("paystofe").style.display = "";
+            document.getElementById("paystofe").style.display = "";
+            document.getElementById("paystofe").style.display = "";
+        } else if (sel.value == "ADS0000003") {
+            document.getElementById("paystofe").style.display = "";
+            document.getElementById("paystofe").style.display = "";
+            document.getElementById("paystofe").style.display = "";
+        } else if (sel.value == "ADS0000004") {
+            document.getElementById("paystofe").style.display = "";
+            document.getElementById("paystofe").style.display = "";
+            document.getElementById("paystofe").style.display = "";
+        }
+    }
+    </script>
 </head>
 <body bgcolor='white'>
 <table id="table-1">
@@ -54,10 +76,9 @@
 		<tr>
 			<td>廣告類別</td>
 			<td>
-				<select name="ad_sort_id">
-					<c:forEach var="ad_sortVO" items="${ad_sortSvc.all}">
-						<option value="${ad_sortVO.ad_sort_id}"${(adVO.ad_sort_id eq ad_sortVO.ad_sort_id)? 'selected' :''}>${ad_sortVO.ad_chargetype}
-					</c:forEach>
+				<select id="paytype" name="ad_sort_id" onChange="_onchange()">
+						<option value="ADS0000001">廣告兌換</option> 
+						<option value="ADS0000002">月計費</option>  
 				</select>
 			</td>
 		</tr>
@@ -85,18 +106,21 @@
 			<tr>
 		<td>繳費狀態:</td>
 		<td>
-			<select name ="ad_statue">
-				<option value="ad_satue001">以付款
-				<option value="ad_satue002">未付款
-			</select>
+			<select id="paystofe" name ="ad_statue" style="display:none;">
+				<option value="ad_satue000">免費</option> 
+				<option value="ad_satue001">以付款</option> 
+				<option value="ad_satue002">未付款</option> 
+			</select> 
 		</td>
 	</tr>	
 	<tr>
 		<td>付款方式:</td>
 		<td>			
 			<select name ="ad_paymethod">
+				<option value="ad_pay000">免費
 				<option value="ad_pay001">信用卡
 				<option value="ad_pay002">VISA金融卡
+				<option value="ad_pay003">積分
 			</select>
 		</td>
 	</tr>	

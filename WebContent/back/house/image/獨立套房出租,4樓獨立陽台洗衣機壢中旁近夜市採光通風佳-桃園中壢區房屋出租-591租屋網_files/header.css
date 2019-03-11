@@ -1,0 +1,550 @@
+/**
+ * 
+ * 頭部樣式文件
+ *
+ * @author liangjilin@addcn.com
+ * @time   2019/02/22
+ */
+ .nav-wrapper a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
+.nav-wrapper dd, .nav-wrapper dt {
+    line-height: 1.42857143;
+}
+.nav-wrapper .ml15 {
+    margin-left: 15px;
+}
+ .nav-wrapper {
+    position: relative;
+    background: #fff;
+    z-index: 100;
+    box-shadow: rgba(0,0,0,0.2) 0 2px 3px;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 14px;
+    font: 13px/1.5em Arial,'微軟正黑體','Microsoft JhengHei',sans-serif;
+    color: #4A4A4A;
+ }
+.nav-wrapper * {
+    box-sizing: border-box;
+}
+
+ /* 主導航 */
+ .nav-wrapper .nav {
+     width:1200px;
+     height: 60px;
+     line-height: 60px;
+     margin: 0 auto;
+ }
+
+ @media only screen and (max-width: 1190px) {
+    .nav-wrapper .nav {
+        width: 1000px;
+    }
+ }
+
+/* 統一設置導航下拉箭頭樣式 */
+.nav-wrapper .nav i.fa-caret-down {
+    color: #999;
+    width: 7px;  /* 解决初次加载页面抖动的问题 */
+    font-size: 12px;
+ }
+/* 登錄后圖標 */
+.nav-wrapper .nav i.fa-user-circle-o {
+     color: #666;
+     font-size: 14px;
+ }
+ .nav-wrapper .nav div {
+     float: left;
+ }
+ .nav-wrapper .nav .logo {
+     width: auto;
+ }
+ .nav-wrapper .nav .logo a {
+    display: flex;
+    width: auto;
+    height: 50px;
+    align-items: center;
+}
+ .nav-wrapper .nav .area {
+    float: left;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 0;
+}
+.nav-wrapper .nav .area.active {
+    background-color: #eee;
+}
+
+.nav-wrapper .nav .area>a {
+    display: inline-block;
+    width:65px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+.nav-wrapper .nav .area>a:hover {
+    text-decoration: none;
+    background-color: #eee; 
+}
+
+.nav-wrapper .nav .nav-list ul li {
+    float: left;
+    cursor: pointer;
+    border-bottom: 3px solid #fff;
+    height: 60px;
+    line-height: 60px;
+}
+.nav-wrapper .nav .nav-list ul li>a {
+    height: 60px;
+    line-height: 60px;
+    display: block;
+    float: left;
+    margin-left:13px;
+    margin-right:13px;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+/* 鼠標放入時效果 */
+.nav-wrapper .nav .nav-list ul li.active>a {
+    color: #ff8000;
+    border-bottom: 3px solid #ff8000;
+}
+/* 選中效果 */
+.nav-wrapper .nav .nav-list ul li.current {
+    background: #ff8000;
+    color: #fff;
+    border-bottom: 3px solid #ff8000;
+}
+.nav-wrapper .nav .nav-list ul li.current>a {
+    background: #ff8000;
+    color: #fff;
+}
+
+/* 登錄狀態 */
+.nav-wrapper .nav div.login-status {
+    font-size: 14px;
+    float: right;
+}
+.nav-wrapper .nav div.login-status .divide-line {
+    display: inline-block;
+    height: 11px;
+    width: 1px;
+    border-right: 1px solid #bbb;
+}
+.nav-wrapper .nav div.login-status li {
+    display: inline-block;
+    position: relative;
+}
+.nav-wrapper .nav div.login-status li a {
+    color: #333;
+}
+@media only screen and (max-width: 1190px) {
+    .nav-wrapper .nav div.login-status .nav-small-post,  .nav-wrapper .nav div.login-status .nav-small-addcn{
+        display: none;
+    }
+ }
+ .nav-wrapper .nav div.login-status li.nav-link a {
+    display: inline-block;
+    padding-left:7px;
+    padding-right:7px; 
+ }
+ .nav-wrapper .nav div.login-status li.nav-link a:hover {
+    color: #f60;
+ }
+ .nav-wrapper .nav div.login-status li.dropMenu {
+    margin-left:-3px;
+ }
+ .nav-wrapper .nav div.login-status li.dropMenu.active {
+    background-color: #eee;
+ }
+ .nav-wrapper .nav div.login-status li.dropMenu>a {
+    display: inline-block;
+    padding-left:10px;
+    padding-right:10px;
+}
+.nav-wrapper .nav div.login-status li.dropMenu>a.addcn {
+    width: 80px;
+    text-align: center;
+}
+.nav-wrapper .nav div.login-status li.dropMenu>a:hover {
+    background-color: #eee;
+}
+
+/* 下拉菜單 */
+.nav-wrapper .nav div.login-status .dropbox {
+    width:114px;
+    position: absolute;
+    right:0;
+    z-index: 100;
+    top:59px;
+    background: #fff;
+    border:1px solid #EEEEEE;
+    display: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: rgba(0,0,0,0.2) 2px 2px 10px;
+}
+.nav-wrapper .nav div.login-status .dropbox .dropbox-arrow {
+    width:24px;
+    height: 12px;
+    background: url("../../../../images/index/public/header/lvHeader/arrow.png") no-repeat;
+    position: absolute;
+    right: 10px;
+    top:-11px;
+    z-index: 9;
+}
+
+/* 我要刊登 */
+.nav-wrapper .nav div.login-status .dropbox.nav-publish {
+    right:-13px;
+}
+.nav-wrapper .nav div.login-status .nav-publish .dropbox-arrow {
+    right:47px;
+}
+.nav-wrapper .nav div.login-status .nav-publish ul li {
+    width:100%;
+    display: block;
+    border-bottom:1px solid #EEEEEE;
+}
+.nav-wrapper .nav div.login-status .nav-publish ul li:last-of-type {
+    border-bottom: none;
+}
+.nav-wrapper .nav div.login-status .nav-publish ul li a {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: #333;
+    text-align: center;
+}
+.nav-wrapper .nav div.login-status .nav-publish ul li a:hover {
+    background: #F6F6F6;
+}
+
+/* 登錄提醒 */
+.nav-wrapper .nav div.login-status .login-notice {
+    display: block;
+    padding:10px 15px;
+    width:260px;
+    top:70px;
+    right: -131px;
+    line-height: 50px;
+    text-align: center;
+    z-index: 9;
+    display: none;
+    border-radius: 4px;
+    box-shadow: rgba(0,0,0,0.3) 0 3px 6px;
+}
+@media only screen and (max-width: 1190px) {
+    .nav-wrapper .nav div.login-status .login-notice {
+        right: -45px;
+    }
+}
+.nav-wrapper .nav div.login-status .login-notice .dropbox-arrow {
+    right:190px;
+}
+@media only screen and (max-width: 1190px) {
+    .nav-wrapper .nav div.login-status .login-notice .dropbox-arrow {
+        right: 102px;
+    }
+}
+.nav-wrapper .nav div.login-status .login-notice .login-close {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: -10px;
+    top:-10px;
+    background:url("../../../../images/index/public/header/lvHeader/close.png") no-repeat;
+}
+.nav-wrapper .nav div.login-status .login-notice p {
+    line-height: 30px;
+    color: #333;
+    text-align: center;
+}
+.nav-wrapper .nav div.login-status .login-notice .login-btn {
+    display: inline-block;
+    width:100px;
+    height: 34px;
+    border:1px solid #ccc;
+    color: #666;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 4px;
+}
+.nav-wrapper .nav div.login-status .login-notice .login-btn:active {
+    background-color: #fb7e20;
+    color: #fff;
+    border:1px solid #fb7e20;
+}
+
+/* 幫助 */
+.nav-wrapper .nav div.login-status .nav-help {
+    width:275px;
+    padding-bottom: 5px;
+}
+.nav-wrapper .nav div.login-status .nav-help .dropbox-arrow {
+    right:17px;
+}
+.nav-wrapper .nav div.login-status .nav-help dl{
+    padding:15px;
+    border-bottom: 1px solid #eee;
+}
+.nav-wrapper .nav div.login-status .nav-help dl:last-of-type {
+    border-bottom: none;
+}
+.nav-wrapper .nav div.login-status .nav-help dl dt {
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+}
+.nav-wrapper .nav div.login-status .nav-help dl dd{ 
+    line-height: 26px;
+    margin-top:5px;
+    color: #666;
+}
+.nav-wrapper .nav div.login-status .nav-help dl dd a{
+    color: #666;
+    display: inline-block;
+    margin-right: 15px;
+}
+.nav-wrapper .nav div.login-status .nav-help dl dd a:hover{
+    color: #f60;
+}
+.nav-wrapper .nav div.login-status .nav-help dl dd a.drop-btn{
+    display: block;
+    background:#ddd;
+    margin-top:15px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 4px;
+}
+.nav-wrapper .nav div.login-status .nav-help dl dd a.drop-btn:hover{
+    color: #666;
+    background: #d1d1d1;
+}
+.nav-wrapper .nav div.login-status .nav-help dl dd a.highlight,
+.nav-wrapper .nav div.login-status .nav-help dl dd a.highlight:hover {
+    color: #f60
+}
+
+/* addcn */
+.nav-wrapper .nav div.login-status .nav-addcn {
+    width: 335px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.nav-wrapper .nav div.login-status .nav-addcn .dropbox-arrow {
+    right: 28px;
+}
+.nav-wrapper .nav div.login-status .nav-addcn ul li {
+    width: 80px;
+    text-align: center;
+    float: left;
+    margin: 5px 12px;
+}
+.nav-wrapper .nav div.login-status .nav-addcn ul li a:hover{
+    color: #f60;
+}
+.nav-wrapper .nav div.login-status .nav-addcn ul li p {
+    font-size: 12px;
+    line-height: 30px;
+    margin-top: 5px;
+}
+
+/* 子導航 */
+.nav-wrapper .sub-nav { 
+    position: absolute;
+    left: 0;
+    top:60px;
+    background: #fff;
+    width:100%;
+    border-top:1px solid #eee;
+    display: none;
+    z-index: 100;
+    box-shadow: rgba(0,0,0,0.3) 0 3px 3px;
+}
+.nav-wrapper .sub-nav .nav-category { 
+    width:1200px;
+    margin: 0 auto;
+}
+.nav-wrapper .sub-nav .nav-category .sub-nav-list {
+    padding-left:40px;
+    padding-right:20px;
+    border-left:1px solid #eee;
+    float: left;
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+.nav-wrapper .sub-nav .nav-category .sub-nav-list:first-of-type {
+    border-left:none;
+    margin-left:180px;
+}
+.nav-wrapper .sub-nav .nav-category .sub-nav-list dl dt {
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.nav-wrapper .sub-nav .nav-category .sub-nav-list dl dd a {
+    display: block;
+    float: left;
+    line-height: 36px;
+    color: #0055bf;
+    font-size:15px;
+}
+.nav-wrapper .sub-nav .nav-category .sub-nav-list dl dd a.newFeatures {
+    background: url("../../../../images/index/public/header/lvHeader/new.png") no-repeat 88px -2px;
+}
+.nav-wrapper .sub-nav .nav-category .sub-nav-list dl dd a:hover {
+    color: #f60;
+}
+.nav-wrapper .sub-nav .nav-category .nav-wide {
+    width:280px;
+}
+.nav-wrapper .sub-nav .nav-category .nav-wide a {
+    width:50%;
+}
+.nav-wrapper .sub-nav .nav-category .nav-narrow {
+    width:180px;
+}
+.nav-wrapper .sub-nav .nav-category .nav-narrow a {
+    width:100%;
+}
+.nav-wrapper .sub-nav .nav-category .nav-last {
+    width:420px;
+}
+.nav-wrapper .sub-nav .nav-category .nav-last p {
+    line-height: 28px;
+    color: #888;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.nav-wrapper .sub-nav .nav-category .nav-last a.nav-btn {
+    padding-left:20px;
+    padding-right: 20px;
+    line-height: 32px;
+    color: #0074e4;
+    border:1px solid #0074e4;
+    margin-top:15px;
+    border-radius: 5px;
+}
+.nav-wrapper .sub-nav .nav-category .nav-last a.nav-btn:hover {
+    text-decoration: none;
+    background: #f1f8ff;
+    color: #0074e4;
+    border:1px solid #3a8ede;
+}
+.nav-wrapper .sub-nav .nav-category .nav-last a.nav-btn-1 {
+    color: #fff;
+    background-color: #2371ca;
+    border-color: #2371ca;
+}
+.nav-wrapper .sub-nav .nav-category .nav-last a.nav-btn-1:hover {
+    background-color: #1261ca;
+    border-color: #1261ca;
+    color: #fff;
+}
+
+/* 對租屋二級導航高度進行特殊處理 */
+.nav-wrapper .sub-nav .subnav-rent .sub-nav-list {
+    min-height: 230px;
+}
+
+/* 熱門圖標添加 */
+.nav-wrapper .hasicon {
+    position: relative;
+}
+.nav-wrapper .hasicon .nav-icon{
+    position: absolute;
+    right: -5px;
+    top: 3px;
+}
+
+/**
+ * 區域切換選擇框
+ * @author      yulei@addcn.com
+ * @updatetime  2017-01-16 2019-02-25(liangjilin@addcn.com update)
+*/
+.areabox-wrapper {
+    width: 500px;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    top: 60px;
+    z-index: 99;
+    background: #fff;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    display: none;
+    text-align: left;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 3px 6px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 3px 6px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 3px 6px;
+  }
+  .areabox-wrapper .dropbox-arrow {
+    width: 24px;
+    height: 12px;
+    background: url("../../../../images/index/public/header/lvHeader/arrow.png") no-repeat;
+    position: absolute;
+    right: 458px;
+    top: -11px;
+    z-index: 9;
+  }
+  .areabox-wrapper h3 {
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .areabox-wrapper h3:hover {
+    color: #f60;
+  }
+  .areabox-wrapper dl dt {
+    width: 50px;
+    float: left;
+    height: 32px;
+    line-height: 32px;
+    color: #333;
+  }
+  .areabox-wrapper dl dd {
+    width: 405px;
+    float: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 22px;
+  }
+  .areabox-wrapper dl dd a {
+    display: inline-block;
+    margin-right: 15px;
+    color: #555;
+  }
+  .areabox-wrapper dl dd a:visited {
+    color: #555;
+  }
+  .areabox-wrapper dl dd a:focus {
+    color: #555;
+  }
+  .areabox-wrapper dl dd a:hover {
+    color: #f60;
+  }
+  .areabox-wrapper dl dd a:active {
+    color: #555;
+  }
+  .areabox-wrapper dl dd a.active {
+    color: #f60;
+  }
+  .areabox-wrapper dl dd a:hover {
+    text-decoration: underline;
+  }
+  .areabox-wrapper dl dd a:last-of-type {
+    margin-right: 0;
+  }
+  
+  /*# sourceMappingURL=areaBoxNew.css.map */
+  

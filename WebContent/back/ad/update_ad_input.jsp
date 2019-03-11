@@ -97,8 +97,8 @@
 		<td>廣告狀態:</td>
 		<td>
 			<select name ="ad_status">
-				<option value="ad_satus001" ${(adVO.ad_status == "ad_satus001")? 'selected':'' }>以付款
-				<option value="ad_satus002" ${(adVO.ad_status == "ad_satus002")? 'selected':'' }>未付款
+				<option value="ad_satus001" ${(adVO.ad_status == "ad_satus001")? 'selected':'' }>上架
+				<option value="ad_satus002" ${(adVO.ad_status == "ad_satus002")? 'selected':'' }>下架
 			</select>
 		</td>
 	</tr>	

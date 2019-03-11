@@ -1,0 +1,91 @@
+/*
+ * 左右相對滾動條固定插件樣式表
+ * @author      yulei@addcn.com
+ * @version     1.0
+ * @copyRight   2010-2014 Addcn
+ * @updateTime  2014-02-24
+ */
+
+ /*插件固定樣式-不可更改*/
+.fixed_wrap{ position:fixed; z-index:99990;}/*低於彈窗的遮罩99991*/
+a.closeBtn{ font-size:18px; position:absolute; right:5px; top:5px; z-index:99990; cursor:pointer;}
+a.closeBtn:hover{ color:#f00; text-decoration:none;}
+
+/*
+ * 側邊工具箱CSS && 針對side.tool.js使用
+ * @author      yulei@addcn.com
+ * @updateTime  2014-05-07
+ */
+#fixedSide{
+    width:70px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius: 5px;
+    border:1px solid #DDDEDD;
+    padding:5px 0 0;
+    text-align:center;
+    position: relative;
+    background: #fff;
+}
+#fixedSide ul li{
+    margin:15px 0;
+}
+#fixedSide ul li a{
+    display: block;
+    width:70px;
+    color:#FD7D00;
+    text-decoration: none;
+}
+#fixedSide ul li a:hover{
+    color:#FF6600;
+    text-decoration: none; 
+}
+#fixedSide ul li a em{
+    display:inline-block;
+    width:24px;
+    height:24px;
+    margin:0 auto;
+    background:url(../../../../images/index/public/newHead/side.png) no-repeat;
+}
+#fixedSide ul li a:hover em{
+    background-position:-59px 0; 
+}
+#fixedSide ul li.sideLine a em{
+    background-position:0 -35px;  
+}
+#fixedSide ul li.sideAdd a em{
+    background-position:0 -79px;  
+}
+#fixedSide ul li.sideProposal a em{
+    background-position:0 -118px;  
+}
+#fixedSide ul li.sideTop a em{
+    width:50px;
+    height: 50px;
+    background-position:0 -158px;  
+}
+
+#fixedSide ul li.sideLine a:hover em{
+    background-position:-59px -35px;  
+}
+#fixedSide ul li.sideAdd a:hover em{
+    background-position:-59px -79px;  
+}
+#fixedSide ul li.sideProposal a:hover em{
+    background-position:-59px -118px;  
+}
+#fixedSide ul li.sideTop a:hover em{
+    background-position:-59px -158px;  
+}
+.sideCode{
+    position:absolute;
+    top:-136px;
+    left:-17px;
+    width: 105px;
+    height: 126px;
+    display: none;
+}
+#fixedSide_wrap a.closeBtn {
+    right: -5px;
+    top: -10px;
+}

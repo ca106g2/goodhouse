@@ -79,7 +79,7 @@
 			 value="${param.hou_size}"/></td><td>${errorMsgs.hou_size}</td>
 	</tr>
 		<tr>
-		<td>產權證名</td>
+		<td>房屋狀態</td>
 		<td><input type="text" name="hou_property" size="45"
 			 value="${param.hou_property}"/></td><td>${errorMsgs.hou_property}</td>
 	</tr>

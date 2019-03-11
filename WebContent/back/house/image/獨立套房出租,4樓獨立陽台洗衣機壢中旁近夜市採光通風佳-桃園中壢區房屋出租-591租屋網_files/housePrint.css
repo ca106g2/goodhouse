@@ -1,0 +1,285 @@
+body {-webkit-print-color-adjust: exact;}
+#site-nav_NEW{
+    width: 1020px !important;
+}
+#header-dealer{
+    width: 1000px !important;
+}
+#newRentDetail{
+    width: 1000px !important;
+}
+#main,.main_house_info,.houseInfo{
+    width: 1000px !important;
+}
+.detailBox .leftBox ,.leftBox #show{
+    width: 670px;
+}
+
+.leftBox #show .viewer{
+    width: 670px;
+}
+.leftBox .textarea textarea{
+    width: 660px;
+}
+#PAGE_AD_753,#PAGE_AD_749{
+    width: 1000px !important;
+}
+.leftBox .labelList li{
+    width: 50%;
+}
+#PAGE_AD_753 img ,#PAGE_AD_749 img{
+    width: 1000px;
+}
+#footer, #footer .footnav{
+    width: 1000px !important;
+}
+.detailBox .imgBox ,.leftBox #show  ,.leftBox #show .imgList ,.leftBox #show .viewer .left ,.leftBox #show .viewer .right{
+    height: 524.3px;
+}
+.leftBox #show .viewer{
+    height: 454px !important;
+    width: 670px;
+}
+.leftBox #show .viewer a{
+    position: relative;
+    display: block;
+    height: 454px;
+}
+.leftBox #show .viewer img{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.leftBox #show .thumbnails{
+    width: 620px;
+    margin-left: 24px;
+    height: 70.3px;
+}
+.leftBox #show .thumbnails ol{
+    width: auto;
+    height: 70.3px;
+    padding: 0px;
+}
+.leftBox #show .thumbnails ol li{
+    float: left;
+    height: 70.3px;
+    margin-bottom: 0px;
+    margin-left: 2px;
+}
+#j_image_viewer img{
+    width: 670px;
+}
+#mapRound .myframe ,#streetRound .myframe{
+    width:650px; height:380px
+}
+#mapRound {
+    width: 650px;
+}
+#backOld_wrap{
+    right: 34px !important;
+}
+.leftBox #show .viewer .statInfo{
+    height: 454px;
+}
+.leftBox #show .thumbnails li .selected{
+    width: 97px;
+    height: 66.3px;
+}
+.leftBox #show .thumbnails li .selected img{
+    width: 97px;
+    height: 66.3px;
+}
+.leftBox #show .thumbnails li{
+    width: 101px;
+    height: 70.3px;
+}
+.leftBox #show .thumbnails li img{
+    width: 101px;
+    height: 70.3px;
+}
+.leftBox #show .thumbnails li a{
+    width: 101px;
+    height: 70.3px;
+}
+.leftBox #show .prev_control ,.leftBox #show .next_control {
+    width: 101px;
+}
+.leftBox #show .imgList{
+    width: 670px;
+    position: relative;
+    margin-left: 0px;
+    height: 70.3px;
+    margin-top: 3px;
+}
+.leftBox #show .prev_control ,.leftBox #show .next_control{
+    background-position: -12px 0px;
+}
+.thumbnails .noImg{
+    margin-top: 0px !important;
+}
+#j_image_viewer{
+    padding-top: 0px !important;
+}
+.leftBox .answerList .alTwo span{
+    padding-right: 0;
+}
+.leftBox #show .prev_control{
+    background: url("../../../../images/index/house/newVersion/left.png") no-repeat -3px;
+    width: 24px;
+    height: 70.3px;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.leftBox #show .next_control{
+    background: url("../../../../images/index/house/newVersion/right.png") no-repeat -3px;
+    width: 24px;
+    height: 70.3px;
+    position: absolute;
+    top:0;
+    right:0;
+}
+.bottomTip .first{
+    float: left;
+}
+.bottomTip .second{
+    float: left;
+    width: 886px;
+    display: block;
+}
+#mapRound .myframe ,#streetRound .myframe{
+    width:650px; height:380px
+}
+.propMapBarMap{
+    width: 650px !important;
+}
+#map_canvas{
+    width: 640px !important;
+}
+#imageContent{
+    width: 800px !important;
+}
+#imageContent .imgBox img{
+    width: 700px !important;
+}
+.contener {
+    width: 1000px !important;
+}
+header .contener .navDiv>li{
+    width: 75px !important;
+}
+header .contener .navDiv>li a{
+    width: 75px;
+}
+header .contener .navDiv{
+    margin-left: 0px !important;
+}
+.imageContent .imgBox{
+    margin-top: 40px !important;
+}
+.imageContent .imgBox img{
+    width: 650px !important;
+}
+.imageContent .imgTitle{
+    margin: 10px auto;
+}
+.leftBox .facility li span{
+    display: block;
+    /*background: url("../../../images/index/house/newVersion/AllICON.png") no-repeat !important;*/
+    content: url("../../../images/index/house/newVersion/AllICON.png") no-repeat !important;
+
+    float: left;
+    margin-right: 10px;
+}
+.leftBox .facility li .hometools_5{
+    background-position: 0px 0px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .hometools_4{
+    background-position: -30px 0px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .hometools_7{
+    background-position: -60px 0px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .hometools_1{
+    background-position: -90px 0px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .hometools_3{
+    background-position: -120px 0px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .fixture_7{
+    background-position: -0px -26px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .fixture_5{
+    background-position: -30px -26px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .fixture_4{
+    background-position: -60px -26px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .fixture_6{
+    background-position: -90px -26px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .fixture_1{
+    background-position: -120px -26px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .fixture_14{
+    background-position: -0px -52px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .fixture_15{
+    background-position: -30px -52px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .fixture_2{
+    background-position: -60px -52px !important;
+    width: 30px;
+    height: 26px;
+}
+.leftBox .facility li .no{
+    background-position: -90px -52px !important;
+    width: 30px;
+    height: 26px;
+}
+.newFiexdSide{
+    display: none;
+}
+
+/* --- 配合地政署，列印样式调整 --- */
+.print-hide {
+    display: none !important;
+}
+.userInfo .infoOne .auatarSonBox {
+    display: block;
+    position: static;
+    background: none;
+    border: none;
+    width: 180px;
+}
+.userInfo .infoOne div.auatarSon {
+    height: auto;
+}
+/* --- 配合地政署，列印样式调整结束 --- */

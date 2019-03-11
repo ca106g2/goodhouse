@@ -1,79 +1,50 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
 <%@ page import="com.goodhouse.ad.model.*"%>
-<%
-	AdService adSvc= new AdService();
-	List<AdVO> list = adSvc.getAll();
-	pageContext.setAttribute("list",list);
-%>
+
+	<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
+	<jsp:useBean id="adSvc" scope="page" class="com.goodhouse.ad.model.AdService"/>
+	<jsp:useBean id="ad_sortSvc" scope="page" class="com.goodhouse.ad_sort.model.Ad_sortService"/>
+
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta charset="UTF-8">
-<!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<!-- Bootstrap CSS end-->
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-
-    <style type="text/css">
-    	.item{
-    		background-color: #ffa;
-    		padding: 6px;
-    	}
-    	.item img{
-    		width: 100%;
-    	}
-    </style>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
-<body bgcolor='white'>
+<body>
+<ul>
 
-
-
-	<h3>資料查詢:</h3>
 	
-	<c:if test="${not empty errorMsgs}">
-		<font style="color:red">請修正以下錯誤:</font>
-		<ul>
-		    <c:forEach var="message" items="${errorMsgs}">
-				<li style="color:red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
-
-
-	<div class="container">
-		<div class="row">
-			<div class="col-12 col-md">
-				<div class="item">
-					<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
-					<p name="hou_id">
-					
-						<c:forEach var="houVO" items="${houSvc.all}">
-								<c:if test="${houVO.hou_id == adVO.hou_id}">
-									<img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1" width="100" height="100">
-				                 </c:if>
-				        </c:forEach>
-
-					</p>
-					<h3>title</h3>
-					<p>房別遠程改革一項果</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"></script>
-<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-
+ <table>
+ 	<td>
+		<form method="post" action="<%=request.getContextPath()%>/front/ad/ad.do" name="form1">
+		<b><font color=blue>廣告查詢</font></b><br>
+			<br>
+	
+			<b>請選擇廣告種類</b><br>
+				<select size="1" name="ad_sort_id" class="form-control" id="exampleFormControlSelect1">
+					<c:forEach var="ad_sortVO" items="${ad_sortSvc.all}">
+						<option value=" ">
+						<option value="${ad_sortVO.ad_sort_id}">${ad_sortVO.ad_chargetype}
+					</c:forEach>		
+				</select>
+<!--  (後臺用)-->	<b>廣告狀態</b><br>
+				<select size="1" name="ad_status" class="form-control" id="exampleFormControlSelect1">
+					<option value="">
+					<option value="ad_satus001"${(adVO.ad_status == "ad_satus001")? 'selected':'' }>上架
+					<option value="ad_satus002"${(adVO.ad_status == "ad_satus002")? 'selected':'' }>下架	
+				</select><br>
+				
+			<button type="submit" value="送出" class="btn btn-outline-secondary">送出</button>
+			<input type="hidden" name="action" value="listAd_ByCompositeQuery">
+				
+		</form>
+	</td>
+</table>
+	
+</ul>
 </body>
 </html>

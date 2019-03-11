@@ -4,7 +4,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.goodhouse.house.model.*"%>
 <%@ page import="java.sql.*, javax.sql.*" %> 
-
+<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
+<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
 <%
 	HouseService houSvc = new HouseService();
 	List<HouseVO> list = houSvc.getAll();
@@ -77,12 +78,12 @@
 		<th>房屋名稱</th>
 		<th>房屋型別</th>
 		<th>房屋坪數</th>
-		<th>產權證名</th>
+		<th>房屋狀態</th>
 		<th>是否含車位</th>
 		<th>是否可開火</th>
 		<th>是否有管理費</th>
 		<th>房屋地址</th>
-		<th>房東編號</th>
+		<th>房東名子</th>
 		<th>房屋租金</th>
 		<th>備註</th>
 		<th>圖片一</th>
@@ -90,6 +91,8 @@
 		<th>圖片三</th>
 	</tr>
 	<%@ include file="page1.file" %>
+<div class="container">
+		<div class="row">	
 	<c:forEach var="houVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
 		<tr>
 			<td>${houVO.hou_id}</td>
@@ -101,7 +104,7 @@
 			<td>${houVO.hou_cook}</td>
 			<td>${houVO.hou_managefee}</td>
 			<td>${houVO.hou_address}</td>
-			<td>${houVO.lan_id}</td>
+			<td>${memSvc.getOneMem(lanSvc.getOneLan(houVO.lan_id).mem_id).mem_name}</td>
 			<td>${houVO.hou_rent}</td>
 			<td>${houVO.hou_note}</td>
 			<td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"></td>
@@ -123,6 +126,9 @@
 	</c:forEach>
 </table>
 <%@ include file="page2.file" %>
+<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 </html>

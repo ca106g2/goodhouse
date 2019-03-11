@@ -70,8 +70,8 @@
           <option value="${houVO.hou_id}">${houVO.hou_name}
          </c:forEach>   
        </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
        <input type="submit" value="送出">
+       <input type="hidden" name="action" value="getOne_For_Display">
     </FORM>
   </li>
   
