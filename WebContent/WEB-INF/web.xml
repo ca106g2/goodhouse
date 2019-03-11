@@ -165,7 +165,7 @@
   	</servlet>
  	<servlet-mapping>
 	    <servlet-name>RentMessServlet</servlet-name>
-	    <url-pattern>/back/rentMess/rentMess.do</url-pattern>
+	    <url-pattern>/front/rentMess/rentMess.do</url-pattern>
   	</servlet-mapping>
   <!--設備維修註冊  -->
   	<servlet>
@@ -174,7 +174,7 @@
  	 </servlet>
   	<servlet-mapping>
 	    <servlet-name>EquRepServlet</servlet-name>
-	    <url-pattern>/back/equRep/equRep.do</url-pattern>
+	    <url-pattern>/front/equRep/equRep.do</url-pattern>
   	</servlet-mapping>
   <!--房屋不可預約註冊  -->
   	<servlet>
@@ -183,7 +183,7 @@
   	</servlet>
   	<servlet-mapping>
 	    <servlet-name>HouNoAppServlet</servlet-name>
-	    <url-pattern>/back/houNoApp/houNoApp.do</url-pattern>
+	    <url-pattern>/front/houNoApp/houNoApp.do</url-pattern>
   	</servlet-mapping>
   <!--預約看房註冊  -->
   	<servlet>
@@ -192,7 +192,7 @@
   	</servlet>
   	<servlet-mapping>
 	    <servlet-name>AppointServlet</servlet-name>
-	    <url-pattern>/back/appoint/appoint.do</url-pattern>
+	    <url-pattern>/front/appoint/appoint.do</url-pattern>
   	</servlet-mapping>
   <!--通知訊息註冊  //git上傳註解用無意義-->
   	<servlet>
@@ -201,6 +201,6 @@
   	</servlet>
   	<servlet-mapping>
 	    <servlet-name>NoticeServlet</servlet-name>
-	    <url-pattern>/back/notice/notice.do</url-pattern>
+	    <url-pattern>/front/notice/notice.do</url-pattern>
   	</servlet-mapping>
 </web-app>

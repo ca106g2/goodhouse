@@ -35,10 +35,10 @@ public class HouNoAppServlet extends HttpServlet {
 				if (str == null || (str.trim() ).length() == 0) {
 					errorMsgs.add("請輸入房屋不可預約編號");
 				}
-				// Send the use back to the form, if there were errors
+				// Send the use front to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back/houNoApp/select_page.jsp");
+							.getRequestDispatcher("/front/houNoApp/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -49,10 +49,10 @@ public class HouNoAppServlet extends HttpServlet {
 				} catch (Exception e) {
 					errorMsgs.add("房屋不可預約編號格式不正確");
 				}
-				// Send the use back to the form, if there were errors
+				// Send the use front to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back/houNoApp/select_page.jsp");
+							.getRequestDispatcher("/front/houNoApp/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -63,17 +63,17 @@ public class HouNoAppServlet extends HttpServlet {
 				if (houNoAppVO == null) {
 					errorMsgs.add("查無資料");
 				}
-				// Send the use back to the form, if there were errors
+				// Send the use front to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back/houNoApp/select_page.jsp");
+							.getRequestDispatcher("/front/houNoApp/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("houNoAppVO", houNoAppVO); // 資料庫取出的houNoAppVO物件,存入req
-				String url = "/back/houNoApp/listOneHouNoApp.jsp";
+				String url = "/front/houNoApp/listOneHouNoApp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneRentMess.jsp
 				successView.forward(req, res);
 
@@ -81,7 +81,7 @@ public class HouNoAppServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back/houNoApp/select_page.jsp");
+						.getRequestDispatcher("/front/houNoApp/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -101,7 +101,7 @@ public class HouNoAppServlet extends HttpServlet {
 				HouNoAppVO houNoAppVO = houNoAppSvc.getOneHouNoApp(hou_noapp_id);
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("houNoAppVO", houNoAppVO);         // 資料庫取出的houNoAppVO物件,存入req
-				String url = "/back/houNoApp/update_houNoApp_input.jsp";
+				String url = "/front/houNoApp/update_houNoApp_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_rentMess_input.jsp
 				successView.forward(req, res);
 
@@ -110,7 +110,7 @@ public class HouNoAppServlet extends HttpServlet {
 				e.printStackTrace();
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back/houNoApp/listAllHouNoApp.jsp");
+						.getRequestDispatcher("/front/houNoApp/listAllHouNoApp.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -165,11 +165,11 @@ public class HouNoAppServlet extends HttpServlet {
 				houNoAppVO.setHou_noapp_time(hou_noapp_time);
 				houNoAppVO.setHou_noapp_date(hou_noapp_date);
 
-				// Send the use back to the form, if there were errors
+				// Send the use front to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("houNoAppVO", houNoAppVO); // 含有輸入格式錯誤的houNoAppVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back/houNoApp/update_houNoApp_input.jsp");
+							.getRequestDispatcher("/front/houNoApp/update_houNoApp_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -180,7 +180,7 @@ public class HouNoAppServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("houNoAppVO", houNoAppVO); // 資料庫update成功後,正確的的houNoAppVO物件,存入req
-				String url = "/back/houNoApp/listOneHouNoApp.jsp";
+				String url = "/front/houNoApp/listOneHouNoApp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneHouNoApp.jsp
 				successView.forward(req, res);
 
@@ -188,7 +188,7 @@ public class HouNoAppServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back/houNoApp/update_houNoApp_input.jsp");
+						.getRequestDispatcher("/front/houNoApp/update_houNoApp_input.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -242,11 +242,11 @@ public class HouNoAppServlet extends HttpServlet {
 				houNoAppVO.setHou_noapp_time(hou_noapp_time);
 				houNoAppVO.setHou_noapp_date(hou_noapp_date);
 
-				// Send the use back to the form, if there were errors
+				// Send the use front to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("houNoAppVO", houNoAppVO); // 含有輸入格式錯誤的houNoAppVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back/houNoApp/addHouNoApp.jsp");
+							.getRequestDispatcher("/front/houNoApp/addHouNoApp.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -256,7 +256,7 @@ public class HouNoAppServlet extends HttpServlet {
 				houNoAppVO = houNoAppSvc.addHouNoApp(hou_id, lan_id, hou_noapp_time, hou_noapp_date);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
-				String url = "/back/houNoApp/listAllHouNoApp.jsp";
+				String url = "/front/houNoApp/listAllHouNoApp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneHouNoApp.jsp
 				successView.forward(req, res);				
 				
@@ -265,7 +265,7 @@ public class HouNoAppServlet extends HttpServlet {
 				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back/houNoApp/addHouNoApp.jsp");
+						.getRequestDispatcher("/front/houNoApp/addHouNoApp.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -287,7 +287,7 @@ public class HouNoAppServlet extends HttpServlet {
 				houNoAppSvc.deleteHouNoApp(hou_noapp_id);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/back/houNoApp/listAllHouNoApp.jsp";
+				String url = "/front/houNoApp/listAllHouNoApp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -295,7 +295,7 @@ public class HouNoAppServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back/houNoApp/listAllHouNoApp.jsp");
+						.getRequestDispatcher("/front/houNoApp/listAllHouNoApp.jsp");
 				failureView.forward(req, res);
 			}
 		}
