@@ -5,20 +5,34 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.goodhouse.house.model.*"%>
 <%@ page import="com.goodhouse.appointment.model.*"%>
+<%@ page import="com.goodhouse.house_noappointment.model.*"%>
 
 
 <%
 String hou_id = request.getParameter("hou_id");
 HouseService houSvc = new HouseService();
 HouseVO houVO = houSvc.getOneHouse(hou_id);
-//pageContext.setAttribute("", arg1)
+pageContext.setAttribute("houVO", houVO);
 %>
+
+<%-- <% --%>
+<!-- // String hou_noapp_id = request.getParameter("hou_noappoint_id"); -->
+<!-- // HouNoAppService houNoAppSvc = new HouNoAppService(); -->
+<!-- // HouNoAppVO houNoAppVO = houNoAppSvc.getOneHouNoApp(hou_noapp_id); -->
+<!-- // pageContext.setAttribute("houNoAppVO", houNoAppVO); -->
+<%-- %> --%>
+
 
 <%
 String appoint_id = request.getParameter("appoint_id");
 AppointService appointSvc = new AppointService();
 AppointVO appointVO = appointSvc.getOneAppoint(appoint_id);
 %>
+
+<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService" />
+<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
+<jsp:useBean id="houNoAppSvc" scope="page" class="com.goodhouse.house_noappointment.model.HouNoAppService" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +87,23 @@ AppointVO appointVO = appointSvc.getOneAppoint(appoint_id);
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
-						<span class="lan">房東：</span> <span>中壢城伍</span>
+						<span class="lan">房東：</span> 
+						<span>
+						<c:forEach var="lanVO" items="${lanSvc.all}">
+							<c:forEach var="memVO" items="${memSvc.all}">
+	                    		<c:if test="${houVO.lan_id==lanVO.lan_id}">
+		                    		<c:if test="${lanVO.mem_id==memVO.mem_id}">
+		                    			<c:if test="${memVO.mem_sex == 1 }">
+			                    		${mem.mem_id}【${memVO.mem_name} - 男】
+			                    		</c:if>
+			                    		<c:if test="${memVO.mem_sex == 2 }">
+			                    		${mem.mem_id}【${memVO.mem_name} - 女】
+			                    		</c:if>
+		                    		</c:if>
+	                    		</c:if>
+                			</c:forEach>
+                		</c:forEach>
+						</span>
 					</div>
 					<div class="col-sm-3"></div>
 					<div class="col-sm-6">
@@ -125,8 +155,24 @@ AppointVO appointVO = appointSvc.getOneAppoint(appoint_id);
 							<FORM METHOD="post" ACTION="appoint.do" name="form1">
 							<table>
 							<tr>
-								<td><input name="hou_app_date" id="f_date1" type="text"></td>
+								<td>
+								<c:forEach var="houNoAppVO" items="${houNoAppSvc.all}">
+									<c:if test="${houNoAppVO.hou_id == houVO.hou_id }">
+			                    		<div><h5>不可預約時間</h5></div>
+			                    		<div><h5>${houNoAppVO.hou_noapp_date}</h5></div>
+			                    	</c:if>
+                				</c:forEach>
+                				</td><p>
 							</tr>
+							
+							<tr>
+							<td>
+								選擇預約看房時間<br>
+								<input name="appoint_date" id="f_date1" type="text">
+							
+							</td>
+							</tr>
+							
 							</table>
 							<input type="hidden" name="action" value="insert">
 							<input type="submit" value="送出新增">
