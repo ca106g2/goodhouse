@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.goodhouse.keyword.model.KeyWordVO;
 
 public class Ele_ContractJDBCDAO implements Ele_ContractDAO_interface{
 	

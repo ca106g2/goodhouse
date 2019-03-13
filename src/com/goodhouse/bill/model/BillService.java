@@ -3,7 +3,6 @@ package com.goodhouse.bill.model;
 import java.sql.Date;
 import java.util.List;
 
-import com.goodhouse.keyword.model.KeyWordVO;
 
 public class BillService {
 
