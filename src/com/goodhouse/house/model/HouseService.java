@@ -61,6 +61,11 @@ public class HouseService {
 		
 		return ar2;
 	}
+	
+	//預留給 Struts 2 用的
+	public void update(HouseVO houVO) {
+		dao.update(houVO);
+	}
 
 	
 	public void deleteHouse(String hou_id){
