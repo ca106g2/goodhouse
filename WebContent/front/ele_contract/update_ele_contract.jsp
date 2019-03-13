@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.ele_contract.model.*"%>
+<%@ page import="com.goodhouse.ele_contract.controller.*"%>
+<%@ page import="java.util.*"%>
 <%
 	Ele_ContractVO eleConVO = (Ele_ContractVO) request.getAttribute("eleConVO");
 %>
@@ -9,21 +11,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/File/jquery-1.12.4.min.js"></script>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/File/all.css"
-	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/File/all.css"
-	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-	crossorigin="anonymous">
-<!-- Bootstrap CSS end-->
-<title></title>
+
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -35,11 +23,11 @@
 		<div class="row col-4">
 			<table>
 				<tr>
-					<td>修改</td>
+					<h3 style="color:blue">房東修改電子合約</h3>
 				</tr>
 				<tr>
 					<td>
-						<a href="select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100" height="32" border="0">回首頁</a>
+						<a href="lan_select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100" height="32" border="0">回首頁</a>
 					</td>
 				</tr>
 				<tr>
@@ -70,9 +58,6 @@
 								</td>
 							</tr>
 							<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
-<%-- 									<c:forEach var="memVO" items="memSvc.all"> --%>
-<%-- 										<p >${memVO.mem_id == eleConVO.mem_id ? memVO.name : ""}</p> --%>
-<%-- 									</c:forEach> --%>
 							<tr>
 								<td>租屋者姓名(會員)<font color=red><b>*</b></font></td>
 								<td>
@@ -85,12 +70,11 @@
 									<input type="text" name="mem_idnumber" value="<%=eleConVO.getMem_idnumber()%>"/>
 								</td>
 							</tr>
+							<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"></jsp:useBean>
 							<tr>
 								<td>房東姓名<font color=red><b>*</b></font></td>
 								<td>
-									<c:forEach var="memVO" items="${memSvc.all}">
-										<p>${(memVO.mem_id == eleConVO.mem_id) ? memVO.mem_name : "" }</p>
-									</c:forEach>
+									<p>${memSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</p>
 								</td>
 							</tr>
 							<tr>
@@ -100,21 +84,6 @@
 								</td>
 							</tr>
 							<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
-							<!-- 
-							<tr>
-								<td>房屋<font color=red><b>*</b></font></td>
-								<td>
-									<select size="1" name="hou_id">
-										<c:forEach var="houVO" items="${houSvc.all}">
-											<option value="${houVO.hou_id}"${(eleConVO.lan_id == houVO.lan_id)? 'selected' : ''}>${houVO.hou_name}
-										</c:forEach>
-									</select>
-								</td>
-							</tr>
-							 -->
-<%-- 									<c:forEach var="houVO" items="${houSvc.all}"> --%>
-<%-- 										<p>${(houVO.hou_id == eleConVO.hou_id) ? houVO.hou_name : "" }</p> --%>
-<%-- 									</c:forEach> --%>
 							<tr>
 								<td>房屋<font color=red><b>*</b></font></td>
 								<td>
@@ -160,11 +129,11 @@
 							<tr>
 								<td>繳費型態<font color=red><b>*</b></font></td>
 								<td>
-									<select name="bill_paymenttype" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:225px;">
-										<c:forEach var="bill_paymenttype" items="${Bill_PaymentTypeList}">
-											<option value="${bill_paymenttype.type_no_name}" >${bill_paymenttype.type_name}
-										</c:forEach>
-									</select>
+									<c:forEach var="bill_paymenttype" items="${Bill_PaymentTypeMap}">
+										<c:if test="${eleConVO.bill_paymenttype eq bill_paymenttype.key}" >
+											<p>${bill_paymenttype.value.type_name}</p>
+										</c:if>
+									</c:forEach>
 								</td>
 							</tr>
 							<tr>

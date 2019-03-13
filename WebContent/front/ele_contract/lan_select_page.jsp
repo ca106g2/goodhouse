@@ -2,21 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.ele_contract.model.*"%>
+<%
+	String mem_name = (String)session.getAttribute("mem_name");
+%>
 
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/file/jquery-1.12.4.min.js"></script>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/File/all.css"
-	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-	crossorigin="anonymous">
-<!-- Bootstrap CSS end-->
+
 <title></title>
 <style>
 table#table-1 {
@@ -65,7 +58,13 @@ h4 {
 					</ul>
 				</c:if>
 				<ul>
-					<li><a href="lan_listAll_ele_contract.jsp">List All</a></li>
+					<li>
+						<form method="post" action="ele_contract.do">
+							<b>(房東自己的)查看所有合約</b>
+							<input type="hidden" name="action" value="lan_listAll">
+							<input type="submit" value="送出">
+						</form>
+					</li>
 
 					<li>
 						<form method="post" action="ele_contract.do">
@@ -75,7 +74,22 @@ h4 {
 							<input type="submit" value="送出">
 						</form>
 					</li>
-					<il> <a href="select_contract.jsp">新增電子合約</a> </il>
+					<li>
+						<form method="post" action="ele_contract.do">
+							<b>輸入姓名</b><br>
+							<input type="text" name="mem_name" >
+							<input type="hidden" name="action" value="lanGetMemEle_ContractByName">
+							<input type="submit" value="送出">
+						</form>
+					</li>
+					<li> <a href="select_contract.jsp">新增電子合約</a> </li>
+					<li>
+						<form method="post" action="apply_conturct.do">
+							<b>合約處理列表</b>
+							<input type="hidden" name="action" value="lanApply_conturctListAll">
+							<input type="submit" value="送出">
+						</form>
+					</li>
 				</ul>
 			</div>
 			<div class="row col-3"></div>

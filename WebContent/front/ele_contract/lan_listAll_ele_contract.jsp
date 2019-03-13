@@ -1,30 +1,19 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.goodhouse.ele_contract.model.*"%>
 
 <%
 	Ele_ContractService eleConSvc = new Ele_ContractService();
-	List<Ele_ContractVO> list = eleConSvc.getAll();
-	pageContext.setAttribute("list", list);
+	List<Ele_ContractVO> list = (List<Ele_ContractVO>) session.getAttribute("ele_contractForLanList");
+	pageContext.setAttribute("list",list);
 %>
 
 
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/file/jquery-1.12.4.min.js"></script>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/File/all.css"
-	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-	crossorigin="anonymous">
-<!-- Bootstrap CSS end-->
-<title></title>
+
 <style>
 table#table-1 {
 	background-color: #CCCCFF;
@@ -49,24 +38,15 @@ h4 {
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<h1></h1>
 
-	<!-- ¤u§@°Ï¶}©l -->
+	<!-- å·¥ä½œå€é–‹å§‹ -->
 
 	<div class="container-fluid">
 		<div class="row justfy-content-center">
 			<div class="row col-2">
-				<table id="table-1">
-					<p>
-						¦^­º­¶<a href="lan_select_page.jsp"><img
-							src="<%=request.getContextPath()%>/share_pic/back1.gif"
-							width="100" height="30 !important"></a>
-					</p>
-					<tr>
-						<td>©Ò¦³¹q¤l¦X¬ù¸ê®Æ - listAll_ele_contract.jsp</td>
-					</tr>
-				</table>
-				<%-- ¿ù»~ªí¦C --%>
+				
+				<%-- éŒ¯èª¤è¡¨åˆ— --%>
 				<c:if test="${not empty errorMsgs}">
-					<font style="color: red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+					<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 					<ul>
 						<c:forEach var="message" items="${errorMsgs}">
 							<li style="color: red">${message}</li>
@@ -75,46 +55,72 @@ h4 {
 				</c:if>
 			</div>
 			<div class="row col-10	">
+				<table id="table-1">
+					<p>
+						å›é¦–é <a href="lan_select_page.jsp"><img
+							src="<%=request.getContextPath()%>/share_pic/back1.gif"
+							width="100" height="30 !important"></a>
+					</p>
+					<tr>
+						<td>æ‰€æœ‰é›»å­åˆç´„è³‡æ–™ - lan_listAll_ele_contract.jsp</td>
+					</tr>
+				</table><br>
+				<%@ include file="page1.file"%><br>
 				<table>
 					<tr>
-						<td>¹q¤l¦X¬ù½s¸¹</td>
-						<td>¦X¬ù¤ÀÃş½s¸¹</td>
-						<td>·|­û½s¸¹</td>
-						<td>·|­û¨­¥÷ÃÒ¦r¸¹</td>
-						<td>©ĞªF½s¸¹</td>
-						<td>©ĞªF¨­¥÷ÃÒ¦r¸¹</td>
-						<td>©Ğ«Î½s¸¹</td>
-						<td>¨C´Á¯²ª÷</td>
-						<td>©ãª÷</td>
-						<td>¯²¸î´Á­­</td>
-						<td>¯²¸î°_°W¤é</td>
-						<td>¯²¸îµ²§ô¤é</td>
-						<td>Ã±¬ù¤é´Á</td>
-						<td>¦X¬ùª¬ºA</td>
-						<td>Ãº¶O«¬ºA</td>
-						<td>³Æµù</td>
-						<td>­×§ï</td>
-						<td>¦X¬ù¸Ñ°£</td>
+						<td>é›»å­åˆç´„ç·¨è™Ÿ</td>
+						<td>åˆç´„åˆ†é¡åç¨±</td>
+						<td>æˆ¿å®¢å§“å</td>
+						<td>æˆ¿å®¢èº«ä»½è­‰å­—è™Ÿ</td>
+						<td>æˆ¿æ±å§“å</td>
+						<td>æˆ¿æ±èº«ä»½è­‰å­—è™Ÿ</td>
+						<td>æˆ¿å±‹åç¨±</td>
+						<td>æ¯æœŸç§Ÿé‡‘</td>
+						<td>æŠ¼é‡‘</td>
+						<td>ç§Ÿè³ƒæœŸé™</td>
+						<td>ç§Ÿè³ƒèµ·è¨–æ—¥</td>
+						<td>ç§Ÿè³ƒçµæŸæ—¥</td>
+						<td>ç°½ç´„æ—¥æœŸ</td>
+						<td>åˆç´„ç‹€æ…‹</td>
+						<td>ç¹³è²»å‹æ…‹</td>
+						<td>å‚™è¨»</td>
+						<td>ä¿®æ”¹</td>
 					</tr>
-					<%@ include file="page1.file"%>
+					
+					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"></jsp:useBean>
+					<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"></jsp:useBean>
+					<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"></jsp:useBean>
+					<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"></jsp:useBean>
+					
 					<c:forEach var="eleConVO" items="${list}" begin="<%=pageIndex%>"
 						end="<%=pageIndex+rowsPerPage-1%>">
 						<tr>
 							<td>${eleConVO.ele_con_id}</td>
-							<td>${eleConVO.con_id}</td>
-							<td>${eleConVO.mem_id}</td>
+							<td>${conSvc.getOneCon(eleConVO.con_id).con_name}</td>
+							<td>${memSvc.getOneMem(eleConVO.mem_id).mem_name}</td>
 							<td>${eleConVO.mem_idnumber}</td>
-							<td>${eleConVO.lan_id}</td>
+							<td>${memSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</td>
 							<td>${eleConVO.lan_idnumber}</td>
-							<td>${eleConVO.hou_id}</td>
+							<td>${houSvc.getOneHouse(eleConVO.hou_id).hou_name}</td>
 							<td>${eleConVO.ele_rent_money}</td>
 							<td>${eleConVO.ele_deposit_money}</td>
 							<td>${eleConVO.ele_rent_time}</td>
 							<td>${eleConVO.ele_rent_f_day}</td>
 							<td>${eleConVO.ele_rent_l_day}</td>
 							<td>${eleConVO.ele_singdate}</td>
-							<td>${eleConVO.ele_con_status}</td>
-							<td>${eleConVO.bill_paymenttype}</td>
+							
+							<c:forEach var="Ele_con_status" items="${Ele_con_statusList}">
+								<c:if test="${Ele_con_status.status_no eq eleConVO.ele_con_status}">
+									<td>${Ele_con_status.status_name}</td>
+								</c:if>
+							</c:forEach>
+							
+							<c:forEach var="Bill_PaymentType" items="${Bill_PaymentTypeMap}">
+								<c:if test="${Bill_PaymentType.key eq eleConVO.bill_paymenttype}">
+									<td>${Bill_PaymentType.value.type_name}</td>
+								</c:if>
+							</c:forEach>
+							
 							<td>${eleConVO.ele_con_note}</td>
 							<td>
 								<form method="post" action="ele_contract.do"
@@ -123,7 +129,8 @@ h4 {
 										value="${eleConVO.ele_con_id}"> 
 									<input type="hidden"
 										name="action" value="getOne_For_Update"> 
-									<input type="submit" value="­×§ï">
+									<input type="submit" value="ä¿®æ”¹" 
+											style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
 								</form>
 							</td>
 						</tr>
@@ -134,21 +141,10 @@ h4 {
 		</div>
 	</div>
 
-	<!-- ¤u§@°Ïµ²§ô -->
+	<!-- å·¥ä½œå€çµæŸ -->
 
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script
-		src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
-	<script
-		src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+
 
 </body>
 </html>

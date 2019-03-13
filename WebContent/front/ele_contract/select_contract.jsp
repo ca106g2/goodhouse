@@ -6,21 +6,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/file/jquery-1.12.4.min.js"></script>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<!-- Bootstrap CSS end-->
-
-
-<title>電子合約修改</title>
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
-	<h1></h1>
 
 	<!-- 工作區開始 -->
 <div class="container-fluid">
