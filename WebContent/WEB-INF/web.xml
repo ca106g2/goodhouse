@@ -158,6 +158,21 @@
 		<servlet-name>Bill</servlet-name>
 		<url-pattern>/back/bill/bill.do</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Bill</servlet-name>
+		<url-pattern>/front/ele_contract/bill.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 申請合約處理註冊 -->
+	<servlet>
+		<servlet-name>Apply_Conturct</servlet-name>
+		<servlet-class>com.goodhouse.apply_conturct.controller.Apply_ConturctServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Apply_Conturct</servlet-name>
+		<url-pattern>/front/ele_contract/apply_conturct.do</url-pattern>
+	</servlet-mapping>
+	
 	<!--租屋問題註冊  -->
 	<servlet>
 	    <servlet-name>RentMessServlet</servlet-name>
