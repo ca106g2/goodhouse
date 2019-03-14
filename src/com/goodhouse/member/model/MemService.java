@@ -64,6 +64,10 @@ public class MemService {
 		return dao.findByPrimaryKey(mem_id);
 		}
 	
+	public MemVO getOneMem(String mem_email, String mem_password) {
+		return dao.findByEmail(mem_email, mem_password);
+		}
+	
 	public List <MemVO> getAll(){
 		return dao.getAll();
 	}
