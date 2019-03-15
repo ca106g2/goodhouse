@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.landlord.model.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
+
 <%
   LanVO lanVO = (LanVO) request.getAttribute("lanVO"); 
 %>
@@ -41,6 +45,15 @@
     padding: 5px;
     text-align: center;
   }
+  
+  #bc{
+  	width:100px;
+  	height:100px;
+  
+  
+  }
+  
+  
 </style>
 
 </head>
@@ -69,7 +82,19 @@
 		<td><%=lanVO.getLan_receipt()%></td>
 		<td><%=lanVO.getLan_account()%></td>
 		<td><%=lanVO.getLan_accountstatus()%></td>
-		<td><%=lanVO.getLan_ciziten()%></td>
+		<%
+				byte b[] = null;
+				b = lanVO.getLan_ciziten();	
+				String encoding = null;
+				if(b != null){
+				encoding = Base64.encode(b);
+			%>
+				<td><img id="bc" src="data:image/jpg;base64,<%=encoding %>"></td>
+			<%
+				}%>
+		
+		
+		
 	</tr>
 </table>
 </body>

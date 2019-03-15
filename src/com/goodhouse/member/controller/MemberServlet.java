@@ -9,10 +9,12 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.goodhouse.employee.model.EmpService;
@@ -23,7 +25,7 @@ import com.goodhouse.member.model.MemVO;
 /**
  * Servlet implementation class MemberServlet
  */
-@WebServlet("/MemberServlet")
+@MultipartConfig
 public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -59,10 +61,10 @@ public class MemberServlet extends HttpServlet {
 		
 			java.sql.Date mem_birthday = null;
 			try {
-				mem_birthday = java.sql.Date.valueOf(req.getParameter("mem_birthday"));	
+				mem_birthday = java.sql.Date.valueOf(req.getParameter("mem_birthday").trim());	
 			}catch(IllegalArgumentException e) {
 				mem_birthday = new java.sql.Date(System.currentTimeMillis());
-				errorMsgs.add("請輸入日期");
+				errorMsgs.add("請輸入日期"+e.getMessage());
 			}
 			
 			
@@ -86,10 +88,9 @@ public class MemberServlet extends HttpServlet {
 				errorMsgs.add("電話請填數字");
 			}
 			
-			
 			Integer  mem_phone = null;
 					try{
-						mem_phone = new Integer(req.getParameter(" mem_phone").trim());
+						mem_phone = new Integer(req.getParameter("mem_phone").trim());
 					}catch(Exception e) {
 						errorMsgs.add("手機請填數字");
 					}
@@ -122,7 +123,7 @@ public class MemberServlet extends HttpServlet {
 			
 			Integer  good_total = null;
 					try{
-						good_total = new Integer(req.getParameter(" good_total").trim());
+						good_total = new Integer(req.getParameter("good_total").trim());
 					}catch(Exception e) {
 						errorMsgs.add("積分請填數字");
 					}
@@ -131,6 +132,9 @@ public class MemberServlet extends HttpServlet {
 			if(mem_sex == null || mem_sex.trim().length()== 0) {
 				errorMsgs.add("請填入正確狀態");
 			}
+			
+			
+			
 			
 			MemVO memVO = new MemVO();
 			memVO.setMem_name(mem_name);
@@ -160,7 +164,7 @@ public class MemberServlet extends HttpServlet {
 			
 		
 			/***************************3.新增完成,準備轉交(Send the Success view)***********/
-			String url = "/front/member/listAllMem.jsp";
+			String url = "/front/member/select_page.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);		
 			
@@ -185,7 +189,6 @@ public class MemberServlet extends HttpServlet {
 						errorMsgs.add("會員姓名請勿空白");
 					}
 					
-					
 					String mem_name = req.getParameter("mem_name");
 					String mem_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 					if(mem_name == null || mem_name.trim().length() == 0) {
@@ -196,7 +199,7 @@ public class MemberServlet extends HttpServlet {
 				
 					java.sql.Date mem_birthday = null;
 					try {
-						mem_birthday = java.sql.Date.valueOf(req.getParameter("mem_birthday"));	
+						mem_birthday = java.sql.Date.valueOf(req.getParameter("mem_birthday").trim());	
 					}catch(IllegalArgumentException e) {
 						mem_birthday = new java.sql.Date(System.currentTimeMillis());
 						errorMsgs.add("請輸入日期");
@@ -223,13 +226,14 @@ public class MemberServlet extends HttpServlet {
 						errorMsgs.add("電話請填數字");
 					}
 					
-					
 					Integer  mem_phone = null;
 							try{
-								mem_phone = new Integer(req.getParameter(" mem_phone").trim());
+								mem_phone = new Integer(req.getParameter("mem_phone").trim());
 							}catch(Exception e) {
 								errorMsgs.add("手機請填數字");
 							}
+					System.out.println(mem_phone);	
+						
 					String mem_email = req.getParameter("mem_email").trim();
 					if(mem_email == null || mem_email.trim().length()== 0) {
 						errorMsgs.add("請填入email");
@@ -259,7 +263,7 @@ public class MemberServlet extends HttpServlet {
 					
 					Integer  good_total = null;
 							try{
-								good_total = new Integer(req.getParameter(" good_total").trim());
+								good_total = new Integer(req.getParameter("good_total").trim());
 							}catch(Exception e) {
 								errorMsgs.add("積分請填數字");
 							}
@@ -288,7 +292,7 @@ public class MemberServlet extends HttpServlet {
 				if(!errorMsgs.isEmpty()) {
 					req.setAttribute("memVO", memVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("front/member/update_mem_input.jsp");
+							.getRequestDispatcher("/front/member/update_mem_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -297,6 +301,9 @@ public class MemberServlet extends HttpServlet {
 				MemService memSvc = new MemService();
 				memVO = memSvc.updateMem(mem_name, mem_birthday,mem_password,mem_address,mem_zipcode,mem_telephone,mem_phone,mem_email,mem_status,mem_picture,good_total,mem_sex,mem_id);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
+				HttpSession session = req.getSession();
+				session.removeAttribute("memVO");
+				session.setAttribute("memVO", memVO);
 				req.setAttribute("memVO", memVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/front/member/listOneMem.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
@@ -322,7 +329,7 @@ public class MemberServlet extends HttpServlet {
 		try {
 			String mem_id = req.getParameter("mem_id");
 			if (mem_id  == null || (mem_id.trim()).length() == 0) {
-				errorMsgs.add("請輸入員工編號");
+				errorMsgs.add("請輸入編號");
 			} 
 			if(!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req
@@ -330,11 +337,13 @@ public class MemberServlet extends HttpServlet {
 				failureView.forward(req, res);
 				return;//程式中斷
 			}
+			
+			
 		
-			/***************************2.開始新增資料***************************************/
+			/***************************2.開始查詢資料***************************************/
 			MemService memSvc = new MemService();
 			MemVO  memVO = memSvc.getOneMem(mem_id);
-			if(mem_id == null) {
+			if(memVO == null) {
 				errorMsgs.add("查無資料");
 			}
 			
@@ -344,9 +353,9 @@ public class MemberServlet extends HttpServlet {
 				failureView.forward(req, res);
 				return;//程式中斷
 			}
-			/***************************3.新增完成,準備轉交(Send the Success view)***********/
+			/***************************3.查詢完成,準備轉交(Send the Success view)***********/
 			req.setAttribute("memVO",memVO);
-			String url = "/front/mem/listOneMem.jsp";
+			String url = "/front/member/listOneMem.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);		
 			
@@ -360,7 +369,6 @@ public class MemberServlet extends HttpServlet {
 		//==================================================================
 		
 		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
-
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -369,13 +377,12 @@ public class MemberServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數****************************************/
 				String mem_id = req.getParameter("mem_id");	
-			
 				/***************************2.開始查詢資料****************************************/
 				MemService memSvc = new MemService();
 				MemVO memVO = memSvc.getOneMem(mem_id);
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("memO", memVO);         // 資料庫取出的empVO物件,存入req
+				req.setAttribute("memVO", memVO);         // 資料庫取出的empVO物件,存入req
 				String url = "/front/member/update_mem_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
@@ -383,7 +390,7 @@ public class MemberServlet extends HttpServlet {
 			}catch(Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/member/listAllMem.jsp");
+						.getRequestDispatcher("/front/member/listOneMem.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -402,15 +409,47 @@ public class MemberServlet extends HttpServlet {
 			memSvc.deleteMem(mem_id);
 			
 			/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-			String url = "/front/member/listAllMem.jsp";
+			String url = "/front/member/select_page.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 			successView.forward(req, res);
 			}catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/member/listAllMem.jsp");
+						.getRequestDispatcher("/front/member/listOneMem.jsp");
 				failureView.forward(req, res);
 			}
 		}
+		
+		
+		
+		if("buildMem".equals(action)) {
+//			
+			List<String>errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs",errorMsgs);
+			try {
+				MemVO memVO = new MemVO();
+				memVO.setMem_name("王王王");
+				memVO.setMem_password("555999a");
+				memVO.setMem_address("新北");
+				memVO.setMem_zipcode("55985");
+				memVO.setMem_telephone(228559999);
+				memVO.setMem_phone(966555888);
+				memVO.setMem_email("abc@abc.com");
+				memVO.setMem_status("1");
+				memVO.setGood_total(8888);
+				memVO.setMem_sex("1");
+				
+				req.setAttribute("memVO",memVO);
+				RequestDispatcher successView = req.getRequestDispatcher("/front/member/addMem.jsp"); // 新增成功後轉交listAllEmp.jsp
+				successView.forward(req, res);	
+				
+			}catch(Exception e) {
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front/member/addMem.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		
 	}
 }

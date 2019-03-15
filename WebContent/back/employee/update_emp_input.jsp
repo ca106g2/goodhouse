@@ -45,7 +45,7 @@
 
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料修改 - update_emp_input.jsp</h3>
@@ -87,11 +87,17 @@
 	</tr>
 	<tr>
 		<td>員工密碼:</td>
-		<td><input type="text" name="emp_password" size="45" value="<%=empVO.getEmp_password()%>" /></td>
+		<td><input type="password" name="emp_password" size="45" value="<%=empVO.getEmp_password()%>" /></td>
 	</tr>
+
 	<tr>
 		<td>員工狀態:</td>
-		<td><input type="TEXT" name="emp_status" size="45"	value="<%=empVO.getEmp_status()%>" /></td>
+		<td>
+			<select name="emp_status">
+				<option  value="1">離職</option>
+				<option  value="2" selected>正職</option>
+			</select>
+		</td>
 	</tr>
 	
 
@@ -102,6 +108,9 @@
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="emp_id" value="<%=empVO.getEmp_id()%>">
-<input type="submit" value="送出修改"></FORM>
+<input type="submit" value="送出修改">
+</FORM>
+
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

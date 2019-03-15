@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.goodhouse.landlord.model.*"%>
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64" %>
+
 
 <%
 LanService lanSvc = new LanService();
@@ -46,6 +48,13 @@ pageContext.setAttribute("list",list);
     padding: 5px;
     text-align: center;
   }
+  
+  #bc{
+  width:100px;
+  height:100px;
+ 
+  }
+  
 </style>
 
 
@@ -87,7 +96,20 @@ pageContext.setAttribute("list",list);
 		<td>${lanVO.lan_receipt}</td>
 		<td>${lanVO.lan_account}</td>
 		<td>${lanVO.lan_accountstatus}</td>
-		<td>${lanVO.lan_ciziten}</td>
+		<c:set var="lanVO" value="${lanVO}"/>
+								<%
+				byte b[] = null;
+				b = ((LanVO)pageContext.getAttribute("lanVO")).getLan_ciziten();	
+				String encoding = null;
+				if(b != null){
+				encoding = Base64.encode(b);
+			%>
+				<td><img id="bc" src="data:image/jpg;base64,<%=encoding %>"></td>
+			<%
+				}%>
+		
+		
+		
 		<td>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/landlord/lan.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">

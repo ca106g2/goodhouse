@@ -51,11 +51,9 @@ public class LanService {
 	public List <LanVO> getAll(){
 		return dao.getAll();
 	}
-	
 	public LanVO getOneLanByMemId(String mem_id) {
 		return dao.findByMem_id(mem_id);
 	}
-	
 }
 
 

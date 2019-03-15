@@ -10,5 +10,4 @@ public interface LanDAO_interface {
 	public List<LanVO>getAll();
 	public LanVO findByMem_id(String mem_id);
 	
-	
 }

@@ -34,9 +34,9 @@ public class LanDAO implements LanDAO_interface {
 			"DELETE FROM LANDLORD where LAN_ID=?";
 	private static final String UPDATE=
 			"UPDATE LANDLORD set MEM_ID=?,LAN_RECEIPT=?,LAN_ACCOUNT=?,LAN_ACCOUNTSTATUS=?,LAN_CIZITEN=? where LAN_ID=?";
-	
 	private static final String GET_ONE_BY_MEM_ID=
 			"SELECT * FROM LANDLORD where MEM_ID=?";
+
 	@Override
 	public void insert(LanVO lanVo) {
 		// TODO Auto-generated method stub
@@ -267,7 +267,6 @@ public class LanDAO implements LanDAO_interface {
 	}
 	return list;
 	}
-
 	@Override//利用mem_id找lan_id
 	public LanVO findByMem_id(String mem_id) {
 		LanVO lanVO = null;

@@ -34,7 +34,7 @@ public class PerService {
 		public void deletePer(String per_id) {
 		dao.delete(per_id);
 		}
-		public PerVO getOneMem(String per_id) {
+		public PerVO getOnePer(String per_id) {
 		return dao.findByPrimaryKey(per_id);
 		}
 		public List <PerVO> getAll(){

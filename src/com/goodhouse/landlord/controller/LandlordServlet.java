@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import com.goodhouse.landlord.model.LanService;
 import com.goodhouse.landlord.model.LanVO;
 
 
-@WebServlet("/LandlordServlet")
+@MultipartConfig
 public class LandlordServlet extends HttpServlet{
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -46,10 +47,12 @@ public class LandlordServlet extends HttpServlet{
 				if (mem_id == null || mem_id.trim().length() == 0) {
 					errorMsgs.add("會員編號: 請勿空白");
 				} 
-			String lan_receipt = req.getParameter("lan_receipt").trim();
+				
+			String lan_receipt = req.getParameter("lan_receipt");
 			if( lan_receipt == null ||  lan_receipt.trim().length() == 0) {
 				errorMsgs.add("發票請勿空白");
 			}
+			
 			String lan_account = req.getParameter("lan_account").trim();
 			if( lan_account == null ||  lan_account.trim().length() == 0) {
 				errorMsgs.add("帳號請勿空白");

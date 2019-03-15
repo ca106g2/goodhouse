@@ -54,7 +54,7 @@ pageContext.setAttribute("list",list);
 
 </head>
 <body bgcolor="white">
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
 		<h3>所有員工資料 </h3>
@@ -108,5 +108,11 @@ pageContext.setAttribute("list",list);
 </table>
 
 <%@ include file="page2.file" %>
+
+<form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
+	<input type="submit" value="登出">
+</form>
+
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

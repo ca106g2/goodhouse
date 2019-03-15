@@ -55,7 +55,9 @@ public EmpVO updateEmp( String emp_id,String emp_name , Integer emp_phone,String
 		return dao.getall();
 	}
 	
-
+	public EmpVO findByEmp_ID(String emp_id, String emp_password){
+		return dao.findByEmp_ID(emp_id ,emp_password);
+	}
 
 
 

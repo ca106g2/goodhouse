@@ -45,7 +45,7 @@
 </style>
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料新增 - addEmp.jsp</h3></td><td>
@@ -84,15 +84,20 @@
 	</tr>
 	<tr>
 		<td>員工密碼:</td>
-		<td><input type="TEXT" name="emp_password" size="45"
+		<td><input type="password" name="emp_password" size="45"
 			 value="<%= (empVO==null)? "11111" : empVO.getEmp_password()%>" /></td>
 	</tr>
+
+	
 	<tr>
 		<td>員工狀態:</td>
-		<td><input type="TEXT" name="emp_status" size="45"
-			 value="<%= (empVO==null)? "1" : empVO.getEmp_status()%>" /></td>
+		<td>
+			<select name="emp_status">
+				<option  value="1">離職</option>
+				<option  value="2" selected>正職</option>
+			</select>
+		</td>
 	</tr>
-
 	
 	
 
@@ -100,5 +105,14 @@
 <br>
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增"></FORM>
+
+
+
+<form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
+	<input type="submit" value="登出">
+</form>
+
+
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

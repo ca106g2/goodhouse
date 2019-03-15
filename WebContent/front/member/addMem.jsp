@@ -9,6 +9,9 @@
 
 <html>
 <head>
+<link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
 <meta charset="UTF-8">
 <title>會員新增資料</title>
 
@@ -45,10 +48,10 @@
 </style>
 </head>
 <body bgcolor='white'>
-	
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>	
 <table id="table-1">
 	<tr><td>
-		 <h3>員工資料新增 - addMem.jsp</h3></td><td>
+		 <h3>會員資料新增 - addMem.jsp</h3></td><td>
 		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -64,7 +67,12 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="mem.do" name="form1">
+
+
+
+
+
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>會員姓名:</td>
@@ -73,12 +81,11 @@
 	</tr>
 	<tr>
 		<td>會員生日:</td>
-		<td><input type="TEXT" name="mem_birthday" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getMem_birthday()%>" /></td>
+		<td><input name="mem_birthday" class="f_date1" type="text"></td>
 	</tr>
 	<tr>
 		<td>會員密碼:</td>
-		<td><input type="TEXT"  name="mem_password" size="45"
+		<td><input type="password"  name="mem_password" size="45"
 		value="<%= (memVO==null)?"" : memVO.getMem_password()%>"/></td>
 		
 	</tr>
@@ -89,7 +96,7 @@
 	</tr>
 	<tr>
 		<td>會員郵遞區號:</td>
-		<td><input type="TEXT" name="mem_status" size="45"
+		<td><input type="TEXT" name="mem_zipcode" size="45"
 			 value="<%= (memVO==null)? "" : memVO.getMem_zipcode()%>" /></td>
 	</tr>
 	<tr>
@@ -107,29 +114,73 @@
 		<td><input type="TEXT" name="mem_email" size="45"
 			 value="<%= (memVO==null)? "" : memVO.getMem_email()%>" /></td>
 	</tr>
+
+
 	<tr>
 		<td>會員狀態:</td>
-		<td><input type="TEXT" name="mem_status" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getMem_status()%>" /></td>
+		<td>
+			<select name="mem_status">
+				<option  value="1" selected>一般會員</option>
+				
+			</select>
+		</td>
 	</tr>
+
+
 	<tr>
 		<td>會員圖片:</td>
-		<td><input type="TEXT" name="mem_picture" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getMem_picture()%>" /></td>
+		<td><input type="file" name="mem_picture" size="45"	/></td>
 	</tr>
 	<tr>
 		<td>積分總和:</td>
 		<td><input type="TEXT" name="good_total" size="45"
 			 value="<%= (memVO==null)? "" : memVO.getGood_total()%>" /></td>
 	</tr>
+
 	<tr>
 		<td>會員性別:</td>
-		<td><input type="TEXT" name="mem_sex" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getMem_sex()%>" /></td>
+		<td>
+			<select name="mem_sex">
+				<option  value="1" selected>男</option>
+				<option  value="2" >女</option>
+			</select>
+		</td>
 	</tr>
+
+
+
+
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增"></FORM>
+
+<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do">
+
+<input type="hidden" name="action" value="buildMem">
+<input type="submit" value="神奇小按鈕">
+
+</form>
+
+
+
+
+
+
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
+<script>
+        $.datetimepicker.setLocale('zh'); // kr ko ja en
+        $('.f_date1').datetimepicker({
+           theme: '',          //theme: 'dark',
+           timepicker: false,   //timepicker: false,
+           step: 1,            //step: 60 (這是timepicker的預設間隔60分鐘)
+	       format: 'Y-m-d ',
+	       value: '',
+           
+        });
+ 
+</script>
+
+
 </html>

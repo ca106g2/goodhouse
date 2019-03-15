@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.goodhouse.member.model.*"%>
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64" %>
 
 <%
 MemService memSvc = new MemService();
@@ -32,6 +33,11 @@ pageContext.setAttribute("list",list);
   h4 {
     color: blue;
     display: inline;
+  }
+  #bc{
+  	width:200px;
+  	height:200px;
+  	
   }
 </style>
 
@@ -97,13 +103,28 @@ pageContext.setAttribute("list",list);
 			<td>${memVO.mem_phone}</td>
 			<td>${memVO.mem_email}</td>
 			<td>${memVO.mem_status}</td>
-			<td>${memVO.mem_picture}</td>
+			<c:set var="memVO" value="${memVO}"/>
+								<%
+				byte b[] = null;
+				b = ((MemVO)pageContext.getAttribute("memVO")).getMem_picture();	
+				String encoding = null;
+				if(b != null){
+				encoding = Base64.encode(b);
+			%>
+				<td><img id="bc" src="data:image/jpg;base64,<%=encoding %>"></td>
+			<%
+				}%>
+			
+			
+			
+			
+			
 			<td>${memVO.good_total}</td>
 			<td>${memVO.mem_sex}</td>
 			<td>
 				<FORM METHOD ="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" style="margin-bottom: 0px;">
 					<input type="submit" value="修改">
-					<input type="hidden" name="mem_id"  value="${empVO.mem_id}">
+					<input type="hidden" name="mem_id"  value="${memVO.mem_id}">
 			     	<input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
@@ -117,5 +138,10 @@ pageContext.setAttribute("list",list);
 </table>
 
 <%@ include file="page2.file" %>
+
+<form method="post" action="<%=request.getContextPath()%>/FrontLogoutHandler">
+	<input type="submit" value="登出">
+</form>
+
 </body>
 </html>

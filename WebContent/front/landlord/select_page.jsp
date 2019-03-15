@@ -31,7 +31,7 @@
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>IBM Lan: Home</h3><h4>( MVC )</h4></td></tr>
+   <tr><td><h3>房東首頁</h3></td></tr>
 </table>
 
 <h3>資料查詢:</h3>
@@ -47,7 +47,7 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllLan.jsp'>List</a> all Lans.  <br><br></li>
+  
   
   
   <li>
@@ -66,7 +66,7 @@
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/landlord/lan.do" >
        <b>選擇房東編號:</b>
-       <select size="1" name="lan_id">
+       <select size="1" name="Lan_id">
          <c:forEach var="lanVO" items="${lanSvc.all}" > 
           <option value="${lanVO.lan_id}">${lanVO.lan_id}
          </c:forEach>   
@@ -77,10 +77,10 @@
   </li>
 </ul>
 
-h3>員工管理</h3>
+h3>房東管理</h3>
 
 <ul>
-  <li><a href='addLan.jsp'>Add</a> a new Lan.</li>
+  <li><a href='addLan.jsp'>申請成為房東</a> a new Lan.</li>
 </ul>
 
 </body>

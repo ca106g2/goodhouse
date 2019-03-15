@@ -35,7 +35,8 @@ public class EmpDAO implements EmpDAO_interface{
 		"DELETE FROM EMPLOYEE where EMP_ID =?";
 	private static final String UPDATE=
 		"UPDATE EMPLOYEE set EMP_NAME=?, EMP_PHONE=?,EMP_ACCOUNT=?,EMP_PASSWORD=?,EMP_STATUS=? where EMP_ID=?";
-	
+	private static final String GET_ONE_EMP_ID=
+		"SELECT * FROM EMPLOYEE where EMP_ID=? AND EMP_PASSWORD=?";
 	@Override
 	public void insert(EmpVO empVO) {
 		
@@ -116,7 +117,7 @@ public class EmpDAO implements EmpDAO_interface{
 		}
 	
 	@Override
-	public void delete(String EMP_ID) {
+	public void delete(String emp_id) {
 		
 		 Connection con = null;
 		 PreparedStatement pstmt = null;
@@ -126,7 +127,7 @@ public class EmpDAO implements EmpDAO_interface{
 			 con = ds.getConnection();
 			 pstmt = con.prepareStatement(DELETE);
 			 
-			 pstmt.setString(1,EMP_ID);
+			 pstmt.setString(1,emp_id);
 			 
 			 pstmt.executeUpdate();
 			 
@@ -153,7 +154,7 @@ public class EmpDAO implements EmpDAO_interface{
 	}
 
 	@Override
-	public EmpVO findByPrimaryKey(String EMP_ID) {
+	public EmpVO findByPrimaryKey(String emp_id) {
 		
 		EmpVO empVO =null;
 		Connection con = null;
@@ -165,7 +166,7 @@ public class EmpDAO implements EmpDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE);
 			
-			pstmt.setString(1,EMP_ID);
+			pstmt.setString(1,emp_id);
 			
 			rs = pstmt.executeQuery();
 			
@@ -173,12 +174,12 @@ public class EmpDAO implements EmpDAO_interface{
 				
 				empVO  = new  EmpVO();
 				
-				empVO .setEmp_id(rs.getString("EMP_ID"));
-				empVO .setEmp_name(rs.getString("EMP_NAME"));
-				empVO.setEmp_phone(rs.getInt("EMP_PHONE"));
-				empVO.setEmp_account(rs.getString("EMP_ACCOUNT"));
-				empVO.setEmp_password(rs.getString("EMP_PASSWORD"));
-				empVO.setEmp_status(rs.getString("EMP_STATUS"));
+				empVO .setEmp_id(rs.getString("emp_id"));
+				empVO .setEmp_name(rs.getString("emp_name"));
+				empVO.setEmp_phone(rs.getInt("emp_phone"));
+				empVO.setEmp_account(rs.getString("emp_account"));
+				empVO.setEmp_password(rs.getString("emp_password"));
+				empVO.setEmp_status(rs.getString("emp_status"));
 				
 			}
 			
@@ -232,12 +233,12 @@ public class EmpDAO implements EmpDAO_interface{
 			while(rs.next()) {
 			
 			empVO = new EmpVO();
-			empVO .setEmp_id(rs.getString("EMP_ID"));
-			empVO .setEmp_name(rs.getString("EMP_NAME"));
-			empVO.setEmp_phone(rs.getInt("EMP_PHONE"));
-			empVO.setEmp_account(rs.getString("EMP_ACCOUNT"));
-			empVO.setEmp_password(rs.getString("EMP_PASSWORD"));
-			empVO.setEmp_status(rs.getString("EMP_STATUS"));
+			empVO .setEmp_id(rs.getString("emp_id"));
+			empVO .setEmp_name(rs.getString("emp_name"));
+			empVO.setEmp_phone(rs.getInt("emp_phone"));
+			empVO.setEmp_account(rs.getString("emp_account"));
+			empVO.setEmp_password(rs.getString("emp_password"));
+			empVO.setEmp_status(rs.getString("emp_status"));
 			list.add(empVO);
 				
 			}
@@ -271,7 +272,71 @@ public class EmpDAO implements EmpDAO_interface{
 			}
 		}
 		return list;
-	}		
+	}
+	
+	public EmpVO findByEmp_ID(String emp_id, String emp_password) {
+		List<EmpVO>list = new ArrayList<EmpVO>();
+		
+		System.out.println(emp_id);
+		System.out.println(emp_password);
+		
+		EmpVO empVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt =con.prepareStatement(GET_ONE_EMP_ID);
+			pstmt.setString(1, emp_id);
+			pstmt.setString(2, emp_password);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+			
+			empVO = new EmpVO();
+			empVO .setEmp_id(rs.getString("EMP_ID"));
+			empVO .setEmp_name(rs.getString("EMP_NAME"));
+			empVO.setEmp_phone(rs.getInt("EMP_PHONE"));
+			empVO.setEmp_account(rs.getString("EMP_ACCOUNT"));
+			empVO.setEmp_password(rs.getString("EMP_PASSWORD"));
+			empVO.setEmp_status(rs.getString("EMP_STATUS"));
+			list.add(empVO);
+				
+			}
+			
+			
+			
+		}catch(SQLException se) {
+			se.printStackTrace();
+		}finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return empVO;
+	
+	
+	}
+	
 }		
 			
 			

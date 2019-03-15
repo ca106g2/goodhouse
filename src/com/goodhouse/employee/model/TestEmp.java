@@ -38,10 +38,10 @@ public class TestEmp extends HttpServlet {
 //		System.out.println(ev.getEmp_account());
 //		System.out.println(ev.getEmp_password());
 //		System.out.println(ev.getEmp_status());
-		
+//		
 //		System.out.println("===================================================================");
 ////		
-//		es.deleteEmp("E000000012");
+//		es.deleteEmp("E000000011");
 //		System.out.println(ev.getEmp_id());
 //	
 //		System.out.println("===================================================================");

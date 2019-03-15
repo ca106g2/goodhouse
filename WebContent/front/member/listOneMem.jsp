@@ -3,12 +3,15 @@
 <%@ page import="com.goodhouse.member.model.*"%>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64"%>
 <%
-  MemVO memVO = (MemVO) request.getAttribute("memVO"); 
+  MemVO memVO = (MemVO) session.getAttribute("memVO"); 
 %>
 
 <html>
 <head>
+
+
 <meta charset="UTF-8">
 <title>員工資料 - listOneMem.jsp</title>
 
@@ -44,15 +47,22 @@
     padding: 5px;
     text-align: center;
   }
+  
+  #bc{
+  	width:200px;
+  	height:200px;
+  
+  }
+  
 </style>
 
 </head>
 <body bgcolor='white'>
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 
-<h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>員工資料 - ListOneMem.jsp</h3>
+		 <h3>會員資料 - ListOneMem.jsp</h3>
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -91,14 +101,48 @@
 		<td><%=memVO.getMem_phone()%></td>
 		<td><%=memVO.getMem_email()%></td>
 		<td><%=memVO.getMem_status()%></td>
-		<td><%=memVO.getMem_picture()%></td>
+					
+					<%
+				byte b[] = null;
+				b = memVO.getMem_picture();	
+				String encoding = null;
+				if(b != null){
+				encoding = Base64.encode(b);
+			%>
+				<td><img id= bc src="data:image/jpg;base64,<%=encoding %>"></td>
+			<%
+				}%>
+		
 		<td><%=memVO.getGood_total()%></td>
 		<td><%=memVO.getMem_sex()%></td>
+		<td>
+			<FORM METHOD ="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" style="margin-bottom: 0px;">
+					<input type="submit" value="修改">
+					<input type="hidden" name="mem_id"  value="${memVO.mem_id}">
+			     	<input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+			</td>
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="刪除">
+			     <input type="hidden" name="mem_id"  value="${memVO.mem_id}">
+			     <input type="hidden" name="action" value="delete"></FORM>
+			</td>	
+	
+	
 	
 	</tr>
 </table>
 
+<form method="post" action="<%=request.getContextPath()%>/FrontLogoutHandler">
+	<input type="submit" value="登出">
+</form>
 
-
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
+
+<link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+
+
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
@@ -29,14 +29,14 @@
 
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <table id="table-1">
-   <tr><td><h3>IBM Emp: Home</h3><h4>( MVC )</h4></td></tr>
+   <tr><td><h3>後台員工管理</h3></td></tr>
 </table>
 
 
 
-<h3>資料查詢:</h3>
+<h3>員工資料查詢</h3>
 	
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -49,7 +49,7 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllEmp.jsp'>List</a> all Emps.  <br><br></li>
+  <li><a href='listAllEmp.jsp'>全部員工資料</a> all Emps.  <br><br></li>
   
   
   <li>
@@ -62,7 +62,6 @@
   </li>
 
   <jsp:useBean id="empSvc" scope="page" class="com.goodhouse.employee.model.EmpService" />
-   
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/employee/emp.do" >
        <b>選擇員工編號:</b>
@@ -94,8 +93,14 @@
 <h3>員工管理</h3>
 
 <ul>
-  <li><a href='addEmp.jsp'>Add</a> a new Emp.</li>
+  <li><a href='addEmp.jsp'>新增員工資料</a> a new Employee.</li>
 </ul>
 
+<form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
+	<input type="submit" value="登出">
+</form>
+
+
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

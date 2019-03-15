@@ -64,7 +64,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="lan.do" name="form1">
+<FORM METHOD="post" ACTION="lan.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>房東編號:<font color=red><b>*</b></font></td>
@@ -78,19 +78,32 @@
 	</tr>
 	<tr>
 		<td>房東發票:</td>
-		<td><input type="TEXT" name="lan_receipt" size="45" value="<%=lanVO.getLan_receipt()%>" /></td>
+		<td>
+			<select name="lan_receipt">
+				<option  value="1">慈善機構</option>
+				<option  value="2" selected>自動兌獎(中獎匯款)</option>
+			</select>
+		</td>
 	</tr>
 	<tr>
 		<td>房東帳號:</td>
 		<td><input type="TEXT" name="lan_account" size="45"	value="<%=lanVO.getLan_account()%>" /></td>
 	</tr>
+
+	
 	<tr>
-		<td>房東狀態:</td>
-		<td><input type="text" name="lan_accountstatus" size="45" value="<%=lanVO.getLan_accountstatus()%>" /></td>
+		<td>房東帳戶狀態:</td>
+		<td>
+			<select name="lan_accountstatus">
+				<option  value="1" selected>良好</option>
+				<option  value="2" >封鎖</option>
+			</select>
+		</td>
 	</tr>
+	
 	<tr>
 		<td>良民證:</td>
-		<td><input type="TEXT" name="Lan_ciziten" size="45"	value="<%=lanVO.getLan_ciziten()%>" /></td>
+		<td><input type="file" name="Lan_ciziten" size="45"	/></td>
 	</tr>
 	
 
