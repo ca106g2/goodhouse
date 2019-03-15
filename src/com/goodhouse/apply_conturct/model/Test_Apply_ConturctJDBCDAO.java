@@ -50,8 +50,21 @@ public class Test_Apply_ConturctJDBCDAO {
 		System.out.println("--------------------------------------");
 		
 		//查詢全部
-		List<Apply_ConturctVO> list = dao.getAll();
+//		List<Apply_ConturctVO> list = dao.getAll();
+//		
+//		for (Apply_ConturctVO aAppcVO : list) {
+//			
+//			System.out.println(aAppcVO.getApp_con_id() + ",");
+//			System.out.println(aAppcVO.getEle_con_id() + ",");
+//			System.out.println(aAppcVO.getMem_id() + ",");
+//			System.out.println(aAppcVO.getHou_id() + ",");
+//			System.out.println(aAppcVO.getApp_con_content() + ",");
+//			System.out.println(aAppcVO.getApp_con_status() + ",");
+//			System.out.println(aAppcVO.getApp_con_other() + ",");
+//			System.out.println();
+//		}
 		
+		List<Apply_ConturctVO>	list = dao.getApplyListByHou_id("HOU0000001");
 		for (Apply_ConturctVO aAppcVO : list) {
 			
 			System.out.println(aAppcVO.getApp_con_id() + ",");
@@ -63,8 +76,6 @@ public class Test_Apply_ConturctJDBCDAO {
 			System.out.println(aAppcVO.getApp_con_other() + ",");
 			System.out.println();
 		}
-		
-				
 		
 	}
 

@@ -45,6 +45,7 @@
 
 </head>
 <body bgcolor='white'>
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 	<table id="table-1">
 		<tr><td>

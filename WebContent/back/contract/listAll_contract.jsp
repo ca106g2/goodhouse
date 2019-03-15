@@ -33,7 +33,7 @@
 
 </head>
 <body>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 <table id="table-1">
 	<tr><td>
 		 <h3>合約分類資料 - listAll_contract.jsp</h3>

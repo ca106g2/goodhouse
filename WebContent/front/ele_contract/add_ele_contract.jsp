@@ -70,11 +70,9 @@
 						<%-- 錯誤表列 --%>
 						<c:if test="${not empty errorMsgs}">
 							<font style="color:red">請修正以下錯誤:</font>
-							<ul>
-								<c:forEach var="message" items="${errorMsgs}">
-									<ul style="color:red">${message}</ul>
-								</c:forEach>
-							</ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<b style="color:red">${message}</b>
+							</c:forEach>
 						</c:if>
 					</td>
 				</tr>
@@ -82,29 +80,32 @@
 			
 				<p type="hidden" name="con_content" value="<%=conVO.getCon_content()%>" >
 				<form method="post" action="ele_contract.do" name="form1">
-						
-								<p>合約分類名稱<font color=red></font></p><br>
-								<p><%=conVO.getCon_name()%></p>
 				<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
-												房   屋   租   賃   契   約   書<br>
+												<div>房   屋   租   賃   契   約   書</div>
 				<%
 					String lan_id= null;
 					LanService lanSvc = new LanService();
 					lan_id = lanSvc.getOneLanByMemId(mVO.getMem_id()).getLan_id();
 				%>
-				立契約書人：出租人   <%=mVO.getMem_name()%>（以下簡稱甲方）、
-				承租人      <input type="text" name="mem_name" /> ${errorMsgs.mem_name}（以下簡稱乙方），茲為房屋一部租賃、雙方議定契約條款如下：<br>
-				第一條︰租賃房屋標示︰座落於<select size="1" name="hou_id" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:210px;">
-										<c:forEach var="houVO" items="${houSvc.all}">
-												<option value="${houVO.hou_id}"/>${houVO.hou_name}
-										</c:forEach>
-									</select>之鋼筋水泥建築洋式樓房。<br>
+				立契約書人：出租人   <b><%=mVO.getMem_name()%></b>（以下簡稱甲方）、
+				承租人       <b><input type="text" name="mem_name" class="btn btn-light"/></b> （以下簡稱乙方），茲為房屋一部租賃、雙方議定契約條款如下：<br>
+				第一條︰租賃房屋地址︰
+				<div class="form-group">
+				<label for="exampleFormControlSelect1"></label>
+					<select size="1" name="hou_id" style="overflow:hidden; text-overflow:ellipsis;white-space:nowrap;width:210px;" class="form-control" id="exampleFormControlSelect1">
+						<c:forEach var="houVO" items="${houSvc.all}">
+							<c:if test="${houVO.lan_id eq lan_id }">
+								<b><option value="${houVO.hou_id}" class=" form-control btn btn-light"/>${houVO.hou_address}</b>
+							</c:if>
+						</c:forEach>
+					</select><br>
+				</div>
 				第二條︰出租部份︰廁所浴室及廚房共用（即租用一樓者共同使用一樓之衛生設備。租用二樓者共同使用二樓之衛生設備）。<br>			
-				第三條︰租賃期間︰共<input type="text" name="ele_rent_time" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_time()%>"/>個月
-								（即<input type="text" name="ele_rent_f_day" id="ele_rent_f_day" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_f_day()%>"/>起
-								  至<input type="text" name="ele_rent_l_day" id="ele_rent_l_day" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_l_day()%>"/>止）期滿乙方應即無條件遷還房屋不得提出任何要求獲條件。乙方並應依規定申報戶口（包括流動戶口）。<br>
-				第四條︰房租︰每月新台幣  <input type="text" name="ele_rent_money" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_money()%>"/> 元，${Bill_PaymentTypeMap['p1'].type_name}方式繳交不得拖欠。<br>
-				第五條：押金新台幣  <input type="text" name="ele_deposit_money" value="<%=(eleConVO==null)? "" : eleConVO.getEle_deposit_money()%>"/>  元。尤乙方於訂約時交付甲方收取保管，租賃期滿乙方依約遷還房屋時，由甲方無息發還，如有乙方應付甲方之款未付清時由此扣款還乙方不得異議。又租賃期間未滿時不得以任何理由請求退還押租金。<br>
+				第三條︰租賃期間︰共<b><input type="text" name="ele_rent_time" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_time()%>" class="btn btn-light"/></b>個月
+								（即<b><input type="text" name="ele_rent_f_day" id="ele_rent_f_day" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_f_day()%>" class="btn btn-light"/></b>起
+								  至<b><input type="text" name="ele_rent_l_day" id="ele_rent_l_day" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_l_day()%>" class="btn btn-light"/></b>止）期滿乙方應即無條件遷還房屋不得提出任何要求獲條件。乙方並應依規定申報戶口（包括流動戶口）。<br>
+				第四條︰房租︰每月新台幣  <b><input type="text" name="ele_rent_money" value="<%=(eleConVO==null)? "" : eleConVO.getEle_rent_money()%>" class="btn btn-light"/></b> 元，${Bill_PaymentTypeMap['p1'].type_name}方式繳交不得拖欠。<br>
+				第五條：押金新台幣  <b><input type="text" name="ele_deposit_money" value="<%=(eleConVO==null)? "" : eleConVO.getEle_deposit_money()%>" class="btn btn-light"/> </b> 元。尤乙方於訂約時交付甲方收取保管，租賃期滿乙方依約遷還房屋時，由甲方無息發還，如有乙方應付甲方之款未付清時由此扣款還乙方不得異議。又租賃期間未滿時不得以任何理由請求退還押租金。<br>
 				第六條：特約事項︰<br>
 					一、乙方租賃之房間應用於正當用途，如有違反法令使用、或存放危險物品，甲方得隨時終止本契約，乙方應即日遷出不得異議。<br>
 					二、租用期間應繳納之政府稅捐由甲方負擔，但每月水電費由乙方負擔與其他房客分攤，繳納後收據交由甲方保存。<br>
@@ -114,15 +115,15 @@
 					上列各項條款均經雙方自願決不反悔，恐口無憑特立本契約二紙各執一份切實履行。<br>
 							本契約正本二份，分由甲、乙雙方各執為憑。<br>
 				<p>合約備註</p>
-				<textarea name="ele_con_note" rows="3" cols="30" value="<%=(eleConVO==null)? "" : eleConVO.getEle_con_note()%>"><%=(eleConVO==null)? "" : eleConVO.getEle_con_note()%></textarea><br>
+				<textarea name="ele_con_note" rows="3" cols="30" value="<%=(eleConVO==null)? "" : eleConVO.getEle_con_note()%>" class="btn btn-light"><%=(eleConVO==null)? "" : eleConVO.getEle_con_note()%></textarea><br>
 
 										立契約書人  甲            方：<%=mVO.getMem_name()%><br>
-												房東身分證字號：<input type="text" name="lan_idnumber" value="<%=(eleConVO==null)? "" : eleConVO.getLan_idnumber()%>"/><br>
+												身分證字號：<input type="text" name="lan_idnumber" value="<%=(eleConVO==null)? "" : eleConVO.getLan_idnumber()%>" class="btn btn-light"/><br>
 
-												乙            方：<input type="text" name="mem_name" /><br>
-												房客身份證字號：<input type="text" name="mem_idnumber" value="<%= (eleConVO==null)? "" : eleConVO.getMem_idnumber()%>"/><br>
+												乙            方：<input type="text" name="mem_name" class="btn btn-light"/><br>
+												身份證字號：<input type="text" name="mem_idnumber" value="<%= (eleConVO==null)? "" : eleConVO.getMem_idnumber()%>" class="btn btn-light"/><br>
 
-												簽約日：<input type="text" name="ele_singdate" id="ele_singdate" value="<%=(eleConVO==null)? "" : eleConVO.getEle_singdate()%>"/><br>
+												簽約日：<input type="text" name="ele_singdate" id="ele_singdate" value="<%=(eleConVO==null)? "" : eleConVO.getEle_singdate()%>" class="btn btn-light"/><br>
 							
 						<input type="hidden" name="action" value="insert">
 						<input type="hidden" name="con_id" value="<%=conVO.getCon_id()%>"/>
@@ -130,7 +131,7 @@
 						<input type="hidden" name="bill_paymenttype" value="${Bill_PaymentTypeMap['p1'].type_no}"/>
 						<input type="hidden" name="lan_id" value="<%=lan_id%>"/>
 						
-						<input type="submit" value="送出">
+						<input type="submit" value="送出" class="btn btn-outline-secondary">
 				</form>
 		</div>
 	</div>

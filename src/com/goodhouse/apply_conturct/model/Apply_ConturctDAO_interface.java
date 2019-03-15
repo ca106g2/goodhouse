@@ -8,4 +8,5 @@ public interface Apply_ConturctDAO_interface {
     public void delete(String app_con_id);
     public Apply_ConturctVO findByPrimaryKey(String app_con_id);
     public List<Apply_ConturctVO> getAll();
+    public List<Apply_ConturctVO> getApplyListByHou_id(String hou_id);
 }

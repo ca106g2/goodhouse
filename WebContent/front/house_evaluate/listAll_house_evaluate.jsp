@@ -69,21 +69,22 @@
 	<table>
 		<tr>
 			<th>房屋評價編號</th>
-			<th>評價者會員編號</th>
-			<th>被評價房屋編號</th>
+			<th>評價者會員姓名</th>
+			<th>被評價房屋名稱</th>
 			<th>評價等級</th>
 			<th>評價內容</th>
 			<th>修改</th>
 			<th>刪除</th>
 		</tr>
-		
+		<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService" />
+		<jsp:useBean id="mSvc" scope="page" class="com.goodhouse.member.model.MemService" />
 		<%@ include file="page1.file" %>
 		<c:forEach var="House_EvaluateVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 			<tr>
 				<td>${House_EvaluateVO.hou_eva_id}</td>
-				<td>${House_EvaluateVO.mem_id}</td>
-				<td>${House_EvaluateVO.hou_id}</td>
+				<td>${mSvc.getOneMem(House_EvaluateVO.mem_id).mem_name}</td>
+				<td>${houSvc.getOneHouse(House_EvaluateVO.hou_id).hou_name}</td>
 				<td>${House_EvaluateVO.hou_eva_grade}</td>
 				<td>${House_EvaluateVO.hou_eva_content}</td>
 				<td>

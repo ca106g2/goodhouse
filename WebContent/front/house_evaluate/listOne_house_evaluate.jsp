@@ -56,15 +56,17 @@
 	<table>
 		<tr>
 			<th>房屋評價編號</th>
-			<th>評價者會員編號</th>
-			<th>被評價房屋編號</th>
+			<th>評價者會員姓名</th>
+			<th>被評價房屋名稱</th>
 			<th>評價等級</th>
 			<th>評價內容</th>
 		</tr>
+		<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService" />
+		<jsp:useBean id="mSvc" scope="page" class="com.goodhouse.member.model.MemService" />
 		<tr>
 			<td><%=heVO.getHou_eva_id()%></td>
-			<td><%=heVO.getMem_id()%></td>
-			<td><%=heVO.getHou_id()%></td>
+			<td><%=mSvc.getOneMem(heVO.getMem_id()).getMem_name() %></td>
+			<td><%=houSvc.getOneHouse(heVO.getHou_id()).getHou_name()%></td>
 			<td><%=heVO.getHou_eva_grade()%></td>
 			<td><%=heVO.getHou_eva_content()%></td>
 		</tr>

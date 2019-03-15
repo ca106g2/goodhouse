@@ -4,25 +4,13 @@
 <%@ page import="com.goodhouse.bill.model.*"%> 
 
 <%
-	BillVO billVO = (BillVO) request.getAttribute("billVO");
+	BillVO billVO = (BillVO) session.getAttribute("billVO");
 %>
 
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/File/jquery-1.12.4.min.js"></script>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/File/all.css"
-	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-	crossorigin="anonymous">
-<!-- Bootstrap CSS end-->
-<title></title>
+
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -42,11 +30,6 @@
 					<tr>
 						<td>付款人姓名</td>
 						<td>${memSvc.getOneMem(eleConSvc.getOneEC(billVO.ele_con_id).mem_id).mem_name}</td>
-					</tr>
-					<jsp:useBean id="empSvc" scope="page" class="com.goodhouse.employee.model.EmpService"/>
-					<tr>
-						<td>負責員工名字</td>
-						<td>${empSvc.getOneEmp(billVO.emp_id).emp_name}</td>
 					</tr>
 					<tr>
 						<td>繳交費用</td>

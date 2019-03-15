@@ -25,11 +25,11 @@
 				<p>回首頁<a href="lan_select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100" height="30 !important" ></a></p><br>
 				<c:if test="${not empty errorMsgs}">
 					<font style="color:red">請修正以下錯誤:</font>
-					<ul>
+					
 						<c:forEach var="message" items="${errorMsgs}">
-							<li style="color:red">${message}</li>
+							<p style="color:red">${message}</p>
 						</c:forEach>
-					</ul>
+					
 				</c:if>
 			</div>
 			
@@ -42,7 +42,7 @@
 				<div>
 			立契約書人：出租人  <b> ${mSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</b>（以下簡稱甲方）、
 			承租人     <b>${mSvc.getOneMem(eleConVO.mem_id).mem_name} </b>（以下簡稱乙方），茲為房屋一部租賃、雙方議定契約條款如下：<br>
-			第一條︰租賃房屋標示︰座落於<b>${houSvc.getOneHouse(eleConVO.hou_id).hou_name}</b>之鋼筋水泥建築洋式樓房。<br>
+			第一條︰租賃房屋標示︰座落於<b>${houSvc.getOneHouse(eleConVO.hou_id).hou_address}</b>之鋼筋水泥建築洋式樓房。<br>
 			第二條︰出租部份︰廁所浴室及廚房共用（即租用一樓者共同使用一樓之衛生設備。租用二樓者共同使用二樓之衛生設備）。<br>
 			第三條︰租賃期間︰共<b>${eleConVO.ele_rent_time}</b>個月（即<b>${eleConVO.ele_rent_f_day}</b>起
 						至<b>${eleConVO.ele_rent_l_day}</b>止）期滿乙方應即無條件遷還房屋不得提出任何要求獲條件。乙方並應依規定申報戶口（包括流動戶口）。<br>
@@ -72,34 +72,19 @@
 									身份證字號：<b>${eleConVO.mem_idnumber}</b><br>
 
 									簽約日：<b>${eleConVO.ele_singdate}</b><br>
-								</p>
-							
-				<table style="width:800px">
-						<tr>
-							<td>電子合約編號</td>
-							<td>${eleConVO.ele_con_id}</td>
-						</tr>
-						<tr>
-							<td>合約分類名稱</td>
-							<td>${conSvc.getOneCon(eleConVO.con_id).con_name}</td>
-						</tr>
-					
-						<tr>
-							<td>合約狀態</td>
+									合約狀態：
 							<c:forEach var="Ele_con_status" items="${Ele_con_statusList}">
 								<c:if test="${Ele_con_status.status_no eq eleConVO.ele_con_status}">
 									<td>${Ele_con_status.status_name}</td>
 								</c:if>
 							</c:forEach>
-						</tr>
-						
-					</table>
+								</p>
 				</div>
 			</div>
 		</div>
 	
 	</div>
 	<!-- 工作區結束 -->
-
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

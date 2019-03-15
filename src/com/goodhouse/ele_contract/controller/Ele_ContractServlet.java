@@ -81,8 +81,6 @@ public class Ele_ContractServlet extends HttpServlet{
 		if("getOne_For_Display".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			MemService mSvc = new MemService();
 
@@ -97,7 +95,6 @@ public class Ele_ContractServlet extends HttpServlet{
 					errorMsgs.add("電子合約編號：由 ECON + 6的數字組成");
 				}
 				
-				
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/back/ele_contract/select_page.jsp");
 					failureView.forward(req,res);
@@ -111,7 +108,6 @@ public class Ele_ContractServlet extends HttpServlet{
 					errorMsgs.add("查無資料");
 				}
 				
-				
 				if(!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req.getRequestDispatcher("/back/ele_contract/select_page.jsp");
 					failureView.forward(req,res);
@@ -124,9 +120,8 @@ public class Ele_ContractServlet extends HttpServlet{
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
-				
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("查無資料");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back/ele_contract/select_page.jsp");
 				failureView.forward(req, res);
@@ -137,8 +132,6 @@ public class Ele_ContractServlet extends HttpServlet{
 		if("getNameForEle_Contract".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			MemService mSvc = new MemService();
 			
@@ -173,10 +166,8 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				/*******2開始查詢資料***********************/
 				Ele_ContractService eleConSvc = new Ele_ContractService();
-				List<Ele_ContractVO> list = new ArrayList<Ele_ContractVO>();
-				String ele_con_id = null;
 				//找出電子合約資料庫裡所有含mem_id的資料
-				list = eleConSvc.getAllForEle_ConByMem_id(mem_id);
+				List<Ele_ContractVO> list = eleConSvc.getAllForEle_ConByMem_id(mem_id);
 				
 //				//先找出電子合約資料庫裡所有含mem_id的資料
 //				for(Ele_ContractVO eleConVO : eleConSvc.getAll()) {
@@ -194,14 +185,13 @@ public class Ele_ContractServlet extends HttpServlet{
 				}
 				
 				/******3查詢完成準備轉交**************/
-				
 				session.setAttribute("list", list);
 				String url = "/back/ele_contract/listSome_ele_contract.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("查無資料" );
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/back/ele_contract/select_page.jsp");
 				failureView.forward(req, res);
@@ -212,11 +202,8 @@ public class Ele_ContractServlet extends HttpServlet{
 		if("select_contract".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 
-			try {
 				/*****1接收請求參數*****************/
 				String con_id = req.getParameter("con_id");
 				if(con_id == null || (con_id.trim().length() == 0) ) {
@@ -247,24 +234,14 @@ public class Ele_ContractServlet extends HttpServlet{
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/ele_contract/select_contract.jsp");
-				failureView.forward(req, res);
-			}
-			
 		}
 		//TODO 前台房東新增
 		if(("insert").equals(action)) {
 			
-			
 			List<String> errorMsgs = new LinkedList<String>();
-			
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			try {
-				
 				/*****1接收請求參數******************/
 				String con_id = req.getParameter("con_id");
 				String mem_name = req.getParameter("mem_name");
@@ -411,7 +388,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				successView.forward(req, res);
 				
 			}catch (Exception e) {
-				errorMsgs.add(e.getMessage());
+				errorMsgs.add("資料錯誤");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front/ele_contract/add_ele_contract.jsp");
 				failureView.forward(req, res);
@@ -590,7 +567,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				successView.forward(req, res);
 				
 			} catch (Exception e) {
-				errorMsgs.add("修改資料失敗:"+e.getMessage());
+				errorMsgs.add("修改資料失敗");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front/ele_contract/update_ele_contract.jsp");
 				failureView.forward(req, res);
@@ -619,13 +596,19 @@ public class Ele_ContractServlet extends HttpServlet{
 				}
 				
 				/****2開始查詢**********************/
+				MemVO mVO = (MemVO)session.getAttribute("mVO");
+				LanService lanSvc = new LanService();
+				String lan_id = lanSvc.getOneLanByMemId(mVO.getMem_id()).getLan_id();
+				
 				Ele_ContractService eleConSvc = new Ele_ContractService();
 				Ele_ContractVO eleConVO = eleConSvc.getOneEC(ele_con_id);
 				
-				
 				if(eleConVO == null) {
 					errorMsgs.add("查無資料");
+				}else if(!eleConVO.getLan_id().equals(lan_id)) {
+					errorMsgs.add("查無資料");
 				}
+				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
@@ -639,7 +622,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				successView.forward(req, res);
 				
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("查無資料" );
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
 				failureView.forward(req, res);
@@ -650,15 +633,12 @@ public class Ele_ContractServlet extends HttpServlet{
 		if("front_getMemEle_Contract".equals(action)) {
 			
 				/****1接收請求參數************************/
-				MemVO mVO = (MemVO)session.getAttribute("mVO");
-				String mem_id = mVO.getMem_id();
 				/*****2準備查詢************************/
 				/*****3查詢完成準備轉交************************/
 				req.setAttribute("lastPage", true);
 				String url = "/front/ele_contract/mem_listAll_ele_contract.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
-				
 				
 		}
 		
@@ -689,7 +669,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				}
 				//檢查取出的會員id是否為空值
 				if(mem_id == null){
-					errorMsgs.add("查無資料或姓名輸入錯誤，請重新輸入");
+					errorMsgs.add("姓名輸入錯誤或此人不是本網站會員，請重新輸入");
 				}
 				
 				if(!errorMsgs.isEmpty()) {
@@ -704,14 +684,8 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//從session取出已登入的該房東會員名稱
 				MemVO lanMemVO = (MemVO)session.getAttribute("mVO");
-				String lan_mem_id = lanMemVO.getMem_id();
-				String lan_id = null;
 				LanService lanSvc = new LanService();
-				for(LanVO lanVO : lanSvc.getAll()) {
-					if(lan_mem_id.equals(lanVO.getMem_id())) {
-						lan_id = lanVO.getLan_id();
-					}
-				}
+				String lan_id = lanSvc.getOneLanByMemId(lanMemVO.getMem_id()).getLan_id();
 				
 				String ele_con_id = null;
 				//找出電子合約資料庫裡所有含mem_id和lan_id的資料
@@ -740,7 +714,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				successView.forward(req, res);
 				
 			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
+				errorMsgs.add("查無資料");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
 				failureView.forward(req, res);
@@ -757,7 +731,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				/*****1接收請求參數*************************/
 				MemVO lanMemVO = (MemVO) session.getAttribute("mVO");
 				String lan_mem_id = lanMemVO.getMem_id();
-//				
+				
 //				/******2開始查詢資料*****************/
 				String lan_id = null;
 				LanService lanSvc = new LanService();
@@ -765,9 +739,9 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				Ele_ContractService eleConSvc = new Ele_ContractService();
 				List<Ele_ContractVO> ele_contractForLanList = eleConSvc.getAllForEle_ConByLan_id(lan_id);
-				if (ele_contractForLanList.isEmpty()) {
-					errorMsgs.add("沒有資料");
-				}
+//				if (ele_contractForLanList.isEmpty()) {
+//					errorMsgs.add("沒有資料");
+//				}
 				
 				/****3查詢完成準備轉交******************/
 				req.setAttribute("lastPage", true);
@@ -777,11 +751,10 @@ public class Ele_ContractServlet extends HttpServlet{
 				successView.forward(req, res);
 				
 			} catch(Exception e) {
-				errorMsgs.add("無法取得資料" + e.getMessage());
+				errorMsgs.add("沒有資料");
 				RequestDispatcher failureView = req.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
 				failureView.forward(req, res);
 			}
-			
 		}
 		
 		

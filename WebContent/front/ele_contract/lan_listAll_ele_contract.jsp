@@ -43,15 +43,12 @@ h4 {
 	<div class="container-fluid">
 		<div class="row justfy-content-center">
 			<div class="row col-2">
-				
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
-					<font style="color: red">請修正以下錯誤:</font>
-					<ul>
+					<font style="color: red"></font>
 						<c:forEach var="message" items="${errorMsgs}">
-							<li style="color: red">${message}</li>
+							<p style="color: red">${message}</p><br>
 						</c:forEach>
-					</ul>
 				</c:if>
 			</div>
 			<div class="row col-10	">

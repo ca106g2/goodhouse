@@ -3,28 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.bill.model.*"%>
 <%@ page import="java.util.*"%>
+
 <%
 	BillService billSvc = new BillService();
-	List<BillVO> list = billSvc.getAll();
+	List<BillVO> list = (List<BillVO>) session.getAttribute("billVOList");
 	pageContext.setAttribute("list",list);
 %>
 
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/File/jquery-1.12.4.min.js"></script>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/File/all.css"
-	integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-	crossorigin="anonymous">
-<!-- Bootstrap CSS end-->
-<title></title>
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -52,31 +40,41 @@
 				</c:if>
 				</table>
 			</div>
-			<div class="row col-10" >
+			<div class="row col-10 text-center" >
 				<table>
 					<tr>
-						<td>帳單編號</td>
-						<td>電子合約編號</td>
-						<td>員工編號</td>
-						<td>繳交費用</td>
-						<td>繳交日期</td>
-						<td>帳單產生日期</td>
-						<td>帳單繳費狀態</td>
-						<td>付款方式</td>
-						<td>繳費型態</td>
+						<th>帳單編號</th>
+						<th>電子合約編號</th>
+						<th>繳交費用</th>
+						<th>繳交期限</th>
+						<th>帳單產生日期</th>
+						<th>帳單繳費狀態</th>
+						<th>付款方式</th>
+						<th>繳費型態</th>
 					</tr>
 					<%@ include file="page1.file" %>
+					
 					<c:forEach var="billVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
 						<tr>
 							<td>${billVO.bill_id}</td>
 							<td>${billVO.ele_con_id}</td>
-							<td>${billVO.emp_id}</td>
 							<td>${billVO.bill_pay}</td>
 							<td>${billVO.bill_date}</td>
 							<td>${billVO.bill_producetime}</td>
-							<td>${billVO.bill_status}</td>
+							
+							<c:forEach var="BillStatus" items="${BillStatusList}">
+								<c:if test="${BillStatus.status_no eq billVO.bill_status}">
+									<td>${BillStatus.status_name}</td>
+								</c:if>							
+							</c:forEach>
+							
 							<td>${billVO.bill_paymethod}</td>
-							<td>${billVO.bill_paymenttype}</td>
+<%-- 							<td>${billVO.bill_paymenttype}</td> --%>
+							<c:forEach var="Bill_PaymentType" items="${Bill_PaymentTypeMap}">
+								<c:if test="${Bill_PaymentType.value.type_no eq billVO.bill_paymenttype}">
+									<td>${Bill_PaymentType.value.type_name}</td>
+								</c:if>
+							</c:forEach>
 						</tr>
 					</c:forEach>
 				</table>
@@ -92,20 +90,6 @@
 
 
 	<!-- 工作區結束 -->
-
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script
-		src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1s.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
-	<script
-		src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
 </body>
 </html>

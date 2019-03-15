@@ -1,5 +1,6 @@
 package com.goodhouse.bill.model;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.util.List;
 
@@ -9,18 +10,16 @@ public class BillService {
 	private BillDAO_interface dao ;
 	
 	public BillService() {
-		dao = new BillJDBCDAO();
+		dao = new BillJNDIDAO();
 	}
 	
 	//新增
-	public BillVO addB(String bill_id , String ele_con_id , 
-			String emp_id , Integer bill_pay , Date bill_date , 
+	public BillVO addB(String bill_id , String ele_con_id , Integer bill_pay , Date bill_date , 
 			Date bill_producetime , String bill_status , String bill_paymethod , String bill_paymemttype) {
 		
 		BillVO bVO = new BillVO();
 		
 		bVO.setEle_con_id(ele_con_id);
-		bVO.setEmp_id(emp_id);
 		bVO.setBill_pay(bill_pay);
 		bVO.setBill_date(bill_date);
 		bVO.setBill_producetime(bill_producetime);
@@ -39,13 +38,12 @@ public class BillService {
 		}
 	
 	//修改
-	public BillVO updateB(String bill_id , String ele_con_id , String emp_id , Integer bill_pay , Date bill_date , Date bill_producetime , String bill_status , String bill_paymethod , String bill_paymemttype) {
+	public BillVO updateB(String bill_id , String ele_con_id , Integer bill_pay , Date bill_date , Date bill_producetime , String bill_status , String bill_paymethod , String bill_paymemttype) {
 		
 		BillVO bVO = new BillVO();
 		
 		bVO.setBill_id(bill_id);
 		bVO.setEle_con_id(ele_con_id);
-		bVO.setEmp_id(emp_id);
 		bVO.setBill_pay(bill_pay);
 		bVO.setBill_date(bill_date);
 		bVO.setBill_producetime(bill_producetime);
@@ -76,4 +74,15 @@ public class BillService {
 		public List<BillVO> getAll(){
 			return dao.getAll();
 		}
+		
+		public List<BillVO> getBillByEleContractId(String ele_contract_id){
+			return dao.findByEleContractId(ele_contract_id);
+		}
+		
+		public List<BillVO> getListByEleContractBetweenRentTime (String ele_contract_id){
+			return dao.findByEleContractRentTime(ele_contract_id);
+		}
+//		public void addB(Connection con, List <BillVO> billVOlist ,String eleConKey) {
+//			dao.insert(con, billVOlist, eleConKey);
+//		}
 }

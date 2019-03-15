@@ -36,8 +36,8 @@
 
 </head>
 <body bgcolor='white'>
+	<jsp:include page="/File/frontTemplate.jsp" />
 	
-	<tr><td><h3>GoodHouse House_Evaluate : Home</h3><h4>( MVC )</h4></td></tr>
 
 	<h3>資料查詢:</h3>
 	

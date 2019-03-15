@@ -10,16 +10,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<%=request.getContextPath()%>/file/jquery-1.12.4.min.js"></script>
-<!-- Bootstrap CSS start-->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-<!-- Bootstrap CSS end-->
-
-
 <title></title>
 </head>
 <body>
@@ -48,29 +38,33 @@
 						<td>電子合約編號</td>
 						<td>${eleConVO.ele_con_id}</td>
 					</tr>
+					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"></jsp:useBean>
 					<tr>
-						<td>合約分類編號</td>
-						<td>${eleConVO.con_id}</td>
+						<td>合約分類名稱</td>
+						<td>${conSvc.getOneCon(eleConVO.con_id).con_name}</td>
+					</tr>
+					<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"></jsp:useBean>
+					<tr>
+						<td>房客姓名</td>
+						<td>${memSvc.getOneMem(eleConVO.mem_id).mem_name}</td>
 					</tr>
 					<tr>
-						<td>會員編號</td>
-						<td>${eleConVO.mem_id}</td>
-					</tr>
-					<tr>
-						<td>會員身分證字號</td>
+						<td>房客身分證字號</td>
 						<td>${eleConVO.mem_idnumber}</td>
 					</tr>
+					<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"></jsp:useBean>
 					<tr>
-						<td>房東編號</td>
-						<td>${eleConVO.lan_id}</td>
+						<td>房東姓名</td>
+						<td>${memSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</td>
 					</tr>
 					<tr>
 						<td>房東身分證字號</td>
 						<td>${eleConVO.lan_idnumber}</td>
 					</tr>
+					<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"></jsp:useBean>
 					<tr>
-						<td>房屋編號</td>
-						<td>${eleConVO.hou_id}</td>
+						<td>房屋名稱</td>
+						<td>${houSvc.getOneHouse(eleConVO.hou_id).hou_name}</td>
 					</tr>
 					<tr>
 						<td>每期租金</td>
@@ -114,17 +108,7 @@
 	</div>
 	
 	<!-- 工作區結束 -->
-	
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
+
 
 </body>
 </html>

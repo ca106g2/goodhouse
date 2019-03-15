@@ -30,6 +30,10 @@
               pageIndex=pageIndexArray[pageNumber-1];
          }
     } 
+    if(request.getAttribute("lastPage") != null && (boolean)request.getAttribute("lastPage")){
+    	whichPage = pageNumber;
+    	pageIndex = pageIndexArray[pageNumber-1];
+    }
   
 %>
 

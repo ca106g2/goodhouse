@@ -70,4 +70,8 @@ public class Apply_ConturctService {
 	public List<Apply_ConturctVO> getAll(){
 		return dao.getAll();
 	}
+	
+	public List<Apply_ConturctVO> getApplyListByHou_id(String hou_id){
+		return dao.getApplyListByHou_id(hou_id);
+	}
 }

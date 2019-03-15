@@ -70,7 +70,6 @@
 					<tr>
 						<td>帳單編號</td>
 						<td>會員姓名</td>
-						<td>員工編號</td>
 						<td>繳交費用</td>
 						<td>繳交日期</td>
 						<td>帳單產生時間</td>
@@ -91,7 +90,6 @@
 								
 								String bill_id = billVO.getBill_id();
 								String ele_con_id = billVO.getEle_con_id();
-								String emp_id = billVO.getEmp_id();
 								Integer bill_pay = billVO.getBill_pay();
 								Date bill_date = billVO.getBill_date();
 								Date bill_producetime = billVO.getBill_producetime();
@@ -102,7 +100,6 @@
 							<tr>
 								<td><%=bill_id%></td>
 								<td><%=mSvc.getOneMem( eleConSvc.getOneEC(ele_con_id).getMem_id() ).getMem_name() %></td>
-								<td><%=emp_id%></td>
 								<td><%=bill_pay%></td>
 								<td><%=bill_date%></td>
 								<td><%=bill_producetime%></td>

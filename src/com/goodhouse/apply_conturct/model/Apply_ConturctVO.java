@@ -7,7 +7,7 @@ public class Apply_ConturctVO implements java.io.Serializable{
 	private String ele_con_id;//電子合約編號
 	private String mem_id;//會員編號
 	private String hou_id;//房屋編號
-	private String app_con_content;//申請內容
+	private String app_con_content;//申請內容選項
 	private String app_con_status;//申請狀態
 	private String app_con_other;//其他備註
 	public String getApp_con_id() {

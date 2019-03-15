@@ -3,7 +3,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.goodhouse.ele_contract.model.*"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
-
+<%@ page import="com.goodhouse.member.model.*"%>
+<%@ page import="com.goodhouse.contract.model.*"%>
+<%@ page import="com.goodhouse.house.model.*"%>
+<%@ page import="com.goodhouse.landlord.model.*"%>
 
 
 <!doctype html>
@@ -69,7 +72,7 @@
 				<table>
 					<tr>
 						<td>電子合約編號</td>
-						<td>合約分類編號</td>
+						<td>合約分類名稱</td>
 						<td>會員編號</td>
 						<td>會員身份證字號</td>
 						<td>房東編號</td>
@@ -89,6 +92,11 @@
 						
 						<%
 							List<Ele_ContractVO> list = (List<Ele_ContractVO>) session.getAttribute("list");
+							
+							ContractService conSvc = new ContractService();
+							MemService mSvc = new MemService();
+							HouseService houSvc = new HouseService();
+							LanService lanSvc = new LanService();
 							
 							for(int i = 0 ; i < list.size() ; i++){
 								Ele_ContractVO eleConVO = list.get(i);
@@ -112,12 +120,12 @@
 						%>
 							<tr>
 								<td><%=ele_con_id%></td>
-								<td><%=con_id%></td>
-								<td><%=mem_id%></td>
+								<td><%=conSvc.getOneCon(con_id).getCon_name()%></td>
+								<td><%=mSvc.getOneMem(mem_id).getMem_name()%></td>
 								<td><%=mem_idnumber%></td>
-								<td><%=lan_id%></td>
+								<td><%=mSvc.getOneMem(lanSvc.getOneLan(lan_id).getMem_id()).getMem_name()%></td>
 								<td><%=lan_idnumber%></td>
-								<td><%=hou_id%></td>
+								<td><%=houSvc.getOneHouse(hou_id).getHou_name()%></td>
 								<td><%=ele_rent_money%></td>
 								<td><%=ele_deposit_money%></td>
 								<td><%=ele_rent_time%></td>

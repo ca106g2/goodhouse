@@ -41,15 +41,15 @@ public class Ele_ContractStatusTool extends HttpServlet{
 		
 		List<Ele_con_status> list = new ArrayList<Ele_con_status>();
 		
-		list.add(new Ele_con_status("S1","合約準備中"));
-		list.add(new Ele_con_status("S2","已簽約"));
-		list.add(new Ele_con_status("S3","解約處理中"));
-		list.add(new Ele_con_status("S4","已解約"));
-		list.add(new Ele_con_status("S5","合約到期"));
-		list.add(new Ele_con_status("S6","續約處理中"));
-		list.add(new Ele_con_status("S7","已續約"));
-		list.add(new Ele_con_status("S8","取消合約"));
-		list.add(new Ele_con_status("S9","合約停用"));
+		list.add(new Ele_con_status("s1","待確認"));
+		list.add(new Ele_con_status("s2","已簽約"));
+		list.add(new Ele_con_status("s3","解約處理中"));
+		list.add(new Ele_con_status("s4","已解約"));
+		list.add(new Ele_con_status("s5","合約到期"));
+		list.add(new Ele_con_status("s6","續約處理中"));
+		list.add(new Ele_con_status("s7","已續約"));
+		list.add(new Ele_con_status("s8","取消合約"));
+		list.add(new Ele_con_status("s9","合約停用"));
 		
 		getServletContext().setAttribute("Ele_con_statusList", list);
 	}

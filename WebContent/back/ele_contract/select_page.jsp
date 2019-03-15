@@ -56,11 +56,9 @@
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<font style="color:red">請修正以下錯誤:</font>
-					<ul>
 					    <c:forEach var="message" items="${errorMsgs}">
-							<ul style="color:red">${message}</ul>
+							<p style="color:red">${message}</p>
 						</c:forEach>
-					</ul>
 				</c:if>
 				<ul>
 					<li>
@@ -79,7 +77,7 @@
 						<form method="post" action="ele_contract.do">
 							<b>輸入會員姓名</b><br>
 							<input type="text" name="mem_name">
-							<input type="hidden" name="action" value="getOne_For_Name">
+							<input type="hidden" name="action" value="getNameForEle_Contract">
 							<input type="submit" value="送出">
 						</form>
 					</li>

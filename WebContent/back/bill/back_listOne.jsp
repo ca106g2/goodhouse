@@ -43,11 +43,6 @@
 						<td>付款人姓名</td>
 						<td>${memSvc.getOneMem(eleConSvc.getOneEC(billVO.ele_con_id).mem_id).mem_name}</td>
 					</tr>
-					<jsp:useBean id="empSvc" scope="page" class="com.goodhouse.employee.model.EmpService"/>
-					<tr>
-						<td>負責員工名字</td>
-						<td>${empSvc.getOneEmp(billVO.emp_id).emp_name}</td>
-					</tr>
 					<tr>
 						<td>繳交費用</td>
 						<td>${billVO.bill_pay}</td>
