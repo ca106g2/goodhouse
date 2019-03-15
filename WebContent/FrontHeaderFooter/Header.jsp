@@ -46,26 +46,49 @@
                        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">註冊</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">登入</a>
+                       <a class="nav-link " href="<%=request.getContextPath()%>/front/ele_contract/TestLogin.html" tabindex="-1" aria-disabled="true">登入</a>
                    </li>
                    <li class="nav-item">
                        <a class="nav-link" href="#">會員中心</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" href="#">房客</a>
+                       <!-- 下拉選單 -->
+						<li class="nav-item dropdown">
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          房客
+					        </a>
+					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/mem_select_page.jsp">我的合約列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/bill/mem_select_page.jsp">我的帳單列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的積分紀錄</a>
+					        </div>
+					    </li>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" href="#">房東</a>
+                       <li class="nav-item dropdown">
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          房東
+					        </a>
+					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">電子合約管理</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">新增房屋</a>
+					        </div>
+					    </li>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" href="#">積分商城</a>
+                       <li class="nav-item dropdown">
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					          積分商城
+					        </a>
+					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的最愛積分商品</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">訂單查詢</a>
+					        </div>
+					    </li>
                    </li>
                    
                </ul>
-               <form class="form-inline my-2 my-lg-0">
-                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                   <button class="btn btn-outline-success my-2 my-sm-0" type="submit">關鍵字搜尋</button>
-               </form>
+              
            </div>
 	</header>
 	<div style="height:80px;"></div>
