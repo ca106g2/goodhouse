@@ -1,13 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.goodhouse.house.model.*" %>
-<%@ page import="java.util.List"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.goodhouse.house.model.*"%>
+<%@ page import="java.sql.*, javax.sql.*" %> 
+<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
+<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
 
-<jsp:useBean id="listHou_ByCompositeQuery" scope="session" type="java.util.List<HouseVO>" /> <!-- 於EL此行可省略 -->
-<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
+<%
+	HouseService houSvc = new HouseService();
+	List<HouseVO> listHou_ByCompositeQuery =  (List<HouseVO>) session.getAttribute("lan_list_all");
+	pageContext.setAttribute("listHou_ByCompositeQuery",listHou_ByCompositeQuery);
+%>
+
+
 
 <html>
-
 <head>
 <!-- Required meta tags -->
 <meta name="viewport"
@@ -58,7 +65,7 @@ div{
 			<h4><a href="select_page.jsp">回首頁</a></h4>
 
 <table>
-	<tr>
+	<tr class="table-active">
 		<th>房屋編號</th>
 		<th>房屋名稱</th>
 		<th>房屋類別</th>
@@ -69,7 +76,7 @@ div{
 	</tr>
 		<%@ include file="pages/page1.file"%>
 	<c:forEach var="houVO" items="${listHou_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1 %>">
-	 	<tr align='center' valign='middle' ${(houVO.hou_id == param.hou_id) ? 'bgcolor=#CCCCFF' : ''}>
+	 	<tr  class="table-info" align='center' >
 	 		<td>${houVO.hou_id}</td>
 	 		<td>${houVO.hou_name}</td>
 	 		<td>${houVO.hou_type}</td>
@@ -85,10 +92,11 @@ div{
 			<input type="hidden" name="action" value="front_getOne_For_Display">
 			</form>
 			</td>
-		</tr>
+		</tr>	
 	</c:forEach>
+	
 </table>
-<%@ include file="pages/page2.file" %>
+	<%@ include file="pages/page2.file" %>
 	</div>
 	<script
 		src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
@@ -101,7 +109,7 @@ div{
 		src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
-<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </html>

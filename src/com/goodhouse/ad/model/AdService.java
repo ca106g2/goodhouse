@@ -2,6 +2,7 @@ package com.goodhouse.ad.model;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 public class AdService {
 	private AdDAO_interface dao;
@@ -50,5 +51,8 @@ public class AdService {
 	}
 	public List<AdVO> getAll(){
 		return dao.getAll();
+	}
+	public List<AdVO> getAll(Map<String, String[]>map){
+		return dao.getAll(map);
 	}
 } 

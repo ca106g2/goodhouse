@@ -207,6 +207,35 @@ public class AdServlet extends HttpServlet{
 			}
 			
 		}
+		
+		//*********複合式查詢
 
+		if("listAd_ByCompositeQuery".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			HttpSession session = req.getSession();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try{
+				Map<String, String[]> map = req.getParameterMap();
+				System.out.println("220"+map);
+				AdService adSvc = new AdService();
+
+				List<AdVO> list = adSvc.getAll(map);
+				System.out.println("224"+list);
+
+
+				session.setAttribute("listAd_ByCompositeQuery", list);
+				
+				RequestDispatcher successView =
+						req.getRequestDispatcher("/front/ad/listAd_ByCompositeQuery.jsp");
+				successView.forward(req, res);
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = 
+						req.getRequestDispatcher("/front/ad/select_page.jsp");
+				failureView.forward(req, res);	
+				
+			}
+		}
 	}
 }

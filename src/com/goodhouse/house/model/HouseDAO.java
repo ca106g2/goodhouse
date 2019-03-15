@@ -7,11 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import jdbc.util.CompositeQuery.jdbcutil_CompositeQuery_House;
 
 
 public class HouseDAO implements HouseDAO_interface {
@@ -42,9 +45,8 @@ public class HouseDAO implements HouseDAO_interface {
 			"SELECT hou_id, hou_name ,hou_type ,hou_size ,hou_property ,hou_parkspace ,hou_cook ,hou_managefee,hou_address,lan_id, hou_rent, hou_f_picture, hou_s_picture, hou_t_picture, hou_note FROM house order by hou_id";// 
 	private static final String GET_ONE_STMT = 
 			"SELECT hou_id, hou_name ,hou_type ,hou_size ,hou_property ,hou_parkspace ,hou_cook ,hou_managefee,hou_address,lan_id, hou_rent, hou_f_picture, hou_s_picture, hou_t_picture, hou_note FROM house where hou_id = ?";// 
-	private static final String GET_ONE_BY_LAN_ID =
-			"select * from house where lan_id=?";
-	
+	private static final String GET_ALL_STMT_LAN = 
+			"SELECT * FROM house WHERE lan_id=?";
 	@Override
 	public void insert(HouseVO houseVO) {
 		// TODO Auto-generated method stub
@@ -109,7 +111,7 @@ public class HouseDAO implements HouseDAO_interface {
 
 		try {
 //			Class.forName(DRIVER);
-//	
+
 //			con = DriverManager.getConnection(URL, USER, PASSWORD);
 //			pstmt = con.prepareStatement(UPDATE);
 
@@ -341,45 +343,35 @@ public class HouseDAO implements HouseDAO_interface {
 
 		return list;
 	}
-
+	
 	@Override
-	public HouseVO findByLanId(String lan_id) {
+	public List<HouseVO> getAll(Map<String, String[]> map){
+		List<HouseVO>  list = new ArrayList<HouseVO>();
 		HouseVO houseVO = null;
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		try {
-//			Class.forName(DRIVER);
-//
-//			con = DriverManager.getConnection(URL, USER, PASSWORD);
-//			pstmt = con.prepareStatement(GET_ONE_STMT);
 			
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ONE_BY_LAN_ID);
-			
-			pstmt.setString(1, lan_id);
+			String finalSQL = "select * from house"
+					+ jdbcutil_CompositeQuery_House.get_WhereCondition(map)
+					+ "order by hou_id";
+			pstmt = con.prepareStatement(finalSQL);
+		//	System.out.println(finalSQL);
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
-
 				houseVO = new HouseVO();
 				houseVO.setHou_id(rs.getString("hou_id"));
 				houseVO.setHou_name(rs.getString("hou_name"));
 				houseVO.setHou_type(rs.getString("hou_type"));
-				houseVO.setHou_size(rs.getString("hou_size"));
-				houseVO.setHou_property(rs.getString("hou_property"));
 				houseVO.setHou_parkspace(rs.getString("hou_parkspace"));
 				houseVO.setHou_cook(rs.getString("hou_cook"));
-				houseVO.setHou_managefee(rs.getString("hou_managefee"));
 				houseVO.setHou_address(rs.getString("hou_address"));
 				houseVO.setLan_id(rs.getString("lan_id"));
-				houseVO.setHou_rent(rs.getInt("hou_rent"));
-				houseVO.setHou_f_picture(rs.getBytes("hou_f_picture"));
-				houseVO.setHou_s_picture(rs.getBytes("hou_s_picture"));
-				houseVO.setHou_t_picture(rs.getBytes("hou_t_picture"));
-				houseVO.setHou_note(rs.getString("hou_note"));
-
+				list.add(houseVO);
 			}
 		} catch (SQLException se) {
 			se.printStackTrace();
@@ -410,7 +402,77 @@ public class HouseDAO implements HouseDAO_interface {
 			}
 		}
 
-		return houseVO;
+		return list;
+	}
+	@Override//利用lan_id查詢全部
+	public List<HouseVO> getAllFor_Hou_Lan_id(String lan_id) {
+		// TODO Auto-generated method stub
+		
+		List<HouseVO> list = new ArrayList();
+		HouseVO houseVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT_LAN);
+			
+			pstmt.setString(1, lan_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+
+				houseVO = new HouseVO();
+				houseVO.setHou_id(rs.getString("hou_id"));
+				houseVO.setHou_name(rs.getString("hou_name"));
+				houseVO.setHou_type(rs.getString("hou_type"));
+				houseVO.setHou_size(rs.getString("hou_size"));
+				houseVO.setHou_property(rs.getString("hou_property"));
+				houseVO.setHou_parkspace(rs.getString("hou_parkspace"));
+				houseVO.setHou_cook(rs.getString("hou_cook"));
+				houseVO.setHou_managefee(rs.getString("hou_managefee"));
+				houseVO.setHou_address(rs.getString("hou_address"));
+				houseVO.setLan_id(rs.getString("lan_id"));
+				houseVO.setHou_rent(rs.getInt("hou_rent"));
+				houseVO.setHou_f_picture(rs.getBytes("hou_f_picture"));
+				houseVO.setHou_s_picture(rs.getBytes("hou_s_picture"));
+				houseVO.setHou_t_picture(rs.getBytes("hou_t_picture"));
+				houseVO.setHou_note(rs.getString("hou_note"));
+				list.add(houseVO);
+			}
+			
+			
+			
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list;
 	}
 
 }

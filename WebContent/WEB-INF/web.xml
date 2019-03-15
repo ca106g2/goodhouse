@@ -141,8 +141,18 @@
   <servlet-mapping>
   	<servlet-name>AdServlet</servlet-name>
   	<url-pattern>/back/ad/ad.do</url-pattern>
-  </servlet-mapping>  	
-  	
+  </servlet-mapping> 
+   	
+    <!-- 廣告 前端-->
+  <servlet>
+  	<servlet-name>FrontAdServlet</servlet-name>
+  	<servlet-class>com.goodhouse.ad.controller.AdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FrontAdServlet</servlet-name>
+  	<url-pattern>/front/ad/ad.do</url-pattern>
+  </servlet-mapping>
+    	
 
  
   <!--帳單註冊  -->
