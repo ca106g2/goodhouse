@@ -93,6 +93,7 @@
         <!-- Optional JavaScript -->
 			<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 			<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
 		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 	 <!-- Footer尾 -->
 	 

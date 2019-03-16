@@ -9,6 +9,7 @@
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css">
 <!-- Bootstrap CSS end-->
 
 <style>
@@ -58,9 +59,11 @@
 					          房客
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/mem_select_page.jsp">我的合約列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/mem_listAll_ele_contract.jsp">我的合約列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/bill/mem_select_page.jsp">我的帳單列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的積分紀錄</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/mem_listAll_house_evaluate.jsp">我的評價</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/add_house_evaluate.jsp">我要評價</a>
 					        </div>
 					    </li>
                    </li>
@@ -71,6 +74,7 @@
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">電子合約管理</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/lan_listAll_evaluate.jsp">我的房屋評價</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>">新增房屋</a>
 					        </div>
 					    </li>
