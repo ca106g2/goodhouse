@@ -29,11 +29,12 @@
 </style>
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <table id="table-1">
-   <tr><td><h3>房東首頁</h3></td></tr>
+   <tr><td><h3>房東首頁</h3></td>
+      </tr>
 </table>
-
+	<h4><a href="<%=request.getContextPath()%>/fornt/member/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 <h3>資料查詢:</h3>
 <%-- 錯誤表列 --%>
 
@@ -82,6 +83,6 @@ h3>房東管理</h3>
 <ul>
   <li><a href='addLan.jsp'>申請成為房東</a> a new Lan.</li>
 </ul>
-
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

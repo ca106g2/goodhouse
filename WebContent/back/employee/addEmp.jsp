@@ -49,7 +49,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料新增 - addEmp.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
+		 <h5><a href="select_page.jsp">回員工首頁</a></h5>
 	</td></tr>
 </table>
 

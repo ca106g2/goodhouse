@@ -45,11 +45,11 @@
 
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
 		 <h3>房東資料修改 - update_emp_input.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back/employee/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回員工首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -95,8 +95,8 @@
 		<td>房東帳戶狀態:</td>
 		<td>
 			<select name="lan_accountstatus">
-				<option  value="1" selected>良好</option>
-				<option  value="2" >封鎖</option>
+				<option  value="1" selected>審核中</option>
+				<option  value="2" >已審核</option>
 			</select>
 		</td>
 	</tr>
@@ -115,6 +115,6 @@
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="lan_id" value="<%=lanVO.getLan_id()%>">
 <input type="submit" value="送出修改"></FORM>
-
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

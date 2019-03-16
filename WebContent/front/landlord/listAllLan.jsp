@@ -60,11 +60,11 @@ pageContext.setAttribute("list",list);
 
 </head>
 <body bgcolor="white">
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
 		<h3>所有房東資料 </h3>
-		<h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		<h4><a href="<%=request.getContextPath()%>/back/employee/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回員工管理</a></h4>
 
 	</td></tr>
 </table>
@@ -127,5 +127,6 @@ pageContext.setAttribute("list",list);
 </table>
 
 <%@ include file="page2.file" %>
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

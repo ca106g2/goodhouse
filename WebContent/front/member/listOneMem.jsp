@@ -63,7 +63,10 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>會員資料 - ListOneMem.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回會員中心</a></h4>
+		 
+		 
 	</td></tr>
 </table>
 <c:if test="${not empty errorMsgs}">
@@ -136,7 +139,9 @@
 <form method="post" action="<%=request.getContextPath()%>/FrontLogoutHandler">
 	<input type="submit" value="登出">
 </form>
-
+<ul>
+  <li><a href='<%=request.getContextPath()%>/back/employee/select_page.jsp'>回員工首頁</a></li>
+</ul>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 

@@ -53,7 +53,7 @@
 
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>	
 <table id="table-1">
 	<tr><td>
 		 <h3>會員資料修改 - update_mem_input.jsp</h3>
@@ -163,6 +163,6 @@
         });
  
 </script>
-
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

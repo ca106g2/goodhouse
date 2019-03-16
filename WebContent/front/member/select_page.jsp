@@ -51,9 +51,10 @@
 <ul>
  
   
-  
-  <li>
+
+<li>
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" >
+        
         <b>輸入會員編號 (如:M000000001):</b>
         <input type="text" name="mem_id">
         <input type="hidden" name="action" value="getOne_For_Display">
@@ -64,14 +65,24 @@
   <jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
   <li>
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" >
-       <b>會員資料修改刪除</b>
+       <b>選擇會員email</b>
        <select size="1" name="mem_id">
          <c:forEach var="memVO" items="${memSvc.all}" > 
-          <option value="${memVO.mem_id}">${memVO.mem_id}
+          <option value="${memVO.mem_id}">${memVO.mem_email}
          </c:forEach>   
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
        <input type="submit" value="送出">
+    </FORM>
+  </li>
+  
+  <li>
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" >
+        
+        <b>輸入會員email :</b>
+        <input type="text" name="mem_id">
+        <input type="hidden" name="action" value="getOne_For_Display">
+        <input type="submit" value="送出">
     </FORM>
   </li>
   
@@ -83,6 +94,23 @@
 
 <ul>
   <li><a href='addMem.jsp'>註冊</a> a new Member.</li>
+</ul>
+
+<h3>房東管理</h3>
+<ul>
+  <li><a href='<%=request.getContextPath()%>/front/landlord/addLan.jsp'>申請成為房東</a> a new Landlord.</li>
+</ul>
+
+<ul>
+	<li>
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/landlord/lan.do" >
+        
+        <b>輸入房東編號 (如:L000000001):</b>
+        <input type="text" name="lan_id">
+        <input type="hidden" name="action" value="getOne_For_Display">
+        <input type="submit" value="送出">
+    </FORM>
+  </li>
 </ul>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>

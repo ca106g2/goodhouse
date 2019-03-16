@@ -58,12 +58,12 @@
 
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>員工資料 - ListOneLan.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h3>房東資料 - ListOneLan.jsp</h3>
+		 <h4><a href="<%=request.getContextPath() %>/front/member/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回會員中心</a></h4>
 	</td></tr>
 </table>
 
@@ -97,5 +97,6 @@
 		
 	</tr>
 </table>
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 </html>

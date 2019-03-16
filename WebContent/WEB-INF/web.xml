@@ -291,6 +291,20 @@
     <dispatcher>ERROR</dispatcher>
     <dispatcher>ASYNC</dispatcher>
   </filter-mapping>
+  <!--成為房東濾器註冊  -->
+  <filter>
+    <filter-name>frontLoginFilter2</filter-name>
+    <filter-class>frontFilters.FrontLoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>frontLoginFilter2</filter-name>
+    <url-pattern>/front/landlord/addLan.jsp</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+    <dispatcher>INCLUDE</dispatcher>
+    <dispatcher>ERROR</dispatcher>
+    <dispatcher>ASYNC</dispatcher>
+  </filter-mapping>
   
      <!--後台員工濾器註冊  -->
   <filter>

@@ -90,16 +90,32 @@
 </ul>
 
 
-<h3>員工管理</h3>
+<h3>新增員工</h3>
 
 <ul>
   <li><a href='addEmp.jsp'>新增員工資料</a> a new Employee.</li>
 </ul>
 
+
+
+<h3>會員管理</h3>
+<ul>
+  <li><a href='<%=request.getContextPath()%>/front/member/listAllMem.jsp'>全部會員資料</a> a new Member.</li>
+</ul>
+
+<h3>房東管理</h3>
+<ul>
+  <li><a href='<%=request.getContextPath()%>/front/landlord/listAllLan.jsp'>全部房東資料</a> a new Landlord.</li>
+</ul>
+<ul>
+  <li><a href='<%=request.getContextPath()%>/front/landlord/checklan.jsp'>審核房東資料</a> a new Landlord.</li>
+</ul>
+
+
+
 <form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
 	<input type="submit" value="登出">
 </form>
-
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
