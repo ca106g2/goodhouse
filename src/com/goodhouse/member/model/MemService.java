@@ -57,6 +57,9 @@ public class MemService {
 		return memVO;
 		
 	}
+	public void updatePointTot(String mem_id, Integer good_total) {
+		dao.updatePointTot(mem_id, good_total);
+	}
 	public void deleteMem(String mem_id) {
 		dao.delete(mem_id);
 		}
