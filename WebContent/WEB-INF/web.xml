@@ -102,6 +102,16 @@
 		<url-pattern>/front/ele_contract/ele_contract.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 房屋追蹤註冊 -->
+	<servlet>
+		<servlet-name>House_Track</servlet-name>
+		<servlet-class>com.goodhouse.house_track.controller.House_TrackServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>House_Track</servlet-name>
+		<url-pattern>/front/house_track/house_track.do</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 積分商城註冊 -->
 	<servlet>
 	    <servlet-name>PointgoodsServlet</servlet-name>
