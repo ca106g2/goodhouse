@@ -103,25 +103,25 @@ CREATE SEQUENCE MEM_SEQ
 --------------------------會員假資料-------------------------------
 
 INSERT INTO MEMBER
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'ALICE', TO_DATE('1994-01-01','YYYY-MM-DD'), '123456', '新北市蘆洲區長安街一號','24755',0222223333,0912345678,'ALICE111@abc.com','1',EMPTY_BLOB(),2000,'2');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'ALICE', TO_DATE('1994-01-01','YYYY-MM-DD'), '123456', '新北市蘆洲區長安街一號','24755',0222223333,0912345678,'ALICE111@abc.com','1',load_mem('mem1.jpg'),2000,'2');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'DAVID', TO_DATE('1984-02-02','YYYY-MM-DD'), 'AAAAAA', '台北市信義區忠孝東路五段68號','24555',0229998888,0987654321,'DAVID555@abc.com','1',EMPTY_BLOB(),20000,'1');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'DAVID', TO_DATE('1984-02-02','YYYY-MM-DD'), 'AAAAAA', '台北市信義區忠孝東路五段68號','24555',0229998888,0987654321,'DAVID555@abc.com','1',load_mem('mem2.jpg'),20000,'1');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'TIM', TO_DATE('1974-03-03','YYYY-MM-DD'), 'TIM878', '新北市林口區文化一路3號','55688',035333222,0911888777,'TIM878@abc.com','2',EMPTY_BLOB(),30,'1');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'TIM', TO_DATE('1974-03-03','YYYY-MM-DD'), 'TIM878', '新北市林口區文化一路3號','55688',035333222,0911888777,'TIM878@abc.com','2',load_mem('mem3.jpg'),30,'1');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'DAVE', TO_DATE('1994-09-09','YYYY-MM-DD'), 'HANDSOME', '新北市蘆洲區長榮路1號','24751',0288888888,0966666666,'HANDSOME@abc.com','1',EMPTY_BLOB(),30000,'1');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'DAVE', TO_DATE('1994-09-09','YYYY-MM-DD'), 'HANDSOME', '新北市蘆洲區長榮路1號','24751',0288888888,0966666666,'HANDSOME@abc.com','1',load_mem('mem4.jpg'),30000,'1');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'PETER', TO_DATE('1960-03-03','YYYY-MM-DD'), 'PETER88', '台北市中山區林森北路一號','25666',0299999999,0999888555,'PETER55@abc.com','1',EMPTY_BLOB(),5000,'1');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'PETER', TO_DATE('1960-03-03','YYYY-MM-DD'), 'PETER88', '台北市中山區林森北路一號','25666',0299999999,0999888555,'PETER55@abc.com','1',load_mem('mem5.jpg'),5000,'1');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'JIMMY', TO_DATE('1994-12-18','YYYY-MM-DD'), 'JIM999', '嘉義市綠豆鄉綠豆村1號','88986',053330289,0974747474,'JIM999@abc.com','1',EMPTY_BLOB(),50000,'1');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'JIMMY', TO_DATE('1994-12-18','YYYY-MM-DD'), 'JIM999', '嘉義市綠豆鄉綠豆村1號','88986',053330289,0974747474,'JIM999@abc.com','1',load_mem('mem6.jpg'),50000,'1');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '慶哥', TO_DATE('1950-05-08','YYYY-MM-DD'), 'CHIN87', '南投市草屯鄉草路5號','54878',0587878777,0987877877,'UGLY945@abc.com','1',EMPTY_BLOB(),30,'1');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '慶哥', TO_DATE('1950-05-08','YYYY-MM-DD'), 'CHIN87', '南投市草屯鄉草路5號','54878',0587878777,0987877877,'UGLY945@abc.com','1',load_mem('mem7.jpg'),30,'1');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '務員', TO_DATE('1990-04-05','YYYY-MM-DD'), 'LOREN88', '雲林市西螺鎮西螺路5號','88889',056666666,0966666666,'LOREN88@abc.com','1',EMPTY_BLOB(),500000,'1');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '務員', TO_DATE('1990-04-05','YYYY-MM-DD'), 'LOREN88', '雲林市西螺鎮西螺路5號','88889',056666666,0966666666,'LOREN88@abc.com','1',load_mem('mem8.jpg'),500000,'1');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '仙女', TO_DATE('1975-08-14','YYYY-MM-DD'), 'LILILI88', '台北市內湖區陽光路5號','78978',0282858787,0930587587,'LILI88@abc.com','1',EMPTY_BLOB(),3000,'2');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '仙女', TO_DATE('1975-08-14','YYYY-MM-DD'), 'LILILI88', '台北市內湖區陽光路5號','78978',0282858787,0930587587,'LILI88@abc.com','1',load_mem('mem9.jpg'),3000,'2');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'Sammi', TO_DATE('1972-07-15','YYYY-MM-DD'), 'SAMMI888', '花蓮市花蓮路5號','55988',035333666,0921578578,'SAMMI888@abc.com','1',EMPTY_BLOB(),5,'2');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'Sammi', TO_DATE('1972-07-15','YYYY-MM-DD'), 'SAMMI888', '花蓮市花蓮路5號','55988',035333666,0921578578,'SAMMI888@abc.com','1',load_mem('mem10.jpg'),5,'2');
 
 -----------------------------------員工------------------------------------------
 CREATE TABLE EMPLOYEE(

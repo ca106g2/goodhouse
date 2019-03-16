@@ -49,3 +49,18 @@ BEGIN
     dbms_lob.fileclose(myBFILE);
     RETURN myBLOB;
 END load_lan;
+
+/* 會員圖片 */ 
+CREATE OR REPLACE  DIRECTORY MEM_DIR AS 'C:/mem_pic/';
+/* 會員圖片擷取檔案的FUNCTION */ 
+CREATE OR REPLACE FUNCTION load_mem( myFileName VARCHAR) RETURN BLOB as result BLOB;  
+  myBFILE      BFILE;
+  myBLOB       BLOB;
+BEGIN
+    myBFILE := BFILENAME('MEM_DIR',myFileName);
+    dbms_lob.createtemporary(myBLOB, TRUE);
+    dbms_lob.fileopen(myBFILE,dbms_lob.file_readonly);
+    dbms_lob.loadfromfile(myBLOB,myBFILE,dbms_lob.getlength(myBFILE) );
+    dbms_lob.fileclose(myBFILE);
+    RETURN myBLOB;
+END load_mem;
