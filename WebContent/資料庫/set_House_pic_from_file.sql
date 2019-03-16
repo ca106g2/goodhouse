@@ -34,3 +34,18 @@ BEGIN
     dbms_lob.fileclose(myBFILE);
     RETURN myBLOB;
 END load_pg;
+
+/* 良民證圖片 */ 
+CREATE OR REPLACE  DIRECTORY LAN_DIR AS 'C:/lan_pic/';
+/* 良民證圖片擷取檔案的FUNCTION */ 
+CREATE OR REPLACE FUNCTION load_lan( myFileName VARCHAR) RETURN BLOB as result BLOB;  
+  myBFILE      BFILE;
+  myBLOB       BLOB;
+BEGIN
+    myBFILE := BFILENAME('LAN_DIR',myFileName);
+    dbms_lob.createtemporary(myBLOB, TRUE);
+    dbms_lob.fileopen(myBFILE,dbms_lob.file_readonly);
+    dbms_lob.loadfromfile(myBLOB,myBFILE,dbms_lob.getlength(myBFILE) );
+    dbms_lob.fileclose(myBFILE);
+    RETURN myBLOB;
+END load_lan;
