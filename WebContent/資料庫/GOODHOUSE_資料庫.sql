@@ -75,8 +75,6 @@ DROP SEQUENCE ARTICLE_REP_ID_SEQ;
 DROP SEQUENCE ARTICLE_ID_SEQ;
 DROP SEQUENCE ARTICLE_CLASIFICATION_SEQ;
 
-
-
 ---------------- DATE FORMAT--------------------------------------------------
 ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD';
 ALTER SESSION SET NLS_TIMESTAMP_FORMAT = 'yyyy-mm-dd hh24:mi:ss';
@@ -295,61 +293,61 @@ INSERT INTO HOUSE
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000001','平價學生套房出租','套房','4坪','已出租','否','不可','無','桃園市中壢區五興路331巷43號','L000000001',4000,load_blob('1.jpg'),load_blob('2.jpg'),load_blob('3.jpg'),'限制學生入住');
+('HOU0000001','平價學生套房出租','套房','4坪','未出租','未審核','是','0','桃園市中壢區五興路331巷43號','L000000001',4000,load_blob('1.jpg'),load_blob('2.jpg'),load_blob('3.jpg'),'限制學生入住');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000002','民生社區稀有2房邊間三面採光電梯華廈','套房','17.36坪','未出租','否','可以','無','台北市松山區民生東路五段','L000000002',33000,load_blob('4.jpg'),load_blob('5.jpg'),load_blob('6.jpg'),'四面窗採光裡外都看的見');
+('HOU0000002','民生社區稀有2房邊間三面採光電梯華廈','套房','17.36坪','未出租','未審核','是','0','台北市松山區民生東路五段','L000000002',33000,load_blob('4.jpg'),load_blob('5.jpg'),load_blob('6.jpg'),'四面窗採光裡外都看的見');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000003','看過必愛~近南京復興站','公寓','45.40坪','未出租','有','可以','有','台北市松山區復興北路','L000000003',98000,load_blob('7.jpg'),load_blob('8.jpg'),load_blob('9.jpg'),'居家方便隨興生活');
+('HOU0000003','看過必愛~近南京復興站','公寓','45.40坪','未出租','未審核','是','0','台北市松山區復興北路','L000000003',98000,load_blob('7.jpg'),load_blob('8.jpg'),load_blob('9.jpg'),'居家方便隨興生活');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000004','捷運世貿站W110','套房','10.46坪','未出租','可','可','有','台北市信義區光復南路597號','L000000004',30000,load_blob('10.jpg'),load_blob('11.jpg'),load_blob('12.jpg'),'101就在你眼前');
+('HOU0000004','捷運世貿站W110','套房','10.46坪','未出租','未審核','否','500','台北市信義區光復南路597號','L000000004',30000,load_blob('10.jpg'),load_blob('11.jpg'),load_blob('12.jpg'),'101就在你眼前');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000005','一般套房出租~~限制女性','套房','10.4坪','未出租','否','不可','無','桃園市八德區中山路331巷43號','L000000005',8000,load_blob('13.jpg'),load_blob('14.jpg'),load_blob('15.jpg'),'有花園，魚池，花香社區');
+('HOU0000005','一般套房出租~~限制女性','套房','10.4坪','未出租','未審核','否','500','桃園市八德區中山路331巷43號','L000000005',8000,load_blob('13.jpg'),load_blob('14.jpg'),load_blob('15.jpg'),'有花園，魚池，花香社區');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000006','文化社區雅房(不限性別)','套房','13.36坪','未出租','否','不可','無','新竹區元科路200號4F','L000000006',9200,load_blob('16.jpg'),load_blob('17.jpg'),load_blob('18.jpg'),'園區最佳選擇');
+('HOU0000006','文化社區雅房(不限性別)','套房','13.36坪','未出租','已審核','是','200','新竹區元科路200號4F','L000000006',9200,load_blob('16.jpg'),load_blob('17.jpg'),load_blob('18.jpg'),'園區最佳選擇');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000007','青埔高鐵美華泰2+1房電梯','公寓','20.47坪','未出租','有','可以','有',' 桃園市中壢區青埔五街15號8F/12F ','L000000007',21000,load_blob('19.jpg'),load_blob('20.jpg'),load_blob('21.jpg'),'近A19捷運站，走路5~8分鐘就到，距離桃園高鐵站也只需3分鐘車程');
+('HOU0000007','青埔高鐵美華泰2+1房電梯','公寓','20.47坪','未出租','已審核','否','200',' 桃園市中壢區青埔五街15號8F/12F ','L000000007',21000,load_blob('19.jpg'),load_blob('20.jpg'),load_blob('21.jpg'),'近A19捷運站，走路5~8分鐘就到，距離桃園高鐵站也只需3分鐘車程');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000008','青埔竹風青庭','公寓','52.46坪','未出租','可','可','有','桃園市中壢區領航北路一段310號 ','L000000008',23000,load_blob('22.jpg'),load_blob('23.jpg'),load_blob('24.jpg'),'靠近華泰名店城、冠德購物中心、桃園國際棒球場、超商、全聯；距離全聯走路只要5分鐘，購物方便，生活機能良好完整');
+('HOU0000008','青埔竹風青庭','公寓','52.46坪','未出租','已審核','否','200','桃園市中壢區領航北路一段310號 ','L000000008',23000,load_blob('22.jpg'),load_blob('23.jpg'),load_blob('24.jpg'),'靠近華泰名店城、冠德購物中心、桃園國際棒球場、超商、全聯；距離全聯走路只要5分鐘，購物方便，生活機能良好完整');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000009','西門捷運站旁30公尺新大樓漂亮裝潢','公寓','35.40坪','未出租','有','可以','有',' 台北市萬華區中華路一段23號7樓','L000000009',62000 ,load_blob('25.jpg'),load_blob('26.jpg'),load_blob('27.jpg'),'24小時保全，磁扣進出大門磁扣電梯,精華鬧區但不面向大馬路，所以非常安靜');
+('HOU0000009','西門捷運站旁30公尺新大樓漂亮裝潢','公寓','35.40坪','未出租','已審核','否','500',' 台北市萬華區中華路一段23號7樓','L000000009',62000 ,load_blob('25.jpg'),load_blob('26.jpg'),load_blob('27.jpg'),'24小時保全，磁扣進出大門磁扣電梯,精華鬧區但不面向大馬路，所以非常安靜');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000010','?秒殺?一中街~台科大~台體大','套房','20.46坪','已出租','可','可','有','台中市北區梅亭街7號8樓','L000000010',7500 ,load_blob('28.jpg'),load_blob('29.jpg'),load_blob('30.jpg'),'近便利商店；傳統市場；百貨公司；公園綠地；學校；醫療機構；夜市');
+('HOU0000010','秒殺一中街~台科大~台體大','套房','20.46坪','未出租','已審核','是','200','台中市北區梅亭街7號8樓','L000000010',7500 ,load_blob('28.jpg'),load_blob('29.jpg'),load_blob('30.jpg'),'近便利商店；傳統市場；百貨公司；公園綠地；學校；醫療機構；夜市');
 
 ------------------------------AD_SORT----------------------------
 CREATE TABLE AD_SORT(
@@ -448,13 +446,11 @@ CREATE TABLE AD_REPORT(
 AD_REP_ID VARCHAR2(10) PRIMARY KEY NOT NULL,
 AD_ID VARCHAR2(10) NOT NULL,
 MEM_ID VARCHAR2(10) NOT NULL,
-EMP_ID VARCHAR2(10) NOT NULL,
 AD_REP_STATUS VARCHAR2(100),
 AD_REP_REASON CLOB,
 AD_REP_DATE DATE,
 CONSTRAINT AD_REPORT_AD  FOREIGN KEY(AD_ID)REFERENCES AD(AD_ID),
-CONSTRAINT AD_REPORT_MEM FOREIGN KEY(MEM_ID) REFERENCES MEMBER(MEM_ID),
-CONSTRAINT AD_SORT_FK_ENP  FOREIGN KEY(EMP_ID)REFERENCES EMPLOYEE(EMP_ID)
+CONSTRAINT AD_REPORT_MEM FOREIGN KEY(MEM_ID) REFERENCES MEMBER(MEM_ID)
 );
 
 CREATE SEQUENCE AD_REPORT_SEQ
@@ -466,45 +462,45 @@ NOCACHE;
 
 -----------------AD_REPORT假資料-------------------
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000001','AD00000001','M000000001','E000000001','檢舉審核中','房屋資訊造假',to_date('2018-12-18','yyyy-mm-dd'));
+('ADR0000001','AD00000001','M000000001','檢舉審核中','房屋資訊造假',to_date('2018-12-18','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000002','AD00000002','M000000002','E000000002','檢舉審核中',';房東資訊造假',to_date('2019-01-28','yyyy-mm-dd'));
+('ADR0000002','AD00000002','M000000002','檢舉審核中',';房東資訊造假',to_date('2019-01-28','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000003','AD00000003','M000000003','E000000003','檢舉審核中','房東心術不正',to_date('2019-02-28','yyyy-mm-dd'));
+('ADR0000003','AD00000003','M000000003','檢舉審核中','房東心術不正',to_date('2019-02-28','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000004','AD00000004','M000000004','E000000004','檢舉審核中','房屋照片不輔和',to_date('2019-01-08','yyyy-mm-dd'));
+('ADR0000004','AD00000004','M000000004','檢舉審核中','房屋照片不輔和',to_date('2019-01-08','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000005','AD00000005','M000000005','E000000005','檢舉成功','房東的房屋裡面堆放很多垃圾',to_date('2019-02-08','yyyy-mm-dd'));
+('ADR0000005','AD00000005','M000000005','檢舉成功','房東的房屋裡面堆放很多垃圾',to_date('2019-02-08','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000006','AD00000006','M000000006','E000000006','檢舉失敗','房屋價格太高',to_date('2019-01-11','yyyy-mm-dd'));
+('ADR0000006','AD00000006','M000000006','檢舉失敗','房屋價格太高',to_date('2019-01-11','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000007','AD00000007','M000000007','E000000007','檢舉失敗','房屋格音色被不好',to_date('2019-01-13','yyyy-mm-dd'));
+('ADR0000007','AD00000007','M000000007','檢舉失敗','房屋格音色被不好',to_date('2019-01-13','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000008','AD00000008','M000000008','E000000008','檢舉失敗','房屋環境很糟',to_date('2018-12-11','yyyy-mm-dd'));
+('ADR0000008','AD00000008','M000000008','檢舉失敗','房屋環境很糟',to_date('2018-12-11','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000009','AD00000009','M000000009','E000000009','檢舉審核中','房屋圖片有人露點',to_date('2018-11-18','yyyy-mm-dd'));
+('ADR0000009','AD00000009','M000000009','檢舉審核中','房屋圖片有人露點',to_date('2018-11-18','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
-(AD_REP_ID,AD_ID,MEM_ID,EMP_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
+(AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000010','AD00000010','M000000010','E000000010','檢舉審核中','房屋地址在深山裡面海拔20000公尺(是要當深山野人嗎)',to_date('2019-03-18','yyyy-mm-dd'));
+('ADR0000010','AD00000010','M000000010','檢舉審核中','房屋地址在深山裡面海拔20000公尺(是要當深山野人嗎)',to_date('2019-03-18','yyyy-mm-dd'));
 
 
 -----------------ACC-----------------------
@@ -1514,6 +1510,7 @@ CREATE TABLE POINTGOODS(
     GOOD_PIC       BLOB
 );
 
+
 CREATE SEQUENCE POINTGOODS_SEQ
 INCREMENT BY 1
 START WITH 1
@@ -1521,7 +1518,9 @@ NOMAXVALUE
 NOCYCLE
 NOCACHE;
 
+
 ------------------------ 積分商品假資料---------------------------------
+
 
 INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '衛生紙', '100%高級純紙漿，細緻棉柔親膚觸感', 100, 2000, 'P001');
 INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '電影票', '本券可加價使用於特殊版本電影或特殊影廳', 99, 10000, 'P001');
@@ -1547,6 +1546,7 @@ CREATE TABLE GOOD_ORD(
     FOREIGN KEY (MEM_ID) REFERENCES MEMBER(MEM_ID)
 );
 
+
 CREATE SEQUENCE GOOD_ORD_SEQ
 INCREMENT BY 1
 START WITH 1
@@ -1555,6 +1555,7 @@ NOCYCLE
 NOCACHE;
 
 -------------------------積分商品訂單假資料--------------------------------
+
 
 INSERT INTO GOOD_ORD (GOOD_ORD_ID, MEM_ID, GOOD_ORD_DAT, GOOD_ORD_STA, GOOD_ORD_NAM, GOOD_ORD_TOT, GOOD_ORD_ADD) VALUES ('O'||LPAD(to_char(good_ord_seq.NEXTVAL), 9, '0'), 'M000000002', systimestamp, 'GO001', '王小明', 10000, '320桃園市中壢區中大路300號');
 INSERT INTO GOOD_ORD (GOOD_ORD_ID, MEM_ID, GOOD_ORD_DAT, GOOD_ORD_STA, GOOD_ORD_NAM, GOOD_ORD_TOT, GOOD_ORD_ADD) VALUES ('O'||LPAD(to_char(good_ord_seq.NEXTVAL), 9, '0'), 'M000000002', systimestamp, 'GO001', 'Mary', 48000, '320桃園市中壢區中園路二段501號');
@@ -1566,6 +1567,9 @@ INSERT INTO GOOD_ORD (GOOD_ORD_ID, MEM_ID, GOOD_ORD_DAT, GOOD_ORD_STA, GOOD_ORD_
 INSERT INTO GOOD_ORD (GOOD_ORD_ID, MEM_ID, GOOD_ORD_DAT, GOOD_ORD_STA, GOOD_ORD_NAM, GOOD_ORD_TOT, GOOD_ORD_ADD) VALUES ('O'||LPAD(to_char(good_ord_seq.NEXTVAL), 9, '0'), 'M000000001', systimestamp, 'GO001', '小白', 108000, '200基隆市仁愛區港西街37號');
 INSERT INTO GOOD_ORD (GOOD_ORD_ID, MEM_ID, GOOD_ORD_DAT, GOOD_ORD_STA, GOOD_ORD_NAM, GOOD_ORD_TOT, GOOD_ORD_ADD) VALUES ('O'||LPAD(to_char(good_ord_seq.NEXTVAL), 9, '0'), 'M000000001', systimestamp, 'GO001', 'Peter', 10, '251新北市淡水區英專路151號');
 INSERT INTO GOOD_ORD (GOOD_ORD_ID, MEM_ID, GOOD_ORD_DAT, GOOD_ORD_STA, GOOD_ORD_NAM, GOOD_ORD_TOT, GOOD_ORD_ADD) VALUES ('O'||LPAD(to_char(good_ord_seq.NEXTVAL), 9, '0'), 'M000000001', systimestamp, 'GO001', 'Josh', 6000, '333桃園市龜山區文化一路250號');
+
+
+
 
 -------------------------積分商品訂單明細--------------------------------
 CREATE TABLE GOOD_ORD_LIST(
@@ -1579,6 +1583,7 @@ CREATE TABLE GOOD_ORD_LIST(
     FOREIGN KEY (GOOD_ORD_ID) REFERENCES GOOD_ORD (GOOD_ORD_ID)
 );
 
+
 -----------------------------積分商品訂單明細假資料----------------------------
 INSERT INTO GOOD_ORD_LIST (GOOD_ID, GOOD_ORD_ID, GOOD_ORD_AMO) VALUES ('P000000008', 'O000000001', 10);
 INSERT INTO GOOD_ORD_LIST (GOOD_ID, GOOD_ORD_ID, GOOD_ORD_AMO) VALUES ('P000000003', 'O000000002', 4);
@@ -1591,6 +1596,7 @@ INSERT INTO GOOD_ORD_LIST (GOOD_ID, GOOD_ORD_ID, GOOD_ORD_AMO) VALUES ('P0000000
 INSERT INTO GOOD_ORD_LIST (GOOD_ID, GOOD_ORD_ID, GOOD_ORD_AMO) VALUES ('P000000005', 'O000000009', 1);
 INSERT INTO GOOD_ORD_LIST (GOOD_ID, GOOD_ORD_ID, GOOD_ORD_AMO) VALUES ('P000000001', 'O000000010', 3);
 
+
 ------------------------追蹤積分商品---------------------------------
 CREATE TABLE FAVORITE_GOOD(
     MEM_ID         VARCHAR2 (10) NOT NULL,
@@ -1601,6 +1607,7 @@ CREATE TABLE FAVORITE_GOOD(
     CONSTRAINT FK_FAVORITE_GOOD_POINTGOODS
     FOREIGN KEY (GOOD_ID) REFERENCES POINTGOODS (GOOD_ID)
 );
+
 
 ----------------------------追蹤積分商品假資料-----------------------------
 INSERT INTO FAVORITE_GOOD (MEM_ID, GOOD_ID) VALUES ('M000000001', 'P000000001');
@@ -1614,6 +1621,7 @@ INSERT INTO FAVORITE_GOOD (MEM_ID, GOOD_ID) VALUES ('M000000003', 'P000000008');
 INSERT INTO FAVORITE_GOOD (MEM_ID, GOOD_ID) VALUES ('M000000003', 'P000000009');
 INSERT INTO FAVORITE_GOOD (MEM_ID, GOOD_ID) VALUES ('M000000004', 'P000000010');
 
+
 ----------------------------積分紀錄-----------------------------
 CREATE TABLE GOOD_RECORD(
     GOOD_REC_ID    VARCHAR2 (10)  PRIMARY KEY NOT NULL,
@@ -1624,6 +1632,7 @@ CREATE TABLE GOOD_RECORD(
     CONSTRAINT FK_GOOD_RECORD_MEM
     FOREIGN KEY (MEM_ID) REFERENCES MEMBER(MEM_ID)
 );
+
 
 CREATE SEQUENCE GOOD_RECORD_SEQ
 INCREMENT BY 1
@@ -1643,6 +1652,7 @@ INSERT INTO GOOD_RECORD (GOOD_REC_ID, MEM_ID, GOOD_REC_DES, GOOD_REC_POI, GOOD_R
 INSERT INTO GOOD_RECORD (GOOD_REC_ID, MEM_ID, GOOD_REC_DES, GOOD_REC_POI, GOOD_REC_DAT) VALUES ('R'||LPAD(to_char(good_record_seq.NEXTVAL), 9, '0'), 'M000000004', '回復文章', 1000, systimestamp);
 INSERT INTO GOOD_RECORD (GOOD_REC_ID, MEM_ID, GOOD_REC_DES, GOOD_REC_POI, GOOD_REC_DAT) VALUES ('R'||LPAD(to_char(good_record_seq.NEXTVAL), 9, '0'), 'M000000002', '回復文章', 20000, systimestamp);
 INSERT INTO GOOD_RECORD (GOOD_REC_ID, MEM_ID, GOOD_REC_DES, GOOD_REC_POI, GOOD_REC_DAT) VALUES ('R'||LPAD(to_char(good_record_seq.NEXTVAL), 9, '0'), 'M000000001', '商城購物', 10000, systimestamp);
+
 
 --------------------------文章分類------------------------------ 
 
@@ -1814,5 +1824,6 @@ INSERT INTO ARTICLE_RECOVERY(ARTICLE_REC_ID,ARTICLE_ID,MEM_ID,RECOVERY_CON,RECOV
 INSERT INTO ARTICLE_RECOVERY(ARTICLE_REC_ID,ARTICLE_ID,MEM_ID,RECOVERY_CON,RECOVERY_TIM,RECOVERY_STATUD	) VALUES ('ARTR'||LPAD (to_char(ARTICLE_REC_ID_SEQ.NEXTVAL),6,'0'),'ART0000001','M000000001','999999999',systimestamp,1);
 INSERT INTO ARTICLE_RECOVERY(ARTICLE_REC_ID,ARTICLE_ID,MEM_ID,RECOVERY_CON,RECOVERY_TIM,RECOVERY_STATUD	) VALUES ('ARTR'||LPAD (to_char(ARTICLE_REC_ID_SEQ.NEXTVAL),6,'0'),'ART0000001','M000000001','超948794狂',systimestamp,1);
 
-
 COMMIT;
+
+
