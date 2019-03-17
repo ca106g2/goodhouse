@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ page import="com.goodhouse.landlord.model.*"%>    
+<%@ page import="com.goodhouse.member.model.*" %> 
+<%
+	MemVO memVO = (MemVO) session.getAttribute("memVO");
+	pageContext.setAttribute("memVO", memVO);
+%>
 <html>
 <head>
 <title>Mem: Home</title>
@@ -95,11 +100,33 @@
 <ul>
   <li><a href='addMem.jsp'>註冊</a> a new Member.</li>
 </ul>
-
+<jsp:useBean id="landSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
 <h3>房東管理</h3>
-<ul>
-  <li><a href='<%=request.getContextPath()%>/front/landlord/addLan.jsp'>申請成為房東</a> a new Landlord.</li>
-</ul>
+<c:choose>
+	<c:when test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_id == null}">
+		<ul>
+		  <li><a href='<%=request.getContextPath()%>/front/landlord/addLan.jsp'>申請成為房東</a> a new Landlord.</li>
+		</ul>
+	</c:when>
+	<c:otherwise>
+		<c:choose>
+			<c:when test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == 1}">
+				<input type="button" value="申請房屋物件" class="btn btn-success" disabled="true">
+			</c:when>
+			<c:otherwise>
+				<input type="button" value="申請房屋物件" class="btn btn-success">
+			</c:otherwise>
+		</c:choose>
+	</c:otherwise>
+</c:choose>
+
+
+	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_lan_accountstatus eq 2}">
+		<ul>
+		  <li><a href='<%=request.getContextPath()%>/front/member/select_page.jsp'>123</a> a new Landlord.</li>
+		</ul>
+	</c:if>
+	
 
 <ul>
 	<li>

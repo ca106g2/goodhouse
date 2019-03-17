@@ -6,12 +6,9 @@
 <%
   MemVO memVO = (MemVO) request.getAttribute("memVO");
 %>
-
 <html>
 <head>
-<link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
-<script src="datetimepicker/jquery.js"></script>
-<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+
 <meta charset="UTF-8">
 <title>會員新增資料</title>
 
@@ -81,7 +78,7 @@
 	</tr>
 	<tr>
 		<td>會員生日:</td>
-		<td><input name="mem_birthday" class="f_date1" type="text"></td>
+		<td><input name="mem_birthday" id="f_date1" type="text"></td>
 	</tr>
 	<tr>
 		<td>會員密碼:</td>
@@ -169,18 +166,19 @@
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+<link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
 <script>
         $.datetimepicker.setLocale('zh'); // kr ko ja en
-        $('.f_date1').datetimepicker({
+        $('#f_date1').datetimepicker({
            theme: '',          //theme: 'dark',
            timepicker: false,   //timepicker: false,
            step: 1,            //step: 60 (這是timepicker的預設間隔60分鐘)
 	       format: 'Y-m-d ',
-	       value: '',
-           
+	       value: '',  
         });
  
 </script>
-
 
 </html>

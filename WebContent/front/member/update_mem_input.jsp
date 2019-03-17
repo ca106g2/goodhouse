@@ -125,7 +125,7 @@
 	</tr>
 	<tr>
 		<td>會員圖片:</td>
-		<td><input type="file" name="mem_picture" size="45"	/></td>
+		<td><input type="file" name="mem_picture" size="45"	alt="..."/></td>
 	</tr>
 	<tr>
 		<td>積分總和:</td>
@@ -134,7 +134,7 @@
 	</tr>
 
 	
-		<tr>
+	<tr>
 		<td>會員性別:</td>
 		<td>
 			<select name="mem_sex">
@@ -151,6 +151,9 @@
 <input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>">
 <input type="submit" value="送出修改"></FORM>
 
+
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+</body>
 <script>
         $.datetimepicker.setLocale('zh'); // kr ko ja en
         $('.f_date1').datetimepicker({
@@ -161,8 +164,20 @@
 	       value: '',
            
         });
+        
+//      1.以下為某一天之前的日期無法選擇
+             var somedate1 = new Date('2017-06-15');
+             $('#f_date1').datetimepicker({
+                 beforeShowDay: function(date) {
+               	  if (  date.getYear() <  somedate1.getYear() || 
+        		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
+        		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
+                     ) {
+                          return [false, ""]
+                     }
+                     return [true, ""];
+             }});
  
 </script>
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
-</body>
+
 </html>

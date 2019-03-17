@@ -90,6 +90,8 @@ pageContext.setAttribute("list",list);
 		<th>會員照片</th>
 		<th>積分分數總合</th>
 		<th>會員性別</th>
+		<th>修改</th>
+		<th>刪除</th>
 	</tr>
 	<%@ include file="page1.file" %>
 	<c:forEach 	var="memVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
