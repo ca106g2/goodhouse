@@ -58,7 +58,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				for(MemVO mVO : mSvc.getAll()) {
 					if(mem_email.equals(mVO.getMem_email())) {
 //						mem_id = mVO.getMem_id();
-						req.getSession().setAttribute("mVO",mVO);
+						req.getSession().setAttribute("memVO",mVO);
 					}
 				}
 				/**3查詢完成準備轉交****/
@@ -629,20 +629,7 @@ public class Ele_ContractServlet extends HttpServlet{
 			}
 		}
 		
-		//TODO 顯示房客的所有列表
-		if("front_getMemEle_Contract".equals(action)) {
-			
-				/****1接收請求參數************************/
-				/*****2準備查詢************************/
-				/*****3查詢完成準備轉交************************/
-				req.setAttribute("lastPage", true);
-				String url = "/front/ele_contract/mem_listAll_ele_contract.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-				
-		}
-		
-		//房東輸入房客姓名取得該房東的所有電子合約列表
+		//TODO 房東輸入房客姓名取得該房東的所有電子合約列表
 		if("lanGetMemEle_ContractByName".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -719,44 +706,26 @@ public class Ele_ContractServlet extends HttpServlet{
 						.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
 				failureView.forward(req, res);
 			}
+		
+		
 		}
-		
-		//顯示房東的所有電子合約列表
-		if("lan_listAll".equals(action)) {
+		//TODO 房東查資料
+		if("getOne_For_look".equals(action)) {
 			
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
+			/*****1接收請求參數*************************/
+			String ele_con_id = req.getParameter("ele_con_id");
 			
-			try {
-				/*****1接收請求參數*************************/
-				MemVO lanMemVO = (MemVO) session.getAttribute("mVO");
-				String lan_mem_id = lanMemVO.getMem_id();
-				
-//				/******2開始查詢資料*****************/
-				String lan_id = null;
-				LanService lanSvc = new LanService();
-				lan_id = lanSvc.getOneLanByMemId(lan_mem_id).getLan_id();
-				
-				Ele_ContractService eleConSvc = new Ele_ContractService();
-				List<Ele_ContractVO> ele_contractForLanList = eleConSvc.getAllForEle_ConByLan_id(lan_id);
-//				if (ele_contractForLanList.isEmpty()) {
-//					errorMsgs.add("沒有資料");
-//				}
-				
-				/****3查詢完成準備轉交******************/
-				req.setAttribute("lastPage", true);
-				req.getSession().setAttribute("ele_contractForLanList", ele_contractForLanList);
-				String url = "/front/ele_contract/lan_listAll_ele_contract.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-				
-			} catch(Exception e) {
-				errorMsgs.add("沒有資料");
-				RequestDispatcher failureView = req.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
-				failureView.forward(req, res);
-			}
-		}
-		
-		
+			/*****2開始查資料*********************/
+			Ele_ContractService eleConSvc = new Ele_ContractService();
+			Ele_ContractVO eleConVO = eleConSvc.getOneEC(ele_con_id);
+			
+			/*****3查詢成功準備轉交資料************************/
+			
+			req.setAttribute("eleConVO", eleConVO);
+			String url = "/front/ele_contract/lan_listOne_ele_contract.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+			
+	}
 	}
 }

@@ -11,11 +11,10 @@ public class Test_HouseTrackJDBCDAO {
 		House_TrackVO houTraVO = new House_TrackVO();
 		
 		//新增
-//		houTraVO.setMem_id("M000000005");
-//		houTraVO.setHou_id("HOU0000005");
-//		houTraVO.setHou_tra_status("S1追蹤");
-//		
-//		dao.insert(houTraVO);
+		houTraVO.setMem_id("M000000005");
+		houTraVO.setHou_id("HOU0000005");
+		
+		dao.insert(houTraVO);
 		
 		//修改
 //		House_TrackVO houTraVO2 = new House_TrackVO();
@@ -23,7 +22,6 @@ public class Test_HouseTrackJDBCDAO {
 //		houTraVO2.setHou_tra_id("HT00000001");
 //		houTraVO2.setHou_id("HOU0000001");
 //		houTraVO2.setMem_id("M000000001");
-//		houTraVO2.setHou_tra_status("S2取消追蹤");
 //		
 //		dao.update(houTraVO2);
 		
@@ -39,13 +37,12 @@ public class Test_HouseTrackJDBCDAO {
 		System.out.println("----------------------------------------------");
 		
 		//查詢全部
-		List<House_TrackVO> list = dao.getAll();
-		for(House_TrackVO aHouseTrackVO :list) {
-			System.out.println(aHouseTrackVO.getHou_tra_id());
-			System.out.println(aHouseTrackVO.getHou_id());
-			System.out.println(aHouseTrackVO.getMem_id());
-			System.out.println(aHouseTrackVO.getHou_tra_status());
-		}
+//		List<House_TrackVO> list = dao.getAll();
+//		for(House_TrackVO aHouseTrackVO :list) {
+//			System.out.println(aHouseTrackVO.getHou_tra_id());
+//			System.out.println(aHouseTrackVO.getHou_id());
+//			System.out.println(aHouseTrackVO.getMem_id());
+//		}
 	}
 
 }

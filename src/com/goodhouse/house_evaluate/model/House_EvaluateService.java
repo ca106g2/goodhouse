@@ -63,4 +63,8 @@ public class House_EvaluateService {
 	public List<House_EvaluateVO> getAll(){
 		return dao.getAll();
 	} 
+	
+	public List<House_EvaluateVO> getListByHouId(String hou_id){
+		return dao.getListByHouId(hou_id);
+	}
 }

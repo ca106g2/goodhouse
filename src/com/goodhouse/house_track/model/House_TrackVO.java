@@ -6,7 +6,7 @@ public class House_TrackVO implements java.io.Serializable{
 	private String hou_tra_id;//房屋追蹤編號
 	private String mem_id;//會員編號
 	private String hou_id;//房屋編號
-	private String hou_tra_status;//房屋追蹤狀態
+//	private String hou_tra_status;//房屋追蹤狀態
 	public String getHou_tra_id() {
 		return hou_tra_id;
 	}
@@ -26,12 +26,12 @@ public class House_TrackVO implements java.io.Serializable{
 	public void setHou_id(String hou_id) {
 		this.hou_id = hou_id;
 	}
-	public String getHou_tra_status() {
-		return hou_tra_status;
-	}
-	public void setHou_tra_status(String hou_tra_status) {
-		this.hou_tra_status = hou_tra_status;
-	}
+//	public String getHou_tra_status() {
+//		return hou_tra_status;
+//	}
+//	public void setHou_tra_status(String hou_tra_status) {
+//		this.hou_tra_status = hou_tra_status;
+//	}
 	
 	
 	

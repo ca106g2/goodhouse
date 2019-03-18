@@ -37,13 +37,13 @@
 							<input type="submit" value="送出">
 						</form>
 					</li>
-					<li>
-						<form method="post" action="bill.do">
-							<b>(房客)要繳交房租</b>
-							<input type="hidden" name="action" value="billForMemListAll">
-							<input type="submit" value="送出">
-						</form>
-					</li>
+<!-- 					<li> -->
+<!-- 						<form method="post" action="bill.do"> -->
+<!-- 							<b>(房客)要繳交房租</b> -->
+<!-- 							<input type="hidden" name="action" value="billForMemListAll"> -->
+<!-- 							<input type="submit" value="送出"> -->
+<!-- 						</form> -->
+<!-- 					</li> -->
 				</ul>
 			</div>
 		</div>

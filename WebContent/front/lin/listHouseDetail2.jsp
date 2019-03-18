@@ -6,15 +6,28 @@
 <%@ page import="com.goodhouse.house.model.*"%>
 <%@ page import="com.goodhouse.appointment.model.*"%>
 <%@ page import="com.goodhouse.house_noappointment.model.*"%>
+<%@ page import="com.goodhouse.house_evaluate.model.*"%>
+<%@ page import="com.goodhouse.house_track.model.*"%>
+<%@ page import="com.goodhouse.member.model.*"%>
 
 
 <%
-String hou_id = request.getParameter("hou_id");
-HouseService houSvc = new HouseService();
-HouseVO houVO = houSvc.getOneHouse(hou_id);
-pageContext.setAttribute("houVO", houVO);
+	String hou_id = request.getParameter("hou_id");
+	HouseService houSvc = new HouseService();
+	HouseVO houVO = houSvc.getOneHouse(hou_id);
+	pageContext.setAttribute("hoHouVO", houVO);
 %>
 
+<%
+	House_TrackService houTraSvc = new House_TrackService();
+	MemVO memVO = (MemVO) session.getAttribute("memVO");
+	pageContext.setAttribute("memVO", memVO);
+	
+	House_EvaluateService houEvaSvc = new House_EvaluateService();
+	List<House_EvaluateVO> houEvaList = houEvaSvc.getListByHouId(houVO.getHou_id());
+	pageContext.setAttribute("houEvaList", houEvaList);
+	
+%>
 <%-- <% --%>
 <!-- // String hou_noapp_id = request.getParameter("hou_noappoint_id"); -->
 <!-- // HouNoAppService houNoAppSvc = new HouNoAppService(); -->
@@ -50,17 +63,17 @@ AppointVO appointVO = appointSvc.getOneAppoint(appoint_id);
 				<div class="row">
 					<div class="col-sm-4">
 						<div
-							style="background-image: url(http://localhost:8081/<%=request.getContextPath() %>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=1); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
+							style="background-image: url(<%=request.getContextPath() %>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=1); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div 
+							style="background-image: url(<%=request.getContextPath() %>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=2); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div
-							style="background-image: url(http://localhost:8081/<%=request.getContextPath() %>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=2); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div
-							style="background-image: url(http://localhost:8081/<%=request.getContextPath() %>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=3); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
+							style="background-image: url(<%=request.getContextPath() %>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=3); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
 						</div>
 					</div>
 				</div>
@@ -133,114 +146,244 @@ AppointVO appointVO = appointSvc.getOneAppoint(appoint_id);
 						</div>
 					</div>
 				</div>
+				
+				<div class="row">
+<!--========================================= 以下是慈慈的加入追蹤功能 =======================================--->			
+					<div class="col-sm-3">
+						<c:if test="${memVO != null}">
+						<img src=" ${houTraSvc.findByHouIdAndMem_id(hoHouVO.hou_id, memVO.mem_id) != null ? 'heart_red.png' : 'heart_white.png'}" 
+							class="heart"  title="${houTraSvc.findByHouIdAndMem_id(hoHouVO.hou_id, memVO.mem_id) != null ? '取消收藏' : '加入收藏' }"
+							alt="${houTraSvc.findByHouIdAndMem_id(hoHouVO.hou_id, memVO.mem_id) != null ? 'favorite' : 'unfavorite' }"
+							style="width:50px;heidth:50px" id="${hoHouVO.hou_id}" >
+					
+						<input type="hidden" name="hou_id" value="${hoHouVO.hou_id}">
+						<input type="hidden" name="mem_id" value="${memVO.mem_id}">
+						</c:if>
+					</div>
+<!--==========================================以上是慈慈的加入追蹤功能 ==================================---->
+<!---========================================= 以下是 TIM 的廣告檢舉功能 =========================================--->
+					<div class="col-sm-3">
+						<input type="submit" value="檢舉">
+					</div>
+<!---=========================================以上是 TIM 的廣告檢舉功能 ==========================================--->					
+				</div>
 				<div class="row">
 					<div class="col-sm-12">
 						<ul class="nav nav-tabs" role="tablist">
-							<li class="nav-item"><a class="nav-link active"
-								href="#profile" role="tab" data-toggle="tab" id="note">備註</a></li>
-							<li class="nav-item"><a class="nav-link" href="#buzz"
-								role="tab" data-toggle="tab">問與答</a></li>
-							<li class="nav-item"><a class="nav-link" href="#references"
-								role="tab" data-toggle="tab">預約行程</a></li>
+							<li class="nav-item">
+								<a class="nav-link active" href="#profile" role="tab" data-toggle="tab" id="note">備註</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#buzz" role="tab" data-toggle="tab">問與答</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#references" role="tab" data-toggle="tab">預約行程</a>
+							</li>
+	<!---======================================= 以下是慈慈的房屋評價功能 ===================================================--->						
+							<li class="nav-item">
+								<a class="nav-link" href="#evaluate" role="tab" data-toggle="tab">評價</a>
+							</li>
 						</ul>
-
+	<!---========================================以上是慈慈的房屋評價功能 ================================================-->
 						<!-- Tab panes -->
 						<div class="tab-content">
+						
 							<div role="tabpanel" class="tab-pane fade in active" id="profile">
 								<div class="myrow"><%=houVO.getHou_note()%></div>
-
 							</div>
+							
 							<div role="tabpanel" class="tab-pane fade" id="buzz">問與答</div>
+							
 							<div role="tabpanel" class="tab-pane fade" id="references">
-							<FORM METHOD="post" ACTION="appoint.do" name="form1">
-							<table>
-							<tr>
-								<td>
-								<c:forEach var="houNoAppVO" items="${houNoAppSvc.all}">
-									<c:if test="${houNoAppVO.hou_id == houVO.hou_id }">
-			                    		<div><h5>不可預約時間</h5></div>
-			                    		<div><h5>${houNoAppVO.hou_noapp_date}</h5></div>
-			                    	</c:if>
-                				</c:forEach>
-                				</td><p>
-							</tr>
 							
-							<tr>
-							<td>
-								選擇預約看房時間<br>
-								<input name="appoint_date" id="f_date1" type="text">
-							
-							</td>
-							</tr>
-							
-							</table>
-							<input type="hidden" name="action" value="insert">
-							<input type="submit" value="送出新增">
-							</FORM>	
-								
-								
+								<FORM METHOD="post" ACTION="appoint.do" name="form1">
+									<table>
+									<tr>
+										<td>
+										<c:forEach var="houNoAppVO" items="${houNoAppSvc.all}">
+											<c:if test="${houNoAppVO.hou_id == houVO.hou_id }">
+					                    		<div><h5>不可預約時間</h5></div>
+					                    		<div><h5>${houNoAppVO.hou_noapp_date}</h5></div>
+					                    	</c:if>
+		                				</c:forEach>
+		                				</td><p>
+									</tr>
+									<tr>
+										<td>
+											選擇預約看房時間<br>
+											<input name="appoint_date" id="f_date1" type="text">
+										</td>
+									</tr>
+									</table>
+									<input type="hidden" name="action" value="insert">
+									<input type="submit" value="送出新增">
+								</FORM>	
 							</div>
+							
+	<!---=================================== 以下是慈慈的房屋評價功能 ==================================--->
+							<div role="tabpanel" class="tab-pane fade in active" id="evaluate">
+								<c:if test="${memVO != null}">
+<!-- 									<form class="houEvaForm"> -->
+										<dl class="row ">
+											<dt class="col-sm-3">請選擇評價等級</dt>
+											<dd class="col-sm-9">
+												<div class="custom-control custom-radio">
+												  <input type="radio" id="customRadio1" name="hou_eva_grade" class="custom-control-input houEvaGgrade" value="G1非常不好">
+												  <label class="custom-control-label" for="customRadio1">非常不好</label>
+												</div>
+												<div class="custom-control custom-radio">
+												  <input type="radio" id="customRadio2" name="hou_eva_grade" class="custom-control-input houEvaGgrade" value="G2不好">
+												  <label class="custom-control-label" for="customRadio2">不好</label>
+												</div>
+												<div class="custom-control custom-radio">
+												  <input type="radio" id="customRadio3" name="hou_eva_grade" class="custom-control-input houEvaGgrade" value="G3普通">
+												  <label class="custom-control-label" for="customRadio3">普通</label>
+												</div>
+												<div class="custom-control custom-radio">
+												  <input type="radio" id="customRadio4" name="hou_eva_grade" class="custom-control-input houEvaGgrade" value="G4好">
+												  <label class="custom-control-label" for="customRadio4" id="click4">好</label>
+												</div>
+												<div class="custom-control custom-radio">
+												  <input type="radio" id="customRadio5" name="hou_eva_grade" class="custom-control-input houEvaGgrade" value="G5非常好">
+												  <label class="custom-control-label" for="customRadio5" id="click5">非常好</label>
+												</div>
+											</dd>
+											
+											<dt class="col-sm-3">請寫下評論</dt>
+											<dd class="col-sm-9">
+												<textarea name="hou_eva_content" rows="3" cols=50 class="houEevaContent"></textarea>
+											</dd>
+										</dl>
+									<input type="hidden" name="action" value="insert2">
+									<input type="hidden" name="hou_id" value="${hoHouVO.hou_id}" class="houId">
+									<input type="hidden" name="mem_id" value="${memVO.mem_id}" class="memId">
+									<input type="submit" value="送出" class="btn btn-outline-secondary" id="submitEva">
+<!-- 								</form> -->
+							</c:if>
+							<table class="table table-borderless">
+								<thead>
+								    <tr>
+								      	<th scope="col">評價等級</th>
+								      	<th scope="col">評價內容</th>
+								    </tr>
+								  </thead>
+								  <tbody>
+								  <c:forEach var="houEvaVO" items="${houEvaList}" varStatus="houEva">
+								    <tr class="hou_eva_vo" >
+								      	<td>${houEvaVO.hou_eva_grade}</td>
+								      	<td>${houEvaVO.hou_eva_content}</td>
+								    </tr>
+								   </c:forEach>
+								  </tbody>
+							</table>
+								
+						</div>
+<!----===================================== 以上是慈慈的房屋評價功能 ====================================--->
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-
-	$(".change").click(function(){
-		if(this.title == "加入收藏") {
-			this.src = "<%=request.getContextPath()%>/images/heart_red.png";
-			this.title = "取消收藏";
-		} else {
-				this.src = "<%=request.getContextPath()%>
-		/images/heart_white.png";
-								this.title = "加入收藏";
-							}
-						});
-
-		$(function() {
-			// This button will increment the value
-			$('.qtyplus').click(
-					function(e) {
-						// Stop acting like a button
-						e.preventDefault();
-						// Get the field name
-						fieldName = $(this).attr('field');
-						// Get its current value
-						var currentVal = parseInt($(
-								'input[name=' + fieldName + ']').val());
-						// If is not undefined
-						if (!isNaN(currentVal)) {
-							// Increment
-							$('input[name=' + fieldName + ']').val(
-									currentVal + 1);
-						} else {
-							// Otherwise put a 0 there
-							$('input[name=' + fieldName + ']').val(0);
-						}
+/****************************以下慈慈的加入最愛追蹤功能************************************/
+		
+		$(".heart").click(function(){
+			var element = $(this);
+				if($(this).attr("alt") == "unfavorite") {
+					$.ajax({
+						type: "POST",
+						url: "house_track.do",
+						data: {
+							"hou_id":$(this).next().attr('value'),
+							"action":"insert",
+							"mem_id":$(this).next().next().attr("value")
+							},
+						dataType: "json",
+						
+						success: function(){
+							hou_id = element.attr('id');
+							$('img[id=' + hou_id + ']').attr({
+								"src":"heart_red.png",
+								"title": "取消收藏",
+								"alt": "favorite"
+							});
+							swal("完成","成功加入收藏","success");
+						},
+						error: function(){alert("AJAX發生錯誤")}
 					});
-			// This button will decrement the value till 0
-			$(".qtyminus").click(
-					function(e) {
-						// Stop acting like a button
-						e.preventDefault();
-						// Get the field name
-						fieldName = $(this).attr('field');
-						// Get its current value
-						var currentVal = parseInt($(
-								'input[name=' + fieldName + ']').val());
-						// If it isn't undefined or its greater than 0
-						if (!isNaN(currentVal) && currentVal > 0) {
-							// Decrement one
-							$('input[name=' + fieldName + ']').val(
-									currentVal - 1);
-						} else {
-							// Otherwise put a 0 there
-							$('input[name=' + fieldName + ']').val(0);
-						}
+				} else if ($(this).attr("alt") == "favorite") {
+					
+					$.ajax({
+						type: "POST",
+						url: "house_track.do",
+						data: {
+							"hou_id":$(this).next().attr('value'),
+							"action":"delete",
+							"mem_id":$(this).next().next().attr("value")
+							},
+						dataType: "json",
+						success: function(){
+							hou_id = element.attr('id');
+							$('img[id=' + hou_id + ']').attr({
+								"src": "heart_white.png",
+								"title": "加入收藏",
+								"alt": "unfavorite"						
+							});
+							swal("完成","成功取消收藏","error");
+						},
+						error: function(){alert("AJAX發生錯誤")}
 					});
-		});
+				};
+			});
+	
+	
+/****************************以上慈慈的加入最愛追蹤功能************************************/
+ </script>
+ <script type="text/javascript">
+/****************************以下慈慈的評價功能********************************************/
+ 				
+		 	$('#submitEva').click(function(){
+		 		
+		 		var hou_eva_grade=0;
+		 		
+				if(	$("input:radio[name='hou_eva_grade']:checked")){
+					hou_eva_grade = $("input:radio[name='hou_eva_grade']:checked").val();
+		 			
+				}
+				
+		 		$.ajax({
+
+		 			type: "POST",
+					url: "house_evaluate.do",
+					data: {
+						"hou_eva_grade":hou_eva_grade,
+						"hou_eva_content":$(".houEevaContent").val(),
+						"mem_id":$(".memId").val(),
+						"hou_id":$(".houId").val(),
+						"action":"insert2"
+						},
+						
+					dataType: "json",
+					
+					success: function(data){
+							
+							$('tbody').append( '<tr> <td>'+ data.hou_eva_grade +'</td> <td>' + data.hou_eva_content + '</td> </tr>');
+							
+							$("input:radio[name='hou_eva_grade']").prop("checked",false) ;
+							$(".houEevaContent").val("") ;
+							
+							swal("完成","評價成功","success");
+						},
+					error: function(){alert("AJAX發生錯誤")}
+					
+		 			});
+			});
+ 
+ 
+/****************************以上慈慈的評價功能********************************************/
+	
 	</script>
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>

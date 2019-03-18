@@ -10,7 +10,7 @@
 <%
 	ContractVO conVO = (ContractVO) session.getAttribute("conVO");
 	Ele_ContractVO eleConVO = (Ele_ContractVO) request.getAttribute("eleConVO");
-	MemVO mVO = (MemVO) session.getAttribute("mVO");
+	MemVO mVO = (MemVO) session.getAttribute("memVO");
 %>
 
 <!doctype html>
@@ -86,6 +86,7 @@
 					String lan_id= null;
 					LanService lanSvc = new LanService();
 					lan_id = lanSvc.getOneLanByMemId(mVO.getMem_id()).getLan_id();
+					pageContext.setAttribute("lan_id", lan_id);
 				%>
 				立契約書人：出租人   <b><%=mVO.getMem_name()%></b>（以下簡稱甲方）、
 				承租人       <b><input type="text" name="mem_name" class="btn btn-light"/></b> （以下簡稱乙方），茲為房屋一部租賃、雙方議定契約條款如下：<br>

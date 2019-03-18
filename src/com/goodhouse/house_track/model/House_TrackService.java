@@ -7,16 +7,15 @@ public class House_TrackService {
 	private House_TrackDAO_interface dao;
 	
 	public House_TrackService() {
-		dao = new House_TrackJDBCDAO();
+		dao = new House_TrackJNDIDAO();
 	}
 	
 	//新增
-	public House_TrackVO addHT(String mem_id,String hou_id,String hou_tra_status) {
+	public House_TrackVO addHT(String mem_id,String hou_id) {
 		
 		House_TrackVO houTraVO = new House_TrackVO();
 		houTraVO.setHou_id(hou_id);
 		houTraVO.setMem_id(mem_id);
-		houTraVO.setHou_tra_status(hou_tra_status);
 		dao.insert(houTraVO);
 		
 		return houTraVO;
@@ -35,7 +34,6 @@ public class House_TrackService {
 		houTraVO.setHou_tra_id(hou_tra_id);
 		houTraVO.setHou_id(hou_id);
 		houTraVO.setMem_id(mem_id);
-		houTraVO.setHou_tra_status(hou_tra_status);
 		dao.update(houTraVO);
 		
 		return houTraVO;
@@ -59,5 +57,14 @@ public class House_TrackService {
 	//查詢全部
 	public List<House_TrackVO> getAll(){
 		return dao.getAll();
+	}
+	
+	//查詢某會員的所有追蹤
+	public List<House_TrackVO> getListByMemId(String mem_id){
+		return dao.getListByMemId(mem_id);
+	}
+	//查詢單一房屋被某會員追蹤
+	public House_TrackVO findByHouIdAndMem_id(String hou_id,String mem_id){
+		return dao.findByHouIdAndMem_id(hou_id, mem_id);
 	}
 }

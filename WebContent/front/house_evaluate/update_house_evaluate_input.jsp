@@ -14,7 +14,7 @@
 <title>房屋評價修改</title>
 </head>
 <body bgcolor='white'>
-	
+	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<table id="table-1">
 		<tr>
 			<td>
@@ -36,42 +36,55 @@
 		</ul>
 	</c:if>
 	
-	<form name="the_form" METHOD="post" ACTION="house_evaluate.do">
-		<table>
-			
-			<tr>
-				<td>評價等級</td><br>
-				<td>
-					<label>
-						<input type="radio" name="hou_eva_grade" value="G1非常不好"  ${(House_EvaluateVO.hou_eva_grade eq 'G1非常不好') ? 'checked' : ''} >非常不好<br>
-					</label>
-					<label>
-						<input type="radio" name="hou_eva_grade" value="G2不好" ${(House_EvaluateVO.hou_eva_grade eq 'G2不好') ? 'checked' : ''}>不好<br>
-					</label>
-					<label>
-						<input type="radio" name="hou_eva_grade" value="G3普通" ${(House_EvaluateVO.hou_eva_grade eq 'G3普通') ? 'checked' : ''}>普通<br>
-					</label>
-					<label>
-						<input type="radio" name="hou_eva_grade" value="G4好" ${(House_EvaluateVO.hou_eva_grade eq 'G4好') ? 'checked' : ''}>好<br>
-					</label>
-					<label>
-						<input type="radio" name="hou_eva_grade" value="G5非常好" ${(House_EvaluateVO.hou_eva_grade eq 'G5非常好') ? 'checked' : ''}>非常好<br>
-					</label>
-				</td>
-			</tr><br>
-			<tr>
-				<td>評價內容</td><br>
-				<td>
-					<textarea name="hou_eva_content" value="<%=heVO.getHou_eva_content()%>" rows="3" cols=50><%=heVO.getHou_eva_content()%></textarea>
-				</td>
-			</tr>
-		</table>
-		<input type="hidden" name="action" value="update">
-		<input type="hidden" name="hou_eva_id" value="<%=heVO.getHou_eva_id()%>">
-		<input type="hidden" name="mem_id" value="<%=heVO.getMem_id()%>">
-		<input type="hidden" name="hou_id" value="<%=heVO.getHou_id()%>">
-		<input type="submit" value="送出修改">
-	</form>
+	<div class="container">
+		<div class="row justfy-content-center">
+			<div class="row col-12 ">
+				<form name="the_form" METHOD="post" ACTION="house_evaluate.do">
+					<dl class="row ">
+						<dt class="col-sm-3">評價等級</dt>
+						<dd class="col-sm-9">
+							<div class="custom-control custom-radio">
+								<input type="radio" id="customRadio1" name="hou_eva_grade" class="custom-control-input" value="G1非常不好"
+								${(House_EvaluateVO.hou_eva_grade eq 'G1非常不好') ? 'checked' : ''}>
+								<label class="custom-control-label" for="customRadio1">非常不好</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="customRadio2" name="hou_eva_grade" class="custom-control-input" value="G2不好"
+								${(House_EvaluateVO.hou_eva_grade eq 'G2不好') ? 'checked' : ''}>
+								<label class="custom-control-label" for="customRadio2">不好</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="customRadio3" name="hou_eva_grade" class="custom-control-input" value="G3普通"
+								${(House_EvaluateVO.hou_eva_grade eq 'G3普通') ? 'checked' : ''}>
+								<label class="custom-control-label" for="customRadio3">普通</label>
+							</div>
+								<div class="custom-control custom-radio">
+								<input type="radio" id="customRadio4" name="hou_eva_grade" class="custom-control-input" value="G4好"
+								${(House_EvaluateVO.hou_eva_grade eq 'G4好') ? 'checked' : ''}>
+								<label class="custom-control-label" for="customRadio4">好</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="customRadio5" name="hou_eva_grade" class="custom-control-input" value="G5非常好"
+								${(House_EvaluateVO.hou_eva_grade eq 'G5非常好') ? 'checked' : ''}>
+								<label class="custom-control-label" for="customRadio5">非常好</label>
+							</div>
+							</dd>
+										
+							<dt class="col-sm-3">請寫下評論</dt>
+							<dd class="col-sm-9">
+								<textarea name="hou_eva_content" rows="3" cols=50 value="<%=heVO.getHou_eva_content()%>"><%=heVO.getHou_eva_content()%></textarea>
+							</dd>
+						</dl>
+					<input type="hidden" name="action" value="update">
+					<input type="hidden" name="hou_eva_id" value="<%=heVO.getHou_eva_id()%>">
+					<input type="hidden" name="mem_id" value="<%=heVO.getMem_id()%>">
+					<input type="hidden" name="hou_id" value="<%=heVO.getHou_id()%>">
+					<input type="submit" value="送出" class="btn btn-outline-secondary">
+				</form>
+			</div>
+		</div>
+	</div>
 	
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

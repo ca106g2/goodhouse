@@ -201,10 +201,10 @@
 <!-- 	卡片大小格式跑掉		------ -->
 			
 		
-		</c:if>
-		</c:forEach>
-		</div>
-		</div>
+				</c:if>
+				</c:forEach>
+				</div>
+			</div>
 		</div>
 		<%@ include file="page2.file"%>
 		<jsp:include page="/FrontHeaderFooter/Footer.jsp" />

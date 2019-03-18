@@ -28,6 +28,9 @@ public class House_EvaluateJDBCDAO implements House_EvaluateDAO_interface{
 	private static final String GET_ALL_STMT = //查詢指令
 			"SELECT HOU_EVA_ID,MEM_ID,HOU_ID,HOU_EVA_GRADE,HOU_EVA_CONTENT FROM HOUSE_EVALUATE ORDER BY HOU_EVA_ID";
 	
+	private static final String GET_LIST_BY_HOU_ID = //hou_id find list
+			"select * from house_evaluate where hou_id = ?";
+	
 	@Override//新增
 	public void insert(House_EvaluateVO heVO) {
 		Connection con = null;
@@ -173,14 +176,11 @@ public class House_EvaluateJDBCDAO implements House_EvaluateDAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo 也稱為 Domain objects
 				heVO = new House_EvaluateVO();
 				heVO.setMem_id(rs.getString("mem_id"));
 				heVO.setHou_id(rs.getString("hou_id"));
 				heVO.setHou_eva_grade(rs.getString("hou_eva_grade"));
 				heVO.setHou_eva_content(rs.getString("hou_eva_content"));
-				
-			
 			}
 
 			// Handle any driver errors
@@ -236,6 +236,72 @@ public class House_EvaluateJDBCDAO implements House_EvaluateDAO_interface{
 			//SELECT HOU_EVA_ID,MEM_ID,HOU_ID,HOU_EVA_GRADE,HOU_EVA_CONTENT FROM HOUSE_EVALUATE ORDER BY HOU_EVA_ID
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
+				heVO = new House_EvaluateVO();
+				heVO.setHou_eva_id(rs.getString("hou_eva_id"));
+				heVO.setMem_id(rs.getString("mem_id"));
+				heVO.setHou_id(rs.getString("hou_id"));
+				heVO.setHou_eva_grade(rs.getString("hou_eva_grade"));
+				heVO.setHou_eva_content(rs.getString("hou_eva_content"));
+;
+				list.add(heVO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<House_EvaluateVO> getListByHouId(String hou_id) {
+		
+		List<House_EvaluateVO> list = new ArrayList<House_EvaluateVO>();
+		House_EvaluateVO heVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_LIST_BY_HOU_ID);
+			
+			pstmt.setString(1, hou_id);
+			rs = pstmt.executeQuery();
+			//select * from house_evaluate where hou_id = ?
+			
+			while (rs.next()) {
 				heVO = new House_EvaluateVO();
 				heVO.setHou_eva_id(rs.getString("hou_eva_id"));
 				heVO.setMem_id(rs.getString("mem_id"));

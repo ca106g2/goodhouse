@@ -45,7 +45,7 @@
 
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<table id="table-1">
 		<tr><td>
 			 <h3>房屋評價資料 - listOneHouse_Evaluate.jsp</h3>
@@ -73,6 +73,6 @@
 
 	
 	</table>
-	
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

@@ -8,4 +8,5 @@ public interface House_EvaluateDAO_interface {
 	public void delete(String hou_eva_id);
 	public House_EvaluateVO findByPrimmaryKey(String hou_eva_id);
 	public List<House_EvaluateVO> getAll();
+	public List<House_EvaluateVO> getListByHouId(String hou_id);
 }

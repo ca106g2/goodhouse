@@ -93,4 +93,8 @@ public class HouseService {
 	public List<HouseVO> getAllFor_Hou_Lan_id(String lan_id){
 		return dao.getAllFor_Hou_Lan_id(lan_id);
 	}
+	
+	public HouseVO getOneByLanId(String lan_id) {
+		return dao.findByLanId(lan_id);
+	}
 }

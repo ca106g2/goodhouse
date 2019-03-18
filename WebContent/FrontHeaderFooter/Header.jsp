@@ -41,7 +41,7 @@
            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                    <li class="nav-item active">
-                       <a class="nav-link" href="#"><img src="<%=request.getContextPath()%>/share_pic/logo_color.png" style="width:40px ; height:37px;"/>首頁</a>
+                       <a class="nav-link" href="<%=request.getContextPath()%>/front/lin/houseBrowse.jsp"><img src="<%=request.getContextPath()%>/share_pic/logo_color.png" style="width:40px ; height:37px;"/>首頁</a>
                    </li>
                    <li class="nav-item">
                        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">註冊</a>
@@ -62,8 +62,8 @@
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/mem_listAll_ele_contract.jsp">我的合約列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/bill/mem_select_page.jsp">我的帳單列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的積分紀錄</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/mem_listAll_house_evaluate.jsp">我的評價</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/add_house_evaluate.jsp">我要評價</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/mem_listAll_house_evaluate.jsp">我的評價紀錄</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_track/mem_house_track_listAll.jsp">我的最愛追蹤</a>
 					        </div>
 					    </li>
                    </li>

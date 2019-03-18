@@ -5,7 +5,7 @@
 <%@ page import="com.goodhouse.apply_conturct.model.*"%>
 
 <%
-	MemVO mVO = (MemVO) session.getAttribute("mVO");
+	MemVO mVO = (MemVO) session.getAttribute("memVO");
 	List<Apply_ConturctVO> list = (List<Apply_ConturctVO>)session.getAttribute("applyConturctList");
 	pageContext.setAttribute("list",list);
 %>

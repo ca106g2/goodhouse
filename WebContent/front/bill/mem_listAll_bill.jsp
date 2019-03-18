@@ -88,7 +88,7 @@
 
 
 
-
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"></jsp:include>
 	<!-- 工作區結束 -->
 
 </body>

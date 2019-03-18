@@ -305,7 +305,7 @@ public class Apply_ConturctServlet extends HttpServlet{
 			}
 		}
 		
-		//房客確認合約
+		//TODO 房客確認合約
 		if("eleConCheck".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -334,5 +334,51 @@ public class Apply_ConturctServlet extends HttpServlet{
 			
 			
 		}
+		
+		// TODO 新增 action 房客取消訂單處理
+		if("eleConCancle".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			/****1接收請求參數************/
+			String ele_con_id = req.getParameter("ele_con_id");
+			/****2修改合約狀態***************/
+			Ele_ContractService eleConSvc = new Ele_ContractService();
+			Ele_ContractVO eleConVO = eleConSvc.getOneEC(ele_con_id);
+			
+			eleConVO.setEle_con_id(ele_con_id);
+			eleConVO.setCon_id(eleConVO.getCon_id());
+			eleConVO.setMem_id(eleConVO.getMem_id());
+			eleConVO.setMem_idnumber(eleConVO.getMem_idnumber());
+			eleConVO.setLan_id(eleConVO.getLan_id());
+			eleConVO.setLan_idnumber(eleConVO.getLan_idnumber());
+			eleConVO.setHou_id(eleConVO.getHou_id());
+			eleConVO.setEle_rent_money(eleConVO.getEle_rent_money());
+			eleConVO.setEle_deposit_money(eleConVO.getEle_deposit_money());
+			eleConVO.setEle_rent_time(eleConVO.getEle_rent_time());
+			eleConVO.setEle_rent_f_day(eleConVO.getEle_rent_f_day());
+			eleConVO.setEle_rent_l_day(eleConVO.getEle_rent_l_day());
+			eleConVO.setEle_singdate(eleConVO.getEle_singdate());
+			
+			if(eleConVO.getEle_con_status().equals("s1")) {
+				eleConVO.setEle_con_status("s8");
+			}
+			
+			eleConVO.setBill_paymenttype(eleConVO.getBill_paymenttype());
+			eleConVO.setEle_con_note(eleConVO.getEle_con_note());
+			
+			eleConSvc.updateEC(eleConVO);
+			
+			/******3取消成功準備跳轉*******************/
+			
+			req.getSession().setAttribute("eleConVO", eleConVO);
+			String url = "/front/ele_contract/mem_listAll_ele_contract.jsp";
+			RequestDispatcher success = req.getRequestDispatcher(url);
+			success.forward(req, res);
+			
+			
+		}
+		// TODO 再加上 資料庫修改完訂單狀態後，立即發送e-mail給房東
 	}
 }

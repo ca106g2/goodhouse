@@ -9,4 +9,6 @@ public interface House_TrackDAO_interface {
 	public void delete(String hou_tra_id);
 	public House_TrackVO findByPrimaryKey(String houTraId);
 	public List<House_TrackVO> getAll();
+	public List<House_TrackVO> getListByMemId(String mem_id);
+	public House_TrackVO findByHouIdAndMem_id(String hou_id,String mem_id);
 }

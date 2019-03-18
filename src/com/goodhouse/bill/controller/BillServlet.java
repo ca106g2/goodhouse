@@ -95,21 +95,8 @@ public class BillServlet extends HttpServlet{
 //					}
 //				}
 				//從session取出已登入的該房東會員名稱
-				String lan_id = null;
 				LanService lanSvc = new LanService();
-				String lan_name = session.getAttribute("mem_name").toString();
-				
-				for(MemVO mVO : mSvc.getAll()) {
-					if(lan_name.equals(mVO.getMem_name())) {
-						String lan_mem_id = mVO.getMem_id();
-						for(LanVO lanVO : lanSvc.getAll()) {
-							if(lan_mem_id.equals(lanVO.getMem_id())) {
-								lan_id = lanVO.getLan_id();
-							}
-						}
-					}
-				}
-				
+				String lan_id = lanSvc.getOneLanByMemId(((MemVO)session.getAttribute("memVO")).getMem_id()).getLan_id();
 				
 				for(BillVO billVO : billSvc.getAll()) {
 					//把mem_id跟電子合約的mem_id 及 lan_id 跟電子合約的lan_id 做比對取出該房東底下查的會員的帳單
@@ -259,7 +246,7 @@ public class BillServlet extends HttpServlet{
 			
 			try {
 				/***1接收請求參數************************/
-				MemVO mVO = (MemVO) session.getAttribute("mVO");
+				MemVO mVO = (MemVO) session.getAttribute("memVO");
 				String mem_id = mVO.getMem_id();
 				
 				/****2準備查詢**********************/
@@ -306,7 +293,7 @@ public class BillServlet extends HttpServlet{
 			
 			try {
 				/****1接收請求參數****************/
-				MemVO mVO = (MemVO) session.getAttribute("mVO");
+				MemVO mVO = (MemVO) session.getAttribute("memVO");
 				String mem_id = mVO.getMem_id();
 				
 				/******2開始查詢資料*****************/
