@@ -38,7 +38,7 @@ public class Ele_ContractServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
-		System.out.println("action = " + action);
+		
 		//TODO 測試登入
 		if("test_login".equals(action)) {
 			
@@ -283,53 +283,77 @@ public class Ele_ContractServlet extends HttpServlet{
 				}
 				//比對房屋資料
 				String hou_id = req.getParameter("hou_id");
+				
 				//租金比對
-				String rent_money = req.getParameter("ele_rent_money").trim();
+				String rent_money = req.getParameter("ele_rent_money");
 				String rent_moneyReq = "^[0-9]*$";
-				if(!rent_money.matches(rent_moneyReq)) {
+				if(rent_money == null || rent_money.trim().length() == 0 ) {
+					errorMsgs.add("租金不能空白，請重新輸入");
+				} else if(!rent_money.matches(rent_moneyReq)) {
 					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
 				}
-				Integer ele_rent_money = Integer.parseInt(rent_money);
-				if(ele_rent_money <= 0 ) {
-					errorMsgs.add("租金不能空白、0或負數，請重新輸入");
+				Integer ele_rent_money = null;
+				try {
+					ele_rent_money = Integer.parseInt(rent_money);
+					if(ele_rent_money <= 0 ) {
+						errorMsgs.add("租金不能是0或負數，請重新輸入");
+					}
+				} catch (NumberFormatException ne) {
+					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
 				}
+				
 				//押金比對
 				String deposit_money = req.getParameter("ele_deposit_money");
 				String deposit_moneyReq = "^[0-9]*$";
-				if(!deposit_money.matches(deposit_moneyReq)) {
-					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
-				} 
-				Integer ele_deposit_money = Integer.parseInt(deposit_money);
-				if(ele_deposit_money <= 0) {
-					errorMsgs.add("押金不能空白、0或負數，請重新輸入");
-				} 
+				if(deposit_money == null || deposit_money.trim().length() == 0) {
+					errorMsgs.add("押金不能空白，請重新輸入");
+				} else if(!deposit_money.matches(deposit_moneyReq)) {
+					errorMsgs.add("押金不能含有字元或符號，只能是數字，請重新輸入");
+				}
+				Integer ele_deposit_money = null;
+				try {
+					ele_deposit_money = Integer.parseInt(deposit_money);
+					if(ele_deposit_money <= 0) {
+						errorMsgs.add("押金不能是0或負數，請重新輸入");
+					} 
+				} catch (NumberFormatException ne) {
+					errorMsgs.add("押金不能含有字元或符號，只能是數字，請重新輸入");
+				}
+				
 				//租賃期限比對
 				String rent_time = req.getParameter("ele_rent_time");
 				String rent_timeReq = "^[0-9]*$";
-				if(!rent_time.matches(rent_timeReq)) {
+				if(rent_time == null || rent_time.trim().length() == 0) {
+					errorMsgs.add("租金不能空白，請重新輸入");
+				} else if(!rent_time.matches(rent_timeReq)) {
 					errorMsgs.add("租賃期限不能含有字元或符號，只能是數字，請重新輸入");
 				}
-				Integer ele_rent_time = Integer.parseInt(rent_time);
-				if(ele_rent_time <= 0) {
-					errorMsgs.add("租賃期限不能空白、0或負數，請重新輸入");
-				} 
+				Integer ele_rent_time = null;
+				try {
+					ele_rent_time = Integer.parseInt(rent_time);
+					if(ele_rent_time <= 0) {
+						errorMsgs.add("租賃期限不能是0或負數，請重新輸入");
+					}
+				} catch (NumberFormatException ne) {
+					errorMsgs.add("租賃期限不能含有字元或符號，只能是數字，請重新輸入");
+				}
 				//租賃起訖日
 				Date ele_rent_f_day = null;
 				
 				try {
 					ele_rent_f_day = Date.valueOf(req.getParameter("ele_rent_f_day"));
 				} catch (IllegalArgumentException e) {
-					ele_rent_f_day = new Date(System.currentTimeMillis());
+//					ele_rent_f_day = new Date(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期");
 				}
-				//租賃結束日
 				
+				//租賃結束日
 				Date ele_rent_l_day = null;
 				
 				try {
 					ele_rent_l_day = Date.valueOf(req.getParameter("ele_rent_l_day"));
 				} catch (IllegalArgumentException e) {
-					ele_rent_l_day = new Date(System.currentTimeMillis());
+//					ele_rent_l_day = new Date(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期");
 				}
 				//簽約日期
@@ -338,7 +362,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				try {
 					ele_singdate = Date.valueOf(req.getParameter("ele_singdate"));
 				} catch (IllegalArgumentException e) {
-					ele_singdate = new Date(System.currentTimeMillis());
+//					ele_singdate = new Date(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期");
 				}
 				//合約狀態
@@ -388,6 +412,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				successView.forward(req, res);
 				
 			}catch (Exception e) {
+				e.printStackTrace();
 				errorMsgs.add("資料錯誤");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/front/ele_contract/add_ele_contract.jsp");
@@ -456,39 +481,60 @@ public class Ele_ContractServlet extends HttpServlet{
 				//房屋編號
 				String hou_id = req.getParameter("hou_id");
 				
-				//租金
-				String rent_money = req.getParameter("ele_rent_money").trim();
+				//租金比對
+				String rent_money = req.getParameter("ele_rent_money");
 				String rent_moneyReq = "^[0-9]*$";
-				if(!rent_money.matches(rent_moneyReq)) {
+				if(rent_money == null || rent_money.trim().length() == 0 ) {
+					errorMsgs.add("租金不能空白，請重新輸入");
+				} else if(!rent_money.matches(rent_moneyReq)) {
 					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
 				}
-				Integer ele_rent_money = Integer.parseInt(rent_money);
-				if(ele_rent_money <= 0 ) {
-					errorMsgs.add("租金不能空白、0或負數，請重新輸入");
+				Integer ele_rent_money = null;
+				try {
+					ele_rent_money = Integer.parseInt(rent_money);
+					if(ele_rent_money <= 0 ) {
+						errorMsgs.add("租金不能是0或負數，請重新輸入");
+					}
+				} catch (NumberFormatException ne) {
+					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
 				}
 				
 				//押金比對
 				String deposit_money = req.getParameter("ele_deposit_money");
 				String deposit_moneyReq = "^[0-9]*$";
-				if(!deposit_money.matches(deposit_moneyReq)) {
-					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
-				} 
-				Integer ele_deposit_money = Integer.parseInt(deposit_money);
-				if(ele_deposit_money <= 0) {
-					errorMsgs.add("押金不能空白、0或負數，請重新輸入");
-				} 
+				if(deposit_money == null || deposit_money.trim().length() == 0) {
+					errorMsgs.add("押金不能空白，請重新輸入");
+				} else if(!deposit_money.matches(deposit_moneyReq)) {
+					errorMsgs.add("押金不能含有字元或符號，只能是數字，請重新輸入");
+				}
+				Integer ele_deposit_money = null;
+				try {
+					ele_deposit_money = Integer.parseInt(deposit_money);
+					if(ele_deposit_money <= 0) {
+						errorMsgs.add("押金不能是0或負數，請重新輸入");
+					} 
+				} catch (NumberFormatException ne) {
+					errorMsgs.add("押金不能含有字元或符號，只能是數字，請重新輸入");
+				}
 				
 				//租賃期限比對
 				String rent_time = req.getParameter("ele_rent_time");
 				String rent_timeReq = "^[0-9]*$";
-				if(!rent_time.matches(rent_timeReq)) {
+				if(rent_time == null || rent_time.trim().length() == 0) {
+					errorMsgs.add("租金不能空白，請重新輸入");
+				} else if(!rent_time.matches(rent_timeReq)) {
 					errorMsgs.add("租賃期限不能含有字元或符號，只能是數字，請重新輸入");
 				}
-				Integer ele_rent_time = Integer.parseInt(rent_time);
-				if(ele_rent_time <= 0) {
-					errorMsgs.add("租賃期限不能空白、0或負數，請重新輸入");
+				Integer ele_rent_time = null;
+				try {
+					ele_rent_time = Integer.parseInt(rent_time);
+					if(ele_rent_time <= 0) {
+						errorMsgs.add("租賃期限不能是0或負數，請重新輸入");
+					}
+				} catch (NumberFormatException ne) {
+					errorMsgs.add("租賃期限不能含有字元或符號，只能是數字，請重新輸入");
 				}
-				
+			
 				//租賃起訖日
 				Date ele_rent_f_day = null;
 				

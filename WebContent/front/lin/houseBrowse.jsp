@@ -186,8 +186,11 @@
 							<div class="card-body">
 								<h5 class="card-title">${houVO.hou_name}</h5>
 								<p class="card-text">${houVO.hou_rent}</p>
-								<a href="listHouseDetail2.jsp?hou_id=${houVO.hou_id}" class="btn btn-primary">
-								查看詳情</a>
+								<Form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do"> 
+									<input type="hidden" name="hou_id" value="${houVO.hou_id}">
+									<input type="hidden" name="action" value="front_getOne_For_Display">
+									<input type="submit" value="查看詳情" >
+								</Form>
 								<p class="card-text">
 									<small class="text-muted">${houVO.hou_note}</small>
 								</p>
