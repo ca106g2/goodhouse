@@ -65,7 +65,7 @@ public class HouseServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		//**********************insert		
+		//**********************insert	TODO	
 				if ("frontinsert".equals(action)) {
 
 					Map<String, String> errorMsgs = new LinkedHashMap<String, String>();
@@ -221,53 +221,54 @@ public class HouseServlet extends HttpServlet {
 				}
 // **********************front_insert end		
 // **********************front_getOne_For_Display
-				if ("front_getOne_For_Display".equals(action)) {
-					List<String> errorMsgs = new LinkedList<String>();
-
-					req.setAttribute("errorMsgs", errorMsgs);
-					try {
-						String str = req.getParameter("hou_id");
-						if (str == null || (str.trim()).length() == 0) {
-							errorMsgs.add("請輸入房屋編號");
-						}
-						if (!errorMsgs.isEmpty()) {
-							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
-							failureView.forward(req, res);
-							return;
-						}
-						String hou_id = null;
-						try {
-							hou_id = new String(str);
-						} catch (Exception e) {
-							errorMsgs.add("房屋編號格式錯誤");
-						}
-						if (!errorMsgs.isEmpty()) {
-							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
-							failureView.forward(req, res);
-							return;
-						}
-						HouseService houSvc = new HouseService();
-						HouseVO houVO = houSvc.getOneHouse(hou_id);
-						if (houVO == null) {
-							errorMsgs.add("查無資料");
-						}
-						if (!errorMsgs.isEmpty()) {
-							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
-							failureView.forward(req, res);
-							return;
-						}
-						req.setAttribute("houVO", houVO);
-						String url = "/front/house/listOneHouse.jsp";
-						RequestDispatcher successView = req.getRequestDispatcher(url);
-						successView.forward(req, res);
-
-					} catch (Exception e) {
-						errorMsgs.add("尋找資料失敗" + e.getMessage());
-						RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
-						failureView.forward(req, res);
-					}
-
-				}
+				//TIM的 複合式查詢用
+//				if ("front_getOne_For_Display".equals(action)) {
+//					List<String> errorMsgs = new LinkedList<String>();
+//
+//					req.setAttribute("errorMsgs", errorMsgs);
+//					try {
+//						String str = req.getParameter("hou_id");
+//						if (str == null || (str.trim()).length() == 0) {
+//							errorMsgs.add("請輸入房屋編號");
+//						}
+//						if (!errorMsgs.isEmpty()) {
+//							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
+//							failureView.forward(req, res);
+//							return;
+//						}
+//						String hou_id = null;
+//						try {
+//							hou_id = new String(str);
+//						} catch (Exception e) {
+//							errorMsgs.add("房屋編號格式錯誤");
+//						}
+//						if (!errorMsgs.isEmpty()) {
+//							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
+//							failureView.forward(req, res);
+//							return;
+//						}
+//						HouseService houSvc = new HouseService();
+//						HouseVO houVO = houSvc.getOneHouse(hou_id);
+//						if (houVO == null) {
+//							errorMsgs.add("查無資料");
+//						}
+//						if (!errorMsgs.isEmpty()) {
+//							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
+//							failureView.forward(req, res);
+//							return;
+//						}
+//						req.setAttribute("houVO", houVO);
+//						String url = "/front/house/listOneHouse.jsp";
+//						RequestDispatcher successView = req.getRequestDispatcher(url);
+//						successView.forward(req, res);
+//
+//					} catch (Exception e) {
+//						errorMsgs.add("尋找資料失敗" + e.getMessage());
+//						RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
+//						failureView.forward(req, res);
+//					}
+//
+//				}
 
 // **********************fornt_getOne_For_Display end		
 		
@@ -714,6 +715,55 @@ public class HouseServlet extends HttpServlet {
 				failureView.forward(req, res);		
 			}
 		}
+		// **********************getOne_For_Display end  <---常慶的
+		if ("front_getOne_For_Display".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			try {
+				String str = req.getParameter("hou_id");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("請輸入房屋編號");
+				}
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+			String hou_id = null;
+			try {
+				hou_id = new String(str);
+			} catch (Exception e) {
+				errorMsgs.add("房屋編號格式錯誤");
+			}
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+			HouseService houSvc = new HouseService();
+			HouseVO houVO = houSvc.getOneHouse(hou_id);
+			if (houVO == null) {
+				errorMsgs.add("查無資料");
+			}
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
+				failureView.forward(req, res);
+				return;
+			}
+			req.setAttribute("houVO", houVO);
+			String url = "/front/lin/listHouseDetail_reserveLink.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
 
+			} catch (Exception e) {
+				errorMsgs.add("尋找資料失敗" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
+				failureView.forward(req, res);
+			}
+
+		}
+
+				// **********************getOne_For_Display end
 	}
 }

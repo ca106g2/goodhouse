@@ -373,10 +373,10 @@ input[type="checkbox"].switch_1{
 							hou_id = element.attr('id');
 							$('img[id=' + hou_id + ']').attr({
 								"src":"<%=request.getContextPath()%>/front/lin/heart_red.png",
-								"title": "取消收藏",
+								"title": "取消追蹤",
 								"alt": "favorite"
 							});
-							swal("完成","成功加入收藏","success");
+							swal("完成","成功加入追蹤","success");
 						},
 						error: function(){alert("AJAX發生錯誤")}
 					});
@@ -395,10 +395,10 @@ input[type="checkbox"].switch_1{
 							hou_id = element.attr('id');
 							$('img[id=' + hou_id + ']').attr({
 								"src": "<%=request.getContextPath()%>/front/lin/heart_white.png",
-								"title": "加入收藏",
+								"title": "加入追蹤",
 								"alt": "unfavorite"						
 							});
-							swal("完成","成功取消收藏","error");
+							swal("完成","成功取消追蹤","error");
 						},
 						error: function(){alert("AJAX發生錯誤")}
 					});
