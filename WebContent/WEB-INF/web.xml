@@ -19,54 +19,55 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
+	
 	<!-- 註冊員工 -->
-	 <servlet>
-    <servlet-name>employee</servlet-name>
-    <servlet-class>com.goodhouse.employee.controller.EmployeeServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>employee</servlet-name>
-    <url-pattern>/back/employee/emp.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
+	<servlet>
+    	<servlet-name>employee</servlet-name>
+    	<servlet-class>com.goodhouse.employee.controller.EmployeeServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>employee</servlet-name>
+    	<url-pattern>/back/employee/emp.do</url-pattern>
+  	</servlet-mapping>
   
-  <!-- 註冊會員 -->
-    <servlet-name>member</servlet-name>
-    <servlet-class>com.goodhouse.member.controller.MemberServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>member</servlet-name>
-    <url-pattern>/front/member/mem.do</url-pattern>
-  </servlet-mapping>
+  	<!-- 註冊會員 -->
+  	<servlet>
+    	<servlet-name>member</servlet-name>
+    	<servlet-class>com.goodhouse.member.controller.MemberServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>member</servlet-name>
+    	<url-pattern>/front/member/mem.do</url-pattern>
+  	</servlet-mapping>
   
   <!-- 註冊房東 -->
-  <servlet>
-    <servlet-name>landlord</servlet-name>
-    <servlet-class>com.goodhouse.landlord.controller.LandlordServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>landlord</servlet-name>
-    <url-pattern>/front/landlord/lan.do</url-pattern>
-  </servlet-mapping>
+  	<servlet>
+    	<servlet-name>landlord</servlet-name>
+    	<servlet-class>com.goodhouse.landlord.controller.LandlordServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>landlord</servlet-name>
+    	<url-pattern>/front/landlord/lan.do</url-pattern>
+  	</servlet-mapping>
   <!-- 註冊權限功能 -->
-  <servlet>
-    <servlet-name>permission</servlet-name>
-    <servlet-class>com.goodhouse.permission.controller.PermissionServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>permission</servlet-name>
-    <url-pattern>/back/permission/per.do</url-pattern>
-  </servlet-mapping>
+  	<servlet>
+    	<servlet-name>permission</servlet-name>
+    	<servlet-class>com.goodhouse.permission.controller.PermissionServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>permission</servlet-name>
+    	<url-pattern>/back/permission/per.do</url-pattern>
+  	</servlet-mapping>
   
   <!-- 註冊員工權限 -->
-  <servlet>
-    <servlet-name>employee_permission</servlet-name>
-    <servlet-class>com.goodhouse.employee_permission.controller.Employee_PermissionServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>employee_permission</servlet-name>
-    <url-pattern>/back/employee_permission/emp_per.do</url-pattern>
-  </servlet-mapping>
+  	<servlet>
+    	<servlet-name>employee_permission</servlet-name>
+    	<servlet-class>com.goodhouse.employee_permission.controller.Employee_PermissionServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>employee_permission</servlet-name>
+    	<url-pattern>/back/employee_permission/emp_per.do</url-pattern>
+  	</servlet-mapping>
  	
 	<!-- 房屋評價註冊 -->
 	<servlet>
@@ -76,6 +77,10 @@
 	<servlet-mapping>
 		<servlet-name>House_EvaluateServlet</servlet-name>
 		<url-pattern>/front/house_evaluate/house_evaluate.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>House_EvaluateServlet</servlet-name>
+		<url-pattern>/front/lin/house_evaluate.do</url-pattern>
 	</servlet-mapping>
 	
 	<!--合約分類註冊  -->
@@ -107,6 +112,10 @@
 		<servlet-name>House_Track</servlet-name>
 		<servlet-class>com.goodhouse.house_track.controller.House_TrackServlet</servlet-class>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>House_Track</servlet-name>
+		<url-pattern>/front/house_track/house_track.do</url-pattern>
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>House_Track</servlet-name>
 		<url-pattern>/front/house_track/house_track.do</url-pattern>
@@ -143,14 +152,14 @@
   	</servlet-mapping>
 
    <!-- 房屋註冊 前端 -->
-  <servlet>
-    <servlet-name>FrontHouseServlet</servlet-name>
-    <servlet-class>com.goodhouse.house.controller.HouseServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FrontHouseServlet</servlet-name>
-    <url-pattern>/front/house/hou.do</url-pattern>
-  </servlet-mapping>
+  	<servlet>
+    	<servlet-name>FrontHouseServlet</servlet-name>
+    	<servlet-class>com.goodhouse.house.controller.HouseServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>FrontHouseServlet</servlet-name>
+    	<url-pattern>/front/house/hou.do</url-pattern>
+  	</servlet-mapping>
   
    <!-- 房屋註冊 -->
   	<servlet>
@@ -192,27 +201,25 @@
   		<url-pattern>/back/ad_report/ad_rep.do</url-pattern>
   	</servlet-mapping>
    <!-- 廣告註冊 -->
-  <servlet>
-  	<servlet-name>AdServlet</servlet-name>
-  	<servlet-class>com.goodhouse.ad.controller.AdServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>AdServlet</servlet-name>
-  	<url-pattern>/back/ad/ad.do</url-pattern>
-  </servlet-mapping> 
+  	<servlet>
+  		<servlet-name>AdServlet</servlet-name>
+  		<servlet-class>com.goodhouse.ad.controller.AdServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>AdServlet</servlet-name>
+  		<url-pattern>/back/ad/ad.do</url-pattern>
+  	</servlet-mapping> 
    	
     <!-- 廣告 前端-->
-  <servlet>
-  	<servlet-name>FrontAdServlet</servlet-name>
-  	<servlet-class>com.goodhouse.ad.controller.AdServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>FrontAdServlet</servlet-name>
-  	<url-pattern>/front/ad/ad.do</url-pattern>
-  </servlet-mapping>
-    	
-
- 
+  	<servlet>
+  		<servlet-name>FrontAdServlet</servlet-name>
+  		<servlet-class>com.goodhouse.ad.controller.AdServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+  		<servlet-name>FrontAdServlet</servlet-name>
+  		<url-pattern>/front/ad/ad.do</url-pattern>
+  	</servlet-mapping>
+  
   <!--帳單註冊  -->
 	<servlet>
 		<servlet-name>Bill</servlet-name>
@@ -289,46 +296,46 @@
    
    <!--會員濾器註冊  -->	
   	<filter>
-    <filter-name>frontLoginFilter</filter-name>
-    <filter-class>frontFilters.FrontLoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>frontLoginFilter</filter-name>
-    <url-pattern>/front/member/listOneMem.jsp</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>FORWARD</dispatcher>
-    <dispatcher>INCLUDE</dispatcher>
-    <dispatcher>ERROR</dispatcher>
-    <dispatcher>ASYNC</dispatcher>
-  </filter-mapping>
+    	<filter-name>frontLoginFilter</filter-name>
+    	<filter-class>frontFilters.FrontLoginFilter</filter-class>
+  	</filter>
+  	<filter-mapping>
+    	<filter-name>frontLoginFilter</filter-name>
+    	<url-pattern>/front/member/listOneMem.jsp</url-pattern>
+    	<dispatcher>REQUEST</dispatcher>
+    	<dispatcher>FORWARD</dispatcher>
+    	<dispatcher>INCLUDE</dispatcher>
+    	<dispatcher>ERROR</dispatcher>
+    	<dispatcher>ASYNC</dispatcher>
+  	</filter-mapping>
   <!--成為房東濾器註冊  -->
-  <filter>
-    <filter-name>frontLoginFilter2</filter-name>
-    <filter-class>frontFilters.FrontLoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>frontLoginFilter2</filter-name>
-    <url-pattern>/front/landlord/addLan.jsp</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>FORWARD</dispatcher>
-    <dispatcher>INCLUDE</dispatcher>
-    <dispatcher>ERROR</dispatcher>
-    <dispatcher>ASYNC</dispatcher>
-  </filter-mapping>
+  	<filter>
+    	<filter-name>frontLoginFilter2</filter-name>
+    	<filter-class>frontFilters.FrontLoginFilter</filter-class>
+  	</filter>
+  		<filter-mapping>
+    	<filter-name>frontLoginFilter2</filter-name>
+    	<url-pattern>/front/landlord/addLan.jsp</url-pattern>
+    	<dispatcher>REQUEST</dispatcher>
+    	<dispatcher>FORWARD</dispatcher>
+    	<dispatcher>INCLUDE</dispatcher>
+    	<dispatcher>ERROR</dispatcher>
+    	<dispatcher>ASYNC</dispatcher>
+  	</filter-mapping>
   
      <!--後台員工濾器註冊  -->
-  <filter>
-    <filter-name>backLoginFilter</filter-name>
-    <filter-class>backFilters.BackLoginFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>backLoginFilter</filter-name>
-    <url-pattern>/back/employee/select_page.jsp</url-pattern>
-    <dispatcher>REQUEST</dispatcher>
-    <dispatcher>FORWARD</dispatcher>
-    <dispatcher>INCLUDE</dispatcher>
-    <dispatcher>ERROR</dispatcher>
-    <dispatcher>ASYNC</dispatcher>
-  </filter-mapping>
+  	<filter>
+    	<filter-name>backLoginFilter</filter-name>
+    	<filter-class>backFilters.BackLoginFilter</filter-class>
+  	</filter>
+  	<filter-mapping>
+    	<filter-name>backLoginFilter</filter-name>
+    	<url-pattern>/back/employee/select_page.jsp</url-pattern>
+    	<dispatcher>REQUEST</dispatcher>
+    	<dispatcher>FORWARD</dispatcher>
+    	<dispatcher>INCLUDE</dispatcher>
+    	<dispatcher>ERROR</dispatcher>
+    	<dispatcher>ASYNC</dispatcher>
+  	</filter-mapping>
   
 </web-app>
