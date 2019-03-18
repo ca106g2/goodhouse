@@ -20,6 +20,9 @@
 		<res-auth>Container</res-auth>
 	</resource-ref>
 	
+<!-- =================================================== -->
+<!-- ==================承偉============================== -->	
+<!-- =================================================== -->	
 	<!-- 註冊員工 -->
 	<servlet>
     	<servlet-name>employee</servlet-name>
@@ -49,6 +52,7 @@
     	<servlet-name>landlord</servlet-name>
     	<url-pattern>/front/landlord/lan.do</url-pattern>
   	</servlet-mapping>
+  	
   <!-- 註冊權限功能 -->
   	<servlet>
     	<servlet-name>permission</servlet-name>
@@ -68,7 +72,10 @@
     	<servlet-name>employee_permission</servlet-name>
     	<url-pattern>/back/employee_permission/emp_per.do</url-pattern>
   	</servlet-mapping>
- 	
+  	
+<!-- =================================================== -->
+<!-- ==================慈慈============================== -->	
+<!-- =================================================== -->	
 	<!-- 房屋評價註冊 -->
 	<servlet>
 		<servlet-name>House_EvaluateServlet</servlet-name>
@@ -106,6 +113,34 @@
 		<servlet-name>Eel_Contract</servlet-name>
 		<url-pattern>/front/ele_contract/ele_contract.do</url-pattern>
 	</servlet-mapping>
+
+  <!--帳單註冊  -->
+	<servlet>
+		<servlet-name>Bill</servlet-name>
+		<servlet-class>com.goodhouse.bill.controller.BillServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Bill</servlet-name>
+		<url-pattern>/front/bill/bill.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Bill</servlet-name>
+		<url-pattern>/back/bill/bill.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Bill</servlet-name>
+		<url-pattern>/front/ele_contract/bill.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 申請合約處理註冊 -->
+	<servlet>
+		<servlet-name>Apply_Conturct</servlet-name>
+		<servlet-class>com.goodhouse.apply_conturct.controller.Apply_ConturctServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Apply_Conturct</servlet-name>
+		<url-pattern>/front/ele_contract/apply_conturct.do</url-pattern>
+	</servlet-mapping>
 	
 	<!-- 房屋追蹤註冊 -->
 	<servlet>
@@ -114,13 +149,17 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>House_Track</servlet-name>
-		<url-pattern>/front/house_track/house_track.do</url-pattern>
+		<url-pattern>/front/lin/house_track.do</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>House_Track</servlet-name>
 		<url-pattern>/front/house_track/house_track.do</url-pattern>
 	</servlet-mapping>
-	
+
+
+<!-- =================================================== -->
+<!-- ==================冠錩============================== -->	
+<!-- =================================================== -->	
 	<!-- 積分商城註冊 -->
 	<servlet>
 	    <servlet-name>PointgoodsServlet</servlet-name>
@@ -151,6 +190,9 @@
     	<url-pattern>/back/good_ord/go.do</url-pattern>
   	</servlet-mapping>
 
+<!-- =================================================== -->
+<!-- ==================TIM============================== -->	
+<!-- =================================================== -->
    <!-- 房屋註冊 前端 -->
   	<servlet>
     	<servlet-name>FrontHouseServlet</servlet-name>
@@ -200,6 +242,7 @@
   		<servlet-name>Ad_reportServlet</servlet-name>
   		<url-pattern>/back/ad_report/ad_rep.do</url-pattern>
   	</servlet-mapping>
+  	
    <!-- 廣告註冊 -->
   	<servlet>
   		<servlet-name>AdServlet</servlet-name>
@@ -220,34 +263,9 @@
   		<url-pattern>/front/ad/ad.do</url-pattern>
   	</servlet-mapping>
   
-  <!--帳單註冊  -->
-	<servlet>
-		<servlet-name>Bill</servlet-name>
-		<servlet-class>com.goodhouse.bill.controller.BillServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Bill</servlet-name>
-		<url-pattern>/front/bill/bill.do</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Bill</servlet-name>
-		<url-pattern>/back/bill/bill.do</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Bill</servlet-name>
-		<url-pattern>/front/ele_contract/bill.do</url-pattern>
-	</servlet-mapping>
-	
-	<!-- 申請合約處理註冊 -->
-	<servlet>
-		<servlet-name>Apply_Conturct</servlet-name>
-		<servlet-class>com.goodhouse.apply_conturct.controller.Apply_ConturctServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Apply_Conturct</servlet-name>
-		<url-pattern>/front/ele_contract/apply_conturct.do</url-pattern>
-	</servlet-mapping>
-	
+<!-- =================================================== -->
+<!-- ==================常慶============================== -->	
+<!-- =================================================== -->  	
 	<!--租屋問題註冊  -->
 	<servlet>
 	    <servlet-name>RentMessServlet</servlet-name>
@@ -257,6 +275,7 @@
 	    <servlet-name>RentMessServlet</servlet-name>
 	    <url-pattern>/front/rentMess/rentMess.do</url-pattern>
   	</servlet-mapping>
+  	
   <!--設備維修註冊  -->
   	<servlet>
 	    <servlet-name>EquRepServlet</servlet-name>
@@ -266,6 +285,7 @@
 	    <servlet-name>EquRepServlet</servlet-name>
 	    <url-pattern>/front/equRep/equRep.do</url-pattern>
   	</servlet-mapping>
+  	
   <!--房屋不可預約註冊  -->
   	<servlet>
 	    <servlet-name>HouNoAppServlet</servlet-name>
@@ -275,6 +295,7 @@
 	    <servlet-name>HouNoAppServlet</servlet-name>
 	    <url-pattern>/front/houNoApp/houNoApp.do</url-pattern>
   	</servlet-mapping>
+  	
   <!--預約看房註冊  -->
   	<servlet>
 	    <servlet-name>AppointServlet</servlet-name>
@@ -284,6 +305,7 @@
 	    <servlet-name>AppointServlet</servlet-name>
 	    <url-pattern>/front/appoint/appoint.do</url-pattern>
   	</servlet-mapping>
+  	
   <!--通知訊息註冊  //git上傳註解用無意義-->
   	<servlet>
 	    <servlet-name>NoticeServlet</servlet-name>
@@ -293,7 +315,10 @@
 	    <servlet-name>NoticeServlet</servlet-name>
 	    <url-pattern>/front/notice/notice.do</url-pattern>
   	</servlet-mapping>
-   
+ 
+<!-- =================================================== -->
+<!-- ==================濾器============================== -->	
+<!-- =================================================== -->	
    <!--會員濾器註冊  -->	
   	<filter>
     	<filter-name>frontLoginFilter</filter-name>
@@ -308,6 +333,7 @@
     	<dispatcher>ERROR</dispatcher>
     	<dispatcher>ASYNC</dispatcher>
   	</filter-mapping>
+  	
   <!--成為房東濾器註冊  -->
   	<filter>
     	<filter-name>frontLoginFilter2</filter-name>

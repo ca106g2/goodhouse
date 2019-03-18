@@ -38,7 +38,7 @@ public class Ele_ContractServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
-		
+		System.out.println("action = " + action);
 		//TODO 測試登入
 		if("test_login".equals(action)) {
 			
