@@ -95,7 +95,7 @@
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 												<select  size="1" name="hou_property"class="form-control" id="exampleFormControlSelect5">
 														<option value=""disabled selected>請選擇</option>
-														<option value="以出租">已出租</option>
+														<option value="已出租">已出租</option>
 														<option value="未出租">未出租</option>
 												</select>											
 										</div>
@@ -274,10 +274,8 @@
 									LanService lanSvc = new  LanService();
 								%>	
 
-							<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">
-									
-							<input type="hidden" name="action" value="frontinsert">			
-										
+							<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">									
+							<input type="hidden" name="action" value="frontinsert">						
 							<input type="submit" value="送出新增" class="btn btn-primary">
 							<input type="hidden" name="action" value="getOne_For_Display">	
 							</fieldset>
