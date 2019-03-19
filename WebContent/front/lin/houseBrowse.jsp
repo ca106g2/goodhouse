@@ -171,7 +171,7 @@
 			<div class="col-sm-8">
 				<c:forEach var="houVO" varStatus="s" items="${list}"
 					begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-					
+					<c:if test="${houVO.hou_property eq '未出租' && houVO.hou_parkspace eq '已審核'}">
 					<c:if test="${(s.count%3-1) == 0 }">
 						<div class="row">
 					</c:if>
@@ -204,7 +204,8 @@
 <!-- 	卡片大小格式跑掉		------ -->
 			
 		
-				</c:if>
+					</c:if>
+					</c:if>
 				</c:forEach>
 				</div>
 			</div>

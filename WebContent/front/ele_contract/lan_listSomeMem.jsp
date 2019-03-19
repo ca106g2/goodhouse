@@ -17,7 +17,6 @@
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<div style="padding-top:30px"></div>
 	<div class="container-fluid">
-		<div class="row justfy-content-center">
 			<div class="row col-2">
 			</div>
 			<div class="row col-8">
@@ -92,7 +91,6 @@
 						%>
 				</table>
 			</div>
-		</div>
 	</div>
 
 

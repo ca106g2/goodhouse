@@ -20,20 +20,13 @@
 	<!-- 工作區開始 -->
 
 	<div class="container">
-		<div class="row justfy-content-center">
-			<div class="row col-2">
-				<p>回首頁<a href="lan_select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100" height="30 !important" ></a></p><br>
+			<div class="row col-12">
 				<c:if test="${not empty errorMsgs}">
 					<font style="color:red">請修正以下錯誤:</font>
-					
 						<c:forEach var="message" items="${errorMsgs}">
 							<p style="color:red">${message}</p>
 						</c:forEach>
-					
 				</c:if>
-			</div>
-			
-			<div class="row col-10">
 			<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService" />
 			<jsp:useBean id="mSvc" scope="page" class="com.goodhouse.member.model.MemService" />
 			<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService" />
@@ -78,11 +71,8 @@
 									<td>${Ele_con_status.status_name}</td>
 								</c:if>
 							</c:forEach>
-								</p>
 				</div>
 			</div>
-		</div>
-	
 	</div>
 	<!-- 工作區結束 -->
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
