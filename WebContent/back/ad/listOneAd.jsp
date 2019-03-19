@@ -55,6 +55,8 @@ th, td {
 <title>Insert title here</title>
 </head>
 <body bgcolor='white'>
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
+
 	<h4><a href="<%=request.getContextPath()%>/back/ad/select_page.jsp">回首頁</a></h4>
 	
 	<table>
@@ -84,6 +86,6 @@ th, td {
 	</table>
 	
 	
-	
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

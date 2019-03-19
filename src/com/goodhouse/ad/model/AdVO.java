@@ -1,6 +1,6 @@
 package com.goodhouse.ad.model;
 
-import java.sql.*;
+import java.sql.Date;
 
 public class AdVO implements java.io.Serializable{
 	private String ad_id;

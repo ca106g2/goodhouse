@@ -55,12 +55,14 @@ th, td {
 <title>Insert title here</title>
 </head>
 <body bgcolor='white'>
-	<h4><a href="select_page.jsp">回首頁</a></h4>
+
+<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
+
+	<h4><a href="">回首頁</a></h4>
 	
 	<table>
 		<tr>
 			<td>廣告類別</td><!--廣告分類編號 AD_SORTU_ID-->
-			<td>廣告編號</td><!--廣告編號 AD_ID-->
 			<td>房東名子</td><!--房東姓名 LAN_NAME-->
 			<td>房屋名稱</td><!--房屋名稱 HOU_NAME-->
 			<td>廣告備註</td><!--廣告備註 AD_FORFREE-->
@@ -71,7 +73,6 @@ th, td {
 		</tr>
 		<tr>
 			<td><%=ad_sorVO.getAd_chargetype()%></td>
-			<td><%=adVO.getAd_id()%></td>
 			<td><%=memVO.getMem_name()%></td>
 			<td><%=houVO.getHou_name()%></td>
 			<td><%=adVO.getAd_forfree()%></td>
@@ -83,7 +84,7 @@ th, td {
 	
 	</table>
 	
-	
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>	
 	
 </body>
 </html>

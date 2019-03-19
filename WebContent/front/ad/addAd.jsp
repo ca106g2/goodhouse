@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.goodhouse.ad.model.*"%>
-
+<%@ page import="com.goodhouse.member.model.*" %>
+<%@ page import="com.goodhouse.house.model.*" %>
+<%@ page import="com.goodhouse.landlord.model.*" %>
 <%
+	request.setCharacterEncoding("utf-8");
 	AdVO adVO = (AdVO) request.getAttribute("adVO");
+	MemVO memVO = (MemVO)session.getAttribute("mVO");
+// 	HouseVO houVO = (HouseVO)session.getAttribute("houVO");
+	String hou_id = request.getParameter("hou_id");
+	String hou_name = request.getParameter("hou_name");
 %>
 
 <jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
 <jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
-<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
 <jsp:useBean id="ad_sortSvc" scope="page" class="com.goodhouse.ad_sort.model.Ad_sortService"/>
 
 
@@ -32,10 +38,11 @@
     </script>
 </head>
 <body bgcolor='white'>
+	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 <table id="table-1">
 	<tr><td>
 	<h3>新增</h3>
-	<h4><a href="select_page.jsp">回首頁</a></h4>
+	<h4><a href="">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -48,7 +55,21 @@
 		</c:forEach>
 	</ul>
 </c:if>
-
+		<!--
+			<td>房東名子</td><!--房東姓名 LAN_id
+			<td>房屋名稱</td><!--房屋名稱 HOU_id
+			<td>廣告備註</td><!--廣告備註 AD_FORFREE
+			<td>繳費狀態</td><!--繳費狀態(已收,未收)AD_STATUE
+			<td>付款方式</td><!--付款方式 AD_PAYMETHODS
+			<td>廣告刊登日</td><!--廣告刊登日 AD_DATE
+			<td>廣告狀態</td><!--(上架,下架)AD_STATUS 
+<select name="con_status">
+	<c:forEach var="con_status" items="${Con_statusList}">
+		<option value="${con_status.status_name}" ${(con_status.status_no_name == 
+		conVO.con_status)?'selected':''}>${con_status.status_name}
+	</c:forEach>
+</select>
+			 -->
 <form method="post" action="ad.do" name="form1" enctype="multipart/form-date">
 	<table>
 		<tr>
@@ -63,37 +84,29 @@
 		<tr>
 			<td>房東名子</td>
 			<td>
-				<select name="lan_id">
-					<c:forEach var="lanVO" items="${lanSvc.all}">
-						<c:forEach var="memVO" items="${memSvc.all}">
-							<c:if test="${lanVO.mem_id == memVO.mem_id}">
-				                 <option value="${lanVO.lan_id}">${memVO.mem_name }
-			                </c:if>
-						</c:forEach>
-					</c:forEach>
-				</select>
+				<p><%=memVO.getMem_name()%>
 			</td>
 		</tr>
 		<tr>
 			<td>房屋名稱</td>
 			<td>
-				<input type="text" name="hou_id" size="45" 
-				value="<%=(adVO==null)? "HOU0000001" : adVO.getHou_id()%>"/>
+				<p><%=hou_name%></p>
+				<input type="hidden" name="hou_id" size="45" 
+				value="<%=hou_id%>"/>
 			</td>
 		</tr>
 			<tr>
 		<td>繳費狀態:</td>
 		<td>
-			<select id="paystofe" name ="ad_statue" style="display:none;">
-				<option value="以付款">以付款</option> 
-				<option value="付款">未付款</option> 
+			<select id="paystofe" name ="ad_statue">
+				<option value="未付款">未付款</option> 
 			</select> 
 		</td>
 	</tr>	
 	<tr>
 		<td>付款方式:</td>
 		<td>			
-			<select id="pay" name ="ad_paymethod" style="display:none;">
+			<select id="pay" name ="ad_paymethod">
 				<option value="信用卡">信用卡</option> 
 			</select>
 		</td>
@@ -102,17 +115,16 @@
 		<td>廣告狀態:</td>
 		<td>
 			<select name ="ad_status">
-				<option value="上架">上架
-				<option value="審核中">審核中</option>
-				<option value="下架">下架
+				<option value="審核中">"審核中"
 			</select>
 		</td>
 	</tr>
-	<tr>
+	<tr class="table-light">
 		<td>廣告備註:</td>
-		<td>
-			<input type="text" name="ad_forfree" size="45"
-			value="<%=(adVO==null)? "請填寫註解" : adVO.getAd_forfree()%>"/>
+			<td><label for="exampleFormControlTextarea1"></label> <textarea
+				name="ad_forfree" class="form-control" 
+				placeholder="<%=(adVO==null)? "請填寫備註" : adVO.getAd_forfree()%>" 
+				id="exampleFormControlTextarea1" rows="3"></textarea>
 		</td>
 	</tr>
 	<tr>
@@ -121,10 +133,19 @@
 	</tr>	
 	</table>
 <br>
-<input type="hidden" name="action" value="insert">
+<%
+	LanService lanSvc = new  LanService();
+%>	
+
+<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">
+
+<input type="hidden" name="action" value="front_insert">
 <input type="submit" value="送出新增">
 
 </form>
+
+
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 <%
 	java.sql.Date ad_date = null;
@@ -147,13 +168,13 @@
 
 </style>
 <script>
-$.datetimepicker.setLocale('zh');
-$('#f_date1').datetimepicker({
-   theme: '',              //theme: 'dark',
-   timepicker:false,       //timepicker:true,
-   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-   format:'Y-m-d',         //format:'Y-m-d H:i:s',
-   value: '<%=ad_date%>', // value:   new Date(),
+		$.datetimepicker.setLocale('zh');
+		$('#f_date1').datetimepicker({
+			theme: '',
+			timepicker:false,
+			step:1,
+			format:'Y-m-d',
+			value: '<%=ad_date%>', // value:   new Date(),
 			// value: new Date(),
 			//diabledDates:   ['2017/06/08','2017/06/09','2017/06/10'],
 			//startDate:       '2017/07/10'

@@ -11,31 +11,53 @@
 <jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
 <jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
 <jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
-
 <html>
 <head>
+
 <style>
-table {
-	width:1800px;
-	background-color: white;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
+ #table1 { 
 
-table, th, td {
-	border: 1px solid #CCCCFF;
-}
+  font-family: 微軟正黑體; 
+  font-size:16px; 
+  width:1500px;
+  border:2px solid #000;
+  text-align:center;
+  border-collapse:collapse;
+  margin-left:auto; 
+  margin-right:auto;
+} 
+ #table1 th { 
+  background-color: #009FCC;
+  padding:10px;
 
-th, td {
-	padding: 20px;
-	text-align: center;
-}
+  color:#fff;
+  border:2px solid #000;
+} 
+ #table1 td { 
+  border:1px solid #000;
+  padding:5px;
+} 
+
+
 </style>
-<title>Insert title here</title>
+
 </head>
-<body bgcolor='white'>
-	
-	<h4><a href="<%=request.getContextPath()%>/back/ad/select_page.jsp">回首頁</a></h4>
+<div margent=left;>
+
+</div>
+
+
+<jsp:include page="/BackHeaderFooter/Header.jsp" />	
+	<body> 
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-2">
+ <jsp:include page="/back/ad/select_page.jsp" />
+    
+</div>
+ <div class="col-10">
+  	<h4><a href="">回首頁</a></h4>
 	<c:if test="${not empty errorMsgs}">
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
@@ -43,27 +65,29 @@ th, td {
 		</c:forEach>
 	</ul>
 	</c:if>
-	<table>
-		<tr>
+
+	<table id="table1">
+		<tr class="table-black">
 			<td>廣告類別</td><!--廣告分類編號 AD_SORTU_ID-->
-			<td>廣告編號</td><!--廣告編號 AD_ID-->
+<!--			<td>廣告編號</td>--><!--廣告編號 AD_ID-->
 			<td>房東名子</td><!--房東姓名 LAN_id-->
 			<td>房屋名稱</td><!--房屋名稱 HOU_id-->
 			<td>廣告備註</td><!--廣告備註 AD_FORFREE-->
 			<td>繳費狀態</td><!--繳費狀態(已收,未收)AD_STATUE-->
 			<td>付款方式</td><!--付款方式 AD_PAYMETHODS-->
-			<td>廣告刊登日</td><!--廣告刊登日 AD_DATE-->	
+			<td>廣告刊登日</td><!--廣告刊登日 AD_DATE-->
+			<td>廣告狀態</td><!--廣告刊登日 AD_DATE-->		
 			<td>修改</td>
 		</tr>
 		<%@ include file="pages/page1.file" %>
 		<c:forEach var="adVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1 %>">
-			<tr>
+			<tr class="table-info" align='center'>
 				<td><c:forEach var="ad_sorVO" items="${ad_sorSvc.all}">
 					<c:if test="${adVO.ad_sort_id eq ad_sorVO.ad_sort_id }">
 					${ad_sorVO.ad_chargetype}	
 					</c:if>
 				</c:forEach></td>
-				<td>${adVO.ad_id}</td>
+				<!--<td><%-- ${adVO.ad_id}--%></td>-->
 				<td><c:forEach var="memVO" items="${memSvc.all}">
 						<c:forEach var="lanVO" items="${lanSvc.all}">
 							<c:if test="${lanVO.mem_id eq memVO.mem_id}">
@@ -94,12 +118,15 @@ th, td {
 						<input type="hidden" name="whichPage" value="<%=whichPage%>">
 						<input type="hidden" name="action" value="getOne_For_Update">
 					</form>
-				</td>
-				
-				
+				</td>	
 			</tr>
 		</c:forEach>
 	</table>
 	<%@ include file="pages/page2.file" %>
+	</div>
+</div>
+</div>
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />	
 </body>
+
 </html>

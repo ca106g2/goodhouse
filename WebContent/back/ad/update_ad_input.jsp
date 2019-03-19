@@ -42,10 +42,10 @@
 					</c:if>
 				</c:forEach></td>
 	</tr>
-	<tr>
+<!--  	<tr>
 		<td>廣告編號:</td>
-		<td>${adVO.ad_id}</td>
-	</tr>
+		<td><%--${adVO.ad_id}--%></td>
+	</tr>-->
 	<tr>
 		<td>房東姓名:</td>
 				<td><c:forEach var="memVO" items="${memSvc.all}">
@@ -75,8 +75,8 @@
 		<td>繳費狀態:</td>
 		<td>
 			<select name ="ad_statue">
-				<option value="ad_satue001" ${(adVO.ad_statue == "ad_satue001")? 'selected':'' }>以付款
-				<option value="ad_satue002" ${(adVO.ad_statue == "ad_satue002")? 'selected':'' }>未付款
+				<option value="以付款">以付款</option>
+				<option value="付款">未付款</option>
 			</select>
 		</td>
 	</tr>	
@@ -84,8 +84,8 @@
 		<td>付款方式:</td>
 		<td>			
 			<select name ="ad_paymethod">
-				<option value="ad_pay001" ${(adVO.ad_paymethod == "ad_pay001")? 'selected':'' }>信用卡
-				<option value="ad_pay002" ${(adVO.ad_paymethod == "ad_pay002")? 'selected':'' }>VISA金融卡
+				<option value="信用卡">信用卡
+				<option value="VISA金融卡">VISA金融卡
 			</select>
 		</td>
 	</tr>	
@@ -97,14 +97,26 @@
 		<td>廣告狀態:</td>
 		<td>
 			<select name ="ad_status">
-				<option value="ad_satus001" ${(adVO.ad_status == "ad_satus001")? 'selected':'' }>上架
-				<option value="ad_satus002" ${(adVO.ad_status == "ad_satus002")? 'selected':'' }>下架
+				<option value="上架">上架</option>
+				<option value="審核中">審核中</option>
+				<option value="下架">下架</option>
 			</select>
 		</td>
 	</tr>	
 </table>
 <br>
+<!-- 送積分的地方 -->
 <input type="hidden" name="action" value="update">
+	<c:forEach var="memVO" items="${memSvc.all}">
+		<c:forEach var="lanVO" items="${lanSvc.all}">
+			<c:if test="${lanVO.mem_id eq memVO.mem_id}">
+				<c:if test="${adVO.lan_id eq lanVO.lan_id}">
+<input type="hidden" name="mem_id" value="${memVO.mem_id}">
+				</c:if>
+			</c:if>
+		</c:forEach>
+	</c:forEach>
+<!-- END -->
 <input type="hidden" name="ad_id" value="<%=adVO.getAd_id()%>">
 <input type="hidden" name="ad_sort_id" value="<%=adVO.getAd_sort_id()%>">
 <input type="hidden" name="lan_id" value="<%=adVO.getLan_id()%>">

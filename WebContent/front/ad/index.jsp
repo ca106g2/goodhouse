@@ -61,7 +61,6 @@
 
 <div style="text-align:center">
 
-<jsp:include page="listAllHouse.jsp"/>
 
 </div>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
