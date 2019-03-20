@@ -8,34 +8,48 @@ Ad_reportService ad_repSvc = new Ad_reportService();
 List<Ad_reportVO> list = ad_repSvc.getAll();
 pageContext.setAttribute("list",list);
 %>
+<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService" />
+<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
+<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService" />
+<jsp:useBean id="adSvc" scope="page" class="com.goodhouse.ad.model.AdService" />
+
+
+
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
 <style>
-  table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
+ #table1 { 
+
+  font-family: 微軟正黑體; 
+  font-size:16px; 
+  width:1500px;
+  border:2px solid #000;
+  text-align:center;
+  border-collapse:collapse;
+  margin-left:auto; 
+  margin-right:auto;
+} 
+ #table1 th { 
+  background-color: #009FCC;
+  padding:10px;
+
+  color:#fff;
+  border:2px solid #000;
+} 
+ #table1 td { 
+  border:1px solid #000;
+  padding:5px;
+} 
+
+
 </style>
 
 </head>
+<jsp:include page="/BackHeaderFooter/Header.jsp" />	
 <body>
-<table id="table-1">
-	<tr><td>
-		<h3>檢舉總表</h3>
-		<h4><a href="select_page.jsp">回首頁</a></h4>
-	</td></tr>
-</table>
+
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤</font>
 	<ul>
@@ -45,24 +59,20 @@ pageContext.setAttribute("list",list);
 	</ul>
 </c:if>
 
-<table>
+<table id="table1">
 	<tr>
-		<th>廣告檢舉編號</th>
 		<th>被檢舉廣告</th>
 		<th>檢舉房客</th>
-		<th>處理員工</th>
 		<th>檢舉內容</th>
 		<th>檢舉狀態</th>
 		<th>檢舉日期</th>
+		<th></th>
 	</tr>
 	<%@ include file="page1.file" %>
-	<c:forEach var="ad_repVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-	
-	<tr>
-		<td>${ad_repVO.ad_rep_id}</td>
-		<td>${ad_repVO.ad_id}</td>
-		<td>${ad_repVO.mem_id}</td>
-		<td>${ad_repVO.emp_id}</td>
+	<c:forEach var="ad_repVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">	
+	<tr>	
+		<td>${houSvc.getOneHouse(adSvc.getOneAD(ad_repVO.ad_id).hou_id).hou_name}</td>
+		<td>${memSvc.getOneMem(ad_repVO.mem_id).mem_name}</td>
 		<td>${ad_repVO.ad_rep_reason}</td>
 		<td>${ad_repVO.ad_rep_status}</td>
 		<td>${ad_repVO.ad_rep_date}</td>
@@ -78,5 +88,6 @@ pageContext.setAttribute("list",list);
 	</c:forEach>
 </table>
 <%@ include file="page2.file" %>
-</body>
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />	
+</body>	
 </html>
