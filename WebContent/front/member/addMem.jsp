@@ -116,6 +116,11 @@
 		<td>會員圖片:</td>
 		<td><input type="file" name="mem_picture" size="45"	/></td>
 	</tr>
+<!-- 	<tr> -->
+<!-- 		<td>積分總和:</td> -->
+<!-- 		<td><input type="TEXT" name="good_total" size="45" -->
+<%-- 			 value="<%= (memVO==null)? "" : memVO.getGood_total()%>" /></td> --%>
+<!-- 	</tr> -->
 
 	<tr>
 		<td>會員性別:</td>
@@ -130,38 +135,30 @@
 	<tr>
 		<td></td>
 		<td>
-			<div class="row">
-				<div class="col-4">
-				</div>
-				<div class="col-4">
-					<input type="hidden" name="action" value="insert">
-		 			<input type="submit" class="btn btn-light" value="送出新增"></FROM>
-				</div>
-				<div class="col-4">
-				</div>
-			</div>
+			<input type="hidden" name="action" value="insert">
+ 			<input type="submit" class="btn btn-light" value="送出新增">
 		</td>
 	</tr>
 	<tr>
 		<td></td>
 		<td>
-		<div class="row">
-				<div class="col-4">
-				</div>
-				<div class="col-4">
 			<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do">	
 				<input type="hidden" name="action" value="buildMem">
 				<input type="submit" class="btn btn-light" value="神奇小按鈕">
-			</form>	
-			</div>
-				<div class="col-4">
-				</div>
-			</div>	
+			</form>		
 		</td>
 	</tr>
 
 </table>
 <br>
+
+
+
+
+
+
+
+
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
