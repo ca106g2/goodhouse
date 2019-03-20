@@ -27,17 +27,17 @@ public class Ad_reportDAO implements Ad_reportDAO_interface {
 //	private static final String USER = "goodhouse";
 //	private static final String PASSWORD = "123456";
 
-	private static final String INSERT_STMT = "INSERT INTO ad_report(ad_rep_id, ad_id, mem_id, emp_id, ad_rep_status, ad_rep_reason, ad_rep_date) "
-			+ "VALUES ('ADR'||LPAD(to_char(AD_REPORT_SEQ.nextval),7,'0'),?,?,?,?,?,?)";
+	private static final String INSERT_STMT = "INSERT INTO ad_report(ad_rep_id, ad_id, mem_id, ad_rep_status, ad_rep_reason, ad_rep_date) "
+			+ "VALUES ('ADR'||LPAD(to_char(AD_REPORT_SEQ.nextval),7,'0'),?,?,?,?,?)";
 
 	private static final String UPDATE = "UPDATE ad_report SET ad_rep_status = ?, ad_rep_reason = ?, ad_rep_date =? WHERE ad_rep_id=?";
 
 	private static final String DELETE = "DELETE FROM ad_report WHERE ad_rep_id=?";
 
-	private static final String GET_ALL_STMT = "SELECT ad_rep_id, ad_id, mem_id, emp_id, ad_rep_date, ad_rep_status, ad_rep_reason "
+	private static final String GET_ALL_STMT = "SELECT ad_rep_id, ad_id, mem_id, ad_rep_date, ad_rep_status, ad_rep_reason "
 			+ "FROM ad_report order by ad_rep_id";
 
-	private static final String GET_ONE_STMT = "SELECT ad_rep_id, ad_id, mem_id, emp_id, ad_rep_date, ad_rep_status, ad_rep_reason "
+	private static final String GET_ONE_STMT = "SELECT ad_rep_id, ad_id, mem_id, ad_rep_date, ad_rep_status, ad_rep_reason "
 			+ "FROM ad_report where ad_rep_id =?";
 
 	@Override
@@ -47,20 +47,15 @@ public class Ad_reportDAO implements Ad_reportDAO_interface {
 		PreparedStatement pstmt = null;
 
 		try {
-//
-//			Class.forName(DRIVER);
-//
-//			con = DriverManager.getConnection(URL, USER, PASSWORD);
-//			pstmt = con.prepareStatement(INSERT_STMT);
+
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, ad_reportVO.getAd_id());
 			pstmt.setString(2, ad_reportVO.getMem_id());
-			pstmt.setString(3, ad_reportVO.getEmp_id());
-			pstmt.setString(4, ad_reportVO.getAd_rep_status());
-			pstmt.setString(5, ad_reportVO.getAd_rep_reason());
-			pstmt.setDate(6, ad_reportVO.getAd_rep_date());
+			pstmt.setString(3, ad_reportVO.getAd_rep_status());
+			pstmt.setString(4, ad_reportVO.getAd_rep_reason());
+			pstmt.setDate(5, ad_reportVO.getAd_rep_date());
 
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
@@ -94,15 +89,9 @@ public class Ad_reportDAO implements Ad_reportDAO_interface {
 
 		try {
 
-//			Class.forName(DRIVER);
-//
-//			con = DriverManager.getConnection(URL, USER, PASSWORD);
-//			pstmt = con.prepareStatement(UPDATE);
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-//			pstmt.setString(1, ad_reportVO.getAd_id());
-//			pstmt.setString(2, ad_reportVO.getMem_id());
-//			pstmt.setString(3, ad_reportVO.getEmp_id());
+
 			pstmt.setString(1, ad_reportVO.getAd_rep_status());
 			pstmt.setString(2, ad_reportVO.getAd_rep_reason());
 			pstmt.setDate(3, ad_reportVO.getAd_rep_date());
@@ -203,7 +192,6 @@ public class Ad_reportDAO implements Ad_reportDAO_interface {
 				ad_reportVO.setAd_rep_id(rs.getString("ad_rep_id"));
 				ad_reportVO.setAd_id(rs.getString("ad_id"));
 				ad_reportVO.setMem_id(rs.getString("mem_id"));
-				ad_reportVO.setEmp_id(rs.getString("emp_id"));
 				ad_reportVO.setAd_rep_date(rs.getDate("ad_rep_date"));
 				ad_reportVO.setAd_rep_status(rs.getString("ad_rep_status"));
 				ad_reportVO.setAd_rep_reason(rs.getString("ad_rep_reason"));
@@ -262,7 +250,6 @@ public class Ad_reportDAO implements Ad_reportDAO_interface {
 				ad_reportVO.setAd_rep_id(rs.getString("ad_rep_id"));
 				ad_reportVO.setAd_id(rs.getString("ad_id"));
 				ad_reportVO.setMem_id(rs.getString("mem_id"));
-				ad_reportVO.setEmp_id(rs.getString("emp_id"));
 				ad_reportVO.setAd_rep_date(rs.getDate("ad_rep_date"));
 				ad_reportVO.setAd_rep_status(rs.getString("ad_rep_status"));
 				ad_reportVO.setAd_rep_reason(rs.getString("ad_rep_reason"));

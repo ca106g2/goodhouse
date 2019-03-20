@@ -7,7 +7,7 @@
 <%@ page import="com.goodhouse.member.model.*" %>
 
 <%
-	MemVO memVO = (MemVO)session.getAttribute("mVO");
+	MemVO memVO = (MemVO)session.getAttribute("memVO");
 %>
 <html>
 <head>
@@ -56,7 +56,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 												
-<input placeholder="請輸入房屋名稱" class="form-control" required="true" type="text" name="hou_name" value=""/>${errorMsgs.hou_name}
+<input placeholder="請輸入房屋名稱" class="form-control" required="true" type="text" name="hou_name" value="${param.hou_name}"/>${errorMsgs.hou_name}
 
 										</div>
 									</div>
@@ -68,7 +68,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 												<select  size="1" name="hou_type"class="form-control" id="exampleFormControlSelect5">
-														<option value=""disabled selected>請選擇房屋型別</option>
+														<option value="${param.hou_type}"disabled selected>請選擇房屋型別</option>
 														<option value="公寓">公寓</option>
 														<option value="套房">套房</option>
 												</select>											
@@ -94,7 +94,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 												<select  size="1" name="hou_property"class="form-control" id="exampleFormControlSelect5">
-														<option value=""disabled selected>請選擇</option>
+														<option value="${param.hou_property}"disabled selected>請選擇</option>
 														<option value="已出租">已出租</option>
 														<option value="未出租">未出租</option>
 												</select>											
@@ -108,7 +108,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 												<select  size="1" name="hou_cook"class="form-control" id="exampleFormControlSelect5">
-														<option value=""disabled selected>請選擇</option>
+														<option value="${param.hou_cook}"disabled selected>請選擇</option>
 														<option value="可">可</option>
 														<option value="不可">不可</option>
 												</select>											
@@ -122,8 +122,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 												
-<input placeholder="請輸入房屋管理費" class="form-control" required="true" value="" type="text" name="hou_managefee" value="${param.hou_managefee}"/>${errorMsgs.hou_managefee}
-
+<input placeholder="請輸入房屋管理費" class="form-control" required="true" type="text" name="hou_managefee" value="${param.hou_managefee}"/>${errorMsgs.hou_managefee}
 										</div>
 									</div>
 								</div>
@@ -148,7 +147,7 @@
 												<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 												
 <%-- <input placeholder="請輸入姓名" class="form-control" required="true" value="" type="text" name="lan_id" value="<%=memVO.getMem_name()%>"/>${errorMsgs.lan_id} --%>
-											<p/><%=memVO.getMem_name()%>
+											<p><%=memVO.getMem_name()%></p>
 
 										</div>
 									</div>
@@ -224,7 +223,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 											
-<input placeholder="房屋備註" class="form-control" required="true" value="" type="text" name="hou_note" value="${param.hou_note}"/>${errorMsgs.hou_note}
+<input placeholder="房屋備註" class="form-control" required="true" type="text" name="hou_note" value="${param.hou_note}"/>${errorMsgs.hou_note}
 
 										</div>
 									</div>
@@ -273,9 +272,9 @@
 								<%
 									LanService lanSvc = new  LanService();
 								%>	
-
-							<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">									
-							<input type="hidden" name="action" value="frontinsert">						
+ 
+							<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">	
+							<input type="hidden" name="action" value="frontinsert">								
 							<input type="submit" value="送出新增" class="btn btn-primary">
 							<input type="hidden" name="action" value="getOne_For_Display">	
 							</fieldset>

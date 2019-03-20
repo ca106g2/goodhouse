@@ -320,7 +320,7 @@ public class AdServlet extends HttpServlet{
 				AdService adSvc = new AdService();
 				adVO =adSvc.addAd(lan_id, hou_id, ad_date, ad_sort_id, ad_status, ad_forfree, ad_statue, ad_paymethod);
 				
-				RequestDispatcher successView = req.getRequestDispatcher("/front/ad/select_page.jsp");
+				RequestDispatcher successView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
 				successView.forward(req, res);
 				
 			}catch (Exception e) {

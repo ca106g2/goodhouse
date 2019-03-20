@@ -45,7 +45,7 @@
 					廣告管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp">廣告列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">廣告審核</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">新增廣告</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>

@@ -82,6 +82,41 @@
 
 		window.onload = init;
 	</script>
+	<script>
+		<!--webSocket功能-->
+
+		var houSocket = "/HouseWebSocket";
+		var host = window.location.host;
+	    var path = window.location.pathname;
+	    var webCtx = path.substring(0, path.indexOf('/', 1));
+	    var endPointURL = "ws://" + window.location.host + webCtx + houSocket;
+		
+	    var webSocket2;
+
+		function connect(){
+			// 建立 websocket 物件
+			webSocket2 = new WebSocket(endPointURL);
+			
+			webSocket2.onopen = function(event) {
+			};
+			
+			webSocket2.onmessage = function(event) {
+		        var jsonObj = JSON.parse(event.data);
+		        alert(jsonObj.houMsgs);
+			};
+
+			webSocket2.onclose = function(event) {
+			};
+		}
+	
+		 function init() {
+      		connect();
+   		 }
+
+		window.onload = init;
+	</script>
+	
+	
 	<!-- Footer頭 -->
 	 <footer class="container-fluid" style="padding-bottom:10px">
 	 

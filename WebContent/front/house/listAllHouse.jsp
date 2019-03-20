@@ -2,16 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.goodhouse.house.model.*"%>
+<%@ page import="com.goodhouse.landlord.model.*"%>
+<%@ page import="com.goodhouse.member.model.*"%>
 <%@ page import="java.sql.*, javax.sql.*" %> 
-<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
-<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
 
 <%
+	System.out.println(session.getAttribute("memVO"));
+	String mem_id = ((MemVO)session.getAttribute("memVO")).getMem_id();
+	LanService lanSvc = new LanService();
 	HouseService houSvc = new HouseService();
-	List<HouseVO> listHou_ByCompositeQuery =  (List<HouseVO>) session.getAttribute("lan_list_all");
+	List<HouseVO> listHou_ByCompositeQuery =  houSvc.getAllFor_Hou_Lan_id(lanSvc.getOneLanByMemId(mem_id).getLan_id());
 	pageContext.setAttribute("listHou_ByCompositeQuery",listHou_ByCompositeQuery);
 %>
-
 
 
 <html>
@@ -62,22 +64,19 @@ div{
  <div>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
-			<h4><a href="select_page.jsp">回首頁</a></h4>
-
 <table>
 	<tr class="table-active">
-		<th>房屋編號</th>
 		<th>房屋名稱</th>
 		<th>房屋類別</th>
-		<th>是否有停車位</th>
+		<th>房屋審核 </th>
 		<th>是否可烹飪</th>
 		<th>地區</th>
-		<th></th>	
+		<th>房屋遊覽</th>
+		<th>申請廣告</th>	
 	</tr>
 		<%@ include file="pages/page1.file"%>
 	<c:forEach var="houVO" items="${listHou_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1 %>">
 	 	<tr  class="table-info" align='center' >
-	 		<td>${houVO.hou_id}</td>
 	 		<td>${houVO.hou_name}</td>
 	 		<td>${houVO.hou_type}</td>
 	 		<td>${houVO.hou_parkspace}</td>
@@ -92,6 +91,17 @@ div{
 			<input type="hidden" name="action" value="front_getOne_For_Display">
 			</form>
 			</td>
+			
+			<td>
+			<form method="post" action="<%=request.getContextPath()%>/front/ad/addAd.jsp" style="margin-bottom: 0px;">
+				<input type="submit" value="申請廣告">
+				<input type="hidden" name="hou_id" value="${houVO.hou_id}">
+				<input type="hidden" name="hou_name" value="${houVO.hou_name}">
+				<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
+				<input type="hidden" name="whichPage" value="<%=whichPage%>">
+			</form>
+			</td>
+			
 		</tr>	
 	</c:forEach>
 	

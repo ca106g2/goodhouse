@@ -44,7 +44,6 @@ th, td{
 		<th>廣告檢舉編號</th>
 		<th>被檢舉廣告</th>
 		<th>檢舉房客</th>
-		<th>處理員工</th>
 		<th>檢舉內容</th>
 		<th>檢舉狀態</th>
 		<th>檢舉日期</th>
@@ -53,7 +52,6 @@ th, td{
 		<td><%=ad_repVO.getAd_rep_id() %></td>
 		<td><%=ad_repVO.getAd_id() %></td>
 		<td><%=ad_repVO.getMem_id() %></td>
-		<td><%=ad_repVO.getEmp_id() %></td>
 		<td><%=ad_repVO.getAd_rep_reason() %></td>
 		<td><%=ad_repVO.getAd_rep_status() %></td>
 		<td><%=ad_repVO.getAd_rep_date() %></td>

@@ -45,12 +45,6 @@
 					value="<%=(ad_repVO == null) ? "" : ad_repVO.getMem_id()%>"></td>
 			</tr>
 			<tr>
-				<td>員工處理人</td>
-				<td><input type="text" name="emp_name" size="45"
-					value="<%=(ad_repVO == null) ? "" : ad_repVO.getEmp_id()%>">
-				</td>
-			</tr>
-			<tr>
 				<td>檢舉事由</td>
 				<td><input type="text" name="ad_rep_reason" size="45"
 					value="<%=(ad_repVO == null) ? "請輸入事由" : ad_repVO.getAd_rep_reason()%>">

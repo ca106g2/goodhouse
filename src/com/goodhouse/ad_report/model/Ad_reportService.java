@@ -11,12 +11,11 @@ public class Ad_reportService {
 	}
 
 
-	public Ad_reportVO addAd_report(String ad_id, String mem_id, String emp_id, String ad_rep_status,
+	public Ad_reportVO addAd_report(String ad_id, String mem_id,String ad_rep_status,
 			String ad_rep_reason, Date ad_rep_date) {
 
 		Ad_reportVO ad_reportVO = new Ad_reportVO();
 		ad_reportVO.setAd_id(ad_id);
-		ad_reportVO.setEmp_id(emp_id);
 		ad_reportVO.setMem_id(mem_id);
 		ad_reportVO.setAd_rep_status(ad_rep_status);
 		ad_reportVO.setAd_rep_reason(ad_rep_reason);
@@ -30,17 +29,16 @@ public class Ad_reportService {
 		dao.insert(ad_reportVO);
 	}
 
-	public Ad_reportVO updateAd_report(String ad_rep_id, String ad_id, String mem_id, String emp_id, String ad_rep_status,
+	public Ad_reportVO updateAd_report(String ad_rep_id, String ad_id, String mem_id, String ad_rep_status,
 			String ad_rep_reason, Date ad_rep_date) {
 
 		Ad_reportVO ad_reportVO = new Ad_reportVO();
 		ad_reportVO.setAd_rep_id(ad_rep_id);
 		ad_reportVO.setAd_id(ad_id);
-		ad_reportVO.setEmp_id(emp_id);
 		ad_reportVO.setMem_id(mem_id);
 		ad_reportVO.setAd_rep_status(ad_rep_status);
 		ad_reportVO.setAd_rep_reason(ad_rep_reason);
-		//Date ad_rep_date = new Date(System.currentTimeMillis());
+//		Date ad_rep_date = new Date(System.currentTimeMillis());
 		ad_reportVO.setAd_rep_date(ad_rep_date);
 		dao.update(ad_reportVO);
 		return ad_reportVO;

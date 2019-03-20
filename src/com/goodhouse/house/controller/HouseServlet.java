@@ -14,6 +14,10 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
+import javax.websocket.Session;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.goodhouse.ele_contract.model.Ele_ContractVO;
 import com.goodhouse.house.model.*;
@@ -675,8 +679,42 @@ public class HouseServlet extends HttpServlet {
 				houVO = housSvc.updateHouse(hou_id, hou_name, hou_type, hou_size, hou_property, hou_parkspace, hou_cook,
 						hou_managefee, hou_address, hou_rent, hou_note, pictf, picts, pictt);
 
-				System.out.println(houVO);
-				req.setAttribute("houVO", houVO);
+				if("已審核".equals(hou_parkspace)) {
+					//----------------------------------------------------------積分++
+					
+					
+						String mem_id = new String(req.getParameter("mem_id").trim());
+						com.goodhouse.member.model.MemService memSvc = new com.goodhouse.member.model.MemService();
+						com.goodhouse.member.model.MemVO memVO = memSvc.getOneMem(mem_id);
+						Integer good_total = memVO.getGood_total();
+						good_total = good_total + 10000;
+						memSvc.updatePointTot(mem_id, good_total);
+			
+					
+//********************webSocket功能啟動*****************
+						Set<Session> allSessions = (Set<Session>)getServletContext().getAttribute("HouwebSocketSession");
+					
+						JSONObject housesock = new JSONObject();
+					
+						try {
+							housesock.put("houMsgs", "新屋上架推一波~~~~!!!");
+						} catch (JSONException e) {
+						e.printStackTrace();
+						}
+					
+						String doneMsg = housesock.toString();
+						System.out.println(doneMsg);
+							for(Session webSession : allSessions) {
+								if (webSession.isOpen()) {
+									webSession.getAsyncRemote().sendText(doneMsg);
+								}
+							}	
+						}else {
+							RequestDispatcher successView = req.getRequestDispatcher("/back/house/listOneHouse.jsp");
+							successView.forward(req, res);
+							}
+					req.setAttribute("houVO", houVO);
+	//********************WebSuck end*************************
 				RequestDispatcher successView = req.getRequestDispatcher("/back/house/listOneHouse.jsp");
 				successView.forward(req, res);
 			} catch (Exception e) {
@@ -703,15 +741,15 @@ public class HouseServlet extends HttpServlet {
 				HouseService houSvc = new HouseService();
 				List<HouseVO> list = houSvc.getAll(map);
 				
-				session.setAttribute("listHou_ByCompositeQuery", list);
+				session.setAttribute("list", list);
 				RequestDispatcher successView = 
-						req.getRequestDispatcher("/front/house/listHou_ByCompositeQuery.jsp");
+						req.getRequestDispatcher("/back/house/listHou_ByCompositeQuery.jsp");
 				successView.forward(req, res);
 				
 			}catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = 
-						req.getRequestDispatcher("/front/house/select_page.jsp");
+						req.getRequestDispatcher("/back/house/select_page.jsp");
 				failureView.forward(req, res);		
 			}
 		}

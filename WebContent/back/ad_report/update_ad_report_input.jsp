@@ -65,14 +65,6 @@
 			</tr>
 			<jsp:useBean id="empSvc" scope="page" class="com.goodhouse.employee.model.EmpService"/>
 			<tr>
-				<td>處理員工</td>
-				<br>
-				<td>
-					<% 
-						EmpVO empvo = empSvc.getOneEmp(ad_repVO.getEmp_id());
-					%>
-					<p name="emp_name"><%=empvo.getEmp_name() %></p>
-				</td>
 			</tr>
 			<tr>
 				<td>檢舉內容</td>
@@ -105,7 +97,6 @@
 		<input type="hidden" name="ad_rep_id" value="<%=ad_repVO.getAd_rep_id() %>">
 		<input type="hidden" name="ad_rep_id" value="${ad_repVO.ad_rep_id}">
 		<input type="hidden" name="mem_name" value="<%=memVO.getMem_name() %>">
-		<input type="hidden" name="emp_name" value="<%=empvo.getEmp_name() %>">
 		<input type="hidden" name="ad_id" value="${ad_repVO.ad_id}">
 
 		<input type="submit" value="送出修改">

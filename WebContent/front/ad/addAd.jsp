@@ -7,7 +7,7 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	AdVO adVO = (AdVO) request.getAttribute("adVO");
-	MemVO memVO = (MemVO)session.getAttribute("mVO");
+	MemVO memVO = (MemVO)session.getAttribute("memVO");
 // 	HouseVO houVO = (HouseVO)session.getAttribute("houVO");
 	String hou_id = request.getParameter("hou_id");
 	String hou_name = request.getParameter("hou_name");
@@ -40,13 +40,7 @@
 <body bgcolor='white'>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 <table id="table-1">
-	<tr><td>
-	<h3>新增</h3>
-	<h4><a href="">回首頁</a></h4>
-	</td></tr>
-</table>
 
-<h3>新增資料</h3>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>

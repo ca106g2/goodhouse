@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.goodhouse.ad.model.*"%>
+<%@ page import="com.goodhouse.member.model.*" %>
+<%@ page import="com.goodhouse.house.model.*" %>
+<%@ page import="com.goodhouse.landlord.model.*" %>
 
 <%
+	request.setCharacterEncoding("utf-8");
 	AdVO adVO = (AdVO) request.getAttribute("adVO");
+	MemVO memVO = (MemVO)session.getAttribute("mVO");
+// 	HouseVO houVO = (HouseVO)session.getAttribute("houVO");
+	String hou_id = request.getParameter("hou_id");
+	String hou_name = request.getParameter("hou_name");
 %>
 
 <jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>

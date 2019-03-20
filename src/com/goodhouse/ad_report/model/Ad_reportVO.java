@@ -6,7 +6,6 @@ public class Ad_reportVO implements java.io.Serializable{
 	private String ad_rep_id;
 	private String ad_id;
 	private String mem_id;
-	private String emp_id;
 	private String ad_rep_status;
 	private String ad_rep_reason;
 	private Date ad_rep_date;
@@ -27,12 +26,6 @@ public class Ad_reportVO implements java.io.Serializable{
 	}
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
-	}
-	public String getEmp_id() {
-		return emp_id;
-	}
-	public void setEmp_id(String emp_id) {
-		this.emp_id = emp_id;
 	}
 	public String getAd_rep_status() {
 		return ad_rep_status;

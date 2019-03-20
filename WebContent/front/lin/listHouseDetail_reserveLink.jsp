@@ -400,28 +400,22 @@ input[type="checkbox"].switch_1{
 									<tr class="table-light">
 										<td>檢舉事由</td>
 											<td><label for="exampleFormControlTextarea1"></label> 
-											<textarea name="ad_rep_reason" class="form-control" placeholder="請輸入事由"  id="exampleFormControlTextarea1" rows="3"></textarea>
+											<textarea name="ad_rep_reason" class="form-control ad_rep_reason" placeholder="請輸入事由"  id="exampleFormControlTextarea1" rows="3"></textarea>
 										</td>
-										</tr>	
-										<tr class="table-light">
-										<td>檢舉狀態</td>
-										<td><select name="ad_rep_status">
-										<option value="檢舉審核中">檢舉審核中</option>		
-								</select></td>
+									</tr>	
+									
+									<tr class="table-light">
+										<td>檢舉日期</td>
+										<td><input name="ad_rep_date" id="f_date1" type="text" class="ad_rep_date">
+										</td>
 									</tr>
-
-			<tr class="table-light">
-				<td>檢舉日期</td>
-				<td><input name="ad_rep_date" id="f_date1" type="text">
-				</td>
-			</tr>
-			<tr class="table-light"><td></td>
-			<td>
-			
-		<input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>">	
-		<input type="hidden" name="ad_id" value="${adSvc.getOneAdByHou(houVO.hou_id).ad_id}">
+								<tr class="table-light">
+								<td>	
+		<input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>" class="ad_memId">	
+		<input type="hidden" name="ad_id" value="${adSvc.getOneAdByHou(houVO.hou_id).ad_id}" class="ad_Id">
+		<input type="hidden" name="ad_rep_status" value="檢舉審核中" class="ad_rep_status">
 		<input type="hidden" name="action" value="front_insert" />
-		<input type="submit" class="btn btn-outline-secondary" value="送出新增" />
+		<input type="submit" class="btn btn-outline-secondary" value="送出" id="sum_ad_report" />
 		</td></tr>
 		</table>					
 						
@@ -529,11 +523,47 @@ input[type="checkbox"].switch_1{
  
  
 /****************************以上慈慈的評價功能********************************************/
-	
+/****************************以下TIM的評價功能********************************************/
+		 	$('#sum_ad_report').click(function(){
+				console.log($(".ad_Id").val());
+				console.log($(".ad_memId").val());
+				console.log($(".ad_rep_status").val());
+				console.log($(".ad_rep_reason").val());
+				console.log($(".ad_rep_date").val());
+				
+		 		$.ajax({
+
+		 			type: "POST",
+					url: "<%=request.getContextPath()%>/front/ad_report/ad_rep.do",
+					data: {
+						
+						"ad_id":$(".ad_Id").val(),
+						"mem_id":$(".ad_memId").val(),
+						"ad_rep_status":$(".ad_rep_status").val(),
+						"ad_rep_reason":$(".ad_rep_reason").val(),
+						"ad_rep_date":$(".ad_rep_date").val(),
+						"action":"front_insert"
+						},
+						
+					dataType: "json",
+					
+					success: function(data){
+							$(".ad_rep_reason").val("") ;
+							swal("完成","檢舉成功","success");
+						},
+					error: function(){alert("AJAX發生錯誤")}					
+		 			});
+			});
+
+
+
+/****************************以下TIM的評價功能********************************************/
 	</script>
+	
+	
+	
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />	
 </body>
-
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
 <%
