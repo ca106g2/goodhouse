@@ -54,8 +54,8 @@ div{
 <body>
  <div>
 <jsp:include page="/BackHeaderFooter/Header.jsp" />
-
-			<h4><a href="select_page.jsp">回首頁</a></h4>
+<br>
+<br>
 
 <table>
 	<tr>

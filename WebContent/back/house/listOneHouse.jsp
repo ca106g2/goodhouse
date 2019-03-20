@@ -37,7 +37,8 @@
 </head>
 <body bgcolor='white'>
 <jsp:include page="/BackHeaderFooter/Header.jsp" />
-
+<br>
+<br>
 <table>
 	<tr>
 		<tr><th>房屋名稱 : <td><%=houVO.getHou_name()%></td></th></tr>

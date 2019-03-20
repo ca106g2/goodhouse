@@ -93,6 +93,7 @@ div{
 			</td>
 			
 			<td>
+			<c:if test="${houVO.hou_parkspace eq '未審核' }" >
 			<form method="post" action="<%=request.getContextPath()%>/front/ad/addAd.jsp" style="margin-bottom: 0px;">
 				<input type="submit" value="申請廣告">
 				<input type="hidden" name="hou_id" value="${houVO.hou_id}">
@@ -100,6 +101,7 @@ div{
 				<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
 				<input type="hidden" name="whichPage" value="<%=whichPage%>">
 			</form>
+			</c:if>
 			</td>
 			
 		</tr>	

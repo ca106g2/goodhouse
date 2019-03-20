@@ -9,18 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body bgcolor='white' span style="font-family:Microsoft JhengHei;">
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>新增</h3>
-			</td>
-			<td>
-				<h4><a href="select_page.jsp">回首頁</a></h4>
-			</td>
-		</tr>
-	</table>
 
-	<h3>新增資料</h3>
+
 
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>

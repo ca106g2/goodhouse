@@ -42,7 +42,7 @@
 <body bgcolor='white'>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
-<h3>房屋更新:</h3>
+
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -52,7 +52,8 @@
 		</c:forEach>
 	</ul>
 </c:if>
-
+<br>
+<br>
 <FORM METHOD="post" ACTION="hou.do" name="form1" enctype="multipart/form-data">
 <table>
 		<tr><th>房屋審核 :

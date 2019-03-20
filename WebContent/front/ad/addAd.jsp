@@ -70,8 +70,8 @@
 			<td>廣告類別</td>
 			<td>
 				<select id="paytype" name="ad_sort_id" onChange="_onchange()">
-						<option value="ADS0000001">廣告兌換</option> 
 						<option value="ADS0000002">月計費</option>  
+						<option value="ADS0000001">廣告兌換</option> 
 				</select>
 			</td>
 		</tr>

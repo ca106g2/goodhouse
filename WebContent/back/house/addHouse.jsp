@@ -43,6 +43,8 @@
 </head>
 <body bgcolor='white'>
 <jsp:include page="/BackHeaderFooter/Header.jsp" />
+<br>
+<br>
 <table id="table-1">
 	<tr><td>
 		<h3>新增-addHouse.jsp</h3></td><td style="test-align: center">

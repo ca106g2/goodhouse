@@ -58,7 +58,8 @@ th, td {
 
 <jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 
-	<h4><a href="">回首頁</a></h4>
+<br>
+<br>
 	
 	<table>
 		<tr>
