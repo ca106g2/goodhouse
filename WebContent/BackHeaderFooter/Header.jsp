@@ -22,6 +22,7 @@
            </button>
            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+               
                    <li class="nav-item active">
                        <a class="nav-link" href="<%=request.getContextPath()%>/back/back_index.jsp">
                        <img src="<%=request.getContextPath()%>/share_pic/logo_color.png" width="40px" height="37px">
@@ -29,7 +30,7 @@
                        </a>
                    </li>
 					
-					<li class="nav-item dropdown">
+					<li class="nav-item dropdown" style="margin-left:100px">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					會員/員工管理</a>
 					     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -39,24 +40,25 @@
                     </li>
 
  <!-- 房屋 --> 
-                   	<li class="nav-item dropdown">
+                   	<li class="nav-item dropdown" style="margin-left:60px">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					房屋管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/house/listAllHouse.jsp">房屋列表</a>
 					        </div>
-                       </li>
+                    </li>
   <!-- 廣告 --> 
-  				    <li class="nav-item dropdown">
+  				    <li class="nav-item dropdown" style="margin-left:60px">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					廣告管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp">廣告列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">廣告檢舉</a>
 					        </div>
-                       </li>
+                    </li>
 
   <!-- 合約 --> 
-     				<li class="nav-item dropdown">
+     				<li class="nav-item dropdown" style="margin-left:60px">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					電子合約管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -64,10 +66,10 @@
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ele_contract/select_page.jsp">電子合約列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/bill/back_select_page.jsp">租金帳單管理</a>
 					        </div>
-                       </li>
+                    </li>
    
   <!-- 積分 --> 
-    		     	<li class="nav-item dropdown">
+    		     	<li class="nav-item dropdown" style="margin-left:60px">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					積分商城管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -75,14 +77,15 @@
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/pointgoods/addPointgoods.jsp">新增積分商品</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/pointgoods/good_ordManage.jsp">訂單管理</a>
 					        </div>
-                       </li> 
-  <!-- 檢舉 --> 
-     
-     
-     
-     
-     
-  <!-- 房屋 --> 
+                    </li> 
+  <!-- 登出 --> 		
+  					<li class="nav-item active" style="margin-left:120px">
+  						<a class="nav-link" href="<%=request.getContextPath()%>">登入</a>
+                   </li>
+  					<li class="nav-item active" style="margin-left:20px">
+  						<a class="nav-link" href="<%=request.getContextPath()%>">登出</a>
+                   </li>
+
                </ul>
 
            </div>
