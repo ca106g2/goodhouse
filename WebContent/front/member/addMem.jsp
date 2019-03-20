@@ -11,49 +11,37 @@
 
 <meta charset="UTF-8">
 <title>會員新增資料</title>
-
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+ #table1 { 
+
+  font-family: 微軟正黑體; 
+  font-size:16px; 
+  width:500px;
+  text-align:center;
+  margin-left:auto; 
+  margin-right:auto;
+} 
+ #table1 th { 
+  background-color: #009FCC;
+  padding:10px;
+
+  color:#fff;
+} 
+ #table1 td { 
+  padding:5px;
+} 
+
+
 </style>
 
-<style>
-  table {
-	width: 450px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
-</style>
 </head>
 <body bgcolor='white'>
 <jsp:include page="/FrontHeaderFooter/Header.jsp"/>	
-<table id="table-1">
-	<tr><td>
-		 <h3>會員資料新增 - addMem.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
 
-<h3>資料新增:</h3>
+		 <h4><a href="">回首頁</a></h4>
+
+
+
 
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -70,7 +58,7 @@
 
 
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" name="form1" enctype="multipart/form-data">
-<table>
+<table id="table1">
 	<tr>
 		<td>會員姓名:</td>
 		<td><input type="TEXT" name="mem_name" size="45" 
@@ -108,7 +96,7 @@
 	</tr>
 	<tr>
 		<td>會員信箱:</td>
-		<td><input type="TEXT" name="mem_email" size="45"
+		<td><input type="email" name="mem_email" size="45"
 			 value="<%= (memVO==null)? "" : memVO.getMem_email()%>" /></td>
 	</tr>
 
@@ -128,11 +116,11 @@
 		<td>會員圖片:</td>
 		<td><input type="file" name="mem_picture" size="45"	/></td>
 	</tr>
-	<tr>
-		<td>積分總和:</td>
-		<td><input type="TEXT" name="good_total" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getGood_total()%>" /></td>
-	</tr>
+<!-- 	<tr> -->
+<!-- 		<td>積分總和:</td> -->
+<!-- 		<td><input type="TEXT" name="good_total" size="45" -->
+<%-- 			 value="<%= (memVO==null)? "" : memVO.getGood_total()%>" /></td> --%>
+<!-- 	</tr> -->
 
 	<tr>
 		<td>會員性別:</td>
@@ -144,20 +132,28 @@
 		</td>
 	</tr>
 
-
-
+	<tr>
+		<td></td>
+		<td>
+			<input type="hidden" name="action" value="insert">
+ 			<input type="submit" class="btn btn-light" value="送出新增">
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do">	
+				<input type="hidden" name="action" value="buildMem">
+				<input type="submit" class="btn btn-light" value="神奇小按鈕">
+			</form>		
+		</td>
+	</tr>
 
 </table>
 <br>
-<input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
 
-<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do">
 
-<input type="hidden" name="action" value="buildMem">
-<input type="submit" value="神奇小按鈕">
 
-</form>
 
 
 
