@@ -23,6 +23,7 @@
 			<jsp:include page="/FrontHeaderFooter/LeftList.jsp" />
 		</div>
 		<div class="col-8">
+		<%if(favorite_list != null && (favorite_list.size() > 0)) {%>
 			<table border="1">
 				<tr>
 					<td>積分商品名稱</td>
@@ -49,6 +50,9 @@
 <!-- 				</form> -->
 				</c:forEach>
 			</table>
+			<%} else { %>
+			尚無我的最愛商品
+			<% } %>
 		</div>
 	</div>
 </div>

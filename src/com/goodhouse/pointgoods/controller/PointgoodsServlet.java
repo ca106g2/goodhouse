@@ -432,7 +432,7 @@ public class PointgoodsServlet extends HttpServlet {
 			String del = req.getParameter("del");
 			int d = Integer.parseInt(del);
 			buylist.remove(d);
-			
+
 			session.setAttribute("shoppingcart", buylist);
 			String url = "/front/pointgoods/cart.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);

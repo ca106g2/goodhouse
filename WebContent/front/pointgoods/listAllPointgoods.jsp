@@ -85,7 +85,7 @@
 								<input type='button' value='-' class="qtyminus btn btn-primary" field='good_nee${pointgoodsVO.good_id}' />
 							</div>
 							<div class="col-4">
-						    	<input id="good_nee${s.index}" type='text' name='good_nee${pointgoodsVO.good_id}' value='0' class="form-control" readonly="readonly" />
+						    	<input id="good_nee${s.index}" type='text' name='good_nee${pointgoodsVO.good_id}' value='1' class="form-control" readonly="readonly" />
 						    </div>
 						    <div class="col-4">
 <!-- 						    	判斷購物車數量不能比存量還多 -->
@@ -240,10 +240,10 @@
 					console.log(element.prev().children().next().next().children().val());
 					element.prev().children().next().next().children().attr('max', response.max);
 				}
-				$('#good_nee'+element.attr('id')).val(0);
+				$('#good_nee'+element.attr('id')).val(1);
 				
 // 				alert($('#qq'+element.attr('id')).val());
-				swal("完成","成功加入收藏","success");
+				swal("完成","成功加入購物車","success");
 			},
 // 			error: function(){alert("AJAX發生錯誤")}
 			error: function (data, textStatus, jqXHR) {
@@ -270,7 +270,7 @@
 	      $('input[name=' + fieldName + ']').val(currentVal + 1);
 	    } else {
 	      // Otherwise put a 0 there
-	      $('input[name=' + fieldName + ']').val(0);
+	      $('input[name=' + fieldName + ']').val(1);
 	    }
 	  });
 	  // This button will decrement the value till 0
@@ -279,15 +279,16 @@
 	    e.preventDefault();
 	    // Get the field name
 	    fieldName = $(this).attr('field');
+	    min = 1;
 	    // Get its current value
 	    var currentVal = parseInt($('input[name=' + fieldName + ']').val());
 	    // If it isn't undefined or its greater than 0
-	    if (!isNaN(currentVal) && currentVal > 0) {
+	    if (!isNaN(currentVal) && currentVal > min) {
 	      // Decrement one
 	      $('input[name=' + fieldName + ']').val(currentVal - 1);
 	    } else {
 	      // Otherwise put a 0 there
-	      $('input[name=' + fieldName + ']').val(0);
+	      $('input[name=' + fieldName + ']').val(1);
 	    }
 	  });
 	});
