@@ -10,6 +10,8 @@
 <%@ page import="com.goodhouse.landlord.model.*"%>
 <%@ page import="com.goodhouse.house_evaluate.model.*"%>
 <%@ page import="com.goodhouse.house_track.model.*"%>
+<%@ page import="com.goodhouse.ad_report.model.*"%>
+<%@ page import="com.goodhouse.house.model.*" %>
 
 <%
 	String hou_id = request.getParameter("hou_id");
@@ -29,7 +31,14 @@
 	
 %>
 <!--======================== 慈慈 end -->
+<!--======================= TIM start-->
+<%	
 
+ 	Ad_reportVO ad_repVO = (Ad_reportVO) request.getAttribute("ad_repVO");
+
+%>
+
+<!--======================== TIM end -->
 <!-- 轉交請求，可選大日曆版 -->
 
 <%-- <% --%>
@@ -56,7 +65,7 @@
 <jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService" />
 <jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
 <jsp:useBean id="houNoAppSvc" scope="page" class="com.goodhouse.house_noappointment.model.HouNoAppService" />
-
+<jsp:useBean id="adSvc" scope="page" class="com.goodhouse.ad.model.AdService" />
 
 <!DOCTYPE html>
 <html>
@@ -64,6 +73,9 @@
 <meta charset="UTF-8">
 <title>List HouseDetail</title>
 <style type="text/css">
+
+
+
 	.wrapper{
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -141,6 +153,31 @@ input[type="checkbox"].switch_1{
   }
 	
 /* Switch 1 Specific Style End */
+/* TIM'S TABLE CSS */
+
+#table1 {
+	font-family:Microsoft JhengHei;;
+	font-size: 16px;
+	width: 1200px;
+	text-align: center;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#table1  th {
+	background-color: #009FCC;
+	padding: 10px;
+	color: #fff;
+
+}
+
+#table1  td {
+
+	padding: 5px;
+}
+
+
 </style>
 </head>
 <body>
@@ -347,13 +384,50 @@ input[type="checkbox"].switch_1{
 								</table>
 								
 							</div>
-<!----===================================== 以上是慈慈的房屋評價功能 ====================================--->
+<!----===================================== 以上是慈慈的房屋評價功能 ====================================--->					
+<!----===================================== 以下是TIM功能 ====================================--->	
+						<div role="tabpanel" class="tab-pane fade" id="ad_report">
+							<c:if test="${memVO != null and houVO.hou_id eq adSvc.getOneAD(adSvc.getOneAdByHou(houVO.hou_id).ad_id).hou_id}">
+								<table id="table1">
+									<tr class="table-light">
+										<td>房屋檢舉 : </td>				
+											<td><%= houVO.getHou_name()%></td>
+									</tr>
 	
+									<tr class="table-light">
+										<td>檢舉人 : </td>
+											<td><%=memVO.getMem_name()%></td>
+									</tr>
+									<tr class="table-light">
+										<td>檢舉事由</td>
+											<td><label for="exampleFormControlTextarea1"></label> 
+											<textarea name="ad_rep_reason" class="form-control" placeholder="請輸入事由"  id="exampleFormControlTextarea1" rows="3"></textarea>
+										</td>
+										</tr>	
+										<tr class="table-light">
+										<td>檢舉狀態</td>
+										<td><select name="ad_rep_status">
+										<option value="檢舉審核中">檢舉審核中</option>		
+								</select></td>
+									</tr>
 
-
+			<tr class="table-light">
+				<td>檢舉日期</td>
+				<td><input name="ad_rep_date" id="f_date1" type="text">
+				</td>
+			</tr>
+			<tr class="table-light"><td></td>
+			<td>
+			
+		<input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>">	
+		<input type="hidden" name="ad_id" value="${adSvc.getOneAdByHou(houVO.hou_id).ad_id}">
+		<input type="hidden" name="action" value="front_insert" />
+		<input type="submit" class="btn btn-outline-secondary" value="送出新增" />
+		</td></tr>
+		</table>					
 						
-<!----===================================== 以下是TIM功能 ====================================--->						
-						<div role="tabpanel" class="tab-pane fade" id="ad_report">檢舉</div>
+							</c:if>
+						</div>					
 <!----===================================== 以上是TIM功能 ====================================--->		
 						</div>				
 					</div>
@@ -458,7 +532,7 @@ input[type="checkbox"].switch_1{
 /****************************以上慈慈的評價功能********************************************/
 	
 	</script>
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />	
 </body>
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->

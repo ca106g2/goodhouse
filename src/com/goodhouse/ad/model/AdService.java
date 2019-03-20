@@ -55,4 +55,7 @@ public class AdService {
 	public List<AdVO> getAll(Map<String, String[]>map){
 		return dao.getAll(map);
 	}
+	public AdVO getOneAdByHou(String hou_id) {
+		return dao.findByHouID(hou_id);
+	}
 } 

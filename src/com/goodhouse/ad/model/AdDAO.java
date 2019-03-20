@@ -46,7 +46,7 @@ public class AdDAO implements AdDAO_interface {
 
 	private static final String GET_ONE_STMT = "SELECT ad_id, lan_id, hou_id, ad_date, ad_sort_id, ad_status, ad_forfree, ad_statue, ad_paymethod "
 			+ "FROM ad where ad_id = ?";
-
+	private static final String GET_HOU_ID = "select * from ad where hou_id= ?";
 	@Override
 	public void insert(AdVO adVO) {
 		// TODO Auto-generated method stub
@@ -373,4 +373,70 @@ public class AdDAO implements AdDAO_interface {
 		return list;
 	}
 
+	@Override
+	public AdVO findByHouID(String hou_id) {
+		// TODO Auto-generated method stub
+				AdVO adVO = null;
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+
+//					try {
+//						con = ds.getConnection();
+//						pstmt = con.prepareStatement(GET_ONE_STMT);
+				try {
+//					Class.forName(DRIVER);
+		//
+//					con = DriverManager.getConnection(URL, USER, PASSWORD);
+//					pstmt = con.prepareStatement(GET_ONE_STMT);
+					
+					con = ds.getConnection();
+					pstmt = con.prepareStatement(GET_HOU_ID);
+					pstmt.setString(1, hou_id);
+					rs = pstmt.executeQuery();
+
+					while (rs.next()) {
+
+						adVO = new AdVO();
+						adVO.setAd_id(rs.getString("ad_id"));
+						adVO.setLan_id(rs.getString("lan_id"));
+						adVO.setAd_date(rs.getDate("ad_date"));
+						adVO.setAd_sort_id(rs.getString("ad_sort_id"));
+						adVO.setAd_status(rs.getString("ad_status"));
+						adVO.setAd_forfree(rs.getString("ad_forfree"));
+						adVO.setAd_statue(rs.getString("ad_statue"));
+						adVO.setAd_paymethod(rs.getString("ad_paymethod"));
+					}
+				} catch (SQLException se) {
+					// TODO Auto-generated catch block
+					throw new RuntimeException("A database error occured. " + se.getMessage());
+
+				} finally {
+					if (rs != null) {
+						try {
+							rs.close();
+						} catch (SQLException se) {
+							se.printStackTrace(System.err);
+						}
+					}
+					if (pstmt != null) {
+						try {
+							pstmt.close();
+						} catch (SQLException se) {
+							se.printStackTrace(System.err);
+						}
+					}
+					if (con != null) {
+						try {
+							con.close();
+						} catch (Exception se) {
+							se.printStackTrace(System.err);
+						}
+					}
+				}
+
+				return adVO;
+	}
+
+	
 }

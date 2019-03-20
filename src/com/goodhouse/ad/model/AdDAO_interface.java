@@ -7,6 +7,9 @@ public interface AdDAO_interface {
 	public void update(AdVO adVO);
 	public void delete(String ad_id);
 	public AdVO findByPrimaryKey(String ad_id);
+	
+	public AdVO findByHouID(String hou_id);
+	
 	public List<AdVO> getAll();
 	//複合式查詢
 	public List<AdVO> getAll(Map<String, String[]> map);

@@ -5,7 +5,7 @@
 <%@ page import="com.goodhouse.member.model.*" %>
 
 <%
-	MemVO memVO = (MemVO)session.getAttribute("mVO");
+	MemVO memVO = (MemVO)session.getAttribute("memVO");
 	Ad_reportVO ad_repVO = (Ad_reportVO) request.getAttribute("ad_repVO");
 %>
 
@@ -51,10 +51,6 @@ td {
 
 </head>
 <body>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
-	<h4>
-		<a href="select_page.jsp">回首頁</a>
-	</h4>
 	<form name="form1" action="ad_rep.do" method="post">
 		<table id="table2">
 			<tr class="table-light">
@@ -105,7 +101,6 @@ td {
 		</table>
 
 	</form>
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 
 <%

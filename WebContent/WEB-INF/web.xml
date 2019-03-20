@@ -262,7 +262,16 @@
   		<servlet-name>FrontAdServlet</servlet-name>
   		<url-pattern>/front/ad/ad.do</url-pattern>
   	</servlet-mapping>
-  
+ <!-- 前端廣告檢舉 --> 	
+ <servlet>
+    <servlet-name>Fornt_Ad_reportServlet</servlet-name>
+    <servlet-class>com.goodhouse.ad_report.controller.Ad_reportServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Fornt_Ad_reportServlet</servlet-name>
+    <url-pattern>/front/ad_report/ad_rep.do</url-pattern>
+  </servlet-mapping>
+
 <!-- =================================================== -->
 <!-- ==================常慶============================== -->	
 <!-- =================================================== -->  	
