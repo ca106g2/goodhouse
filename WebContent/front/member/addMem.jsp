@@ -131,27 +131,19 @@
 			</select>
 		</td>
 	</tr>
+</table>
+<br>
 
-	<tr>
-		<td></td>
-		<td>
+
+
 			<input type="hidden" name="action" value="insert">
- 			<input type="submit" class="btn btn-light" value="送出新增">
-		</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>
+ 			<input type="submit" class="btn btn-light" value="送出新增"></FORM>
+
+
 			<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do">	
 				<input type="hidden" name="action" value="buildMem">
 				<input type="submit" class="btn btn-light" value="神奇小按鈕">
 			</form>		
-		</td>
-	</tr>
-
-</table>
-<br>
-
 
 
 

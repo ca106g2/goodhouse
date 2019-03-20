@@ -10,7 +10,7 @@
 %>
 <html>
 <head>
-<title>Mem: Home</title>
+<title>Mem</title>
 
 <style>
   table#table-1 {
