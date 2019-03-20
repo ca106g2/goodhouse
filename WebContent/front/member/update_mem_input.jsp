@@ -15,53 +15,42 @@
 
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>會員資料修改 - update_mem_input.jsp</title>
+<title>會員資料修改</title>
 <meta charset="UTF-8">
-
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
+ #table1 { 
 
-<style>
-  table {
-	width: 450px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
-</style>
+  font-family: 微軟正黑體; 
+  font-size:16px; 
+  width:500px;
+  text-align:center;
+  margin-left:auto; 
+  margin-right:auto;
+} 
+ #table1 th { 
+  background-color: #009FCC;
+  padding:10px;
 
+  color:#fff;
+} 
+ #table1 td { 
+  padding:5px;
+} 
+
+
+</style>
 </head>
 <body bgcolor='white'>
 <jsp:include page="/FrontHeaderFooter/Header.jsp"/>	
-<table id="table-1">
+<table id="table1">
 	<tr><td>
-		 <h3>會員資料修改 - update_mem_input.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h3>會員資料修改</h3>
+		 <h4><a href="">回首頁</a></h4>
 	</td></tr>
 </table>
 
 <h3>資料修改:</h3>
-<h1><%=memVO.getMem_id()%></h1>
+
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -72,7 +61,7 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" name="form1" enctype="multipart/form-data">
-<table>
+<table id="table1">
 	<tr>
 		<td>會員姓名:</td>
 		<td><input type="TEXT" name="mem_name" size="45" 
@@ -141,14 +130,19 @@
 			</select>
 		</td>
 	</tr>
-	
-	
-</table>
-<br>
+	<tr>
+		<td></td>
+		<td>	
+
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="good_total" value="<%=memVO.getGood_total()%>">
 <input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>">
-<input type="submit" value="送出修改"></FORM>
+<input type="submit" class="btn btn-secondary" value="送出修改"></FORM>
+			</td>
+	</tr>
+	
+</table>
+<br>
 
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
