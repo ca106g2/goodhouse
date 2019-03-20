@@ -63,7 +63,7 @@ public class FrontLoginHandler extends HttpServlet {
 					}
 				}catch (Exception ignored) { }
 				
-				res.sendRedirect(req.getContextPath()+"/frontLogin_success.jsp");  //*工作3: (-->如無來源網頁:則重導至login_success.jsp)
+				res.sendRedirect(req.getContextPath()+"/front/frontLogin_success.jsp");  //*工作3: (-->如無來源網頁:則重導至login_success.jsp)
 			}
 		}
 
