@@ -8,7 +8,9 @@ public interface MemDAO_interface {
 	public void updatePointTot(String mem_id, Integer good_total);
 	public void delete(String mem_id);
 	public MemVO findByPrimaryKey(String mem_id);
+	public MemVO findEmailLog(String mem_email);
 	public MemVO findByEmail(String mem_email, String mem_password);
 	public List<MemVO>getAll();
 	
 }
+

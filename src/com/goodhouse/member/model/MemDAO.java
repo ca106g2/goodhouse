@@ -43,6 +43,8 @@ public class MemDAO implements MemDAO_interface{
 			"UPDATE MEMBER set GOOD_TOTAL=? where MEM_ID=?";
 	private static final String GET_ONE_EMAIL=
 			"SELECT * FROM MEMBER where MEM_EMAIL=? AND MEM_PASSWORD=?";
+	private static final String GET_ONE_EMAILLOG=
+			"SELECT * FROM MEMBER where MEM_EMAIL=? ";
 	@Override
 	public void insert(MemVO memVo) {
 		// TODO Auto-generated method stub
@@ -396,6 +398,67 @@ public class MemDAO implements MemDAO_interface{
 					}
 				}
 			}
+			return memVO;
+		}
+
+		@Override
+		public MemVO findEmailLog(String mem_email) {
+			// TODO Auto-generated method stub
+			MemVO memVO =null;
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(GET_ONE_EMAILLOG);
+				
+				pstmt.setString(1,mem_email);
+				
+				rs =pstmt.executeQuery();
+				
+				while(rs.next()) {
+					memVO = new MemVO();
+					memVO.setMem_id(rs.getString("mem_id"));
+					memVO.setMem_name(rs.getString("mem_name"));
+					memVO.setMem_birthday(rs.getDate("mem_birthday"));
+					memVO.setMem_password(rs.getString("mem_password"));
+					memVO.setMem_address(rs.getString("mem_address"));
+					memVO.setMem_zipcode(rs.getString("mem_zipcode"));
+					memVO.setMem_telephone(rs.getInt("mem_telephone"));
+					memVO.setMem_phone(rs.getInt("mem_phone"));
+					memVO.setMem_email(rs.getString("mem_email"));
+					memVO.setMem_status(rs.getString("mem_status"));
+					memVO.setMem_picture(rs.getBytes("mem_picture"));
+					memVO.setGood_total(rs.getInt("good_total"));
+					memVO.setMem_sex(rs.getString("mem_sex"));
+					}
+				
+			}catch(SQLException se) {
+				throw new RuntimeException("A database error occured."+se.getMessage());
+				
+			}finally {
+				try {
+					rs.close();
+				}catch(SQLException se) {
+					se.printStackTrace(System.err);
+				}
+				if(pstmt != null) {
+					try {
+						pstmt.close();
+					}catch(SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if(con != null) {
+					try {
+						con.close();
+					}catch(Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			
 			return memVO;
 		}
 		

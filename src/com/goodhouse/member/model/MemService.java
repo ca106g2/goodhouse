@@ -75,5 +75,7 @@ public class MemService {
 		return dao.getAll();
 	}
 	
-	
+	public MemVO getEmailLog(String mem_email) {
+		return dao.findEmailLog(mem_email);
+		}
 }
