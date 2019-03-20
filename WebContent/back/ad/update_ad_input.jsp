@@ -17,10 +17,36 @@
 
 <html>
 <head>
+<style>
 
+ #table1 { 
+
+  font-family: 微軟正黑體; 
+  font-size:16px; 
+  width:800px;
+
+  text-align:center;
+  border-collapse:collapse;
+  margin-left:auto; 
+  margin-right:auto;
+} 
+ #table1 th { 
+  background-color: #009FCC;
+  padding:10px;
+
+  color:#fff;
+
+} 
+ #table1 td { 
+
+  padding:5px;
+} 
+</style>
 </head>
 <body bgcolor='white'>
-<h3><a href="<%=request.getContextPath()%>/back/ad/select_page.jsp">回首頁</a></h3>
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>
+
+
 
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -30,10 +56,12 @@
 		</c:forEach>
 	</ul>
 </c:if>
-
+<br>
+<br>
+<br>
  
 <form method="post" action="ad.do" name="form1">
-<table>
+<table id="table1">
 	<tr>
 		<td>廣告類別:</td>
 				<td><c:forEach var="ad_sorVO" items="${ad_sorSvc.all}">
@@ -41,7 +69,7 @@
 						${ad_sorVO.ad_chargetype}	
 					</c:if>
 				</c:forEach></td>
-	</tr>
+	</tr >
 <!--  	<tr>
 		<td>廣告編號:</td>
 		<td><%--${adVO.ad_id}--%></td>
@@ -102,29 +130,45 @@
 				<option value="下架">下架</option>
 			</select>
 		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+		
+		<!-- 送積分的地方 -->
+			<input type="hidden" name="action" value="update">
+				<c:forEach var="memVO" items="${memSvc.all}">
+					<c:forEach var="lanVO" items="${lanSvc.all}">
+						<c:if test="${lanVO.mem_id eq memVO.mem_id}">
+							<c:if test="${adVO.lan_id eq lanVO.lan_id}">
+								<input type="hidden" name="mem_id" value="${memVO.mem_id}">
+							</c:if>
+						</c:if>
+					</c:forEach>
+				</c:forEach>
+		<!-- END -->
+		
+		
+			
+		<input type="hidden" name="ad_id" value="<%=adVO.getAd_id()%>">
+		<input type="hidden" name="ad_sort_id" value="<%=adVO.getAd_sort_id()%>">
+		<input type="hidden" name="lan_id" value="<%=adVO.getLan_id()%>">
+		<input type="hidden" name="hou_id" value="<%=adVO.getHou_id()%>">
+		<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
+		<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">
+		<input type="submit" class="btn btn-secondary" value="送出修改">
+		
+		
+			</td>
 	</tr>	
 </table>
 <br>
 <!-- 送積分的地方 -->
-<input type="hidden" name="action" value="update">
-	<c:forEach var="memVO" items="${memSvc.all}">
-		<c:forEach var="lanVO" items="${lanSvc.all}">
-			<c:if test="${lanVO.mem_id eq memVO.mem_id}">
-				<c:if test="${adVO.lan_id eq lanVO.lan_id}">
-<input type="hidden" name="mem_id" value="${memVO.mem_id}">
-				</c:if>
-			</c:if>
-		</c:forEach>
-	</c:forEach>
+
 <!-- END -->
-<input type="hidden" name="ad_id" value="<%=adVO.getAd_id()%>">
-<input type="hidden" name="ad_sort_id" value="<%=adVO.getAd_sort_id()%>">
-<input type="hidden" name="lan_id" value="<%=adVO.getLan_id()%>">
-<input type="hidden" name="hou_id" value="<%=adVO.getHou_id()%>">
-<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
-<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage")%>">
-<input type="submit" value="送出修改">
+
 </form>
+<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/datetimepicker/jquery.datetimepicker.css"/>
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>

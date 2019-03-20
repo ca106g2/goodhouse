@@ -53,7 +53,7 @@
 					廣告管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp">廣告列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">廣告檢舉</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad_report/listAllAd_report.jsp">廣告檢舉</a>
 					        </div>
                     </li>
 

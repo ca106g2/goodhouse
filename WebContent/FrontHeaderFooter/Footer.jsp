@@ -16,13 +16,14 @@
 <body onload="connect();" onunload="disconnect();">
 	<div style="height:60px ;"  >
 	</div>
-	<script>
-		<!--webSocket功能-->
+	
+ 	<script> 
+// 		webSocket功能
 
-		var eleConDone = "/EleConDoneWebSocket";
+ 		var eleConDone = "/EleConDoneWebSocket";
 		var host = window.location.host;
-	    var path = window.location.pathname;
-	    var webCtx = path.substring(0, path.indexOf('/', 1));
+ 	    var path = window.location.pathname;
+ 	    var webCtx = path.substring(0, path.indexOf('/', 1));
 	    var endPointURL = "ws://" + window.location.host + webCtx + eleConDone;
 		
 	    var webSocket;
@@ -48,9 +49,10 @@
    		 }
 
 		window.onload = init;
-	</script>
-	<script>
-		<!--webSocket功能-->
+ 	</script> 
+	
+ 	<script> 
+// 		webSocket功能
 
 		var addPoiGooDone = "/PointgoodsWebSocket";
 		var host = window.location.host;
@@ -81,7 +83,8 @@
    		 }
 
 		window.onload = init;
-	</script>
+	</script> 
+		
 	<script>
 		<!--webSocket功能-->
 
@@ -89,14 +92,15 @@
 		var host = window.location.host;
 	    var path = window.location.pathname;
 	    var webCtx = path.substring(0, path.indexOf('/', 1));
-	    var endPointURL = "ws://" + window.location.host + webCtx + houSocket;
-		
+	    var endPointURL2 = "ws://" + window.location.host + webCtx + houSocket;
+
 	    var webSocket2;
 
 		function connect(){
+
 			// 建立 websocket 物件
-			webSocket2 = new WebSocket(endPointURL);
-			
+			webSocket2 = new WebSocket(endPointURL2);
+
 			webSocket2.onopen = function(event) {
 			};
 			
@@ -114,8 +118,7 @@
    		 }
 
 		window.onload = init;
-	</script>
-	
+	</script>	 
 	
 	<!-- Footer頭 -->
 	 <footer class="container-fluid" style="padding-bottom:10px">
@@ -165,6 +168,6 @@
 		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 	 <!-- Footer尾 -->
 	 
-	 
+
 </body>
 </html>

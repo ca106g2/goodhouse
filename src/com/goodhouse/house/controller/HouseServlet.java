@@ -710,6 +710,7 @@ public class HouseServlet extends HttpServlet {
 								}
 							}	
 						}else {
+							req.setAttribute("houVO", houVO);
 							RequestDispatcher successView = req.getRequestDispatcher("/back/house/listOneHouse.jsp");
 							successView.forward(req, res);
 							}

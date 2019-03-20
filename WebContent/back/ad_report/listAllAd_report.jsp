@@ -58,9 +58,10 @@ pageContext.setAttribute("list",list);
 	</c:forEach>
 	</ul>
 </c:if>
-
-<table id="table1">
-	<tr>
+<br>
+<br>
+	<table id="table1">
+		<tr class="table-black">
 		<th>被檢舉廣告</th>
 		<th>檢舉房客</th>
 		<th>檢舉內容</th>
@@ -70,7 +71,7 @@ pageContext.setAttribute("list",list);
 	</tr>
 	<%@ include file="page1.file" %>
 	<c:forEach var="ad_repVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">	
-	<tr>	
+	<tr class="table-info" align='center'>	
 		<td>${houSvc.getOneHouse(adSvc.getOneAD(ad_repVO.ad_id).hou_id).hou_name}</td>
 		<td>${memSvc.getOneMem(ad_repVO.mem_id).mem_name}</td>
 		<td>${ad_repVO.ad_rep_reason}</td>

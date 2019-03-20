@@ -57,7 +57,6 @@
     
 </div>
  <div class="col-10">
-  	<h4><a href="">回首頁</a></h4>
 	<c:if test="${not empty errorMsgs}">
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
@@ -65,7 +64,7 @@
 		</c:forEach>
 	</ul>
 	</c:if>
-
+<br><br>
 <table id="table1">
 	<tr class="table-black" >
 		 <th>房屋名稱</th>
