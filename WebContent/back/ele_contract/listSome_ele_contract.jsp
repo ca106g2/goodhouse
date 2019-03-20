@@ -12,51 +12,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<!-- Required meta tags -->
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<script src="<%=request.getContextPath()%>/File/jquery-1.12.4.min.js"></script>
-	<!-- Bootstrap CSS start-->
-	<link rel="stylesheet"
-		href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
-	<!-- Bootstrap CSS end-->
-	<title></title>
-	<style>
-	  table#table-1 {
-		background-color: #CCCCFF;
-	    border: 2px solid black;
-	    text-align: center;
-	  }
-	 #table-1 h4 {
-	    color: red;
-	    display: block;
-	    margin-bottom: 1px;
-	  }
-	  h4 {
-	    color: blue;
-	    display: inline;
-	  }
-	  
-	 
-	</style>
 
 </head>
 <body>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
-	<h1></h1>
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 
 	<!-- 工作區開始 -->
 	
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row justfy-content-center">
-			<div class="row col-2">
+			<div class="row col-12">
 				<table id="table-1">
-					<p>回首頁<a href="select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
-					<tr>
-						<td>
-							所有電子合約資料 - listSome_ele_contract.jsp
-						</td>
-					</tr>
+					<p>回電子合約列表<a href="<%=request.getContextPath()%>/back/ele_contract/listAll_ele_contract.jsp">
+					<img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
 				</table>
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
@@ -68,7 +36,7 @@
 					</ul>
 				</c:if>
 			</div>
-			<div class="row col-10	" >
+			<div class="row col-12	" >
 				<table>
 					<tr>
 						<td>電子合約編號</td>
@@ -135,6 +103,14 @@
 								<td><%=ele_con_status%></td>
 								<td><%=bill_paymenttype%></td>
 								<td><%=ele_con_note%></td>
+								
+								<td>
+									<form method="post" action="<%=request.getContextPath()%>/back/ele_contract/ele_contract.do" style="margin-bottom:0px;">
+										<input type="submit" value="查看">
+										<input type="hidden" name="ele_con_id" value="<%=ele_con_id%>">
+										<input type="hidden" name="action" value="getOne_For_Display">
+									</form>
+								</td>
 							</tr>
 						<% 
 							}
@@ -146,18 +122,6 @@
 	</div>
 	
 	<!-- 工作區結束 -->
-	
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS start-->
-	<script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"
-		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-		crossorigin="anonymous"></script>
-	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
-
 </body>
 </html>

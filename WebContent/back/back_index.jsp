@@ -66,8 +66,8 @@
 						    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 						      <div class="card-body">
 						      		<a class="dropdown-item" href="<%=request.getContextPath()%>/back/contract/select_page.jsp">合約分類管理</a>
-							        <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ele_contract/select_page.jsp">電子合約列表</a>
-							        <a class="dropdown-item" href="<%=request.getContextPath()%>/back/bill/back_select_page.jsp">租金帳單管理</a>
+							        <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ele_contract/listAll_ele_contract.jsp">電子合約列表</a>
+							        <a class="dropdown-item" href="<%=request.getContextPath()%>/back/bill/back_listAll_bill.jsp">租金帳單管理</a>
 						      </div>
 						    </div>
 						  </div>

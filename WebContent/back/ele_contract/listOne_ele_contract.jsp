@@ -13,26 +13,18 @@
 <title></title>
 </head>
 <body>
-	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
-	<h1></h1>
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 
 	<!-- 工作區開始 -->
-	<div class="container-fluid">
-		<div class="row justfy-content-center">
-			
-		</div>
-		<div class="row justfy-content-center">
-			<div class="row col-3">
+	<div class="container">
+			<div class="row col-12">
 				<table id="table-1">
-					<tr>
-						<td>
-							<h3>電子合約資料 - ListOne_ele_contract.jsp</h3>
-							<h4><a href="select_page.jsp">回首頁</a></h4>
-						</td>
-					</tr>
+					<p>回電子合約列表<a href="<%=request.getContextPath()%>/back/ele_contract/listAll_ele_contract.jsp">
+					<img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
 				</table>
 			</div>
-			<div class="row col-9">
+			<div class="row col-12">
+			
 				<table>
 					<tr>
 						<td>電子合約編號</td>
@@ -104,11 +96,10 @@
 					</tr>	
 				</table>
 			</div>
-		</div>
 	</div>
 	
 	<!-- 工作區結束 -->
 
-
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

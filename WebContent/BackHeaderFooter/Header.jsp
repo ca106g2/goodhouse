@@ -62,9 +62,9 @@
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					電子合約管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/contract/select_page.jsp">合約分類管理</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ele_contract/select_page.jsp">電子合約列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/bill/back_select_page.jsp">租金帳單管理</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/contract/listAll_contract.jsp">合約分類管理</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ele_contract/listAll_ele_contract.jsp">電子合約列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/bill/back_listAll_bill.jsp">租金帳單管理</a>
 					        </div>
                     </li>
    
