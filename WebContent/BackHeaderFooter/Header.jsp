@@ -16,16 +16,27 @@
 <body>
 <!-- Feader頭 -->
 	<header class="container-fluid" style="position:fixed;z-index:999;">
-		<div class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fffddd !important;border-radius: 0 !important;">
+		<div class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #EDF9DE	 !important;border-radius: 0 !important;">
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>
-           <img src="<%=request.getContextPath()%>/share_pic/logo_color.png" width="55px" height="55px">
            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                    <li class="nav-item active">
-                       <a class="nav-link" href="#">房屋總管 <span class="sr-only">(current)</span></a>
+                       <a class="nav-link" href="<%=request.getContextPath()%>/back/back_index.jsp">
+                       <img src="<%=request.getContextPath()%>/share_pic/logo_color.png" width="40px" height="37px">
+                       	後台首頁 <span class="sr-only"></span>
+                       </a>
                    </li>
+					
+					<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					會員/員工管理</a>
+					     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">會員</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">員工</a>
+					     </div>
+                    </li>
 
  <!-- 房屋 --> 
                    	<li class="nav-item dropdown">
@@ -33,10 +44,6 @@
 					房屋管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/house/listAllHouse.jsp">房屋列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">房屋維修</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的評價紀錄</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的最愛追蹤</a>
 					        </div>
                        </li>
   <!-- 廣告 --> 
@@ -45,10 +52,6 @@
 					廣告管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp">廣告列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">新增廣告</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
 					        </div>
                        </li>
 
@@ -57,11 +60,9 @@
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					電子合約管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">電子合約列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">電子合約審核</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/contract/select_page.jsp">合約分類管理</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ele_contract/select_page.jsp">電子合約列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/bill/back_select_page.jsp">租金帳單管理</a>
 					        </div>
                        </li>
    

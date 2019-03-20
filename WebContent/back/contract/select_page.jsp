@@ -8,41 +8,12 @@
 <title>GoodHouse Contract：Home</title>
 
 <style>
-  table#table-1 {
-	width: 800px;
-	background-color: #CCCCFF;
-	margin-top: 5px;
-	margin-bottom: 10px;
-    border: 3px ridge Gray;
-    height: 80px;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+ 
 </style>
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/FrontHeaderFooter/Header.jsp" />
-
-	<table id="table-1">
-	   <tr>
-	   	<td>
-	   		<h3>GoodHouse Contract: Home</h3><h4>( MVC )</h4>
-	   	</td>
-	   </tr>
-	</table>
-
-	<p>This is the Home page for GoodHouse Contract: Home</p>
-
-	<h3>資料查詢:</h3>
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
 
 	<c:if test="${not empty errorMsgs}">
 		<font style="color:red">請修正以下錯誤:</font>
@@ -76,6 +47,8 @@
 	<ul>
 	  <li><a href='add_contract.jsp'>Add</a>新增合約分類</li>
 	</ul>
-
+	
+	
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>
