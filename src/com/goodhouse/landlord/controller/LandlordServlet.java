@@ -36,7 +36,7 @@ public class LandlordServlet extends HttpServlet{
 		String action = req.getParameter("action");
 	
 		if("insert".equals(action)) {
-			
+			System.out.println("=================3");
 			List<String>errorMsgs = new LinkedList<String>();
 			
 			req.setAttribute("errorMsgs",errorMsgs);
@@ -57,27 +57,23 @@ public class LandlordServlet extends HttpServlet{
 			if( lan_account == null ||  lan_account.trim().length() == 0) {
 				errorMsgs.add("帳號請勿空白");
 			}
-			String lan_accountstatus = req.getParameter("lan_accountstatus").trim();
-			if( lan_accountstatus == null ||  lan_accountstatus.trim().length() == 0) {
-				errorMsgs.add("帳號請勿空白");
-			}
+			String lan_accountstatus = "1";
 			
 			byte lan_ciziten[] = null;
-			try {
-				Part part = req.getPart("lan_ciziten");
-				if(part.getSubmittedFileName() != "") {
-					BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
-					ByteArrayOutputStream bao = new ByteArrayOutputStream();
-					int len;
-					byte[] b = new byte[8192];
-					while((len = bif.read(b)) != -1) {
-						bao.write(b);
-					}
-					lan_ciziten = bao.toByteArray();
+			Part part = req.getPart("lan_ciziten");
+			if(part.getSize() == 0) {
+				errorMsgs.add("良民證請勿空白");
+			} else {
+				BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
+				ByteArrayOutputStream bao = new ByteArrayOutputStream();
+				int len;
+				byte[] b = new byte[8192];
+				while((len = bif.read(b)) != -1) {
+					bao.write(b);
 				}
-			}catch(Exception e) {
-				errorMsgs.add("上傳照片失敗，請重新上傳");
+				lan_ciziten = bao.toByteArray();
 			}
+
 			
 			LanVO lanVO = new LanVO();
 			lanVO.setMem_id(mem_id);
@@ -85,25 +81,27 @@ public class LandlordServlet extends HttpServlet{
 			lanVO.setLan_account(lan_account);
 			lanVO.setLan_accountstatus(lan_accountstatus);
 			lanVO.setLan_ciziten(lan_ciziten);
-			
+			System.out.println("=================1");
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("lanVO", lanVO); // 含有輸入格式錯誤的empVO物件,也存入req
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/landlord/addLan.jsp");
+						.getRequestDispatcher("/front/member/select_page.jsp");
 				failureView.forward(req, res);
 				return;
 			}
+			System.out.println("=================2");
 			/***************************2.開始新增資料***************************************/
 			LanService lanSvc = new LanService();
 			lanVO = lanSvc.addLan(mem_id,lan_receipt, lan_account, lan_accountstatus, lan_ciziten);	
 			
 			/***************************3.新增完成,準備轉交(Send the Success view)***********/
 			req.setAttribute("lanVO", lanVO);
-			String url = "/front/landlord/listAllLan.jsp";
+			String url = "/front/landlord/applylan.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);		
 			
 		} catch(Exception e){
+			e.printStackTrace();
 			errorMsgs.add(e.getMessage());
 			RequestDispatcher failureView = req
 					.getRequestDispatcher("/front/landlord/addLan.jsp");
@@ -141,20 +139,20 @@ public class LandlordServlet extends HttpServlet{
 			}
 			
 			byte lan_ciziten[] = null;
-			try {
-				Part part = req.getPart("lan_ciziten");
-				if(part.getSubmittedFileName() != "") {
-					BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
-					ByteArrayOutputStream bao = new ByteArrayOutputStream();
-					int len;
-					byte[] b = new byte[8192];
-					while((len = bif.read(b)) != -1) {
-						bao.write(b);
-					}
-					lan_ciziten = bao.toByteArray();
+			Part part = req.getPart("lan_ciziten");
+			if(part.getSize() == 0) {
+				LanService lanSvc = new LanService();
+				LanVO lanVO = lanSvc.getOneLan(lan_id);
+				lan_ciziten = lanVO.getLan_ciziten();
+			} else {
+				BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
+				ByteArrayOutputStream bao = new ByteArrayOutputStream();
+				int len;
+				byte[] b = new byte[8192];
+				while((len = bif.read(b)) != -1) {
+					bao.write(b);
 				}
-			}catch(Exception e) {
-				errorMsgs.add("上傳照片失敗，請重新上傳");
+				lan_ciziten = bao.toByteArray();
 			}
 			
 			
@@ -167,29 +165,31 @@ public class LandlordServlet extends HttpServlet{
 			lanVO.setLan_accountstatus(lan_accountstatus);
 			lanVO.setLan_ciziten(lan_ciziten);
 			lanVO.setLan_id(lan_id);
-			
+			System.out.println("====================1");
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("lanVO", lanVO); // 含有輸入格式錯誤的empVO物件,也存入req
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/landlord/update_lan_input.jsp");
+						.getRequestDispatcher("/back/employee/update_lan_input.jsp");
 				failureView.forward(req, res);
 				return;
 			}
+			System.out.println("====================2");
 			/***************************2.開始修改資料***************************************/
 			LanService lanSvc = new LanService();
 			lanVO = lanSvc.updateLan(mem_id,lan_receipt, lan_account, lan_accountstatus,lan_ciziten,lan_id);	
 			
 			/***************************3.新增完成,準備轉交(Send the Success view)***********/
 			req.setAttribute("lanVO", lanVO);
-			String url = "/front/landlord/listOneLan.jsp";
+			String url = "/back/employee/checklan.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);		
 		
 			/***************************其他可能的錯誤處理*************************************/
 		} catch(Exception e){
+			e.printStackTrace();
 			errorMsgs.add(e.getMessage());
 			RequestDispatcher failureView = req
-					.getRequestDispatcher("/front/landlord/udpate_lan_input.jsp");
+					.getRequestDispatcher("/back/employee/update_lan_input.jsp");
 		failureView.forward(req, res);
 	   }
 			
@@ -262,11 +262,12 @@ public class LandlordServlet extends HttpServlet{
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("lanVO", lanVO);         // 資料庫取出的empVO物件,存入req
-				String url = "/front/landlord/update_lan_input.jsp";
+				String url = "/back/employee/update_lan_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 				
 			}catch (Exception e) {
+				e.printStackTrace();
 			errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 			RequestDispatcher failureView = req
 					.getRequestDispatcher("/front/landlord/listAllLan.jsp");
@@ -304,6 +305,11 @@ public class LandlordServlet extends HttpServlet{
 			}
 	
 		}
-	
+		
+		
+		
+		
+		
+		
 	}
 }

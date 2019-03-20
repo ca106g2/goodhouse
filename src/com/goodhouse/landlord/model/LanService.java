@@ -48,7 +48,7 @@ public class LanService {
 		return dao.findByPrimaryKey(lan_id);
 		}
 	
-	public List <LanVO> getAll(){
+	public List<LanVO> getAll(){
 		return dao.getAll();
 	}
 	public LanVO getOneLanByMemId(String mem_id) {
