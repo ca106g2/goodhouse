@@ -60,7 +60,7 @@
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/mem_listAll_ele_contract.jsp">我的合約列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/bill/mem_select_page.jsp">我的帳單列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/bill/mem_listAll_bill.jsp">我的帳單列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的積分紀錄</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/mem_listAll_house_evaluate.jsp">我的評價紀錄</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_track/mem_house_track_listAll.jsp">我的最愛追蹤</a>

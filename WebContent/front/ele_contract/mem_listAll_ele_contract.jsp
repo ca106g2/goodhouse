@@ -28,8 +28,6 @@
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<!-- 工作區開始 -->
 	<div class="container-fluid">
-		<div class="row justfy-content-center">
-			<div class="row col-12	">
 				<div>
 					<%-- 錯誤表列 --%>
 					<c:if test="${not empty errorMsgs}">
@@ -44,7 +42,7 @@
 				<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
 				<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
 				
-				<table class="table table-bordered ">
+				<table class="table table-hover ">
 					<thead>
 				    	<tr>
 				      		<th scope="col">合約分類名稱</th>
@@ -91,31 +89,33 @@
 							</c:forEach>
 							
 				      		<td>
-								<form method="post" action="apply_conturct.do">
+								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
 									<input type="hidden" name="action" value="apply_conturct">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
+									<input type="hidden" name="appConChoose" value="a2">
 									<input class="" type="submit" value="續約" id="renewORrelease" 
 													style='display:${(eleConVO.ele_con_status eq "s2") ? "" : "none"}'>
 								</form>
-								<form method="post" action="apply_conturct.do">
+								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
 									<input type="hidden" name="action" value="apply_conturct">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
+									<input type="hidden" name="appConChoose" value="a1">
 									<input class="" type="submit" value="解約" id="renewORrelease" 
 													style='display:${(eleConVO.ele_con_status eq "s2") ? "" : "none"}'>
 								</form>
-								<form method="post" action="apply_conturct.do">
+								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
 									<input type="hidden" name="action" value="eleConCheck">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
 									<input class="" type="submit" value="確認" id="eleConCheck" 
 													style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
 								</form>
-								<form method="post" action="apply_conturct.do">
+								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
 									<input type="hidden" name="action" value="eleConCancle">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
 									<input class="" type="submit" value="取消合約" id="eleConCancle" 
 													style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
 								</form>
-								<form method="post" action="ele_contract.do">
+								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/ele_contract.do">
 									<input type="hidden" name="action" value="getOne_For_look">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
 									<input class="" type="submit" value="查看" id="eleConCancle" 
@@ -128,8 +128,6 @@
 				</table>
 <!-- 		********************					//TODO  建立房客取消  合約按鈕 -->
 				<%@ include file="page2.file"%>
-			</div>
-		</div>
 	</div>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 	<!-- 工作區結束 -->

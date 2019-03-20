@@ -35,7 +35,6 @@
 	<!-- 工作區開始 -->
 	
 	<div class="container">
-		<div class="row justfy-content-center">
 			<div class="row col-3">
 				<table id="table-1">
 					<p>回首頁<a href="lan_select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
@@ -103,8 +102,6 @@
 						%>
 				</table>
 			</div>
-				
-		</div>
 	</div>
 	
 	<!-- 工作區結束 -->

@@ -12,7 +12,6 @@
 
 	<!-- 工作區開始 -->
 <div class="container-fluid">
-	<div class="row justfy-content-center">
 		<div class="row col-3">
 			<p>回首頁<a href="lan_select_page.jsp"><img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100" height="30 !important" ></a></p>
 			<%-- 錯誤表列 --%>
@@ -52,8 +51,6 @@
 		</div>
 		<div class="row col-3">
 		</div>
-	
-	</div>
 </div>
 	
 	

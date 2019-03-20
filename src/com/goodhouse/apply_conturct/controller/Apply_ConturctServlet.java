@@ -32,62 +32,62 @@ public class Apply_ConturctServlet extends HttpServlet{
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
 		
-		
-		//房東查看全部的合約處理列表
-		if("lanApply_conturctListAll".equals(action)) {
-			
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
-			
-			try {
-				/***1接收請求參數***********/
-				MemVO lanMemVO = (MemVO)session.getAttribute("mVO");
-				
-				String lanMem_id = lanMemVO.getMem_id();
-				
-				/****2開始查詢資料****************/
-				HouseService houSvc = new HouseService();
-				LanService lanSvc = new LanService();
-				MemService mSvc = new MemService();
-				//先取出房東編號
-				LanVO lanVO = lanSvc.getOneLanByMemId(lanMem_id);
-				String lan_id = lanVO.getLan_id();
-				
-				//找到該房東所屬的房屋編號
-				List<Apply_ConturctVO> applyConturctList = new ArrayList<Apply_ConturctVO>();
-				Apply_ConturctService applyConturctSvc = new Apply_ConturctService();
-				String hou_id = null;
-				for(HouseVO houVO : houSvc.getAll()) {
-					if(houVO.getLan_id().equals(lan_id)) {
-						hou_id = houVO.getHou_id();
-					}
-				}
-				
-				//找到該房屋所屬的申請合約處理編號
-				applyConturctList = applyConturctSvc.getApplyListByHou_id(hou_id);
-				
-				if(applyConturctList.isEmpty()) {
-					errorMsgs.add("無資料");
-				}
-				
-				if(!errorMsgs.isEmpty()) {
-					RequestDispatcher failure = req.getRequestDispatcher("lan_select_page.jsp");
-					failure.forward(req, res);
-					return;
-				}
-				
-				/****3查詢完成準備轉交****************/
-				req.getSession().setAttribute("applyConturctList", applyConturctList);
-				RequestDispatcher success = req.getRequestDispatcher("/front/ele_contract/lanListAll_Apply_conturct.jsp");
-				success.forward(req, res);
-				
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料" + e.getMessage());
-				RequestDispatcher failure = req.getRequestDispatcher("lan_select_page.jsp");
-				failure.forward(req, res);
-			}
-			
-		}
+//		
+//		//房東查看全部的合約處理列表
+//		if("lanApply_conturctListAll".equals(action)) {
+//			
+//			List<String> errorMsgs = new LinkedList<String>();
+//			req.setAttribute("errorMsgs", errorMsgs);
+//			
+//			try {
+//				/***1接收請求參數***********/
+//				MemVO lanMemVO = (MemVO)session.getAttribute("mVO");
+//				
+//				String lanMem_id = lanMemVO.getMem_id();
+//				
+//				/****2開始查詢資料****************/
+//				HouseService houSvc = new HouseService();
+//				LanService lanSvc = new LanService();
+//				MemService mSvc = new MemService();
+//				//先取出房東編號
+//				LanVO lanVO = lanSvc.getOneLanByMemId(lanMem_id);
+//				String lan_id = lanVO.getLan_id();
+//				
+//				//找到該房東所屬的房屋編號
+//				List<Apply_ConturctVO> applyConturctList = new ArrayList<Apply_ConturctVO>();
+//				Apply_ConturctService applyConturctSvc = new Apply_ConturctService();
+//				String hou_id = null;
+//				for(HouseVO houVO : houSvc.getAll()) {
+//					if(houVO.getLan_id().equals(lan_id)) {
+//						hou_id = houVO.getHou_id();
+//					}
+//				}
+//				
+//				//找到該房屋所屬的申請合約處理編號
+//				applyConturctList = applyConturctSvc.getApplyListByHou_id(hou_id);
+//				
+//				if(applyConturctList.isEmpty()) {
+//					errorMsgs.add("無資料");
+//				}
+//				
+//				if(!errorMsgs.isEmpty()) {
+//					RequestDispatcher failure = req.getRequestDispatcher("lan_select_page.jsp");
+//					failure.forward(req, res);
+//					return;
+//				}
+//				
+//				/****3查詢完成準備轉交****************/
+//				req.getSession().setAttribute("applyConturctList", applyConturctList);
+//				RequestDispatcher success = req.getRequestDispatcher("/front/ele_contract/lanListAll_Apply_conturct.jsp");
+//				success.forward(req, res);
+//				
+//			} catch (Exception e) {
+//				errorMsgs.add("無法取得資料" + e.getMessage());
+//				RequestDispatcher failure = req.getRequestDispatcher("lan_select_page.jsp");
+//				failure.forward(req, res);
+//			}
+//			
+//		}
 		
 		//房客申請解約/續約
 		if("apply_conturct".equals(action)) {
@@ -98,12 +98,14 @@ public class Apply_ConturctServlet extends HttpServlet{
 			try {
 				/***1接收請求參數******************/
 				String ele_con_id = req.getParameter("ele_con_id");
+				String appConChoose = req.getParameter("appConChoose");
 				
 				/***2查詢*************/
 				Ele_ContractService eleConSvc = new Ele_ContractService();
 				Ele_ContractVO eleConVO = eleConSvc.getOneEC(ele_con_id);
 				/***3查詢完成準備轉交****************/
 				req.getSession().setAttribute("eleConVO", eleConVO);
+				req.getSession().setAttribute("appConChoose", appConChoose);
 				RequestDispatcher success = req.getRequestDispatcher("/front/ele_contract/apply_conturct.jsp");
 				success.forward(req, res);
 				
@@ -130,16 +132,13 @@ public class Apply_ConturctServlet extends HttpServlet{
 				String hou_id = req.getParameter("hou_id");
 				
 				String app_con_content = req.getParameter("app_con_content");
-				if(app_con_content == null || app_con_content.trim().length() == 0) {
-					errorMsgs.add("請選擇申請處理項目");
-				}
 				
 				String app_con_status = req.getParameter("app_con_status");
 				
 				String app_con_other = req.getParameter("app_con_other");
 				
 				if(!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back/ele_contract/apply_conturct.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front/ele_contract/apply_conturct.jsp");
 					failureView.forward(req,res);
 					return;//程式中斷
 				}

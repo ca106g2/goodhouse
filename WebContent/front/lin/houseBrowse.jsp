@@ -171,7 +171,7 @@
 			<div class="col-sm-8">
 				<c:forEach var="houVO" varStatus="s" items="${list}"
 					begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-					
+					<c:if test="${houVO.hou_property eq '未出租' && houVO.hou_parkspace eq '已審核'}">
 					<c:if test="${(s.count%3-1) == 0 }">
 						<div class="row">
 					</c:if>
@@ -186,7 +186,7 @@
 							<div class="card-body">
 								<h5 class="card-title">${houVO.hou_name}</h5>
 								<p class="card-text">${houVO.hou_rent}</p>
-								<Form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do"> 
+								<Form METHOD="post" ACTION="<%=request.getContextPath()%>/front/house/hou.do"> 
 									<input type="hidden" name="hou_id" value="${houVO.hou_id}">
 									<input type="hidden" name="action" value="front_getOne_For_Display">
 									<input type="submit" value="查看詳情" >
@@ -204,7 +204,8 @@
 <!-- 	卡片大小格式跑掉		------ -->
 			
 		
-				</c:if>
+					</c:if>
+					</c:if>
 				</c:forEach>
 				</div>
 			</div>

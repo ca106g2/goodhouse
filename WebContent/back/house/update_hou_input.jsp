@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.house.model.*"%>
+<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
+<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
 
 <%
   HouseVO houVO = (HouseVO) request.getAttribute("houVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
@@ -8,53 +10,39 @@
 
 <html>
 <head>
+<title></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
+
 
 <style>
+  h3{
+  	margin-left:auto; 
+    margin-right:auto;
+  }
   table {
-	width: 450px;
+	width: 1500px;
 	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left:auto; 
+    margin-right:auto;
   }
   table, th, td {
-    border: 0px solid #CCCCFF;
+    border: 1px solid #CCCCFF;
   }
   th, td {
-    padding: 1px;
+    padding: 5px;
+    text-align: center;
   }
 </style>
 
 </head>
 <body bgcolor='white'>
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
-<table id="table-1">
-	<tr><td>
-
-		 <h4><a href="select_page.jsp">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<h3>資料修改:</h3>
-
+<h3>房屋更新:</h3>
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -67,76 +55,49 @@
 
 <FORM METHOD="post" ACTION="hou.do" name="form1" enctype="multipart/form-data">
 <table>
-	<tr>
-		<td>房屋編號<font color=red><b>*</b></font></td>
-		<td><%=houVO.getHou_id()%></td>
-	</tr>
-	<tr>
-		<td>房屋名稱:</td>
-		<td><input type="TEXT" name="hou_name" size="45" value="<%=houVO.getHou_name()%>" /></td>
-	</tr>
-	
-		<tr>
-		<td>房屋型別</td>
-		<td><input type="TEXT" name="hou_type" size="45" value="<%=houVO.getHou_type()%>" /></td>
-	</tr>
-		<tr>
-		<td>房屋坪數</td>
-		<td><input type="TEXT" name="hou_size" size="45" value="<%=houVO.getHou_size()%>" /></td>
-	</tr>
-		<tr>
-		<td>房屋狀態</td>
-		<td><input type="TEXT" name="hou_property" size="45" value="<%=houVO.getHou_property()%>" /></td>
-	</tr>
-		<tr>
-		<td>是否含車位</td>
-		<td><input type="TEXT" name="hou_parkspace" size="45" value="<%=houVO.getHou_parkspace()%>" /></td>
-	</tr>
-		<tr>
-		<td>是否可開火</td>
-		<td><input type="TEXT" name="hou_cook" size="45" value="<%=houVO.getHou_cook()%>" /></td>
-	</tr>
-		<tr>
-		<td>房屋管理費用</td>
-		<td><input type="TEXT" name="hou_managefee" size="45" value="<%=houVO.getHou_managefee()%>" /></td>
-	</tr>
-		<tr>
-		<td>房屋地址</td>
-		<td><input type="TEXT" name="hou_address" size="45" value="<%=houVO.getHou_address()%>" /></td>	
-	</tr>
-		<tr>
-		<td>房屋租金</td>
-		<td><input type="TEXT" name="hou_rent" size="45" value="<%=houVO.getHou_rent()%>" /></td>	
-	</tr>
-		<tr>
-		<td>備註</td>
-		<td><input type="TEXT" name="hou_note" size="45" value="<%=houVO.getHou_note()%>" /></td>	
-	</tr>
+		<tr><th>房屋審核 :
+		<td>												
+			<select  size="1" name="hou_parkspace"class="form-control" id="exampleFormControlSelect5">	
+				<option value="未審核">未審核</option>
+				<option value="已審核">已審核</option>
+			</select></td>
+			</th>
+			</tr>
+		<tr><th>房屋名稱 : <td><%=houVO.getHou_name()%></td></th></tr>
+		<tr><th>房屋名稱 : <td><%=houVO.getHou_name()%></td></th></tr>
+		<tr><th>房屋型別 : <td><%=houVO.getHou_type()%></td></th></tr>
+		<tr><th>房屋坪數 : <td><%=houVO.getHou_size()%></td></th></tr>
+		<tr><th>房屋狀態 : <td><%=houVO.getHou_property()%></td></th></tr>
+		<tr><th>是否可開火 : <td><%=houVO.getHou_cook()%></td></th></tr>
+		<tr><th>是否有管理費 : <td><%=houVO.getHou_managefee()%></td></th></tr>
+		<tr><th>房屋地址 : <td><%=houVO.getHou_address()%></td></th></tr>
+		<tr><th>房屋租金 : <td><%=houVO.getHou_rent()%></td></th></tr>
+		<tr><th>備註 : <td><%=houVO.getHou_note()%></td></th></tr>
+		<tr><th>圖片一 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"></td></th></tr>
+		<tr><th>圖片二 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=2"></td></th></tr>
+		<th>圖片三 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=3"></td></th>
 
-	<tr>
-		<td>房屋圖片一</td>
-		<td><input type="file" name="hou_f_picture"
-		id="d1"/><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"  id="picture1"/></td>
-	</tr>
-		<tr>
-		<td>房屋圖片二</td>
-		<td><input type="file" name="hou_s_picture"
-		id="d2"/><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=2"  id="picture2"/></td>
-	</tr>
-		<tr>
-		<td>房屋圖片三</td>
-		<td><input type="file" name="hou_t_picture"
-		id="d3"/><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=3" id="picture3"/></td>
-	</tr>
- 
 </table>
 <br>
 <input type="hidden" name="action" value="update">
+<input type="hidden" name="mem_id" value="${memSvc.getOneMem(lanSvc.getOneLan(houVO.lan_id).mem_id).mem_id}">
 <input type="hidden" name="hou_id" value="<%=houVO.getHou_id()%>">
+<input type="hidden" name="hou_name" value="<%=houVO.getHou_name()%>">
+<input type="hidden" name="hou_type" value="<%=houVO.getHou_type()%>">
+<input type="hidden" name="hou_size" value="<%=houVO.getHou_size()%>">
+<input type="hidden" name="hou_property" value="<%=houVO.getHou_property()%>">
+<input type="hidden" name="hou_cook" value="<%=houVO.getHou_cook()%>">
+<input type="hidden" name="hou_managefee" value="<%=houVO.getHou_managefee()%>">
+<input type="hidden" name="hou_address" value="<%=houVO.getHou_address()%>">
+<input type="hidden" name="hou_rent" value="<%=houVO.getHou_rent()%>">
+<input type="hidden" name="hou_note" value="<%=houVO.getHou_note()%>">
+<input type="hidden" name="hou_f_picture">
+<input type="hidden" name="hou_s_picture">
+<input type="hidden" name="hou_t_picture">
 <input type="submit" value="送出修改">
 </FORM>
 
-
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>
 

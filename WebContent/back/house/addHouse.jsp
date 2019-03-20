@@ -42,7 +42,7 @@
 
 </head>
 <body bgcolor='white'>
-
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
 <table id="table-1">
 	<tr><td>
 		<h3>新增-addHouse.jsp</h3></td><td style="test-align: center">
@@ -51,15 +51,6 @@
 </table>
 
 <h3>資料新增</h3>
-
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message.value}</li>
-		</c:forEach>
-	</ul>
-</c:if>
 
 <FORM METHOD="post" ACTION="hou.do" name="form1" enctype="multipart/form-data">
 <table>
@@ -84,7 +75,7 @@
 			 value="${param.hou_property}"/></td><td>${errorMsgs.hou_property}</td>
 	</tr>
 		<tr>
-		<td>是否含車位</td>
+		<td>房屋審核</td>
 		<td><input type="text" name="hou_parkspace" size="45"
 			 value="${param.hou_parkspace}"/></td><td>${errorMsgs.hou_parkspace}</td>
 	</tr>
@@ -138,7 +129,7 @@
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增">
 </FORM>
-
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 </body>
 </html>
 <!-- 以下為秀圖片 -->

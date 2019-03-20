@@ -15,7 +15,6 @@
 	<!-- 工作區開始 -->
 
 	<div class="container-fluid">
-		<div class="row justfy-content-center">
 			<div class="row col-4"></div>
 			<div class="row col-8">
 				<h4>房客電子合約管理</h4><br>
@@ -35,7 +34,6 @@
 					</ul>
 				</c:if>
 			</div>
-		</div>
 	</div>
 
 

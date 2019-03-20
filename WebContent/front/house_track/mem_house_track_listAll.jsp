@@ -33,17 +33,16 @@
 				  	<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
 					<thead>
 				    	<tr>
-				      		<th scope="col">房屋編號</th>
 				      		<th scope="col">房屋名稱</th>
 				      		<th scope="col">房屋地址</th>
 				      		<th scope="col">房屋租金</th>
+				      		<th scope="col"></th>
 				    	</tr>
 				  	</thead>
 					<tbody>	
 					<%@ include file="page1.file" %>
 						<c:forEach var="House_TrackVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 				    	<tr class="houTra" id="${list.indexOf(House_TrackVO)}" >
-				      		<th scope="row">${House_TrackVO.hou_id}</th>
 				      		<td>${houSvc.getOneHouse(House_TrackVO.hou_id).hou_name}</td>
 				      		<td>${houSvc.getOneHouse(House_TrackVO.hou_id).hou_address}</td>
 				      		<td>${houSvc.getOneHouse(House_TrackVO.hou_id).hou_rent}</td>
@@ -85,7 +84,7 @@
 				
 				$('tr[id=' + index + ']').remove();
 				
-				swal("完成","成功取消收藏","error");
+				swal("完成","成功取消追蹤","error");
 			},
 			error: function(){alert("AJAX發生錯誤")}
 		});

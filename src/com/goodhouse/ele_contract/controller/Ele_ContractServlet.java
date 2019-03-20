@@ -70,7 +70,7 @@ public class Ele_ContractServlet extends HttpServlet{
 					}
 				}
 				/**3查詢完成準備轉交****/
-				String url = "/front/ele_contract/mem_select_page.jsp";
+				String url = "/front/lin/houseBrowse.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 				
@@ -260,16 +260,16 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//查詢會員資料庫資料
 				MemService mSvc = new MemService();
-				for(MemVO mVO : mSvc.getAll()) {
-					if(mem_name.equals(mVO.getMem_name())) {
-						mem_id = mVO.getMem_id();
+				for(MemVO memVO : mSvc.getAll()) {
+					if(memVO.getMem_name().equals(mem_name)) {
+						mem_id = memVO.getMem_id();
 					}
 				}
-				//檢查會員id是否為空直
+				
 				if(mem_id == null) {
 					errorMsgs.add("姓名輸入錯誤 或 無此會員，請重新輸入");
 				}
-
+				
 				String mem_idnumber = req.getParameter("mem_idnumber");
 				//比對輸入的身分證字號格式是錯誤
 				String mem_idnumberReg = "^[A-Z]{1}[1-2]{1}[0-9]{8}$";
@@ -294,14 +294,15 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//租金比對
 				String rent_money = req.getParameter("ele_rent_money");
-				String rent_moneyReq = "^[0-9]*$";
 				if(rent_money == null || rent_money.trim().length() == 0 ) {
 					errorMsgs.add("租金不能空白，請重新輸入");
-				} else if(!rent_money.matches(rent_moneyReq)) {
-					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
-				}
+				} 
+				
 				Integer ele_rent_money = null;
 				try {
+					if(rent_money != null) {
+						rent_money = rent_money.trim();
+					}
 					ele_rent_money = Integer.parseInt(rent_money);
 					if(ele_rent_money <= 0 ) {
 						errorMsgs.add("租金不能是0或負數，請重新輸入");
@@ -312,14 +313,15 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//押金比對
 				String deposit_money = req.getParameter("ele_deposit_money");
-				String deposit_moneyReq = "^[0-9]*$";
 				if(deposit_money == null || deposit_money.trim().length() == 0) {
 					errorMsgs.add("押金不能空白，請重新輸入");
-				} else if(!deposit_money.matches(deposit_moneyReq)) {
-					errorMsgs.add("押金不能含有字元或符號，只能是數字，請重新輸入");
 				}
+				
 				Integer ele_deposit_money = null;
 				try {
+					if(deposit_money != null) {
+						deposit_money = deposit_money.trim();
+					}
 					ele_deposit_money = Integer.parseInt(deposit_money);
 					if(ele_deposit_money <= 0) {
 						errorMsgs.add("押金不能是0或負數，請重新輸入");
@@ -330,14 +332,15 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//租賃期限比對
 				String rent_time = req.getParameter("ele_rent_time");
-				String rent_timeReq = "^[0-9]*$";
 				if(rent_time == null || rent_time.trim().length() == 0) {
 					errorMsgs.add("租金不能空白，請重新輸入");
-				} else if(!rent_time.matches(rent_timeReq)) {
-					errorMsgs.add("租賃期限不能含有字元或符號，只能是數字，請重新輸入");
-				}
+				} 
+				
 				Integer ele_rent_time = null;
 				try {
+					if(rent_time != null) {
+						rent_time = rent_time.trim();
+					}
 					ele_rent_time = Integer.parseInt(rent_time);
 					if(ele_rent_time <= 0) {
 						errorMsgs.add("租賃期限不能是0或負數，請重新輸入");
@@ -425,8 +428,6 @@ public class Ele_ContractServlet extends HttpServlet{
 			    mailService.sendMail(to, subject, messageText);
 				
 				/*******3新增成功，準備轉交****************************/
-				List<Ele_ContractVO> ele_contractForLanList = eleConSvc.getAllForEle_ConByLan_id(lan_id);
-				req.getSession().setAttribute("ele_contractForLanList", ele_contractForLanList);
 				String url = "/front/ele_contract/lan_listAll_ele_contract.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAll_ele_contract.jsp
 				successView.forward(req, res);
@@ -503,14 +504,15 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//租金比對
 				String rent_money = req.getParameter("ele_rent_money");
-				String rent_moneyReq = "^[0-9]*$";
 				if(rent_money == null || rent_money.trim().length() == 0 ) {
 					errorMsgs.add("租金不能空白，請重新輸入");
-				} else if(!rent_money.matches(rent_moneyReq)) {
-					errorMsgs.add("租金不能含有字元或符號，只能是數字，請重新輸入");
 				}
+				
 				Integer ele_rent_money = null;
 				try {
+					if(rent_money != null) {
+						rent_money = rent_money.trim();
+					}
 					ele_rent_money = Integer.parseInt(rent_money);
 					if(ele_rent_money <= 0 ) {
 						errorMsgs.add("租金不能是0或負數，請重新輸入");
@@ -521,14 +523,15 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//押金比對
 				String deposit_money = req.getParameter("ele_deposit_money");
-				String deposit_moneyReq = "^[0-9]*$";
 				if(deposit_money == null || deposit_money.trim().length() == 0) {
 					errorMsgs.add("押金不能空白，請重新輸入");
-				} else if(!deposit_money.matches(deposit_moneyReq)) {
-					errorMsgs.add("押金不能含有字元或符號，只能是數字，請重新輸入");
 				}
+				
 				Integer ele_deposit_money = null;
 				try {
+					if(deposit_money != null) {
+						deposit_money = deposit_money.trim();
+					}
 					ele_deposit_money = Integer.parseInt(deposit_money);
 					if(ele_deposit_money <= 0) {
 						errorMsgs.add("押金不能是0或負數，請重新輸入");
@@ -544,14 +547,10 @@ public class Ele_ContractServlet extends HttpServlet{
 				if(rent_time == null || rent_time.trim().length() == 0) {
 					errorMsgs.add("租賃期限不能空白，請重新輸入");
 				} 
-//				else if(!rent_time.matches(rent_timeReq)) {
-//					errorMsgs.add("租賃期限不能含有字元或符號，只能是數字，請重新輸入");
-//				}
 				
 				Integer ele_rent_time = null;
 				
 				try {
-					
 					if(rent_time != null) {
 						rent_time = rent_time.trim();
 					}
@@ -571,7 +570,7 @@ public class Ele_ContractServlet extends HttpServlet{
 						ele_rent_f_day = Date.valueOf(ele_rent_f_day_str);
 					}
 				} catch (IllegalArgumentException e) {
-					ele_rent_f_day = new Date(System.currentTimeMillis());
+//					ele_rent_f_day = new Date(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期");
 				}
 				
@@ -581,7 +580,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				try {
 					ele_rent_l_day = Date.valueOf(req.getParameter("ele_rent_l_day"));
 				} catch (IllegalArgumentException e) {
-					ele_rent_l_day = new Date(System.currentTimeMillis());
+//					ele_rent_l_day = new Date(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期");
 				}
 				
@@ -591,7 +590,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				try {
 					ele_singdate = Date.valueOf(req.getParameter("ele_singdate"));
 				} catch (IllegalArgumentException e) {
-					ele_singdate = new Date(System.currentTimeMillis());
+//					ele_singdate = new Date(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期");
 				}
 				
@@ -600,7 +599,6 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				//繳費型態
 				String bill_paymenttype = req.getParameter("bill_paymenttype");
-				System.out.println("bill_paymenttype = "+bill_paymenttype);
 				
 				//合約備註
 				String ele_con_note = req.getParameter("ele_con_note");
@@ -787,7 +785,7 @@ public class Ele_ContractServlet extends HttpServlet{
 		
 		
 		}
-		//TODO 房東查資料
+		//TODO 房東房客查資料
 		if("getOne_For_look".equals(action)) {
 			
 			/*****1接收請求參數*************************/
@@ -800,7 +798,7 @@ public class Ele_ContractServlet extends HttpServlet{
 			/*****3查詢成功準備轉交資料************************/
 			
 			req.setAttribute("eleConVO", eleConVO);
-			String url = "/front/ele_contract/lan_listOne_ele_contract.jsp";
+			String url = "/front/ele_contract/listOne_ele_contract.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 			

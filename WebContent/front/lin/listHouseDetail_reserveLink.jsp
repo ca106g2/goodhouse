@@ -393,7 +393,6 @@ input[type="checkbox"].switch_1{
 										<td>房屋檢舉 : </td>				
 											<td><%= houVO.getHou_name()%></td>
 									</tr>
-	
 									<tr class="table-light">
 										<td>檢舉人 : </td>
 											<td><%=memVO.getMem_name()%></td>

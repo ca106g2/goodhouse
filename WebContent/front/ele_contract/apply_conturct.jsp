@@ -9,6 +9,10 @@
 <%
 	Ele_ContractVO eleConVO = (Ele_ContractVO)session.getAttribute("eleConVO");
 	Apply_ConturctVO appConVO = (Apply_ConturctVO)request.getAttribute("appConVO");
+	String acc = (String)session.getAttribute("appConChoose");
+	pageContext.setAttribute("acc",acc);
+	pageContext.setAttribute("eleConVO",eleConVO);
+	pageContext.setAttribute("appConVO",appConVO);
 %>
 
 <!DOCTYPE html>
@@ -47,31 +51,32 @@
 					<table>
 						<tr>
 							<td>電子合約編號</td>
-							<td><%=eleConVO.getEle_con_id() %></td>
+							<td>${eleConVO.ele_con_id}</td>
 						</tr>
-						<%
-							MemService mSvc = new MemService();
-						%>
+						<jsp:useBean id="memSvc" class="com.goodhouse.member.model.MemService"/>
 						<tr>
 							<td>會員編號</td>
-							<td><%=mSvc.getOneMem(eleConVO.getMem_id()).getMem_name()%></td>
+							<td>${memSvc.getOneMem(eleConVO.mem_id).mem_name}</td>
 						</tr>
-						<%
-							HouseService houSvc = new HouseService();
-						%>
+						<jsp:useBean id="houSvc" class="com.goodhouse.house.model.HouseService"/>
 						<tr>
 							<td>房屋編號</td>
-							<td><%=houSvc.getOneHouse(eleConVO.getHou_id()).getHou_name()%></td>
+							<td>${houSvc.getOneHouse(eleConVO.hou_id).hou_name}</td>
 						</tr>
 						<tr>
 							<td>申請選項</td>
 							<td>
-								<label>
-									<input type="radio" name="app_con_content" value="a1">解約<br>
-								</label>
-								<label>
-									<input type="radio" name="app_con_content" value="a2">續約<br>
-								</label>
+							<c:forEach var="AppConChoose" items="${Apply_ConturctChooseMap}">
+								<c:if test="${AppConChoose.key eq acc}">
+									${AppConChoose.value.choose_name}
+								</c:if>
+							</c:forEach>
+<!-- 								<label> -->
+<!-- 									<input type="radio" name="app_con_content" value="a1">解約<br> -->
+<!-- 								</label> -->
+<!-- 								<label> -->
+<!-- 									<input type="radio" name="app_con_content" value="a2">續約<br> -->
+<!-- 								</label> -->
 							</td>
 						</tr>
 						<tr>
@@ -84,9 +89,10 @@
 					
 					<input type="hidden" name="action" value="insert">
 					<input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
-					<input type="hidden" name="ele_con_id" value="<%=eleConVO.getEle_con_id() %>">
-					<input type="hidden" name="mem_id" value="<%=eleConVO.getMem_id() %>">
-					<input type="hidden" name="hou_id" value="<%=eleConVO.getHou_id() %>">
+					<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
+					<input type="hidden" name="mem_id" value="${eleConVO.mem_id}">
+					<input type="hidden" name="hou_id" value="${eleConVO.hou_id}">
+					<input type="hidden" name="app_con_content" value="${acc}">
 					<input type="hidden" name="app_con_status" value="${Apply_ConturctStatusMap['s1'].status_no}">
 					<input type="submit" value="申請">
 					

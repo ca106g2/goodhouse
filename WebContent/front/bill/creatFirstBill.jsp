@@ -14,6 +14,7 @@
 </head>
 <body onload="connect();" onunload="disconnect();">
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
+<div class="container">
 	<div class="row-12">
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
@@ -81,6 +82,7 @@
 			<input type="submit" value="確認付款" id="sendMessage" >
 		</form>
 	</div>
+</div>
 	<script>
 		function next(obj){
 			if(obj.value.length == obj.maxlength){
