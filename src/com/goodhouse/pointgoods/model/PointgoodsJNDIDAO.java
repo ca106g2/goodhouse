@@ -9,7 +9,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class PointgoodsDAO implements PointgoodsDAO_interface{
+public class PointgoodsJNDIDAO implements PointgoodsDAO_interface{
 	
 	private static DataSource ds = null;
 	static {
@@ -33,6 +33,10 @@ public class PointgoodsDAO implements PointgoodsDAO_interface{
 	private static final String UPDATE = 
 			"UPDATE POINTGOODS SET good_nam=?, good_dsc=?, good_amo=? ,good_pri=?, good_sta=?, good_pic=? "
 			+ "WHERE good_id = ?";
+	private static final String UPDATEAMO = 
+			"UPDATE POINTGOODS SET good_amo=? WHERE good_id=?";
+	private static final String UPDATESTA = 
+			"UPDATE POINTGOODS SET good_sta=? WHERE good_id=?";
 	@Override
 	public void insert(PointgoodsVO pointgoodsVO) {
 		
@@ -111,6 +115,76 @@ public class PointgoodsDAO implements PointgoodsDAO_interface{
 				}
 			}
 		}
+	}
+	@Override
+	public void updateamo(String good_id, Integer good_amo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATEAMO);
+			
+			pstmt.setInt(1, good_amo);
+			pstmt.setString(2, good_id);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("A database error occured. "
+					+ e.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	@Override
+	public void updatesta(String good_id, String good_sta) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATESTA);
+			
+			pstmt.setString(1, good_sta);
+			pstmt.setString(2, good_id);
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("A database error occured. "
+					+ e.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 	}
 	@Override
 	public void delete(String good_id) {
@@ -250,4 +324,5 @@ public class PointgoodsDAO implements PointgoodsDAO_interface{
 		}
 		return list;
 	}
+	
 }

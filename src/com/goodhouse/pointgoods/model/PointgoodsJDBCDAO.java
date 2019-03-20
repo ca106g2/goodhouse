@@ -265,4 +265,14 @@ public class PointgoodsJDBCDAO implements PointgoodsDAO_interface{
 		}
 		return list;
 	}
+	@Override
+	public void updateamo(String good_id, Integer good_amo) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void updatesta(String good_id, String good_sta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

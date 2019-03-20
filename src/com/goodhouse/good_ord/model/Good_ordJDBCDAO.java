@@ -8,6 +8,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import com.goodhouse.good_ord_list.model.Good_ord_listVO;
+import com.goodhouse.pointgoods.model.PointgoodsVO;
+
 public class Good_ordJDBCDAO implements Good_ordDAO_interface{
 
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
@@ -260,5 +263,17 @@ public class Good_ordJDBCDAO implements Good_ordDAO_interface{
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public void inserOrder(Good_ordVO good_ordVO, List<PointgoodsVO> list) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Good_ordVO> findByMem_id(String mem_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

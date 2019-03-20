@@ -70,11 +70,9 @@
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					積分商城管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp">積分商品列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">訂單審核</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">訂單管理</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>"></a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/pointgoods/listAllPointgoods.jsp">積分商品列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/pointgoods/addPointgoods.jsp">新增積分商品</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/pointgoods/good_ordManage.jsp">訂單管理</a>
 					        </div>
                        </li> 
   <!-- 檢舉 --> 

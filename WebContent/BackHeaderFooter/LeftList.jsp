@@ -12,16 +12,16 @@
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="list-group">
-		  <input type="button" class="list-group-item list-group-item-action" value="積分商品管理" onclick="location.href='/RentHouse/back/pointgoods/listAllPointgoods.jsp'">
-		  <input type="button" class="list-group-item list-group-item-action" value="新增積分商品" onclick="location.href='/RentHouse/back/pointgoods/addPointgoods.jsp'">
-		  <input type="button" class="list-group-item list-group-item-action" value="訂單管理" onclick="location.href='/RentHouse/back/pointgoods/good_ordManage.jsp'">
+		  <input type="button" class="list-group-item list-group-item-action" value="積分商品管理" onclick="location.href='<%=request.getContextPath()%>/back/pointgoods/listAllPointgoods.jsp'">
+		  <input type="button" class="list-group-item list-group-item-action" value="新增積分商品" onclick="location.href='<%=request.getContextPath()%>/back/pointgoods/addPointgoods.jsp'">
+		  <input type="button" class="list-group-item list-group-item-action" value="訂單管理" onclick="location.href='<%=request.getContextPath()%>/back/pointgoods/good_ordManage.jsp'">
 		</div>
     </div>
   </div>
   <div class="card">
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
-      	<input type="button" class="btn btn-link collapsed" value="瀏覽積分商城" onclick="location.href='/RentHouse/front/pointgoods/listAllPointgoods.jsp'" data-toggle="collapse" data-target="#collapseSecond" aria-expanded="false" aria-controls="collapseSecond">
+      	<input type="button" class="btn btn-link collapsed" value="瀏覽積分商城" onclick="location.href='<%=request.getContextPath()%>/front/pointgoods/listAllPointgoods.jsp'" data-toggle="collapse" data-target="#collapseSecond" aria-expanded="false" aria-controls="collapseSecond">
       </h2>
     </div>
   </div>

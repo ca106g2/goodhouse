@@ -162,33 +162,72 @@
 <!-- =================================================== -->	
 	<!-- 積分商城註冊 -->
 	<servlet>
-	    <servlet-name>PointgoodsServlet</servlet-name>
-	    <servlet-class>com.goodhouse.pointgoods.controller.PointgoodsServlet</servlet-class>
+    	<servlet-name>PointgoodsServlet</servlet-name>
+    	<servlet-class>com.goodhouse.pointgoods.controller.PointgoodsServlet</servlet-class>
   	</servlet>
   	<servlet-mapping>
     	<servlet-name>PointgoodsServlet</servlet-name>
     	<url-pattern>/back/pointgoods/pg.do</url-pattern>
   	</servlet-mapping>
-  
-  <!-- 積分商城照片註冊 -->
-  	<servlet>
-    	<servlet-name>PointgoodsServletPicture</servlet-name>
-    	<servlet-class>com.goodhouse.pointgoods.controller.PointgoodsServlet</servlet-class>
-  	</servlet>
   	<servlet-mapping>
-    	<servlet-name>PointgoodsServletPicture</servlet-name>
+    	<servlet-name>PointgoodsServlet</servlet-name>
+    	<url-pattern>/front/pointgoods/pgc.do</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>PointgoodsServlet</servlet-name>
     	<url-pattern>/PointgoodsServlet</url-pattern>
   	</servlet-mapping>
   
-  <!-- 積分商城訂單註冊 -->
+  	<!-- 積分商城訂單註冊 -->
   	<servlet>
     	<servlet-name>Good_ordServlet</servlet-name>
     	<servlet-class>com.goodhouse.good_ord.controller.Good_ordServlet</servlet-class>
   	</servlet>
   	<servlet-mapping>
-   		<servlet-name>Good_ordServlet</servlet-name>
+    	<servlet-name>Good_ordServlet</servlet-name>
     	<url-pattern>/back/good_ord/go.do</url-pattern>
   	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Good_ordServlet</servlet-name>
+    	<url-pattern>/back/pointgoods/go.do</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Good_ordServlet</servlet-name>
+    	<url-pattern>/front/pointgoods/goc.do</url-pattern>
+  	</servlet-mapping>
+  
+  	<!-- 積分商城訂單明細註冊 -->
+  	<servlet>
+    	<servlet-name>Good_ord_listServlet</servlet-name>
+    	<servlet-class>com.goodhouse.good_ord_list.controller.Good_ord_listServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>Good_ord_listServlet</servlet-name>
+    	<url-pattern>/back/good_ord_list/gol.do</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Good_ord_listServlet</servlet-name>
+    	<url-pattern>/front/pointgoods/gol.do</url-pattern>
+  	</servlet-mapping>
+  	
+  	<!-- 我的最愛積分商品註冊 -->
+  	<servlet>
+    	<servlet-name>Favorite_goodServlet</servlet-name>
+    	<servlet-class>com.goodhouse.favorite_good.controller.Favorite_goodServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>Favorite_goodServlet</servlet-name>
+    	<url-pattern>/back/favorite_good/fg.do</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Favorite_goodServlet</servlet-name>
+    	<url-pattern>/front/pointgoods/fg.do</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>Favorite_goodServlet</servlet-name>
+    	<url-pattern>/front/member/fg.do</url-pattern>
+  	</servlet-mapping>
+  	
 
 <!-- =================================================== -->
 <!-- ==================TIM============================== -->	
@@ -336,6 +375,10 @@
   	<filter-mapping>
     	<filter-name>frontLoginFilter</filter-name>
     	<url-pattern>/front/member/listOneMem.jsp</url-pattern>
+    	<url-pattern>/front/pointgoods/checkout.jsp</url-pattern>
+    	<url-pattern>/front/pointgoods/good_record_check.jsp</url-pattern>
+    	<url-pattern>/front/pointgoods/good_favorite_check.jsp</url-pattern>
+    	<url-pattern>/front/pointgoods/good_order_check.jsp</url-pattern>
     	<dispatcher>REQUEST</dispatcher>
     	<dispatcher>FORWARD</dispatcher>
     	<dispatcher>INCLUDE</dispatcher>

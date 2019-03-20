@@ -61,7 +61,7 @@
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/mem_listAll_ele_contract.jsp">我的合約列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/bill/mem_listAll_bill.jsp">我的帳單列表</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的積分紀錄</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/good_record_check.jsp">我的積分紀錄</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/mem_listAll_house_evaluate.jsp">我的評價紀錄</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_track/mem_house_track_listAll.jsp">我的最愛追蹤</a>
 					        </div>
@@ -85,8 +85,9 @@
 					          積分商城
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">我的最愛積分商品</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">訂單查詢</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/listAllPointgoods.jsp">瀏覽積分商城</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/good_favorite_check.jsp">我的最愛積分商品</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/good_order_check.jsp">訂單查詢</a>
 					        </div>
 					    </li>
                    </li>

@@ -11,8 +11,32 @@ public class PointgoodsVO implements Serializable{
 	private Integer good_amo;
 	private Integer good_pri;
 	private String good_sta;
+	private Integer good_nee;
 	private byte[] good_pic;
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((good_id == null) ? 0 : good_id.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PointgoodsVO other = (PointgoodsVO) obj;
+		if (good_id == null) {
+			if (other.good_id != null)
+				return false;
+		} else if (!good_id.equals(other.good_id))
+			return false;
+		return true;
+	}
 	public String getGood_id() {
 		return good_id;
 	}
@@ -54,5 +78,11 @@ public class PointgoodsVO implements Serializable{
 	}
 	public void setGood_pic(byte[] good_pic) {
 		this.good_pic = good_pic;
+	}
+	public Integer getGood_nee() {
+		return good_nee;
+	}
+	public void setGood_nee(Integer good_nee) {
+		this.good_nee = good_nee;
 	}
 }

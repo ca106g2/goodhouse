@@ -36,10 +36,43 @@
 			
 			webSocket.onmessage = function(event) {
 		        var jsonObj = JSON.parse(event.data);
-		        alert(jsonObj.eleConDoneMsgs);
+		        swal(jsonObj.eleConDoneMsgs);
 			};
 
 			webSocket.onclose = function(event) {
+			};
+		}
+	
+		 function init() {
+      		connect();
+   		 }
+
+		window.onload = init;
+	</script>
+	<script>
+		<!--webSocket功能-->
+
+		var addPoiGooDone = "/PointgoodsWebSocket";
+		var host = window.location.host;
+	    var path = window.location.pathname;
+	    var webCtx = path.substring(0, path.indexOf('/', 1));
+	    var endPointURL3 = "ws://" + window.location.host + webCtx + addPoiGooDone;
+		
+	    var webSocket3;
+
+		function connect(){
+			// 新增積分商品
+			webSocket3 = new WebSocket(endPointURL3);
+			
+			webSocket3.onopen = function(event) {
+			};
+			
+			webSocket3.onmessage = function(event) {
+		        var jsonObj = JSON.parse(event.data);
+		        swal(jsonObj.poiMsgs);
+			};
+
+			webSocket3.onclose = function(event) {
 			};
 		}
 	

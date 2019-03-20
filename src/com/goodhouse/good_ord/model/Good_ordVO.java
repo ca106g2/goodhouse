@@ -12,6 +12,7 @@ public class Good_ordVO implements Serializable{
 	private Timestamp good_ord_dat;
 	private String good_ord_sta;
 	private String good_ord_nam;
+	private Integer good_ord_tot;
 	private String good_ord_add;
 	
 	public String getGood_ord_id() {
@@ -49,5 +50,11 @@ public class Good_ordVO implements Serializable{
 	}
 	public void setGood_ord_add(String good_ord_add) {
 		this.good_ord_add = good_ord_add;
+	}
+	public Integer getGood_ord_tot() {
+		return good_ord_tot;
+	}
+	public void setGood_ord_tot(Integer good_ord_tot) {
+		this.good_ord_tot = good_ord_tot;
 	}
 }

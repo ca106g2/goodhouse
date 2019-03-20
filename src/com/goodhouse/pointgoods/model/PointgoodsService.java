@@ -7,7 +7,7 @@ public class PointgoodsService {
 	private PointgoodsDAO_interface dao;
 	
 	public PointgoodsService() {
-		dao = new PointgoodsDAO();
+		dao = new PointgoodsJNDIDAO();
 	}
 	
 	public PointgoodsVO addPointgoods(String good_nam, String good_dsc, Integer good_amo, Integer good_pri, String good_sta, byte[] good_pic) {
@@ -37,6 +37,14 @@ public class PointgoodsService {
 		dao.update(pointgoodsVO);
 		
 		return pointgoodsVO;
+	}
+	
+	public void updateamo(String good_id, Integer good_amo) {
+		dao.updateamo(good_id, good_amo);
+	}
+	
+	public void updatesta(String good_id, String good_sta) {
+		dao.updatesta(good_id, good_sta);
 	}
 	
 	public void deletePointgoods(String good_id) {
