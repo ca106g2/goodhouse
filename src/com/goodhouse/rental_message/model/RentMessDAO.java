@@ -1,6 +1,7 @@
 package com.goodhouse.rental_message.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +28,9 @@ public class RentMessDAO implements RentMessDAO_interface {
 	}
 	private static final String INSERT_STMT = "INSERT INTO rental_message (ren_mes_id,hou_id,mem_id,lan_id,ren_mes_time,ren_mes_request,ren_mes_response) VALUES ('RENM'||LPAD(to_char(SEQ_REN_MES_ID.nextval),6,'0'), ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT ren_mes_id,hou_id,mem_id,lan_id,to_char(ren_mes_time, 'yyyy-mm-dd') ren_mes_time, ren_mes_request, ren_mes_response FROM rental_message order by ren_mes_id";
+	private static final String GET_ALL_STMT_HOU_ID = "SELECT ren_mes_id,hou_id,mem_id,lan_id,to_char(ren_mes_time, 'yyyy-mm-dd') ren_mes_time, ren_mes_request, ren_mes_response FROM rental_message order by hou_id";
 	private static final String GET_ONE_STMT = "SELECT * FROM rental_message where ren_mes_id= ?";
+	private static final String GET_ONE_STMT_HOU_ID = "SELECT * FROM rental_message where hou_id= ?";
 	private static final String DELETE = "DELETE FROM rental_message where ren_mes_id = ?";
 	private static final String UPDATE = "UPDATE rental_message set hou_id=?, mem_id=?, lan_id=?, ren_mes_time=?, ren_mes_request=?, ren_mes_response=? where ren_mes_id = ?";
 
@@ -197,6 +200,59 @@ public class RentMessDAO implements RentMessDAO_interface {
 		return rentMessVO;
 
 	}
+	
+	@Override
+	public List<RentMessVO> findByHouId(String hou_id) {
+		List<RentMessVO> list = new ArrayList<RentMessVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_STMT_HOU_ID);
+
+			pstmt.setString(1, hou_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				RentMessVO rentMessVO = new RentMessVO();
+
+				rentMessVO.setRen_mes_id(rs.getString("ren_mes_id"));
+				rentMessVO.setHou_id(rs.getString("hou_id"));
+				rentMessVO.setMem_id(rs.getString("mem_id"));
+				rentMessVO.setLan_id(rs.getString("lan_id"));
+				rentMessVO.setRen_mes_time(rs.getDate("ren_mes_time"));
+				rentMessVO.setRen_mes_request(rs.getString("ren_mes_request"));
+				rentMessVO.setRen_mes_response(rs.getString("ren_mes_response"));
+				
+				list.add(rentMessVO);
+
+			}
+			System.out.println("hou_id = "+hou_id);
+System.out.println("list.size() = "+list.size());
+		}  catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 
 	@Override
 	public List<RentMessVO> getAll() {
@@ -248,6 +304,55 @@ public class RentMessDAO implements RentMessDAO_interface {
 
 		return list;
 
+	}
+	
+	@Override
+	public List<RentMessVO> getAllByHouId() {
+		List<RentMessVO> list = new ArrayList<RentMessVO>();
+		RentMessVO rentMessVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_STMT_HOU_ID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				rentMessVO = new RentMessVO();
+				rentMessVO.setRen_mes_id(rs.getString("ren_mes_id"));
+				rentMessVO.setHou_id(rs.getString("hou_id"));
+				rentMessVO.setMem_id(rs.getString("mem_id"));
+				rentMessVO.setLan_id(rs.getString("lan_id"));
+				rentMessVO.setRen_mes_time(rs.getDate("ren_mes_time"));
+				rentMessVO.setRen_mes_request(rs.getString("Ren_mes_request"));
+				rentMessVO.setRen_mes_response(rs.getString("Ren_mes_response"));
+				list.add(rentMessVO);
+			}
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
 	}
 
 }

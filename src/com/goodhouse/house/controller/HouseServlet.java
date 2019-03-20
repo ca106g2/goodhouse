@@ -728,7 +728,7 @@ public class HouseServlet extends HttpServlet {
 		
 		
 		//***********************複合式查詢
-		
+				
 		if("listHou_ByCompositeQuery".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			HttpSession session = req.getSession();
@@ -755,53 +755,104 @@ public class HouseServlet extends HttpServlet {
 		}
 		// **********************getOne_For_Display end  <---常慶的
 		if ("front_getOne_For_Display".equals(action)) {
-			
 			List<String> errorMsgs = new LinkedList<String>();
+
 			req.setAttribute("errorMsgs", errorMsgs);
 			try {
 				String str = req.getParameter("hou_id");
 				if (str == null || (str.trim()).length() == 0) {
 					errorMsgs.add("請輸入房屋編號");
 				}
-			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
-				failureView.forward(req, res);
-				return;
-			}
-			String hou_id = null;
-			try {
-				hou_id = new String(str);
-			} catch (Exception e) {
-				errorMsgs.add("房屋編號格式錯誤");
-			}
-			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
-				failureView.forward(req, res);
-				return;
-			}
-			HouseService houSvc = new HouseService();
-			HouseVO houVO = houSvc.getOneHouse(hou_id);
-			if (houVO == null) {
-				errorMsgs.add("查無資料");
-			}
-			if (!errorMsgs.isEmpty()) {
-				RequestDispatcher failureView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
-				failureView.forward(req, res);
-				return;
-			}
-			req.setAttribute("houVO", houVO);
-			String url = "/front/lin/listHouseDetail_reserveLink.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front/index.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				String hou_id = null;
+				try {
+					hou_id = new String(str);
+				} catch (Exception e) {
+					errorMsgs.add("房屋編號格式錯誤");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front/index.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				HouseService houSvc = new HouseService();
+				HouseVO houVO = houSvc.getOneHouse(hou_id);
+				if (houVO == null) {
+					errorMsgs.add("查無資料");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req.getRequestDispatcher("/front/index.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				req.setAttribute("houVO", houVO);
+				String url = "/front/lin/listHouseDetail_reserveLink.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
 
 			} catch (Exception e) {
 				errorMsgs.add("尋找資料失敗" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front/lin/houseBrowse.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front/index.jsp");
 				failureView.forward(req, res);
 			}
 
 		}
-
 				// **********************getOne_For_Display end
+		
+		if("listHou_ByCompositeQueryForIndex".equals(action)) {
+			
+			System.out.println("Test-1");
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println("Test-2");
+			try {
+				
+				/***************************1.將輸入資料轉為Map**********************************/ 
+				//採用Map<String,String[]> getParameterMap()的方法 
+				//注意:an immutable java.util.Map 
+				//Map<String, String[]> map = req.getParameterMap();
+				System.out.println("Test-3");
+				HttpSession session = req.getSession();
+				Map<String, String[]> map = (Map<String, String[]>)session.getAttribute("map");
+				System.out.println("Test-4");
+				if (req.getParameter("whichPage") == null){
+					System.out.println("Test-5");
+					HashMap<String, String[]> map1 = new HashMap<String, String[]>(req.getParameterMap());
+					System.out.println(map1);
+					session.setAttribute("map",map1);
+					map = map1;
+				} 
+				
+				/***************************2.開始複合查詢***************************************/
+				System.out.println("Test-6");
+				HouseService houSvc = new HouseService();
+				List<HouseVO> list  = houSvc.getAllForIndex(map);
+				System.out.println("Test-7");
+				
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				System.out.println("Test-8");
+				req.setAttribute("listHou_ByCompositeQueryForIndex", list); // 資料庫取出的list物件,存入request
+				System.out.println("Test-10");
+				RequestDispatcher successView = req.getRequestDispatcher("/front/house/listHou_ByCompositeQueryForIndex.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
+				System.out.println("Test-11");
+				successView.forward(req, res);
+				System.out.println("Test-12");
+				
+				/***************************其他可能的錯誤處理**********************************/
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Test-9");
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/front/index.jsp");
+				failureView.forward(req, res);
+			}
+		}
 	}
 }

@@ -11,12 +11,13 @@ import java.util.List;
 public class HouNoAppJDBCDAO implements HouNoAppDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "CA106_G2";
+	String userid = "GOODHOUSE";
 	String passwd = "123456";
 
 	private static final String INSERT_STMT = "INSERT INTO house_noappointment (hou_noapp_id,hou_id,lan_id,hou_noapp_time,hou_noapp_date) VALUES ('HNA'||LPAD(to_char(SEQ_HOU_NOAPP_ID.nextval),7,'0'), ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT hou_noapp_id,hou_id,lan_id,hou_noapp_time,to_char(hou_noapp_date, 'yyyy-mm-dd') hou_noapp_date FROM house_noappointment order by hou_noapp_id";
 	private static final String GET_ONE_STMT = "SELECT hou_noapp_id,hou_id,lan_id,hou_noapp_time,to_char(hou_noapp_date, 'yyyy-mm-dd') hou_noapp_date FROM house_noappointment where hou_noapp_id= ?";
+	private static final String GET_PART_STMT = "SELECT hou_noapp_id,hou_id,lan_id,hou_noapp_time,to_char(hou_noapp_date, 'yyyy-mm-dd') hou_noapp_date FROM house_noappointment where lan_id= ?";
 	private static final String DELETE = "DELETE FROM house_noappointment where hou_noapp_id = ?";
 	private static final String UPDATE = "UPDATE house_noappointment set hou_id=?, lan_id=?, hou_noapp_time=?, hou_noapp_date=? where hou_noapp_id= ?";
 
@@ -258,20 +259,76 @@ public class HouNoAppJDBCDAO implements HouNoAppDAO_interface {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<HouNoAppVO> getPart(String lan_id) {
+		
+		List<HouNoAppVO> list = new ArrayList<HouNoAppVO>();
+		HouNoAppVO houNoAppVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_PART_STMT);
+			
+			pstmt.setString(1, lan_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				houNoAppVO = new HouNoAppVO();
+				houNoAppVO.setHou_noapp_id(rs.getString("hou_noapp_id"));
+				houNoAppVO.setHou_id(rs.getString("hou_id"));
+				houNoAppVO.setLan_id(rs.getString("lan_id"));
+				houNoAppVO.setHou_noapp_time(rs.getString("hou_noapp_time"));
+				houNoAppVO.setHou_noapp_date(rs.getDate("hou_noapp_date"));
+				list.add(houNoAppVO);
+
+			}
+
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 
 	public static void main(String[] args) {
 		
 		HouNoAppJDBCDAO dao = new HouNoAppJDBCDAO();
 		
 		HouNoAppVO houNoAppVO1 = new HouNoAppVO();
-		houNoAppVO1.setHou_id("H000000001");
+		houNoAppVO1.setHou_id("HOU0000001");
 		houNoAppVO1.setLan_id("L000000001");
 		houNoAppVO1.setHou_noapp_time("A0");
 		houNoAppVO1.setHou_noapp_date(java.sql.Date.valueOf("2019-02-15"));
 		dao.insert(houNoAppVO1);
 		
 		HouNoAppVO houNoAppVO2 = new HouNoAppVO();
-		houNoAppVO2.setHou_id("H000000007");
+		houNoAppVO2.setHou_id("HOU0000007");
 		houNoAppVO2.setLan_id("L000000007");
 		houNoAppVO2.setHou_noapp_time("A1");
 		houNoAppVO2.setHou_noapp_date(java.sql.Date.valueOf("2019-02-16"));
@@ -300,9 +357,25 @@ public class HouNoAppJDBCDAO implements HouNoAppDAO_interface {
 			System.out.println();
 		}
 		
+		System.out.println("------------TEST-------------");
+		
+		List<HouNoAppVO> list2 = dao.getPart("L000000003");
+		for (HouNoAppVO ahouNoApp2 : list2) {
+			System.out.print(ahouNoApp2.getHou_noapp_id() + ",");
+			System.out.print(ahouNoApp2.getHou_id() + ",");
+			System.out.print(ahouNoApp2.getLan_id() + ",");
+			System.out.print(ahouNoApp2.getHou_noapp_time() + ",");
+			System.out.print(ahouNoApp2.getHou_noapp_date() + ",");
+			System.out.println();
+		}
+		
+		
+		
 		
 
 	}
+
+	
 
 }
 //git上傳註解用無意義

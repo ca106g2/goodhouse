@@ -49,6 +49,9 @@
 	height: 200px;
 	weight: 300px;
 }
+.myClass {
+	display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -64,84 +67,87 @@
 					<div class="col-sm-10">
 						<div class="card w-75">
 							<div class="card-header">
-								<span class="house_search">房屋搜尋</span>
+								<span class="house_search">地址搜尋</span>
 							</div>
 							<div class="card-body">
-								<div class="input-group">
-									<input type="text" class="form-control"
-										placeholder="Search this house">
-									<div class="input-group-append">
-										<button class="btn btn-secondary" type="button">
-											<i class="fa fa-search"></i>
-										</button>
+								<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do" >
+									<div class="input-group">
+										<input type="text" class="form-control"	placeholder="Search this house" name="hou_address">
+											<div class="input-group-append">
+												<input class="btn btn-secondary" type="submit" value="送出">
+												<input type="hidden" name="action" value="listHou_ByCompositeQueryForIndex">
+											</div>
 									</div>
-								</div>
-								<!--   <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a> -->
+								</FORM>
 							</div>
 						</div>
 						<div class="card w-75">
 							<div class="card-header">房型分類搜尋</div>
 							<div class="card-body">
-								<form action="/action_page.php">
+								<form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do">
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check1"> <input
-											type="checkbox" class="form-check-input" id="check1"
-											name="vehicle1" value="something" checked> <span>套房</span>
+											type="radio" class="form-check-input" id="check1"
+											name="hou_type" value="套房" checked> <span>套房</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check2"> <input
-											type="checkbox" class="form-check-input" id="check2"
-											name="vehicle2" value="something"> <span>住宅</span>
+											type="radio" class="form-check-input" id="check2"
+											name="hou_type" value="住宅"> <span>住宅</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check3"> <input
-											type="checkbox" class="form-check-input" id="check3"
-											name="vehicle3" value="something"> <span>雅房</span>
+											type="radio" class="form-check-input" id="check3"
+											name="hou_type" value="雅房"> <span>雅房</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
-										<label class="form-check-label" for="check3"> <input
-											type="checkbox" class="form-check-input" id="check3"
-											name="vehicle3" value="something"> <span>雅房</span>
+										<label class="form-check-label" for="check4"> <input
+											type="radio" class="form-check-input" id="check4"
+											name="hou_type" value="公寓"> <span>公寓</span>
 										</label>
 									</div>
-									<button type="submit" class="btn btn-primary">Submit</button>
+										<div class="input-group-append">
+										<input class="btn btn-secondary" type="submit" value="查詢">
+										<input type="hidden" name="action" value="listHou_ByCompositeQueryForIndex">
+									</div>
 								</form>
 							</div>
 						</div>
 						<div class="card w-75">
 							<div class="card-header">地區分類搜尋</div>
 							<div class="card-body">
-								<form action="/action_page.php">
+								<form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do">
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check1"><input
-											type="checkbox" class="form-check-input" id="check1"
-											name="vehicle1" value="something" checked> <span>台北</span>
+											type="radio" class="form-check-input" id="check1"
+											name="hou_address" value="台北" > <span>台北</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check2"> <input
-											type="checkbox" class="form-check-input" id="check2"
-											name="vehicle2" value="something"> <span>台中</span>
+											type="radio" class="form-check-input" id="check2"
+											name="hou_address" value="台中"> <span>台中</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check3"> <input
-											type="checkbox" class="form-check-input" id="check3"
-											name="vehicle3" value="something"> <span>高雄</span>
+											type="radio" class="form-check-input" id="check3"
+											name="hou_address" value="高雄"> <span>高雄</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check3"> <input
-											type="checkbox" class="form-check-input" id="check3"
-											name="vehicle3" value="something"> <span>桃園</span>
+											type="radio" class="form-check-input" id="check3"
+											name="hou_address" value="桃園"> <span>桃園</span>
 										</label>
 									</div>
-									<button type="submit" class="btn btn-primary">Submit</button>
+									<div class="input-group-append">
+										<input class="btn btn-secondary" type="submit" value="查詢">
+										<input type="hidden" name="action" value="listHou_ByCompositeQueryForIndex">
+									</div>
 								</form>
 							</div>
 						</div>
@@ -151,62 +157,47 @@
 								<span class="house_search">價錢搜尋</span>
 							</div>
 							<div class="card-body">
-								<div class="input-group">
-									<input type="text" class="price" placeholder="lower"> <input
-										type="text" class="price" placeholder="height">
-									<div class="input-group-append">
-										<button class="btn btn-secondary" type="button">
-											<i class="fa fa-search"></i>
-										</button>
-									</div>
-								</div>
-								<!--   <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a> -->
+								<form	METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do">								
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="輸入租金" name="hou_rent">
+												<div class="input-group-append">
+													<input class="btn btn-secondary" type="submit" value="開始查詢">
+													<input type="hidden" name="action" value="listHou_ByCompositeQueryForIndex">
+												</div>
+										</div>
+									</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-8">
+				<div class="row">
 				<c:forEach var="houVO" varStatus="s" items="${list}"
 					begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<c:if test="${houVO.hou_property eq '未出租' && houVO.hou_parkspace eq '已審核'}">
-					<c:if test="${(s.count%3-1) == 0 }">
-						<div class="row">
-					</c:if>
-					
-					<div class="col-sm-4">
-					
-						<div class="card">
-							<img
-								src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"
-								class="card-img-top">
-
-							<div class="card-body">
-								<h5 class="card-title">${houVO.hou_name}</h5>
-								<p class="card-text">${houVO.hou_rent}</p>
-								<Form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do"> 
-									<input type="hidden" name="hou_id" value="${houVO.hou_id}">
-									<input type="hidden" name="action" value="front_getOne_For_Display">
-									<input type="submit" value="查看詳情" >
-								</Form>
-								<p class="card-text">
-									<small class="text-muted">${houVO.hou_note}</small>
-								</p>
-							</div>
-
-						</div>
+							<div class="col-sm-4 myClass">
+									<div class="card" style="margin-bottom: 10px;">
+										<img
+											src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"
+											class="card-img-top">
+										<div class="card-body" style="height: 170px;">
+											<h5 class="card-title">${houVO.hou_name}</h5>
+											<p class="card-text">${houVO.hou_rent}</p>
+										<Form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do"> 
+											<input type="hidden" name="hou_id" value="${houVO.hou_id}">
+											<input type="hidden" name="action" value="front_getOne_For_Display">
+											<input type="submit" value="查看詳情" >
+										</Form>
+<!-- 											<p class="card-text"> -->
+<%-- 												<small class="text-muted">${houVO.hou_note}</small> --%>
+<!-- 											</p> -->
+										</div>
+									</div>
+								</div>
+							</c:if>
+						</c:forEach>
 					</div>
-					
-					
-					<c:if test="${s.count%3 == 0 }">
-<!-- 	卡片大小格式跑掉		------ -->
-			
-		
-					</c:if>
-					</c:if>
-				</c:forEach>
 				</div>
 			</div>
 		</div>

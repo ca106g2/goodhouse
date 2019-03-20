@@ -16,7 +16,9 @@ public class RentMessJDBCDAO implements RentMessDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO rental_message (ren_mes_id,hou_id,mem_id,lan_id,ren_mes_time,ren_mes_request,ren_mes_response) VALUES ('RENM'||LPAD(to_char(SEQ_REN_MES_ID.nextval),6,'0'), ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT ren_mes_id,hou_id,mem_id,lan_id,to_char(ren_mes_time, 'yyyy-mm-dd') ren_mes_time, ren_mes_request, ren_mes_response FROM rental_message order by ren_mes_id";
+	private static final String GET_ALL_STMT_HOU_ID = "SELECT ren_mes_id,hou_id,mem_id,lan_id,to_char(ren_mes_time, 'yyyy-mm-dd') ren_mes_time, ren_mes_request, ren_mes_response FROM rental_message order by hou_id";
 	private static final String GET_ONE_STMT = "SELECT * FROM rental_message where ren_mes_id= ?";
+	private static final String GET_ONE_STMT_HOU_ID = "SELECT * FROM rental_message where hou_id= ?";
 	private static final String DELETE = "DELETE FROM rental_message where ren_mes_id = ?";
 	private static final String UPDATE = "UPDATE rental_message set hou_id=?, mem_id=?, lan_id=?, ren_mes_time=?, ren_mes_request=?, ren_mes_response=? where ren_mes_id = ?";
 
@@ -206,6 +208,63 @@ public class RentMessJDBCDAO implements RentMessDAO_interface {
 		}
 		return rentMessVO;
 	}
+	
+	@Override
+	public List<RentMessVO> findByHouId(String hou_id) {
+		List<RentMessVO> list = new ArrayList<RentMessVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_ONE_STMT_HOU_ID);
+
+			pstmt.setString(1, hou_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				RentMessVO rentMessVO = new RentMessVO();
+
+				rentMessVO.setRen_mes_id(rs.getString("ren_mes_id"));
+				rentMessVO.setHou_id(rs.getString("hou_id"));
+				rentMessVO.setMem_id(rs.getString("mem_id"));
+				rentMessVO.setLan_id(rs.getString("lan_id"));
+				rentMessVO.setRen_mes_time(rs.getDate("ren_mes_time"));
+				rentMessVO.setRen_mes_request(rs.getString("ren_mes_request"));
+				rentMessVO.setRen_mes_response(rs.getString("ren_mes_response"));
+				
+				list.add(rentMessVO);
+
+			}
+
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 
 	@Override
 	public List<RentMessVO> getAll() {
@@ -260,18 +319,72 @@ public class RentMessJDBCDAO implements RentMessDAO_interface {
 		}
 		return list;
 	}
+	
+	@Override
+	public List<RentMessVO> getAllByHouId() {
+		List<RentMessVO> list = new ArrayList<RentMessVO>();
+		RentMessVO rentMessVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_ALL_STMT_HOU_ID);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				rentMessVO = new RentMessVO();
+				rentMessVO.setRen_mes_id(rs.getString("ren_mes_id"));
+				rentMessVO.setHou_id(rs.getString("hou_id"));
+				rentMessVO.setMem_id(rs.getString("mem_id"));
+				rentMessVO.setLan_id(rs.getString("lan_id"));
+				rentMessVO.setRen_mes_time(rs.getDate("ren_mes_time"));
+				rentMessVO.setRen_mes_request(rs.getString("Ren_mes_request"));
+				rentMessVO.setRen_mes_response(rs.getString("Ren_mes_response"));
+				list.add(rentMessVO);
+			}
+
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 
 	public static void main(String[] args) {
 		RentMessJDBCDAO dao = new RentMessJDBCDAO();
 
-		RentMessVO rentMessVO1 = new RentMessVO();
-		rentMessVO1.setHou_id("H000000011");
-		rentMessVO1.setMem_id("M000000011");
-		rentMessVO1.setLan_id("L000000011");
-		rentMessVO1.setRen_mes_time(java.sql.Date.valueOf("2019-03-24"));
-		rentMessVO1.setRen_mes_request("�Y���S?");
-		rentMessVO1.setRen_mes_response("���AP4");
-		dao.insert(rentMessVO1);
+//		RentMessVO rentMessVO1 = new RentMessVO();
+//		rentMessVO1.setHou_id("H000000011");
+//		rentMessVO1.setMem_id("M000000011");
+//		rentMessVO1.setLan_id("L000000011");
+//		rentMessVO1.setRen_mes_time(java.sql.Date.valueOf("2019-03-24"));
+//		rentMessVO1.setRen_mes_request("9528");
+//		rentMessVO1.setRen_mes_response("1111");
+//		dao.insert(rentMessVO1);
 		
 		RentMessVO rentMessVO2 = new RentMessVO();
 		rentMessVO2.setHou_id("H000000012");
@@ -306,8 +419,37 @@ public class RentMessJDBCDAO implements RentMessDAO_interface {
 			System.out.print(aRentMessApp.getRen_mes_response() + ",");
 			System.out.println();
 		}
+		System.out.println("------------TEST2-------------");
+		List<RentMessVO> list3 = dao.findByHouId("HOU0000001");
+		for (RentMessVO aRentMessApp3 : list3) {
+			System.out.print(aRentMessApp3.getRen_mes_id() + ",");
+			System.out.print(aRentMessApp3.getHou_id() + ",");
+			System.out.print(aRentMessApp3.getMem_id() + ",");
+			System.out.print(aRentMessApp3.getLan_id() + ",");
+			System.out.print(aRentMessApp3.getRen_mes_time() + ",");
+			System.out.print(aRentMessApp3.getRen_mes_request() + ",");
+			System.out.println();
+		}
+		
+		System.out.println("------------TEST3-------------");
+		List<RentMessVO> list2 = dao.getAllByHouId();
+		for (RentMessVO aRentMessApp2 : list2) {
+			System.out.print(aRentMessApp2.getRen_mes_id() + ",");
+			System.out.print(aRentMessApp2.getHou_id() + ",");
+			System.out.print(aRentMessApp2.getMem_id() + ",");
+			System.out.print(aRentMessApp2.getLan_id() + ",");
+			System.out.print(aRentMessApp2.getRen_mes_time() + ",");
+			System.out.print(aRentMessApp2.getRen_mes_request() + ",");
+			System.out.print(aRentMessApp2.getRen_mes_response() + ",");
+			System.out.println();
+		}
+		
+
+	
 
 	}
+
+
 
 }
 //git上傳註解用無意義

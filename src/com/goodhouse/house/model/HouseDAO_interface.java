@@ -15,4 +15,6 @@ public interface HouseDAO_interface {
 		//房東物件查詢
 		public List<HouseVO> getAllFor_Hou_Lan_id(String lan_id);
 		public HouseVO findByLanId(String lan_id);
+		//首頁查詢用
+		public List<HouseVO> getAllForIndex(Map<String, String[]> map);
 }

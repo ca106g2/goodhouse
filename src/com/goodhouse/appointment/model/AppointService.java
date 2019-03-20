@@ -56,6 +56,13 @@ public class AppointService {
 	public List<AppointVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public List<AppointVO> getPartMem(String mem_id){
+		return dao.getPartMem(mem_id);
+	}
+	
+	public List<AppointVO> getPartLan(String lan_id){
+		return dao.getPartLan(lan_id);
+	}
 
 }
-//git上傳註解用無意義

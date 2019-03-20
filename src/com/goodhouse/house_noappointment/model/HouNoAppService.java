@@ -49,6 +49,13 @@ public class HouNoAppService {
 	public List<HouNoAppVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public List<HouNoAppVO> getPart(String lan_id){
+		return dao.getPart(lan_id);
+		
+	}
+	
+	
 
 }
 //git上傳註解用無意義

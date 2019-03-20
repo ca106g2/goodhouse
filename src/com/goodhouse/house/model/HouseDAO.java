@@ -14,6 +14,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import jdbc.util.CompositeQuery.jdbcUtil_CompositeQuery_ForIndex;
 import jdbc.util.CompositeQuery.jdbcutil_CompositeQuery_House;
 
 
@@ -475,6 +476,76 @@ public class HouseDAO implements HouseDAO_interface {
 			}
 		}
 		
+		return list;
+	}
+	
+	//以下房屋查詢用---------------------------------------------------------
+	@Override
+	public List<HouseVO> getAllForIndex(Map<String, String[]> map) {
+		List<HouseVO> list = new ArrayList<HouseVO>();
+		HouseVO houseVO = null;
+	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		try {
+			
+			con = ds.getConnection();
+			String finalSQL = "select * from house "
+		          + jdbcUtil_CompositeQuery_ForIndex.get_WhereCondition(map)
+		          + "order by hou_id";
+			pstmt = con.prepareStatement(finalSQL);
+			System.out.println("●●finalSQL(by DAO) = "+finalSQL);
+			rs = pstmt.executeQuery();
+			
+		
+			while (rs.next()) {
+					houseVO = new HouseVO();
+					
+						houseVO.setHou_id(rs.getString("hou_id"));
+						houseVO.setLan_id(rs.getString("lan_id"));
+						houseVO.setHou_name(rs.getString("hou_name"));
+						houseVO.setHou_type(rs.getString("hou_type"));
+						houseVO.setHou_size(rs.getString("hou_size"));
+						houseVO.setHou_property(rs.getString("hou_property"));
+						houseVO.setHou_parkspace(rs.getString("hou_parkspace"));
+						houseVO.setHou_cook(rs.getString("hou_cook"));
+						houseVO.setHou_managefee(rs.getString("hou_managefee"));
+						houseVO.setHou_address(rs.getString("hou_address"));
+						houseVO.setHou_rent(rs.getInt("hou_rent"));
+					if(houseVO.getHou_property().equals("未出租") && houseVO.getHou_parkspace().equals("已審核")) {
+							list.add(houseVO); // Store the row in the List
+						}
+				}
+	
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
 		return list;
 	}
 

@@ -194,7 +194,8 @@ public class HouNoAppServlet extends HttpServlet {
 		}
 
         if ("insert".equals(action)) { // 來自addHouNoApp.jsp的請求
-			
+			System.out.println("TEST1");
+			System.out.println("hou_noapp_date" + req.getParameter("hou_noapp_date"));
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -202,8 +203,9 @@ public class HouNoAppServlet extends HttpServlet {
 
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-				
+				System.out.println("TEST1-b");
 				String hou_id = req.getParameter("hou_id");
+				System.out.println(hou_id);
 				String hou_idReg = "^(HOU){1}[0-9]{7}$";
 				if (hou_id == null || hou_id.trim().length() == 0) {
 					errorMsgs.add("房屋編號: 請勿空白");
@@ -212,6 +214,7 @@ public class HouNoAppServlet extends HttpServlet {
 	            }
 				
 				String lan_id = req.getParameter("lan_id");
+				System.out.println(lan_id);
 				String lan_idReg = "^[L][0-9]{9}$";
 				if (lan_id == null || lan_id.trim().length() == 0) {
 					errorMsgs.add("房東編號: 請勿空白");
@@ -221,42 +224,52 @@ public class HouNoAppServlet extends HttpServlet {
 				
 				
 				String hou_noapp_time = req.getParameter("hou_noapp_time");
-				String hou_noapp_timeReg = "^[H][1-3]{1}$";
 				if (hou_noapp_time == null || hou_noapp_time.trim().length() == 0) {
 					errorMsgs.add("預約時段: 請勿空白");
-				} else if(!hou_noapp_time.trim().matches(hou_noapp_timeReg)) { //以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("預約時段: 只能是英文字母H開頭和數字範圍1~3 , 且總長度必需是2");
-	            }
-				
-				java.sql.Date hou_noapp_date = null;
+				}
+//				String hou_noapp_timeReg = "^[H][1-3]{1}$";
+//				if (hou_noapp_time == null || hou_noapp_time.trim().length() == 0) {
+//					errorMsgs.add("預約時段: 請勿空白");
+//				} else if(!hou_noapp_time.trim().matches(hou_noapp_timeReg)) { //以下練習正則(規)表示式(regular-expression)
+//					errorMsgs.add("預約時段: 只能是英文字母H開頭和數字範圍1~3 , 且總長度必需是2");
+//	            }
+				System.out.println("TEST1-c");
+				System.out.println(req.getParameter("hou_noapp_date"));
+				java.sql.Date hou_noapp_date = java.sql.Date.valueOf(req.getParameter("hou_noapp_date"));
+				System.out.println("TEST1-x");
+				System.out.println(hou_noapp_date);
 				try {
 					hou_noapp_date = java.sql.Date.valueOf(req.getParameter("hou_noapp_date").trim());
 				} catch (IllegalArgumentException e) {
 					hou_noapp_date=new java.sql.Date(System.currentTimeMillis());
 					errorMsgs.add("請輸入日期!");
 				}
-				
+				System.out.println("TEST1-a");
 				HouNoAppVO houNoAppVO = new HouNoAppVO();
 				houNoAppVO.setHou_id(hou_id);
 				houNoAppVO.setLan_id(lan_id);
 				houNoAppVO.setHou_noapp_time(hou_noapp_time);
 				houNoAppVO.setHou_noapp_date(hou_noapp_date);
+				System.out.println("TEST1-d");
 
 				// Send the use front to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("houNoAppVO", houNoAppVO); // 含有輸入格式錯誤的houNoAppVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front/houNoApp/addHouNoApp.jsp");
+							.getRequestDispatcher("/lanlordSetReserveDate_doGet.jsp");
 					failureView.forward(req, res);
 					return;
 				}
+				System.out.println("TEST1-e");
 				
 				/***************************2.開始修改資料***************************************/
+				System.out.println("TEST2");
 				HouNoAppService houNoAppSvc = new HouNoAppService();
 				houNoAppVO = houNoAppSvc.addHouNoApp(hou_id, lan_id, hou_noapp_time, hou_noapp_date);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)***********/
-				String url = "/front/houNoApp/listAllHouNoApp.jsp";
+				System.out.println("TEST3");
+				String url = "/lanlordSetReserveDate_doGet.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneHouNoApp.jsp
 				successView.forward(req, res);				
 				
@@ -265,7 +278,7 @@ public class HouNoAppServlet extends HttpServlet {
 				e.printStackTrace();
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/houNoApp/addHouNoApp.jsp");
+						.getRequestDispatcher("/lanlordSetReserveDate_doGet.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -287,7 +300,7 @@ public class HouNoAppServlet extends HttpServlet {
 				houNoAppSvc.deleteHouNoApp(hou_noapp_id);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/front/houNoApp/listAllHouNoApp.jsp";
+				String url = "/front/houNoApp/listPart_lanHouNoApp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -295,7 +308,7 @@ public class HouNoAppServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/houNoApp/listAllHouNoApp.jsp");
+						.getRequestDispatcher("/front/houNoApp/listPart_lanHouNoApp.jsp");
 				failureView.forward(req, res);
 			}
 		}

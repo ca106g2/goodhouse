@@ -8,6 +8,8 @@ public interface AppointDAO_interface {
 	public void delete(String appoint_id);
 	public AppointVO findByPrimaryKey(String appoint_id);
 	public List<AppointVO> getAll();
+	public List<AppointVO> getPartMem(String men_id);
+	public List<AppointVO> getPartLan(String lan_id);
 	
 
 	                       

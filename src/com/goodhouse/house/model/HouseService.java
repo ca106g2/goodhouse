@@ -89,6 +89,11 @@ public class HouseService {
 		return dao.getAll(map);
 	}
 	
+	//首頁用查詢
+	public List<HouseVO> getAllForIndex(Map<String, String[]> map) {
+		return dao.getAllForIndex(map);
+	}
+	
 	//利用lan_id查詢全部
 	public List<HouseVO> getAllFor_Hou_Lan_id(String lan_id){
 		return dao.getAllFor_Hou_Lan_id(lan_id);

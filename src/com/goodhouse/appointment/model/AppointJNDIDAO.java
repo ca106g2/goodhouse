@@ -1,6 +1,7 @@
 package com.goodhouse.appointment.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +27,8 @@ public class AppointJNDIDAO implements AppointDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO appointment (appoint_id,mem_id,lan_id,hou_id,hou_app_time,hou_app_date,app_status,app_remind) VALUES ('APP'||LPAD(to_char(SEQ_APP_ID.nextval),7,'0'), ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT appoint_id,mem_id,lan_id,hou_id,hou_app_time,to_char(hou_app_date, 'yyyy-mm-dd') hou_app_date,app_status,app_remind FROM appointment order by appoint_id";
 	private static final String GET_ONE_STMT = "SELECT appoint_id,mem_id,lan_id,hou_id,hou_app_time,to_char(hou_app_date, 'yyyy-mm-dd') hou_app_date,app_status,app_remind FROM appointment where appoint_id = ?";
+	private static final String GET_PART_STMT_MEM = "SELECT appoint_id,mem_id,lan_id,hou_id,hou_app_time,to_char(hou_app_date, 'yyyy-mm-dd') hou_app_date,app_status,app_remind FROM appointment where mem_id = ?";
+	private static final String GET_PART_STMT_LAN = "SELECT appoint_id,mem_id,lan_id,hou_id,hou_app_time,to_char(hou_app_date, 'yyyy-mm-dd') hou_app_date,app_status,app_remind FROM appointment where lan_id = ?";
 	private static final String DELETE = "DELETE FROM appointment where appoint_id = ?";
 	private static final String UPDATE = "UPDATE appointment set mem_id=?, lan_id=?, hou_id=?, hou_app_time=?, hou_app_date=?, app_status=?, app_remind=? where appoint_id=?";
 
@@ -269,5 +272,130 @@ public class AppointJNDIDAO implements AppointDAO_interface {
 		}
 		return list;
 	}
+
+	@Override
+	public List<AppointVO> getPartMem(String mem_id) {
+		
+		List<AppointVO> list = new ArrayList<AppointVO>();
+		AppointVO appointVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_PART_STMT_MEM);
+			
+			pstmt.setString(1, mem_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				appointVO = new AppointVO();
+				appointVO.setAppoint_id(rs.getString("appoint_id"));
+				appointVO.setMem_id(rs.getString("mem_id"));
+				appointVO.setLan_id(rs.getString("lan_id"));
+				appointVO.setHou_id(rs.getString("hou_id"));
+				appointVO.setHou_app_time(rs.getString("hou_app_time"));
+				appointVO.setHou_app_date(rs.getDate("hou_app_date"));
+				appointVO.setApp_status(rs.getString("app_status"));
+				appointVO.setApp_remind(rs.getString("app_remind"));
+				list.add(appointVO);
+			}
+		
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);					
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+	@Override
+	public List<AppointVO> getPartLan(String lan_id) {
+		
+		List<AppointVO> list = new ArrayList<AppointVO>();
+		AppointVO appointVO = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_PART_STMT_LAN);
+			
+			pstmt.setString(1, lan_id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				appointVO = new AppointVO();
+				appointVO.setAppoint_id(rs.getString("appoint_id"));
+				appointVO.setMem_id(rs.getString("mem_id"));
+				appointVO.setLan_id(rs.getString("lan_id"));
+				appointVO.setHou_id(rs.getString("hou_id"));
+				appointVO.setHou_app_time(rs.getString("hou_app_time"));
+				appointVO.setHou_app_date(rs.getDate("hou_app_date"));
+				appointVO.setApp_status(rs.getString("app_status"));
+				appointVO.setApp_remind(rs.getString("app_remind"));
+				list.add(appointVO);
+			}
+		
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);					
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
 
 }

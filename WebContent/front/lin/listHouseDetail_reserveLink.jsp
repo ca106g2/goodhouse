@@ -19,6 +19,7 @@
 	HouseVO houVO = houSvc.getOneHouse(hou_id);
 	pageContext.setAttribute("houVO", houVO);
 %>
+
 <!--======================= 慈慈 start-->
 <%
 	House_TrackService houTraSvc = new House_TrackService();
@@ -39,14 +40,7 @@
 %>
 
 <!--======================== TIM end -->
-<!-- 轉交請求，可選大日曆版 -->
 
-<%-- <% --%>
-<!-- // String hou_noapp_id = request.getParameter("hou_noappoint_id"); -->
-<!-- // HouNoAppService houNoAppSvc = new HouNoAppService(); -->
-<!-- // HouNoAppVO houNoAppVO = houNoAppSvc.getOneHouNoApp(hou_noapp_id); -->
-<!-- // pageContext.setAttribute("houNoAppVO", houNoAppVO); -->
-<%-- %> --%>
 
 
 <%
@@ -55,17 +49,14 @@
 	AppointVO appointVO = appointSvc.getOneAppoint(appoint_id);
 %>
 
-<%-- <% --%>
-<!-- // String lan_id = request.getParameter("lan_id"); -->
-<!-- // LanService lanSvc = new LanService(); -->
-<!-- // LanVO lanVO = lanSvc.getOneLan(lan_id); -->
-<!-- // pageContext.setAttribute("lanVO", lanVO); -->
-<%-- %> --%>
+<!-- 轉交請求，可選大日曆版 -->
+
 
 <jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService" />
 <jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
 <jsp:useBean id="houNoAppSvc" scope="page" class="com.goodhouse.house_noappointment.model.HouNoAppService" />
 <jsp:useBean id="adSvc" scope="page" class="com.goodhouse.ad.model.AdService" />
+<jsp:useBean id="rentMessSvc" scope="page" class="com.goodhouse.rental_message.model.RentMessService" />
 
 <!DOCTYPE html>
 <html>
@@ -150,6 +141,11 @@ input[type="checkbox"].switch_1{
   
   input[type="checkbox"].switch_1:checked:after{
 	left: calc(100% - 1.5em);
+  }
+  
+   .myContainer {
+  	padding: 10px;
+  	margin: 10px 0;
   }
 	
 /* Switch 1 Specific Style End */
@@ -254,18 +250,15 @@ input[type="checkbox"].switch_1{
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
-								<span class='type'>產權：</span> <span><%=houVO.getHou_property()%></span>
-							</div>
-							<div class="col-sm-6">
-								<span class='type'>車位：</span> <span><%=houVO.getHou_parkspace()%></span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
 								<span class='type'>開火：</span> <span><%=houVO.getHou_cook()%></span>
 							</div>
 							<div class="col-sm-6">
 								<span class='type'>管理費：</span> <span><%=houVO.getHou_managefee()%></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6">
+								<span class='type'>產權：</span> <span><%=houVO.getHou_property()%></span>
 							</div>
 						</div>
 					</div>
@@ -287,15 +280,19 @@ input[type="checkbox"].switch_1{
 <!--==========================================以上是慈慈的加入追蹤功能 ==================================---->
 					<div class="col-sm-12">
 						<ul class="nav nav-tabs" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" href="#profile" role="tab" data-toggle="tab" id="note">備註</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#buzz" role="tab" data-toggle="tab">問與答</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#references" role="tab" data-toggle="tab">預約行程</a>
-							</li>
+							<li class="nav-item"><a class="nav-link active"
+								href="#profile" role="tab" data-toggle="tab" id="note">備註</a></li>
+							<li class="nav-item"><a class="nav-link" href="#buzz"
+								role="tab" data-toggle="tab">問與答</a></li>
+							<c:choose>
+								<c:when test="${memVO != null }">
+									<li class="nav-item" id="myTest"><a class="nav-link" href="#references"
+									role="tab" data-toggle="tab">預約行程</a></li>
+								</c:when>
+								<c:otherwise>
+								
+								</c:otherwise>
+							</c:choose>
 <!---======================================= 以下是慈慈的房屋評價功能 ===================================================--->						
 							<li class="nav-item">
 								<a class="nav-link" href="#evaluate" role="tab" data-toggle="tab">評價</a>
@@ -314,17 +311,99 @@ input[type="checkbox"].switch_1{
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane fade in active" id="profile">
 								<div class="myrow"><%=houVO.getHou_note()%></div>
-
 							</div>
-							<div role="tabpanel" class="tab-pane fade" id="buzz">問與答</div>
-							<div role="tabpanel" class="tab-pane fade" id="references">
-
+							<div role="tabpanel" class="tab-pane fade" id="buzz">
+								  <div class="container myContainer">
+								  ${rentMessSvc.getOneByHouId(param.hou_id).size()}
+								  <c:forEach var="rentMessVO" items="${rentMessSvc.getOneByHouId(param.hou_id)}">
+								    <div class="row">
+								        <div class="col-sm-2">
+								        	<div>
+								        		<span>${rentMessVO.ren_mes_id}</span>
+								        	</div>
+								        </div>
+								        <div class="col-sm-10">
+								        	<div class="row">
+												<span>${rentMessVO.mem_id}</span>
+								        	</div>
+								        	<div class="row">
+								        		<span>${rentMessVO.ren_mes_request}</span>
+								        	</div>
+								        	<div class="row">
+								        		<span>房東回覆</span>
+								        	</div>
+								        </div>
+								    </div>
+								   </c:forEach>
+								    <div class="row">
+								        <div class="col-sm-2">
+								        	<div>
+								        		<span>問題1</span>
+								        	</div>
+								        </div>
+								        <div class="col-sm-10">
+								        	<div class="row">
+												<span>會員A</span>
+								        	</div>
+								        	<div class="row">
+								        		<span>有沒有速成Ajax的八卦?</span>
+								        	</div>
+								        	<div class="row">
+								        		<span>房東回覆</span>
+								        	</div>
+								        </div>
+								    </div>
+								    <div class="row">
+								        <div class="col-sm-2">
+								        	<div>
+								        		<span>問題1</span>
+								        	</div>
+								        </div>
+								        <div class="col-sm-10">
+								        	<div class="row">
+												<span>會員A</span>
+								        	</div>
+								        	<div class="row">
+								        		<span>有沒有速成Ajax的八卦?</span>
+								        	</div>
+								        	<div class="row">
+								        		<span>房東回覆</span>
+								        	</div>
+								        </div>
+								    </div>
+							    </div>
+							    <div class="container myContainer">
+							    	<div class="row">
+							    		<span>提出問題</span>
+							    	</div>
+							    	<div class="row">
+							    		<span>提醒</span>
+							    	</div>
+							    	<div class="row">
+							    		<div>
+							    			<textarea id="myAsk" cols=100 rows=5></textarea>
+							    		</div>	
+							    	</div>
+									<div class="row">
+							    		<div class="col-sm-2"></div>
+							    		<div class="col-sm-8">
+							    			<input id="mySumit" class="btn btn-danger" type="button" name="" value="提出問題">	
+							    			<input id="myClear" class="btn btn-primary" type="button" name="" value="重新填寫">
+							    		</div>
+							    		<div class="col-sm-2"></div>
+							    	</div>
+							    </div>
+								
+							</div>
+							<div role="tabpanel" class="tab-pane fade" id="references" style="height: 1000px;">
+								<div>
 									<input type="hidden" name="action" value="insert">
 <!-- 									選擇要轉交的日曆頁面 -->
 									<input type="button" value="我要預約" onClick="location.href='<%=request.getContextPath()%>/memPickReserveDate_doGet.jsp'">
-<%-- 									<jsp:include page="/lanlordSetReserve.jsp" /> --%>
+									
+									<jsp:include page="/memPickReserveDate_doGet.jsp" />
 
-
+								</div>
 							</div>
 <!---=================================== 以下是慈慈的房屋評價功能 ==================================--->
 							<div role="tabpanel" class="tab-pane fade in active" id="evaluate">
@@ -592,6 +671,22 @@ input[type="checkbox"].switch_1{
 </style>
 
 <script>
+
+$(function(){
+	$('#myTest').on('click', function(){
+		$('input[gldp-id="mydate"]').trigger('click');
+		$('input[gldp-id="mydate"]').css('visibility', 'hidden');
+		$('div[gldp-el="mydate"]').css('top', '100px');
+		$('div[gldp-el="mydate"]').css('left', '20px');
+	});
+	
+	$('#profile').addClass('show');
+	
+	$('#myClear').on('click', function(){
+		$('#myAsk').val('');
+	})
+	
+});
         $.datetimepicker.setLocale('zh');
         $('#f_date1').datetimepicker({
 	       theme: '',              //theme: 'dark',

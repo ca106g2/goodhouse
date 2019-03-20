@@ -379,6 +379,8 @@
     	<url-pattern>/front/pointgoods/good_record_check.jsp</url-pattern>
     	<url-pattern>/front/pointgoods/good_favorite_check.jsp</url-pattern>
     	<url-pattern>/front/pointgoods/good_order_check.jsp</url-pattern>
+    	<url-pattern>/memPickReserveDate_doGet.jsp</url-pattern>
+    	<url-pattern>/lanlordSetReserveDate_doGet.jsp</url-pattern>
     	<dispatcher>REQUEST</dispatcher>
     	<dispatcher>FORWARD</dispatcher>
     	<dispatcher>INCLUDE</dispatcher>

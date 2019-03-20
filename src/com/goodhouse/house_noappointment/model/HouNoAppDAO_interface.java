@@ -13,6 +13,8 @@ public interface HouNoAppDAO_interface {
 	public HouNoAppVO findByPrimaryKey(String hou_noapp_id);
 
 	public List<HouNoAppVO> getAll();
+	
+	public List<HouNoAppVO> getPart(String lan_id);
 
 }
 //git上傳註解用無意義
