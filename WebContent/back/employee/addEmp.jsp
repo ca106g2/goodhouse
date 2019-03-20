@@ -86,23 +86,38 @@
 			</select>
 		</td>
 	</tr>
-		<tr>
+	<tr>
 		<td></td>
 		<td>
+		<div class="row">
+				<div class="col-4">
+				</div>
+				<div class="col-4">
 			<input type="hidden" name="action" value="insert">
 			<input type="submit" class="btn btn-light"  value="送出新增"></FORM>
+		</div>
+				<div class="col-4">
+				</div>
+			</div>
 		</td>
 	</tr>
 
 	<tr>
 		<td></td>
 		<td>
+		<div class="row">
+				<div class="col-4">
+				</div>
+				<div class="col-4">
 			<form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
 				<input type="submit" class="btn btn-light"  value="登出">
 			</form>
+		</div>
+				<div class="col-4">
+				</div>
+			</div>
 		</td>
 	</tr>
-	
 
 </table >
 <br>

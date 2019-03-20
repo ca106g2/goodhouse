@@ -92,9 +92,17 @@
 	<tr>
 		<td></td>
 		<td>
-		
+			<div class="row">
+				<div class="col-4">
+				</div>
+				<div class="col-4">
 			<input type="submit" class="btn btn-secondary" value="送出新增">
-		
+			<input type="hidden" name="action" value="insert">
+			<input type="hidden" name="mem_id" value="${memVO.mem_id}">
+				</div>
+				<div class="col-4">
+				</div>
+			</div>
 		</td>
 	</tr>
 </table>
