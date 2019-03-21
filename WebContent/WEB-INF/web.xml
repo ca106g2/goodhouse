@@ -398,8 +398,9 @@
     	<url-pattern>/front/pointgoods/good_record_check.jsp</url-pattern>
     	<url-pattern>/front/pointgoods/good_favorite_check.jsp</url-pattern>
     	<url-pattern>/front/pointgoods/good_order_check.jsp</url-pattern>
-    	<url-pattern>/memPickReserveDate_doGet.jsp</url-pattern>
+    	<!--常慶  -->
     	<url-pattern>/lanlordSetReserveDate_doGet.jsp</url-pattern>
+    	<url-pattern>/front/appoint/listPart_memAppoint.jsp</url-pattern>
     	<!--慈慈  -->
     	<url-pattern>/front/ele_contract/mem_listAll_ele_contract.jsp</url-pattern>
     	<url-pattern>/front/bill/mem_listAll_bill.jsp</url-pattern>
