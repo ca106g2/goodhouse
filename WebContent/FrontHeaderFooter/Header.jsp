@@ -47,7 +47,7 @@
                        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">註冊</a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link " href="<%=request.getContextPath()%>/front/ele_contract/TestLogin.html" tabindex="-1" aria-disabled="true">登入</a>
+                       <a class="nav-link " href="<%=request.getContextPath()%>/front/frontLogin.jsp" tabindex="-1" aria-disabled="true">登入</a>
                    </li>
                    <li class="nav-item">
                        <a class="nav-link" href="#">會員中心</a>

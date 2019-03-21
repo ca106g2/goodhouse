@@ -87,6 +87,6 @@
 	</div>
 	
 	<!-- 工作區結束 -->
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
 </body>
 </html>
