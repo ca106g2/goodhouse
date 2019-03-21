@@ -107,9 +107,9 @@ public class BillJNDIDAO implements BillDAO_interface{
 			pstmt.setDate(3, bVO.getBill_date());
 			pstmt.setDate(4, bVO.getBill_producetime());
 			pstmt.setString(5, bVO.getBill_status());
-			pstmt.setString(6, bVO.getBill_paymethod());
 			pstmt.setString(7, bVO.getBill_paymenttype());
-			pstmt.setString(9, bVO.getBill_id());
+			pstmt.setString(6, bVO.getBill_paymethod());
+			pstmt.setString(8, bVO.getBill_id());
 			
 			//"UPDATE BILL SET ELE_CON_ID = ?  = ? , BILL_PAY = ? , BILL_DATE = ?  , BILL_PRODUCETIME = ? , BILL_STATUS = ? , BILL_PAYMETHOD = ? , BILL_PAYMENTTYPE = ? WHERE BILL_ID = ?"
 			pstmt.executeUpdate();

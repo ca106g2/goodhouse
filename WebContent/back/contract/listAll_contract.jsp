@@ -16,30 +16,11 @@
 <meta charset="UTF-8">
 <title>合約分類資料 - listAll_contract.jsp</title>
 <style>
-  table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
 </style>
 
 </head>
 <body>
-<jsp:include page="/FrontHeaderFooter/Header.jsp" />
-<table id="table-1">
-	<tr><td>
-		 <h3>合約分類資料 - listAll_contract.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
 
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -50,40 +31,66 @@
 	</ul>
 </c:if>
 
-<table>
-	<tr>
-		<th>合約分類編號</th>
-		<th>合約分類名稱</th>
-		<th>合約內容</th>
-		<th>合約分類狀態</th>
-		<th>修改</th>
-		<th>停用</th>
-	</tr>
-	<%@ include file="page1.file" %> 
-	<c:forEach var="conVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<div class="container">
+	<div class="row-12">
+		<a href='add_contract.jsp'>Add</a>新增合約分類
+	</div>
+	
+	<div class="row-12" style="margin-top:15px">
 		
-		<tr>
-			<td>${conVO.con_id}</td>
-			<td>${conVO.con_name}</td>
-			<td>${conVO.con_content}</td>
-			<td>${conVO.con_status}</td>	
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/contract/contract.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="con_id"  value="${conVO.con_id}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-				<form method="post" action="<%=request.getContextPath()%>/back/contract/contract.do" style="margin-bottom:0px;">
-					<input type="submit" value="停用">
-					<input type="hidden" name="con_id" value="${conVO.con_id}">
-					<input type="hidden" name="action" value="getOne_For_Stop">
-				</form>
-			</td>
-		</tr>
-	</c:forEach>
-</table>
-<%@ include file="page2.file" %>
-
+		<table class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col">合約分類編號</th>
+		      <th scope="col">合約分類名稱</th>
+		      <th scope="col">合約內容</th>
+		      <th scope="col">合約分類狀態</th>
+		      <th scope="col"></th> 
+		      <th scope="col"></th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+<%-- 			<%@ include file="page1.file" %>  --%>
+			<c:forEach var="conVO" items="${list}" >
+			    <tr>
+			      <td>${conVO.con_id}</td>
+					<td>${conVO.con_name}</td>
+					<td>${conVO.con_content}</td>
+					<td>${conVO.con_status}</td>		
+					
+					<td>
+					  <form method="post" action="<%=request.getContextPath()%>/back/contract/contract.do" style="margin-bottom: 0px;">
+					     <input type="submit" value="修改">
+					     <input type="hidden" name="con_id"  value="${conVO.con_id}">
+					     <input type="hidden" name="action"	value="getOne_For_Update">
+					  </form>
+					</td>
+					
+					<td>
+						<form method="post" action="<%=request.getContextPath()%>/back/contract/contract.do" style="margin-bottom:0px;">
+							<input type="submit" value="停用">
+							<input type="hidden" name="con_id" value="${conVO.con_id}">
+							<input type="hidden" name="action" value="getOne_For_Stop">
+						</form>
+					</td>
+					<td>
+						<form method="post" action="<%=request.getContextPath()%>/back/contract/contract.do" style="margin-bottom:0px;">
+							<input type="submit" value="查看">
+							<input type="hidden" name="con_id" value="${conVO.con_id}">
+							<input type="hidden" name="action" value="getOne_For_Display">
+						</form>
+					</td>
+					
+			    </tr>
+			</c:forEach>
+		  </tbody>
+		</table>
+<%-- 		<%@ include file="page2.file" %> --%>
+		
+	</div>
+	
+</div>
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

@@ -496,7 +496,7 @@ public class BillServlet extends HttpServlet{
 			try {
 				/***1取得請求參數****************/
 				String bill_id = req.getParameter("bill_id");
-				
+				System.out.println(bill_id);
 				/***2查詢資料更改狀態********************/
 				BillService billSvc = new BillService();
 				BillVO billVO = billSvc.getOneB(bill_id);
@@ -510,6 +510,7 @@ public class BillServlet extends HttpServlet{
 					billVO.setBill_status("s4");
 				}
 				billVO.setBill_paymenttype(billVO.getBill_paymenttype());
+				billVO.setBill_paymethod(billVO.getBill_paymethod());
 				
 				billSvc.updateB(billVO);
 				
@@ -522,7 +523,7 @@ public class BillServlet extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 				errorMsgs.add("無法取得資料" + e.getMessage());
-				RequestDispatcher failure = req.getRequestDispatcher("/front/bill/creatFirstBill.jsp");
+				RequestDispatcher failure = req.getRequestDispatcher("/back/bill/back_listAll_bill.jsp");
 				failure.forward(req, res);
 			}
 			

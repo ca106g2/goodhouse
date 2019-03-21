@@ -41,7 +41,7 @@
            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                    <li class="nav-item active">
-                       <a class="nav-link" href="<%=request.getContextPath()%>/front/lin/houseBrowse.jsp"><img src="<%=request.getContextPath()%>/share_pic/logo_color.png" style="width:40px ; height:37px;"/>首頁</a>
+                       <a class="nav-link" href="<%=request.getContextPath()%>/front/index.jsp"><img src="<%=request.getContextPath()%>/share_pic/logo_color.png" style="width:40px ; height:37px;"/>首頁</a>
                    </li>
                    <li class="nav-item">
                        <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">註冊</a>

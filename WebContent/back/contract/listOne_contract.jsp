@@ -10,47 +10,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<style>
-  table {
-	width: 600px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
-</style>
 </head>
 <body>
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 
-	<table id="table-1">
-		<tr><td>
-			 <h3>員工資料 - ListOne_contract.jsp</h3>
-			 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-		</td></tr>
-	</table>
-
-	<table>
-		<tr>
-			<th>合約分類編號</th>
-			<th>合約分類名稱</th>
-			<th>合約內容</th>
-			<th>合約分類狀態</th>
-		</tr>
-		<tr>
-			<td><%=conVO.getCon_id()%></td>
-			<td><%=conVO.getCon_name()%></td>
-			<td><%=conVO.getCon_content()%></td>
-			<td><%=conVO.getCon_status()%></td>
-		</tr>
-	</table>
-
+	<div class="container">
+		<div class="row col-12">
+			<h4><a href="<%=request.getContextPath()%>/back/contract/listAll_contract.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回合約分類列表</a></h4>
+		</div>
+		<div class="row col-12">
+			<table class="table table-hover">
+	<!-- 			<thead> -->
+	<!-- 			</thead> -->
+				<tbody>
+					<tr>
+						<th scope="row">合約分類編號</th>
+						<td><%=conVO.getCon_id()%></td>
+					</tr>
+					<tr>
+						<th>合約分類名稱</th>
+						<td><%=conVO.getCon_name()%></td>
+					</tr>
+					<tr>
+						<th>合約分類狀態</th>
+						<td><%=conVO.getCon_status()%></td>
+					</tr>
+					<tr>
+						<th>合約內容</th>
+						<td><%=conVO.getCon_content()%></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	
+	</div>
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

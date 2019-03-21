@@ -14,57 +14,50 @@
 <title>合約分類修改</title>
 </head>
 <body>
-
-<table id="table-1">
-		<tr>
-			<td>
-				<h3>合約分類修改 - update_contract_input.jsp</h3>
-				<h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-			</td>
-		</tr>
-	</table>
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	
-	<h3>資料修改:</h3>
-
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color:red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color:red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
-	
-	<form name="the_form" method="post" action="contract.do">
-		<table>
-			<tr>
-				<td>合約分類名稱</td><br>
-				<td>
-					<input type="text" name="con_name" value="${conVO.con_name}">
-				</td>
-			</tr>
-			<tr>
-				<td>合約內容</td><br>
-				<td>
-					<input type="text" name="con_content" value="${conVO.con_content}">
-				</td>
-			</tr>
-			<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"/>
-			<tr>
-				<td>合約使用狀態</td><br>
-				<td>
-					<p>${conVO.con_status}</p>
-				</td>
-			</tr>
-		</table>
-		<input type="hidden" name="action" value="update" >
-		<input type="hidden" name="con_id" value="${conVO.con_id}">
-		<input type="hidden" name="con_status" value="${conVO.con_status}">
-		<input type="submit" value="送出修改">
-	
-	</form>
-	
-
+	<div class="container">
+		
+		<div class="row col-12">
+			<h4><a href="<%=request.getContextPath()%>/back/contract/listAll_contract.jsp">
+			<img src="images/back1.gif" width="100" height="32" border="0">回合約分類列表</a></h4>
+			<%-- 錯誤表列 --%>
+			<c:if test="${not empty errorMsgs}">
+					<c:forEach var="message" items="${errorMsgs}">
+						<p style="color:red">${message}</p><br>
+					</c:forEach>
+			</c:if>
+		</div>
+		<div class="row col-12">
+			<form name="the_form" method="post" action="contract.do">
+				<table>
+					<tr>
+						<td>合約分類名稱</td><br>
+						<td>
+							<input type="text" name="con_name" value="${conVO.con_name}">
+						</td>
+					</tr>
+					<tr>
+						<td>合約內容</td><br>
+						<td>
+							<input type="text" name="con_content" value="${conVO.con_content}">
+						</td>
+					</tr>
+					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"/>
+					<tr>
+						<td>合約使用狀態</td><br>
+						<td>
+							<p>${conVO.con_status}</p>
+						</td>
+					</tr>
+				</table>
+				<input type="hidden" name="action" value="update" >
+				<input type="hidden" name="con_id" value="${conVO.con_id}">
+				<input type="hidden" name="con_status" value="${conVO.con_status}">
+				<input type="submit" value="送出修改">
+			</form>
+		</div>
+	</div>
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

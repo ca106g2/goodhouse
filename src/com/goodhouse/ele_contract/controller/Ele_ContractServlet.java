@@ -55,7 +55,6 @@ public class Ele_ContractServlet extends HttpServlet{
 			MemService mSvc = new MemService();
 			
 			
-			try {
 				/**1接收請求參數*****/
 				
 //				String mem_name = req.getParameter("mem_name");
@@ -70,16 +69,9 @@ public class Ele_ContractServlet extends HttpServlet{
 					}
 				}
 				/**3查詢完成準備轉交****/
-				String url = "/front/lin/houseBrowse.jsp";
+				String url = "/front/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
-				
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料:" + e.getMessage());
-				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back/ele_contract/mem_select_page.jsp");
-				failureView.forward(req, res);
-			}
 			
 		}
 		

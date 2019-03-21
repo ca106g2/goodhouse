@@ -47,8 +47,6 @@
 	<ul>
 	  <li><a href='add_contract.jsp'>Add</a>新增合約分類</li>
 	</ul>
-	
-	
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>
