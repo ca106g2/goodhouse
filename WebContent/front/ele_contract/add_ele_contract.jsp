@@ -55,7 +55,7 @@
 								<b style="color:red">${message}</b><br>
 							</c:forEach>
 						</c:if>
-				<p type="text" name="con_content" value="${conVO.con_content}" >
+				<p type="text"  value="${conVO.con_name}" >
 				<form method="post" action="ele_contract.do" name="form1">
 				<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
 				<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>

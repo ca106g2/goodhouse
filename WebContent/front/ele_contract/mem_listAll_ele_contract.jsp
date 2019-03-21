@@ -8,6 +8,7 @@
     String mem_id = ((MemVO)session.getAttribute("memVO")).getMem_id();
 	Ele_ContractService eleConSvc = new Ele_ContractService();
 	List<Ele_ContractVO> list = eleConSvc.getAllForEle_ConByMem_id(mem_id);
+	Collections.reverse(list);
 	pageContext.setAttribute("list",list);
 %>
 
@@ -27,7 +28,7 @@
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<!-- 工作區開始 -->
-	<div class="container-fluid">
+	<div class="container"> 
 				<div>
 					<%-- 錯誤表列 --%>
 					<c:if test="${not empty errorMsgs}">
@@ -51,12 +52,12 @@
 				      		<th scope="col">房屋名稱</th>
 				      		<th scope="col">每期租金</th>
 				      		<th scope="col">押金</th>
-				      		<th scope="col">租賃期限</th>
+<!-- 				      		<th scope="col">租賃期限</th> -->
 				      		<th scope="col">租賃起訖日</th>
 				      		<th scope="col">租賃結束日</th>
-				      		<th scope="col">簽約日期</th>
+<!-- 				      		<th scope="col">簽約日期</th> -->
 				      		<th scope="col">合約狀態</th>
-				      		<th scope="col">繳費型態</th>
+<!-- 				      		<th scope="col">繳費型態</th> -->
 				      		<th scope="col"></th>
 				    	</tr>
 				  	</thead>
@@ -71,10 +72,10 @@
 				      		<td>${houSvc.getOneHouse(eleConVO.hou_id).hou_name}</td>
 				      		<td>${eleConVO.ele_rent_money}</td>
 				      		<td>${eleConVO.ele_deposit_money}</td>
-				      		<td>${eleConVO.ele_rent_time}</td>
+<%-- 				      		<td>${eleConVO.ele_rent_time}</td> --%>
 				      		<td>${eleConVO.ele_rent_f_day}</td>
 				      		<td>${eleConVO.ele_rent_l_day}</td>
-				      		<td>${eleConVO.ele_singdate}</td>
+<%-- 				      		<td>${eleConVO.ele_singdate}</td> --%>
 				      		
 				      		<c:forEach var="Ele_con_status" items="${Ele_con_statusList}">
 								<c:if test="${Ele_con_status.status_no eq eleConVO.ele_con_status}">
@@ -82,11 +83,11 @@
 								</c:if>
 							</c:forEach>
 							
-				      		<c:forEach var="Bill_PaymentType" items="${Bill_PaymentTypeMap}">
-								<c:if test="${Bill_PaymentType.key eq eleConVO.bill_paymenttype}">
-									<td>${Bill_PaymentType.value.type_name}</td>
-								</c:if>
-							</c:forEach>
+<%-- 				      		<c:forEach var="Bill_PaymentType" items="${Bill_PaymentTypeMap}"> --%>
+<%-- 								<c:if test="${Bill_PaymentType.key eq eleConVO.bill_paymenttype}"> --%>
+<%-- 									<td>${Bill_PaymentType.value.type_name}</td> --%>
+<%-- 								</c:if> --%>
+<%-- 							</c:forEach> --%>
 							
 				      		<td>
 								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
@@ -103,23 +104,24 @@
 									<input class="" type="submit" value="解約" id="renewORrelease" 
 													style='display:${(eleConVO.ele_con_status eq "s2") ? "" : "none"}'>
 								</form>
-								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
-									<input type="hidden" name="action" value="eleConCheck">
-									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
-									<input class="" type="submit" value="確認" id="eleConCheck" 
-													style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
-								</form>
-								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
-									<input type="hidden" name="action" value="eleConCancle">
-									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
-									<input class="" type="submit" value="取消合約" id="eleConCancle" 
-													style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
-								</form>
+<%-- 								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do"> --%>
+<!-- 									<input type="hidden" name="action" value="eleConCheck"> -->
+<%-- 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}"> --%>
+<!-- 									<input class="" type="submit" value="確認" id="eleConCheck"  -->
+<%-- 													style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'> --%>
+<!-- 								</form> -->
+<%-- 								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do"> --%>
+<!-- 									<input type="hidden" name="action" value="eleConCancle"> -->
+<%-- 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}"> --%>
+<!-- 									<input class="" type="submit" value="取消合約" id="eleConCancle"  -->
+<%-- 													style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'> --%>
+<!-- 								</form> -->
+							</td>
+							<td>
 								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/ele_contract.do">
 									<input type="hidden" name="action" value="getOne_For_look">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
-									<input class="" type="submit" value="查看" id="eleConCancle" 
-													style='display:${(eleConVO.ele_con_status != "s1") ? "" : "none"}'>
+									<input class="" type="submit" value="查看" id="eleConCancle">
 								</form>
 							</td>
 				    	</tr>

@@ -41,7 +41,7 @@
 					</tr>
 					<%
 							List<Ele_ContractVO> list = (List<Ele_ContractVO>) request.getAttribute("list");
-							
+							Collections.reverse(list);
 							ContractService conSvc = new ContractService();
 							MemService mSvc = new MemService();
 							HouseService houSvc = new HouseService();

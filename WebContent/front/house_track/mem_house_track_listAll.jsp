@@ -9,6 +9,7 @@
 	MemVO memVO = (MemVO)session.getAttribute("memVO");
 	House_TrackService houTraSvc = new House_TrackService();
 	List<House_TrackVO> list = houTraSvc.getListByMemId(memVO.getMem_id());
+	Collections.reverse(list);
 	pageContext.setAttribute("list",list);
 %>
 

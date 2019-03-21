@@ -17,11 +17,10 @@
 <body>
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <div class="container">
-  <div class="row">
-    <div class="col-4">
-      <jsp:include page="/BackHeaderFooter/LeftList.jsp" />
-    </div>
-    <div class="col-8">
+	<div class="row col-12">
+		<h4><a href="<%=request.getContextPath()%>/back/back_index.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回後台首頁</a></h4>
+	</div>
+  <div class="row col-12" >
     <table border="1">
     	<tr>
     		<td>會員姓名</td>
@@ -64,10 +63,8 @@
 	    	</tr>
 	    </c:forEach>
     </table>
-    </div>
   </div>
 </div> 
-<h4><a href="<%=request.getContextPath()%>/back/employee/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回員工首頁</a></h4>
 <jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 </html>

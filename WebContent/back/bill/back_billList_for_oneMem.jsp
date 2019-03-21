@@ -50,7 +50,7 @@
 						<jsp:useBean id="eleConSvc" scope="page" class="com.goodhouse.ele_contract.model.Ele_ContractService" />
 						<%
 							List<BillVO> billList = (List<BillVO>) request.getAttribute("billList");
-							
+							Collections.reverse(billList);
 							
 							for(int i = 0 ; i < billList.size() ; i++){
 								

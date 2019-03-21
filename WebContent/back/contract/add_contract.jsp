@@ -26,6 +26,7 @@
 			</c:if>
 		</div>
 		
+		<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"/>
 		<div class="row col-12">
 			<form method="post" action="contract.do" name="form1">
 				<table>
@@ -36,13 +37,6 @@
 						</td>
 					</tr>
 					<tr>
-						<td>合約內容</td>
-						<td>
-							<input type="text" name="con_content" size="45" value="<%= (conVO == null)?"合約內容" : conVO.getCon_content()%>"/>
-						</td>
-					</tr>
-					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"/>
-					<tr>
 						<td>合約使用狀態</td>
 						<td>
 							<select name="con_status">
@@ -50,6 +44,15 @@
 									<option value="${con_status.status_name}" ${(con_status.status_no_name == conVO.con_status)?'selected':''}>${con_status.status_name}
 								</c:forEach>
 							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>合約內容</td>
+						<td>
+							<input type="text" name="con_content" size="45" value="<%= (conVO == null)?"合約內容" : conVO.getCon_content()%>"/>
+								
+						
+						
 						</td>
 					</tr>
 				</table>

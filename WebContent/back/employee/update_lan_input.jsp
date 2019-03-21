@@ -15,9 +15,6 @@
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <div class="container">
   <div class="row">
-    <div class="col-4">
-      <jsp:include page="/BackHeaderFooter/LeftList.jsp" />
-    </div>
     <div class="col-8">
     	<FORM METHOD="post" ACTION="lan.do" name="form1" enctype="multipart/form-data">
 			<table>

@@ -66,7 +66,7 @@
 			
 				<div class="row col-6">
 					<form method="post" action="ele_contract.do">
-						<b>輸入電子合約編號</b><br>
+						<b>查詢合約：輸入電子合約編號</b><br>
 						<input type="text" name="ele_con_id">
 						<input type="hidden" name="action" value="getOne_For_Display">
 						<input type="submit" value="送出">
@@ -75,7 +75,7 @@
 				
 				<div class="row col-6">
 					<form method="post" action="ele_contract.do">
-						<b>輸入會員姓名</b><br>
+						<b>查詢合約：輸入會員姓名</b><br>
 						<input type="text" name="mem_name">
 						<input type="hidden" name="action" value="getNameForEle_Contract">
 						<input type="submit" value="送出">

@@ -11,6 +11,7 @@
 	LanService lanSvc = new LanService();
 	
 	List<Ele_ContractVO> list = eleConSvc.getAllForEle_ConByLan_id(lanSvc.getOneLanByMemId(mem_id).getLan_id());
+	Collections.reverse(list);
 	pageContext.setAttribute("list",list);
 %>
 

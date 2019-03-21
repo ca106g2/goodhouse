@@ -6,6 +6,7 @@
 <%
     ContractService conSvc = new ContractService();
     List<ContractVO> list = conSvc.getAll();
+//     Collections.reverse(list);
     pageContext.setAttribute("list",list);
 %>
 

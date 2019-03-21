@@ -8,6 +8,7 @@
     House_EvaluateService heSvc = new House_EvaluateService();
     List<House_EvaluateVO> list = heSvc.getAll();
     MemVO memVO = (MemVO)session.getAttribute("memVO");
+    Collections.reverse(list);
     pageContext.setAttribute("list",list);
 %>
 

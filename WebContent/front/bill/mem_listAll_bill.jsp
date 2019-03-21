@@ -23,6 +23,7 @@
 			}
 		}
 	}
+	Collections.reverse(list);
 	pageContext.setAttribute("list",list);
 %>
 

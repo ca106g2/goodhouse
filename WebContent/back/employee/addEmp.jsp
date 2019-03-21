@@ -49,7 +49,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料新增 - addEmp.jsp</h3></td><td>
-		 <h5><a href="select_page.jsp">回員工首頁</a></h5>
+		 <h5><a href="<%=request.getContextPath()%>/back/employee/listAllMem_emp.jsp">回員工列表</a></h5>
 	</td></tr>
 </table>
 
@@ -107,9 +107,9 @@
 
 
 
-<form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
-	<input type="submit" value="登出">
-</form>
+<%-- <form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler"> --%>
+<!-- 	<input type="submit" value="登出"> -->
+<!-- </form> -->
 
 
 <jsp:include page="/BackHeaderFooter/Footer.jsp"/>

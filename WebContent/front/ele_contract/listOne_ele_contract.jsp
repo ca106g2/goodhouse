@@ -73,6 +73,27 @@
 							</c:forEach>
 				</div>
 			</div>
+			
+			<div class="row col-12">
+				<div class="col-6">
+					<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
+						<input type="hidden" name="action" value="eleConCheck">
+						<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
+						<input class="" type="submit" value="確認" id="eleConCheck" 
+							style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
+					</form>
+				</div>
+				<div class="col-6">
+					<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
+						<input type="hidden" name="action" value="eleConCancle">
+						<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
+						<input class="" type="submit" value="取消合約" id="eleConCancle" 
+							style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
+					</form>
+				</div>
+				
+			</div>
+		
 	</div>
 	<!-- 工作區結束 -->
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />

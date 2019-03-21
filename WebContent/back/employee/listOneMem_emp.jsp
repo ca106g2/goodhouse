@@ -64,7 +64,7 @@
 	<tr><td>
 		 <h3>會員資料 - ListOneMem_emp.jsp</h3>
 		 
-		 <h4><a href="<%=request.getContextPath()%>/back/employee/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回員工首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back/employee/listAllMem_emp.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回員工列表</a></h4>
 		 
 		 
 	</td></tr>

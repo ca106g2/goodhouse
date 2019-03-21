@@ -44,7 +44,7 @@
   	</servlet-mapping>
   	<servlet-mapping>
     	<servlet-name>member</servlet-name>
-    	<url-pattern>/back/employee/mem.do</url-pattern>
+    	<url-pattern>/back/member/mem.do</url-pattern>
   	</servlet-mapping>
   
   <!-- 註冊房東 -->
@@ -393,6 +393,8 @@
     	<filter-name>frontLoginFilter</filter-name>
     	
     	<url-pattern>/front/member/listOneMem.jsp</url-pattern>
+    	<!--承偉  -->
+    	
     	<!--冠錩  -->
     	<url-pattern>/front/pointgoods/checkout.jsp</url-pattern>
     	<url-pattern>/front/pointgoods/good_record_check.jsp</url-pattern>
@@ -442,7 +444,14 @@
   	</filter>
   	<filter-mapping>
     	<filter-name>backLoginFilter</filter-name>
+    	
+    	<!--承偉  -->
     	<url-pattern>/back/employee/select_page.jsp</url-pattern>
+    	<url-pattern>/back/employee/listAllEmp.jsp</url-pattern>
+    	<url-pattern>/back/employee/addEmp.jsp</url-pattern>
+    	<url-pattern>/back/member/listAllMem.jsp</url-pattern>
+    	<url-pattern>/back/landlord/listAllLan.jsp</url-pattern>
+    	<url-pattern>/back/employee/checklan.jsp</url-pattern>
     	<!--TIM  -->
     	<url-pattern>/back/house/listAllHouse.jsp</url-pattern>
     	<url-pattern>/back/ad/listAllAd.jsp</url-pattern>

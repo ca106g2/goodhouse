@@ -25,6 +25,8 @@
 			}
 		}
 	}
+	
+	Collections.reverse(list);
 	pageContext.setAttribute("list",list);
 %>
 <!DOCTYPE html>

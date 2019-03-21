@@ -70,24 +70,23 @@ public class BillSchedule extends HttpServlet{
 						//找出最後一筆帳單
 					if(!(billList.size() < 1)) {
 						billVO = billList.get(billList.size()-1);
-						System.out.println();
 					} else {
-						System.out.println("無效合約：" + eleConVO.getEle_con_id());
-						System.out.println();
+//						System.out.println("無效合約：" + eleConVO.getEle_con_id());
+//						System.out.println();
 						continue qq;
 					}
 						//最後一筆帳單的繳費日期
 						GregorianCalendar billCal = new GregorianCalendar();
 						billCal.setTime(billVO.getBill_date());
-						System.out.println("billVO.getBill_id() = "+ billVO.getBill_id());
-						System.out.println("nowCal.getTime() = "+ billCal.getTime());
+//						System.out.println("billVO.getBill_id() = "+ billVO.getBill_id());
+//						System.out.println("nowCal.getTime() = "+ billCal.getTime());
 						
 						
 						int year = billCal.get(Calendar.YEAR);
-						System.out.println("year = "+year);
+//						System.out.println("year = "+year);
 						
 						int nextMonth = billCal.get(Calendar.MONTH) + 1;
-						System.out.println("nextMonth = "+nextMonth);
+//						System.out.println("nextMonth = "+nextMonth);
 						
 						if(nextMonth == 12) {
 							nextMonth = 0;
@@ -95,11 +94,11 @@ public class BillSchedule extends HttpServlet{
 						}
 						
 						int date = billCal.get(Calendar.DAY_OF_MONTH);
-						System.out.println("date = "+date);
+//						System.out.println("date = "+date);
 						
 						Calendar nextTime = new GregorianCalendar(year, nextMonth, date);
 						java.sql.Date nextBill_date = new java.sql.Date(nextTime.getTime().getTime());
-						System.out.println("nextBill_date = "+nextBill_date);
+//						System.out.println("nextBill_date = "+nextBill_date);
 					//如果合約狀態是已簽約
 					if(eleConVO.getEle_con_status().equals("s2")) {
 						System.out.println("if1");
@@ -107,6 +106,7 @@ public class BillSchedule extends HttpServlet{
 						if( nextBill_date.after(eleConVO.getEle_rent_f_day())  && 
 							nextBill_date.before(eleConVO.getEle_rent_l_day()) &&
 							billVO.getBill_date().before(now)) {
+							
 							//產生新帳單
 							System.out.println("if2");
 							BillVO newBill = new BillVO();
@@ -121,7 +121,7 @@ public class BillSchedule extends HttpServlet{
 							billSvc.addB(newBill);
 						}
 					}
-					System.out.println();
+//					System.out.println();
 				}
 			}
 		};
