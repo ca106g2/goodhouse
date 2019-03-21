@@ -82,7 +82,7 @@ public class Ad_sortServlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 			
 			String requestURL = req.getParameter("requestURL");
-//			try {
+			try {
 				String ad_sort_id = req.getParameter("ad_sort_id").trim();
 
 				String ad_typeReg = "^[(\u4e00-\u9fa5)]";
@@ -98,8 +98,20 @@ public class Ad_sortServlet extends HttpServlet{
 				}else if(ad_chargetype.trim().matches(ad_typeReg)) {
 					errorMsgs.add("請輸入中文");
 				}
-				Integer ad_charge = new Integer(req.getParameter("ad_charge").trim());
-
+			
+				String ad_charge_vr = new String(req.getParameter("ad_charge_vr").trim());
+				String ad_charge_Reg = "^[0-9][0-9]{0,6}$";
+				if (ad_charge_vr == null || ad_charge_vr.trim().length() == 0) {
+					errorMsgs.add("租金不可空白");
+				} else if (!ad_charge_vr.trim().matches(ad_charge_Reg)) {
+					errorMsgs.add("請填正整數");
+				}				
+				Integer ad_charge = null;
+				try {
+					ad_charge = Integer.parseInt(ad_charge_vr);
+				}catch(NumberFormatException e){
+					errorMsgs.add("新增失敗");
+				}	
 				System.out.println(ad_charge);
 
 				Ad_sortVO ad_sortVO = new Ad_sortVO();
@@ -123,12 +135,12 @@ public class Ad_sortServlet extends HttpServlet{
 				RequestDispatcher successView = req.getRequestDispatcher("/back/ad_sort/listOneAd_sort.jsp");
 				successView.forward(req, res);
 				
-//			}catch(Exception e) {
-//				e.printStackTrace();
-//				errorMsgs.add("資料無法修改"+e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
-//				failureView.forward(req, res);
-//				}
+			}catch(Exception e) {
+				e.printStackTrace();
+				errorMsgs.add("資料無法修改"+e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher(requestURL);
+				failureView.forward(req, res);
+				}
 			}
 		
 		if("insert".equals(action)) {
@@ -152,7 +164,21 @@ public class Ad_sortServlet extends HttpServlet{
 				}else if(ad_chargetype.trim().matches(ad_typeReg)) {
 					errorMsgs.add("請輸入中文");
 				}
-				Integer ad_charge = new Integer(req.getParameter("ad_charge").trim());
+				String ad_charge_vr = new String(req.getParameter("ad_charge_vr").trim());
+				String ad_charge_Reg = "^[0-9][0-9]{0,6}$";
+				if (ad_charge_vr == null || ad_charge_vr.trim().length() == 0) {
+					errorMsgs.add("租金不可空白");
+				} else if (!ad_charge_vr.trim().matches(ad_charge_Reg)) {
+					errorMsgs.add("請填正整數");
+				}				
+				Integer ad_charge = null;
+				try {
+					ad_charge = Integer.parseInt(ad_charge_vr);
+				}catch(NumberFormatException e){
+					errorMsgs.add("新增失敗");
+				}	
+				System.out.println(ad_charge);
+
 				
 				Ad_sortVO ad_sortVO = new Ad_sortVO();
 				ad_sortVO.setAd_forfree(ad_forfree);

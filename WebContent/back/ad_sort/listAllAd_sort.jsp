@@ -26,30 +26,31 @@
 	</ul>
 </c:if>
 
-<table>
-	<tr>
-		<th>廣告分類編號</th>
-		<th>廣告類型</th>
-		<th>廣告費用型態</th>
-		<th>費用</th>
+<table class="table table-hover">
+  <thead>
+    <tr>
+		<th scope="row">廣告類型</th>
+		<th scope="row">廣告費用型態</th>
+		<th scope="row">費用</th>
 	</tr>
-	
+	</thead>
+<tbody>	
 	<c:forEach var="ad_sorVO" items="${list}">
 		<tr>
-			<td>${ad_sorVO.ad_sort_id}</td>
 			<td>${ad_sorVO.ad_forfree}</td>
 			<td>${ad_sorVO.ad_chargetype}</td>
 			<td>${ad_sorVO.ad_charge}</td>
 		<td>
 		<form method="post" action="<%=request.getContextPath() %>/back/ad_sort/ad_sor.do" style="margin-bottom: 0px;">
-		<input type="submit" value="修改">
+		<input type="submit" class="btn btn-secondary" value="修改">
 		<input type="hidden" name="ad_sort_id" value="${ad_sorVO.ad_sort_id}">
 		<input type="hidden" name="requestURL" value="<%=request.getServletPath() %>">
 		<input type="hidden" name="action" value="getOne_For_Update">
 		</form>
 		</td>
 		</tr>
-	</c:forEach>	
+	</c:forEach>
+	</tbody>	
 </table>
 <jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>

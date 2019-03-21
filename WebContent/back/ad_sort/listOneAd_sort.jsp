@@ -11,20 +11,26 @@
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />	
-	<table>
-	<tr>
-		<th>廣告分類編號</th>
-		<th>廣告類型</th>
-		<th>廣告費用型態</th>
-		<th>費用</th>
+	
+	<table class="table table-hover">
+  <thead>
+    <tr>
+		<th scope="row">廣告類型</th>
+		<th scope="row">廣告費用型態</th>
+		<th scope="row">費用</th>
 	</tr>
-	<tr>
-	<td><%=ad_sortVO.getAd_sort_id() %></td>
-	<td><%=ad_sortVO.getAd_forfree() %></td>
-	<td><%=ad_sortVO.getAd_chargetype() %></td>
-	<td><%=ad_sortVO.getAd_charge() %></td>
-	</tr>
-	</table>
+	</thead>
+	<tbody>	
+		<tr>
+			<td><%=ad_sortVO.getAd_forfree() %></td>
+			<td><%=ad_sortVO.getAd_chargetype() %></td>
+			<td><%=ad_sortVO.getAd_charge() %></td>
+		<td>
+		</td>
+		</tr>
+	</tbody>	
+</table>
+
 	<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 </html>

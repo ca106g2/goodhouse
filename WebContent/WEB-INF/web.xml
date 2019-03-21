@@ -310,6 +310,15 @@
     <servlet-name>Fornt_Ad_reportServlet</servlet-name>
     <url-pattern>/front/ad_report/ad_rep.do</url-pattern>
   </servlet-mapping>
+   <!-- 後端廣告類型 --> 	
+    <servlet>
+    <servlet-name>Ad_sortServlet</servlet-name>
+    <servlet-class>com.goodhouse.ad_sort.controller.Ad_sortServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ad_sortServlet</servlet-name>
+    <url-pattern>/back/ad_sort/ad_sor.do</url-pattern>
+  </servlet-mapping>
 
 <!-- =================================================== -->
 <!-- ==================常慶============================== -->	

@@ -1,6 +1,7 @@
 package com.goodhouse.ad.controller;
 
 import java.io.*;
+import java.sql.Timestamp;
 import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -135,7 +136,9 @@ public class AdServlet extends HttpServlet{
 					good_total = good_total + 10000;
 					memSvc.updatePointTot(mem_id, good_total);
 					
-					
+					com.goodhouse.good_record.model.Good_recordService gdSvc = new com.goodhouse.good_record.model.Good_recordService();
+					gdSvc.addGood_record(mem_id, "廣告新增", 10000, new Timestamp(System.currentTimeMillis()));
+
 					
 				}else {
 					

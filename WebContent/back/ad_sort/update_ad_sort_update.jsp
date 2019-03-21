@@ -25,42 +25,28 @@
 	</ul>
 </c:if>	
 <form method="post" action="ad_sor.do" name="form1">
-	<table>
-	
-		<tr>
-			<td>廣告類別編號</td>
-			<td><%=ad_sortVO.getAd_sort_id()%></td>
-		</tr>
-
-		<tr>
-		
-			<td>廣告類型</td>
-			
-			<td><input type="text" name="ad_forfree" size="45" value="<%=ad_sortVO.getAd_forfree()%>"></td>
-			
-		</tr>
-		
-		<tr>
-		
-			<td>廣告費用型態</td>
-			
-			<td><input type="text" name="ad_chargetype" size="45" value="<%=ad_sortVO.getAd_chargetype() %>"></td>
-			
-		</tr>
-		
-		<tr>
-		
-			<td>費用</td>
-			
-			<td><input type="text" name="ad_charge" size="45" value="<%=ad_sortVO.getAd_charge() %>"></td>
-			
-		</tr>
-		
-	</table>
-	
-	<input type="hidden" name="action" value="update">
-	<input type="hidden" name="ad_sort_id" value="<%=ad_sortVO.getAd_sort_id() %>">
-	<input type="submit" value="送出修改">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">廣告類型</th>
+      <th scope="col">廣告費用型態</th>
+      <th scope="col">費用</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input type="text" name="ad_forfree" size="45" value="<%=ad_sortVO.getAd_forfree()%>"></td>
+      <td><input type="text" name="ad_chargetype" size="45" value="<%=ad_sortVO.getAd_chargetype() %>"></td>
+      <td><input type="text" name="ad_charge_vr" size="45" value="<%=ad_sortVO.getAd_charge() %>"></td>
+      <td>
+      		<input type="hidden" name="action" value="update">
+			<input type="hidden" name="ad_sort_id" value="<%=ad_sortVO.getAd_sort_id() %>">
+			<input type="submit" class="btn btn-secondary" value="送出修改">
+      </td>
+    </tr>
+  </tbody>
+</table>
 </form>
 <jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>

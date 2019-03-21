@@ -52,6 +52,8 @@
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					廣告管理</a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad_sort/listAllAd_sort.jsp">廣告類型列表</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad_sort/addAd_sort.jsp">廣告類型新增</a>  
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp">廣告列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/ad_report/listAllAd_report.jsp">廣告檢舉</a>
 					        </div>

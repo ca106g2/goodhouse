@@ -29,7 +29,7 @@
 						<option value="${ad_sortVO.ad_sort_id}">${ad_sortVO.ad_chargetype}
 					</c:forEach>		
 				</select>
-				<input type="submit" value="送出">
+				<input type="submit" value="送出" >
 				<input type="hidden" name="action" value="getOne_For_Ad_sort">
 		</form>
 	</li>

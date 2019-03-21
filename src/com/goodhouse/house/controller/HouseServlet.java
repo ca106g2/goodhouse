@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -689,6 +690,10 @@ public class HouseServlet extends HttpServlet {
 						Integer good_total = memVO.getGood_total();
 						good_total = good_total + 10000;
 						memSvc.updatePointTot(mem_id, good_total);
+						
+						com.goodhouse.good_record.model.Good_recordService gdSvc = new com.goodhouse.good_record.model.Good_recordService();
+						gdSvc.addGood_record(mem_id, "房屋新增", 10000, new Timestamp(System.currentTimeMillis()));
+						
 			
 					
 //********************webSocket功能啟動*****************
