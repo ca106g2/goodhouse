@@ -45,7 +45,7 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料修改 - update_emp_input.jsp</h3>
@@ -111,6 +111,6 @@
 <input type="submit" value="送出修改">
 </FORM>
 
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 </html>

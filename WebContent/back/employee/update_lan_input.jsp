@@ -12,7 +12,7 @@
 <title>房東資料修改 - update_lan_input.jsp</title>
 </head>
 <body>
-<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <div class="container">
   <div class="row">
     <div class="col-4">
@@ -78,6 +78,6 @@
     </div>
   </div>
 </div>
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 </html>

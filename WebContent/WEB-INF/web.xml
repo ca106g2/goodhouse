@@ -42,6 +42,10 @@
     	<servlet-name>member</servlet-name>
     	<url-pattern>/front/member/mem.do</url-pattern>
   	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>member</servlet-name>
+    	<url-pattern>/back/employee/mem.do</url-pattern>
+  	</servlet-mapping>
   
   <!-- 註冊房東 -->
   	<servlet>
@@ -51,6 +55,10 @@
   	<servlet-mapping>
     	<servlet-name>landlord</servlet-name>
     	<url-pattern>/front/landlord/lan.do</url-pattern>
+  	</servlet-mapping>
+  	<servlet-mapping>
+    	<servlet-name>landlord</servlet-name>
+    	<url-pattern>/back/employee/lan.do</url-pattern>
   	</servlet-mapping>
   	
   <!-- 註冊權限功能 -->
@@ -402,6 +410,8 @@
     	<url-pattern>/front/house/listAllHouse.jsp</url-pattern>
     	<!--TIM  -->
     	<url-pattern>/front/house/addHouse.jsp</url-pattern>
+    	<!--承偉  -->
+    	<url-pattern>/front/member/select_page.jsp</url-pattern>
     	<dispatcher>REQUEST</dispatcher>
     	<dispatcher>FORWARD</dispatcher>
     	<dispatcher>INCLUDE</dispatcher>

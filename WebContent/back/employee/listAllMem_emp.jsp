@@ -59,7 +59,7 @@ pageContext.setAttribute("list",list);
 </head>
 
 <body bgcolor="white">
-<jsp:include page="/FrontHeaderFooter/Header.jsp"/>	
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>	
 <table id="table-1">
 	<tr><td>
 	<h3>所有會員資料</h3>
@@ -148,6 +148,6 @@ pageContext.setAttribute("list",list);
 <%@ include file="page2.file" %>
 
 
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 </html>

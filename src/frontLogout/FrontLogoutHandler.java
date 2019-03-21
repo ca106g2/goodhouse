@@ -20,7 +20,9 @@ public class FrontLogoutHandler extends HttpServlet {
        
 	//【檢查使用者輸入是否已連線】
 	//【實際上應至資料庫搜尋比對】
-
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		doPost(req, res);
+	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
@@ -32,7 +34,7 @@ public class FrontLogoutHandler extends HttpServlet {
 		if(memVO != null) {
 			session.removeAttribute("memVO");
 			try {                                                        
-				res.sendRedirect(req.getContextPath()+"/front/member/select_page.jsp");            
+				res.sendRedirect(req.getContextPath()+"/front/index.jsp");            
 			}catch (Exception ignored) { }
 		}
 		

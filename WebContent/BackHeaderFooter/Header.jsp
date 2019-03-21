@@ -34,8 +34,8 @@
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					會員/員工管理</a>
 					     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">會員</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>">員工</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/employee/listAllMem_emp.jsp">會員</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/employee/select_page.jsp">員工</a>
 					     </div>
                     </li>
 

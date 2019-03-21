@@ -45,7 +45,7 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <h4>此頁暫練習採用 Script 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
@@ -78,6 +78,6 @@
 		<%}%>
 	</tr>
 </table>
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 </html>

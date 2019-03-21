@@ -54,7 +54,7 @@ pageContext.setAttribute("list",list);
 
 </head>
 <body bgcolor="white">
-<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
 		<h3>所有員工資料 </h3>
@@ -115,6 +115,6 @@ pageContext.setAttribute("list",list);
 	<input type="submit" value="登出">
 </form>
 
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 </html>

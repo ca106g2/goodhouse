@@ -177,28 +177,8 @@
 	</tr>
 </table>
 
-<form method="post" action="<%=request.getContextPath()%>/FrontLogoutHandler">
-	<input type="submit" value="登出">
-</form>
-
-
 </c:if>
 
-
-
-
-<h3>會員註冊</h3>
-
-<ul>
-<c:choose>
-	<c:when test="${not empty memVO}">
- 		 <li><input type="button" value="註冊" onclick="location.href='addMem.jsp'" disabled></li>
-  	</c:when>
-  	<c:otherwise>
-  		<li><input type="button" value="註冊" onclick="location.href='addMem.jsp'"></li>
-  	</c:otherwise>
-</c:choose>
-</ul>
 <jsp:useBean id="landSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
 <h3>房東管理</h3>
 <h5>若要申請房東，請先登入會員</h5>

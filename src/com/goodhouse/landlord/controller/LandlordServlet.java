@@ -96,7 +96,7 @@ public class LandlordServlet extends HttpServlet{
 			
 			/***************************3.新增完成,準備轉交(Send the Success view)***********/
 			req.setAttribute("lanVO", lanVO);
-			String url = "/front/landlord/applylan.jsp";
+			String url = "/front/member/select_page.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 			successView.forward(req, res);		
 			

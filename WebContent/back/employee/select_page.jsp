@@ -29,7 +29,7 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <table id="table-1">
    <tr><td><h3>後台員工管理</h3></td></tr>
 </table>
@@ -104,6 +104,6 @@
 	<input type="submit" value="登出">
 </form>
 
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 </html>

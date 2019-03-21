@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.goodhouse.member.model.*" %> 
+<%
+	MemVO memVO = (MemVO) session.getAttribute("memVO");
+	pageContext.setAttribute("memVO", memVO);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,14 +49,24 @@
                    <li class="nav-item active">
                        <a class="nav-link" href="<%=request.getContextPath()%>/front/index.jsp"><img src="<%=request.getContextPath()%>/share_pic/logo_color.png" style="width:40px ; height:37px;"/>首頁</a>
                    </li>
+                   <c:if test="${empty memVO}">
+                       <li class="nav-item active">
+                           <a class="nav-link " href="<%=request.getContextPath()%>/front/member/addMem.jsp" tabindex="-1" aria-disabled="true">註冊</a>
+                       </li>
+                   </c:if>
+
+				   <c:if test="${empty memVO}">
+                       <li class="nav-item">
+                           <a class="nav-link " href="<%=request.getContextPath()%>/front/frontLogin.jsp" tabindex="-1" aria-disabled="true">登入</a>
+                       </li>
+                   </c:if>
+                   
+                   <c:if test="${not empty memVO}">
+                       <a class="nav-link " href="<%=request.getContextPath()%>/FrontLogoutHandler" tabindex="-1" aria-disabled="true">登出</a>
+				   </c:if>
+                   
                    <li class="nav-item">
-                       <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">註冊</a>
-                   </li>
-                   <li class="nav-item">
-                       <a class="nav-link " href="<%=request.getContextPath()%>/front/frontLogin.jsp" tabindex="-1" aria-disabled="true">登入</a>
-                   </li>
-                   <li class="nav-item">
-                       <a class="nav-link" href="#">會員中心</a>
+                       <a class="nav-link" href="<%=request.getContextPath()%>/front/member/select_page.jsp">會員中心</a>
                    </li>
                    <li class="nav-item">
                        <!-- 下拉選單 -->

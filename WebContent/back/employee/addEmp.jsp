@@ -45,7 +45,7 @@
 </style>
 </head>
 <body bgcolor='white'>
-<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料新增 - addEmp.jsp</h3></td><td>
@@ -112,6 +112,6 @@
 </form>
 
 
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 </html>

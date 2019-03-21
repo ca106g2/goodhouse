@@ -58,7 +58,7 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/FrontHeaderFooter/Header.jsp"/>
+<jsp:include page="/BackHeaderFooter/Header.jsp"/>
 
 <table id="table-1">
 	<tr><td>
@@ -153,7 +153,7 @@
 
 
 
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>
 
 <link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
