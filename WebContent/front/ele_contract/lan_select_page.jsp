@@ -27,9 +27,9 @@
 					</c:if>
 				</div>
 				
-		<div clas="row col-12">
+<!-- 		<div clas="row col-12"> -->
 		
-			<div class="col-5">
+<!-- 			<div class="col-5"> -->
 				
 				<div class="card" style="width: 20rem;">
 					<img src="..." class="card-img-top" alt="...">
@@ -63,9 +63,9 @@
 					</div>
 				</div>
 				
-			</div>
+<!-- 			</div> -->
 			
-			<div class="col-7">
+<!-- 			<div class="col-7"> -->
 				
 				<div class="card" style="width: 20rem;">
 					<img src="..." class="card-img-top" alt="...">
@@ -98,9 +98,9 @@
 				  	</div>
 				</div>
 				
-			</div>
+<!-- 			</div> -->
 							
-		</div>
+<!-- 		</div> -->
 				
 	</div>
 

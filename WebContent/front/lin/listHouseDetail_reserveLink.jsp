@@ -304,14 +304,19 @@ input[type="checkbox"].switch_1{
 <!--==========================================以上是慈慈的加入追蹤功能 ==================================---->
 					<div class="col-sm-12">
 						<ul class="nav nav-tabs" role="tablist">
-							<li class="nav-item"><a class="nav-link active"
-								href="#profile" role="tab" data-toggle="tab" id="note">備註</a></li>
-							<li class="nav-item"><a class="nav-link" href="#buzz"
-								role="tab" data-toggle="tab">問與答</a></li>
+							<li class="nav-item">
+								<a class="nav-link active" href="#profile" role="tab" data-toggle="tab" id="note">備註</a>
+							</li>
+							
+							<li class="nav-item">
+								<a class="nav-link" href="#buzz" role="tab" data-toggle="tab">問與答</a>
+							</li>
+							
 							<c:choose>
 								<c:when test="${memVO != null }">
-									<li class="nav-item" id="myTest"><a class="nav-link" href="#references"
-									role="tab" data-toggle="tab">預約行程</a></li>
+									<li class="nav-item" id="myTest">
+										<a class="nav-link" href="#references" role="tab" data-toggle="tab">預約行程</a>
+									</li>
 								</c:when>
 								<c:otherwise>
 								
@@ -319,27 +324,29 @@ input[type="checkbox"].switch_1{
 							</c:choose>
 <!---======================================= 以下是慈慈的房屋評價功能 ===================================================--->						
 <%-- 							<c:if test="${memVO != null }"> --%>
-									<li class="nav-item">
-										<a class="nav-link" href="#evaluate" role="tab" data-toggle="tab">評價</a>
-									</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#evaluate" role="tab" data-toggle="tab">評價</a>
+								</li>
 <%-- 							</c:if> --%>
 						
 <!---========================================以上是慈慈的房屋評價功能 ================================================-->
 <!---========================================= 以下是 TIM 的廣告檢舉功能 =========================================--->
 <%-- 						<c:if test="${memVO != null }"> --%>
-							<li class="nav-item">
-								<a class="nav-link" href="#ad_report" role="tab" data-toggle="tab">廣告檢舉</a>
-							</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#ad_report" role="tab" data-toggle="tab">廣告檢舉</a>
+								</li>
 <%-- 						</c:if> --%>
 					
-					</ul>
+						</ul>
 <!---=========================================以上是 TIM 的廣告檢舉功能 ==========================================--->
 
 						<!-- Tab panes -->
 						<div class="tab-content">
+						
 							<div role="tabpanel" class="tab-pane fade in active" id="profile">
 								<div class="myrow"><%=houVO.getHou_note()%></div>
 							</div>
+							
 							<div role="tabpanel" class="tab-pane fade" id="buzz">
 								  <div class="container myContainer">
 <%-- 								  ${rentMessSvc.getPart(param.hou_id).size()} --%>
@@ -418,6 +425,7 @@ input[type="checkbox"].switch_1{
 								    </div>
 <%-- 								  <% } %> --%>
 							</div>
+							
 							<div role="tabpanel" class="tab-pane fade" id="references" style="height: 1000px;">
 								<div>
 									<input type="hidden" name="action" value="insert">
@@ -462,70 +470,73 @@ input[type="checkbox"].switch_1{
 												<textarea name="hou_eva_content" rows="3" cols=50 class="houEevaContent"></textarea>
 											</dd>
 										</dl>
-									<input type="hidden" name="action" value="insert2">
-									<input type="hidden" name="hou_id" value="${houVO.hou_id}" class="houId">
-									<input type="hidden" name="mem_id" value="${memVO.mem_id}" class="memId">
-									<input type="submit" value="送出" class="btn btn-outline-secondary" id="submitEva">
+										<input type="hidden" name="action" value="insert2">
+										<input type="hidden" name="hou_id" value="${houVO.hou_id}" class="houId">
+										<input type="hidden" name="mem_id" value="${memVO.mem_id}" class="memId">
+										<input type="submit" value="送出" class="btn btn-outline-secondary" id="submitEva">
 <!-- 								</form> -->
-								</c:if>
+									</c:if>
+								
 								<table class="table table-borderless">
-								<thead>
-								    <tr>
-								      	<th scope="col">評價等級</th>
-								      	<th scope="col">評價內容</th>
-								    </tr>
-								  </thead>
-								  <tbody>
-								  <c:forEach var="houEvaVO" items="${houEvaList}" varStatus="houEva">
-								    <tr class="hou_eva_vo" >
-								      	<td>${houEvaVO.hou_eva_grade}</td>
-								      	<td>${houEvaVO.hou_eva_content}</td>
-								    </tr>
-								   </c:forEach>
-								  </tbody>
+									<thead>
+									    <tr>
+									      	<th scope="col">評價等級</th>
+									      	<th scope="col">評價內容</th>
+									    </tr>
+								  	</thead>
+								  	<tbody>
+								  	<c:forEach var="houEvaVO" items="${houEvaList}" varStatus="houEva">
+									    <tr class="hou_eva_vo" >
+									      	<td>${houEvaVO.hou_eva_grade}</td>
+									      	<td>${houEvaVO.hou_eva_content}</td>
+									    </tr>
+								   	</c:forEach>
+								  	</tbody>
 								</table>
 								
 							</div>
 <!----===================================== 以上是慈慈的房屋評價功能 ====================================--->					
 <!----===================================== 以下是TIM功能 ====================================--->	
-						<div role="tabpanel" class="tab-pane fade" id="ad_report">
-							<c:if test="${memVO != null and houVO.hou_id eq adSvc.getOneAD(adSvc.getOneAdByHou(houVO.hou_id).ad_id).hou_id}">
-								<table id="table1">
-									<tr class="table-light">
-										<td>房屋檢舉 : </td>				
-											<td><%= houVO.getHou_name()%></td>
-									</tr>
-									<tr class="table-light">
-										<td>檢舉人 : </td>
-											<td><%=memVO.getMem_name()%></td>
-									</tr>
-									<tr class="table-light">
-										<td>檢舉事由</td>
-											<td><label for="exampleFormControlTextarea1"></label> 
-											<textarea name="ad_rep_reason" class="form-control ad_rep_reason" placeholder="請輸入事由"  id="exampleFormControlTextarea1" rows="3"></textarea>
-										</td>
-									</tr>	
-									
-									<tr class="table-light">
-										<td>檢舉日期</td>
-										<td><input name="ad_rep_date" id="f_date1" type="text" class="ad_rep_date">
-										</td>
-									</tr>
-								<tr class="table-light">
-								<td>	
-		<input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>" class="ad_memId">	
-		<input type="hidden" name="ad_id" value="${adSvc.getOneAdByHou(houVO.hou_id).ad_id}" class="ad_Id">
-		<input type="hidden" name="ad_rep_status" value="檢舉審核中" class="ad_rep_status">
-		<input type="hidden" name="action" value="front_insert" />
-		<input type="submit" class="btn btn-outline-secondary" value="送出" id="sum_ad_report" />
-		</td></tr>
-		</table>					
-						
-							</c:if>
-						</div>					
+							<div role="tabpanel" class="tab-pane fade in active" id="ad_report">
+								<c:if test="${memVO != null and houVO.hou_id eq adSvc.getOneAD(adSvc.getOneAdByHou(houVO.hou_id).ad_id).hou_id}">
+									<table id="table1">
+										<tr class="table-light">
+											<td>房屋檢舉 : </td>				
+												<td><%= houVO.getHou_name()%></td>
+										</tr>
+										<tr class="table-light">
+											<td>檢舉人 : </td>
+												<td><%=memVO.getMem_name()%></td>
+										</tr>
+										<tr class="table-light">
+											<td>檢舉事由</td>
+												<td><label for="exampleFormControlTextarea1"></label> 
+												<textarea name="ad_rep_reason" class="form-control ad_rep_reason" placeholder="請輸入事由"  id="exampleFormControlTextarea1" rows="3"></textarea>
+											</td>
+										</tr>	
+										
+										<tr class="table-light">
+											<td>檢舉日期</td>
+											<td><input name="ad_rep_date" id="f_date1" type="text" class="ad_rep_date">
+											</td>
+										</tr>
+										<tr class="table-light">
+											<td>	
+												<input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>" class="ad_memId">	
+												<input type="hidden" name="ad_id" value="${adSvc.getOneAdByHou(houVO.hou_id).ad_id}" class="ad_Id">
+												<input type="hidden" name="ad_rep_status" value="檢舉審核中" class="ad_rep_status">
+												<input type="hidden" name="action" value="front_insert" />
+												<input type="submit" class="btn btn-outline-secondary" value="送出" id="sum_ad_report" />
+											</td>
+										</tr>
+									</table>					
+							
+								</c:if>
+							</div>					
 <!----===================================== 以上是TIM功能 ====================================--->		
 						</div>				
 					</div>
+					
 				</div>
 			</div>
 		</div>
