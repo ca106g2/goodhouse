@@ -157,7 +157,7 @@ public class Good_ordServlet extends HttpServlet {
 				String good_ord_nam = req.getParameter("good_ord_nam");
 				String good_ord_tots = req.getParameter("good_ord_tot");
 				Integer good_ord_tot = Integer.parseInt(good_ord_tots);
-				String good_ord_namReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,4}$";
+				String good_ord_namReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if(good_ord_nam == null || good_ord_nam.trim().length() == 0) {
 					errorMsgs.add("收件人名稱不可空白");
 				} else if(!good_ord_nam.trim().matches(good_ord_namReg)) {

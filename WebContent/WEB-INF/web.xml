@@ -403,6 +403,9 @@
     	<!--常慶  -->
     	<url-pattern>/lanlordSetReserveDate_doGet.jsp</url-pattern>
     	<url-pattern>/front/appoint/listPart_memAppoint.jsp</url-pattern>
+    	<url-pattern>/front/appoint/listPart_lanAppoint.jsp</url-pattern>
+    	<url-pattern>/front/houNoApp/listPart_lanHouNoApp.jsp</url-pattern>
+    	<url-pattern>/front/rentMess/listPartRentMess.jsp</url-pattern>
     	<!--慈慈  -->
     	<url-pattern>/front/ele_contract/mem_listAll_ele_contract.jsp</url-pattern>
     	<url-pattern>/front/bill/mem_listAll_bill.jsp</url-pattern>

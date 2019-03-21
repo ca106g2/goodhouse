@@ -64,6 +64,7 @@
 
 </head>
 <body bgcolor='white'>
+	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
@@ -117,7 +118,7 @@
 	</c:forEach>
 </table>
 <%@ include file="page2.file" %>
-
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 
 </html>

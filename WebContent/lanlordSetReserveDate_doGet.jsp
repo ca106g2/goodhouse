@@ -54,6 +54,15 @@
 <html>
 
 <head>
+
+<table id="table-1">
+	<tr><td>
+		 <h4><a href="<%=request.getContextPath()%>/front/index.jsp"><img src="<%=request.getContextPath()%>/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+	</td></tr>
+</table>
+
+
+
 <script type="text/javascript">
 var action = "insert";
 // var lan_id = "L000000001";
