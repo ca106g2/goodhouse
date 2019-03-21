@@ -99,7 +99,7 @@ div{
 		src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 
-<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 
 </html>

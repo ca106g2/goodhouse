@@ -68,6 +68,6 @@
 		<td><%=ad_repVO.getAd_rep_date() %></td>
 		</tr>
 	</table>
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 </html>

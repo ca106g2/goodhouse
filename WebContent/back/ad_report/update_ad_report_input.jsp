@@ -121,7 +121,7 @@
 		</table>
 		<br>
 	</form>
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/datetimepicker/jquery.datetimepicker.css"/>

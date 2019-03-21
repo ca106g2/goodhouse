@@ -87,6 +87,6 @@ div{
 	</c:forEach>
 </table>
 <%@ include file="pages/page2.file" %>
-<jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 </html>

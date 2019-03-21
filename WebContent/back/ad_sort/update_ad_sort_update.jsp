@@ -15,12 +15,7 @@
 </head>
 <body bgcolor='white'>
 
-<table id="table-1">
-	<tr><td>
-		<h4><a href="<%=request.getContextPath()%>/back/ad_sort/select_page.jsp">回首頁</a></h4>	
-	</td></tr>
-</table>
-
+<jsp:include page="/BackHeaderFooter/Header.jsp" />	
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -67,5 +62,6 @@
 	<input type="hidden" name="ad_sort_id" value="<%=ad_sortVO.getAd_sort_id() %>">
 	<input type="submit" value="送出修改">
 </form>
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 </html>

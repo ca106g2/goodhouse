@@ -131,7 +131,7 @@
 <input type="hidden" name="action" value="insert">
 <input type="submit" value="送出新增">
 </FORM>
-<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 </html>
 <!-- 以下為秀圖片 -->

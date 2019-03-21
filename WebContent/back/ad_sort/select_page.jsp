@@ -7,7 +7,7 @@
 
 </head>
 <body bgcolor='white' span style="font-family:Microsoft JhengHei;">
-
+<jsp:include page="/BackHeaderFooter/Header.jsp" />	
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>查詢失敗</font>
 	<ul>
@@ -39,6 +39,6 @@
 	<li><a href="addAd_sort.jsp">新增廣告類型</a></li>
 </ul>
 
-
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 </html>

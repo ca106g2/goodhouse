@@ -89,6 +89,6 @@ pageContext.setAttribute("list",list);
 	</c:forEach>
 </table>
 <%@ include file="page2.file" %>
-<jsp:include page="/FrontHeaderFooter/Footer.jsp" />	
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>	
 </html>

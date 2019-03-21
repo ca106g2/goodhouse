@@ -16,15 +16,7 @@
 </head>
 <body bgcolor='white'>
 
-<h4>目前廣告種類</h4>
-<table id="table-1">
-	<tr>
-		<td>
-			<h4><a href="select_page.jsp">回首頁</a></h4>
-		</td>
-	</tr>
-</table>
-
+<jsp:include page="/BackHeaderFooter/Header.jsp" />	
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">以下欄位錯誤:</font>
 	<ul>
@@ -59,6 +51,6 @@
 		</tr>
 	</c:forEach>	
 </table>
-
+<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 </html>

@@ -10,6 +10,7 @@
 
 </head>
 <body>
+	<jsp:include page="/BackHeaderFooter/Header.jsp" />	
 	<table>
 	<tr>
 		<th>廣告分類編號</th>
@@ -24,5 +25,6 @@
 	<td><%=ad_sortVO.getAd_charge() %></td>
 	</tr>
 	</table>
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>
 </html>

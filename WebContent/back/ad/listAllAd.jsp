@@ -127,7 +127,7 @@
 	</div>
 </div>
 </div>
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />	
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />		
 </body>
 
 </html>
