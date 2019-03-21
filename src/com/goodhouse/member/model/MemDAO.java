@@ -41,6 +41,8 @@ public class MemDAO implements MemDAO_interface{
 			"UPDATE MEMBER set MEM_NAME=?,MEM_BIRTHDAY=?,MEM_PASSWORD=?,MEM_ADDRESS=?,MEM_ZIPCODE=?,MEM_TELEPHONE=?,MEM_PHONE=?,MEM_EMAIL =?,MEM_STATUS=?,MEM_PICTURE=?,GOOD_TOTAL=?,MEM_SEX =? where MEM_ID=?";
 	private static final String UPDATEPOINTTOT = 
 			"UPDATE MEMBER set GOOD_TOTAL=? where MEM_ID=?";
+	private static final String UPDATEPASS =
+			"UPDATE MEMBER set MEM_PASSWORD=? where MEM_EMAIL=?";					
 	private static final String GET_ONE_EMAIL=
 			"SELECT * FROM MEMBER where MEM_EMAIL=? AND MEM_PASSWORD=?";
 	private static final String GET_ONE_EMAILLOG=
@@ -460,6 +462,44 @@ public class MemDAO implements MemDAO_interface{
 			}
 			
 			return memVO;
+		}
+
+		@Override
+		public void updatePass(String mem_email, String mem_password) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			
+			try {
+				con = ds.getConnection();
+				pstmt= con.prepareStatement(UPDATEPASS);
+				
+				pstmt.setString(1, mem_password);
+				pstmt.setString(2, mem_email);
+				
+				pstmt.executeUpdate();
+				
+				
+			}catch(SQLException se) {
+				se.printStackTrace();
+				throw new RuntimeException("A database error occured." +se.getMessage());
+				
+			}finally {
+				if(pstmt !=null) {
+					try {
+						pstmt.close();
+					}catch(SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if(con !=null) {
+					try {
+						con.close();
+					}catch(Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			
 		}
 		
 //			public MemVO findByMem_EMAIL(String mem_email, String mem_password) {

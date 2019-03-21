@@ -6,6 +6,7 @@ public interface MemDAO_interface {
 	public void insert(MemVO memVo);
 	public void update(MemVO memVo);
 	public void updatePointTot(String mem_id, Integer good_total);
+	public void updatePass(String mem_email, String mem_password);
 	public void delete(String mem_id);
 	public MemVO findByPrimaryKey(String mem_id);
 	public MemVO findEmailLog(String mem_email);
@@ -13,4 +14,3 @@ public interface MemDAO_interface {
 	public List<MemVO>getAll();
 	
 }
-

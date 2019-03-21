@@ -60,6 +60,9 @@ public class MemService {
 	public void updatePointTot(String mem_id, Integer good_total) {
 		dao.updatePointTot(mem_id, good_total);
 	}
+	public void updatePass(String mem_email, String mem_password) {
+		dao.updatePass(mem_email, mem_password);
+	}
 	public void deleteMem(String mem_id) {
 		dao.delete(mem_id);
 		}

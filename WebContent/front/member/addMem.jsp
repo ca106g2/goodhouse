@@ -11,152 +11,107 @@
 
 <meta charset="UTF-8">
 <title>會員新增資料</title>
-<style>
- #table1 { 
-
-  font-family: 微軟正黑體; 
-  font-size:16px; 
-  width:500px;
-  text-align:center;
-  margin-left:auto; 
-  margin-right:auto;
-} 
- #table1 th { 
-  background-color: #009FCC;
-  padding:10px;
-
-  color:#fff;
-} 
- #table1 td { 
-  padding:5px;
-} 
-
-
-</style>
-
+<link rel="stylesheet" href="loginJS/auth.css">
 </head>
-<body bgcolor='white'>
+<body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp"/>	
-
-		 <h4><a href="">回首頁</a></h4>
-
-
-
-
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
-
-
-
-
-
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" name="form1" enctype="multipart/form-data">
-<table id="table1">
-	<tr>
-		<td>會員姓名:</td>
-		<td><input type="TEXT" name="mem_name" size="45" 
-			 value="<%= (memVO==null)? "" : memVO.getMem_name()%>" /></td>
-	</tr>
-	<tr>
-		<td>會員生日:</td>
-		<td><input name="mem_birthday" id="f_date1" type="text"></td>
-	</tr>
-	<tr>
-		<td>會員密碼:</td>
-		<td><input type="password"  name="mem_password" size="45"
-		value="<%= (memVO==null)?"" : memVO.getMem_password()%>"/></td>
-		
-	</tr>
-	<tr>
-		<td>會員地址:</td>
-		<td><input type="TEXT" name="mem_address" size="45"
-			 value="<%= (memVO==null)?""  : memVO.getMem_address()%>" /></td>
-	</tr>
-	<tr>
-		<td>會員郵遞區號:</td>
-		<td><input type="TEXT" name="mem_zipcode" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getMem_zipcode()%>" /></td>
-	</tr>
-	<tr>
-		<td>會員電話:</td>
-		<td><input type="TEXT" name="mem_telephone" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getMem_telephone()%>" /></td>
-	</tr>
-	<tr>
-		<td>會員手機:</td>
-		<td><input type="TEXT" name="mem_phone" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getMem_phone()%>" /></td>
-	</tr>
-	<tr>
-		<td>會員信箱:</td>
-		<td><input type="email" name="mem_email" size="45"
-			 value="<%= (memVO==null)? "" : memVO.getMem_email()%>" /></td>
-	</tr>
-
-
-	<tr>
-		<td>會員狀態:</td>
-		<td>
-			<select name="mem_status">
-				<option  value="1" selected>一般會員</option>
-				
-			</select>
-		</td>
-	</tr>
-
-
-	<tr>
-		<td>會員圖片:</td>
-		<td><input type="file" name="mem_picture" size="45"	/></td>
-	</tr>
-<!-- 	<tr> -->
-<!-- 		<td>積分總和:</td> -->
-<!-- 		<td><input type="TEXT" name="good_total" size="45" -->
-<%-- 			 value="<%= (memVO==null)? "" : memVO.getGood_total()%>" /></td> --%>
-<!-- 	</tr> -->
-
-	<tr>
-		<td>會員性別:</td>
-		<td>
-			<select name="mem_sex">
-				<option  value="1" selected>男</option>
-				<option  value="2" >女</option>
-			</select>
-		</td>
-	</tr>
-</table>
-<br>
-
-
-
-			<input type="hidden" name="action" value="insert">
- 			<input type="submit" class="btn btn-light" value="送出新增"></FORM>
-
-
-			<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do">	
-				<input type="hidden" name="action" value="buildMem">
-				<input type="submit" class="btn btn-light" value="神奇小按鈕">
-			</form>		
-
-
-
-
-
-
-
+<div class="lowin">
+	<div class="lowin-brand">
+		<img src="images/kodinger.jpg" alt="logo">
+	</div>
+	<div class="lowin-wrapper">
+		<div class="lowin-box lowin-register">
+			<div class="lowin-box-inner">
+				<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" name="form1" enctype="multipart/form-data">
+					<p>Let's create your account</p>
+					<div class="lowin-group">
+						<label>會員姓名:</label>
+						<input type="text" name="mem_name" autocomplete="name" class="lowin-input" 
+							value="<%= (memVO==null)? "" : memVO.getMem_name()%>">
+						<font color="red"><b>${errorMsgs.mem_name}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員生日:</label>
+						<input type="text" name="mem_birthday" id="f_date1" class="lowin-input">
+						<font color="red"><b>${errorMsgs.mem_birthday}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員密碼:</label>
+						<input type="password" name="mem_password" autocomplete="current-password" class="lowin-input" 
+							value="<%= (memVO==null)?"" : memVO.getMem_password()%>">
+						<font color="red"><b>${errorMsgs.mem_password}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員地址:</label>
+						<input type="TEXT" name="mem_address" autocomplete="current-password" class="lowin-input" 
+							value="<%= (memVO==null)?""  : memVO.getMem_address()%>">
+						<font color="red"><b>${errorMsgs.mem_address}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員郵遞區號:</label>
+						<input type="TEXT" name="mem_zipcode" autocomplete="current-password" class="lowin-input" 
+							value="<%= (memVO==null)? "" : memVO.getMem_zipcode()%>">
+						<font color="red"><b>${errorMsgs.mem_zipcode}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員電話:</label>
+						<input type="TEXT" name="mem_telephone" autocomplete="current-password" class="lowin-input"
+							value="<%= (memVO==null)? "" : memVO.getMem_telephone()%>">
+						<font color="red"><b>${errorMsgs.mem_telephone}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員手機:</label>
+						<input type="TEXT" name="mem_phone" autocomplete="current-password" class="lowin-input" 
+							value="<%= (memVO==null)? "" : memVO.getMem_phone()%>">
+						<font color="red"><b>${errorMsgs.mem_phone}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員信箱:</label>
+						<input type="email" name="mem_email" autocomplete="current-password" class="lowin-input"
+							value="<%= (memVO==null)? "" : memVO.getMem_email()%>">
+						<font color="red"><b>${errorMsgs.mem_email}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員圖片:</label>
+						<input type="file" name="mem_picture" autocomplete="current-password" class="lowin-input">
+						<font color="red"><b>${errorMsgs.mem_picture}</b></font>
+					</div>
+					<div class="lowin-group">
+						<label>會員性別:</label>
+						<select name="mem_sex" class="lowin-input">
+							<option  value="1" selected>男</option>
+							<option  value="2" >女</option>
+						</select>
+					</div>
+					<input type="hidden" name="action" value="insert">
+					<input type="hidden" name="mem_status" value="1">
+					<button class="lowin-btn" type="submit">
+						註冊
+					</button>
+					<font color="red"><b>${errorMsgs.Exception}</b></font>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer class="lowin-footer">
+		<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do">
+			<input type="hidden" name="action" value="buildMem">
+			<input type="submit" value="神奇小按鈕">
+		</form>
+	</footer>
+</div>
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>
 <script src="datetimepicker/jquery.js"></script>
 <script src="datetimepicker/jquery.datetimepicker.full.js"></script>
 <link   rel="stylesheet" type="text/css" href="datetimepicker/jquery.datetimepicker.css" />
+<script src="loginJS/auth.js"></script>
+<script>
+	Auth.init({
+		forgot_url: '<%=request.getContextPath()%>/front/member/mem.do'
+	});
+</script>
 <script>
         $.datetimepicker.setLocale('zh'); // kr ko ja en
         $('#f_date1').datetimepicker({
@@ -168,5 +123,4 @@
         });
  
 </script>
-
 </html>
