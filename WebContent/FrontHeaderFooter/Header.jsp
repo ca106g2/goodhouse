@@ -106,13 +106,13 @@
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/listAllHouse.jsp">我的所有房屋</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/addHouse.jsp">新增房屋</a>
 						          <jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService" />
-						          <% if (houSvc.getOneByLanId(lanVO.getLan_id()) != null)
-						          		{%>
+<%-- 						          <% if (houSvc.getOneByLanId(lanVO.getLan_id()) != null) --%>
+<!-- 						          		{%> -->
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/lanlordSetReserveDate_doGet.jsp">設定不可預約日期</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/houNoApp/listPart_lanHouNoApp.jsp">不可預約行程列表</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/appoint/listPart_lanAppoint.jsp">帶客看房行程表</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/rentMess/listPartRentMess.jsp">租屋問題回覆</a>
-						          <% } %>
+<%-- 						          <% } %> --%>
 						        </div>
 						    </li>
 	                   </li>
