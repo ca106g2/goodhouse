@@ -94,7 +94,7 @@
 					        </div>
 					    </li>
                    </li>
-                   <% if (lanVO != null && lanVO.getLan_accountstatus().equals("2")) {%>
+<%--                    <% if (lanVO != null && lanVO.getLan_accountstatus().equals("2")) {%> --%>
 	                   <li class="nav-item">
 	                       <li class="nav-item dropdown">
 						        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -116,7 +116,7 @@
 						        </div>
 						    </li>
 	                   </li>
-	                   <% } %>
+<%-- 	                   <% } %> --%>
                    <li class="nav-item">
                        <li class="nav-item dropdown">
 					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
