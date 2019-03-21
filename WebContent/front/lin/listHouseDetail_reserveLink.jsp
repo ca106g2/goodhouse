@@ -35,20 +35,22 @@
 <%
 	House_TrackService houTraSvc = new House_TrackService();
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
-	String lan_id_mem = "";
-	if (memVO != null){
-		String mem_id = memVO.getMem_id();
+	pageContext.setAttribute("memVO", memVO);
+// 	String lan_id_mem = "";
+
+// 	if (memVO != null){
+// 		String mem_id = memVO.getMem_id();
 		
-		LanService lanSvc = new LanService();
-		LanVO lanVO = lanSvc.getOneLanByMemId(mem_id);
-		pageContext.setAttribute("lanSvc", lanSvc);
+// 		LanService lanSvc = new LanService();
+// 		LanVO lanVO = lanSvc.getOneLanByMemId(mem_id);
+// 		pageContext.setAttribute("lanSvc", lanSvc);
 		
-		if (lanVO != null){
-			lan_id_mem = lanVO.getLan_id();
-		}	
+// 		if (lanVO != null){
+// 			lan_id_mem = lanVO.getLan_id();
+// 		}	
 		
-		pageContext.setAttribute("memVO", memVO);
-	}
+
+// 	}
 	House_EvaluateService houEvaSvc = new House_EvaluateService();
 	List<House_EvaluateVO> houEvaList = houEvaSvc.getListByHouId(houVO.getHou_id());
 	pageContext.setAttribute("houEvaList", houEvaList);
@@ -316,19 +318,19 @@ input[type="checkbox"].switch_1{
 								</c:otherwise>
 							</c:choose>
 <!---======================================= 以下是慈慈的房屋評價功能 ===================================================--->						
-							<c:if test="${memVO != null }">
+<%-- 							<c:if test="${memVO != null }"> --%>
 									<li class="nav-item">
 										<a class="nav-link" href="#evaluate" role="tab" data-toggle="tab">評價</a>
 									</li>
-							</c:if>
+<%-- 							</c:if> --%>
 						
 <!---========================================以上是慈慈的房屋評價功能 ================================================-->
 <!---========================================= 以下是 TIM 的廣告檢舉功能 =========================================--->
-						<c:if test="${memVO != null }">
+<%-- 						<c:if test="${memVO != null }"> --%>
 							<li class="nav-item">
 								<a class="nav-link" href="#ad_report" role="tab" data-toggle="tab">廣告檢舉</a>
 							</li>
-						</c:if>
+<%-- 						</c:if> --%>
 					
 					</ul>
 <!---=========================================以上是 TIM 的廣告檢舉功能 ==========================================--->
@@ -380,7 +382,7 @@ input[type="checkbox"].switch_1{
 <!-- 								        </div> -->
 <!-- 								    </div> -->
 							    </div>
-							    <% if(!lan_id.equals(lan_id_mem)){%>
+<%-- 							    <% if(!lan_id.equals(lan_id_mem)){%> --%>
 							    	
 							    
 								    <div class="container myContainer">
@@ -389,7 +391,7 @@ input[type="checkbox"].switch_1{
 									    		<span>提出問題</span>
 									    	</div>
 									    	<div class="row">
-									    		<span>提醒您開車不喝酒，喝酒開車好棒棒!給你一顆蘋果!</span>
+									    		<span>提醒您開車不喝酒，喝酒開車!</span>
 									    	</div>
 									    	<div class="row">
 									    		<div>
@@ -414,7 +416,7 @@ input[type="checkbox"].switch_1{
 									    	</div>
 									    </form>
 								    </div>
-								  <% } %>
+<%-- 								  <% } %> --%>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="references" style="height: 1000px;">
 								<div>
