@@ -383,13 +383,16 @@
   	</filter>
   	<filter-mapping>
     	<filter-name>frontLoginFilter</filter-name>
+    	
     	<url-pattern>/front/member/listOneMem.jsp</url-pattern>
+    	<!--冠錩  -->
     	<url-pattern>/front/pointgoods/checkout.jsp</url-pattern>
     	<url-pattern>/front/pointgoods/good_record_check.jsp</url-pattern>
     	<url-pattern>/front/pointgoods/good_favorite_check.jsp</url-pattern>
     	<url-pattern>/front/pointgoods/good_order_check.jsp</url-pattern>
     	<url-pattern>/memPickReserveDate_doGet.jsp</url-pattern>
     	<url-pattern>/lanlordSetReserveDate_doGet.jsp</url-pattern>
+    	<!--慈慈  -->
     	<url-pattern>/front/ele_contract/mem_listAll_ele_contract.jsp</url-pattern>
     	<url-pattern>/front/bill/mem_listAll_bill.jsp</url-pattern>
     	<url-pattern>/front/house_evaluate/mem_listAll_house_evaluate.jsp</url-pattern>
@@ -397,6 +400,7 @@
     	<url-pattern>/front/ele_contract/lan_select_page.jsp</url-pattern>
     	<url-pattern>/front/house_evaluate/lan_listAll_evaluate.jsp</url-pattern>
     	<url-pattern>/front/house/listAllHouse.jsp</url-pattern>
+    	<!--TIM  -->
     	<url-pattern>/front/house/addHouse.jsp</url-pattern>
     	<dispatcher>REQUEST</dispatcher>
     	<dispatcher>FORWARD</dispatcher>
@@ -428,6 +432,20 @@
   	<filter-mapping>
     	<filter-name>backLoginFilter</filter-name>
     	<url-pattern>/back/employee/select_page.jsp</url-pattern>
+    	<!--TIM  -->
+    	<url-pattern>/back/house/listAllHouse.jsp</url-pattern>
+    	<url-pattern>/back/ad/listAllAd.jsp</url-pattern>
+    	<url-pattern>/back/ad_sort/listAllAd_sort.jsp</url-pattern>
+    	<url-pattern>/back/ad_sort/addAd_sort.jsp</url-pattern>
+    	<url-pattern>/back/ad_report/listAllAd_report.jsp</url-pattern>
+    	<!--慈慈  -->
+    	<url-pattern>/back/contract/listAll_contract.jsp</url-pattern>
+    	<url-pattern>/back/ele_contract/listAll_ele_contract.jsp</url-pattern>
+    	<url-pattern>/back/bill/back_listAll_bill.jsp</url-pattern>
+    	<!--冠錩  -->
+    	<url-pattern>/back/pointgoods/listAllPointgoods.jsp</url-pattern>
+    	<url-pattern>/back/pointgoods/addPointgoods.jsp</url-pattern>
+    	<url-pattern>/back/pointgoods/good_ordManage.jsp</url-pattern>
     	<dispatcher>REQUEST</dispatcher>
     	<dispatcher>FORWARD</dispatcher>
     	<dispatcher>INCLUDE</dispatcher>
