@@ -150,15 +150,15 @@ public class PointgoodsServlet extends HttpServlet {
 				pointgoodsVO = pgSvc.addPointgoods(good_nam, good_dsc, good_amo, good_pri, good_sta, good_pic);
 				
 				Set<Session> allSessions = (Set<Session>)getServletContext().getAttribute("PoiWebSocketSession");
-				JSONObject housesock = new JSONObject();
+				JSONObject pointsock = new JSONObject();
 				
 				try {
-					housesock.put("poiMsgs", "新商品上架囉");
+					pointsock.put("poiMsgs", "新商品上架囉");
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 				
-				String doneMsgs = housesock.toString();
+				String doneMsgs = pointsock.toString();
 //				System.out.println(doneMsgs);
 				for(Session webSession : allSessions) {
 					if(webSession.isOpen()) {
