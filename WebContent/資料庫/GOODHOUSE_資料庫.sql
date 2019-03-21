@@ -1521,16 +1521,16 @@ NOCACHE;
 ------------------------ 積分商品假資料---------------------------------
 
 
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '衛生紙', '100%高級純紙漿，細緻棉柔親膚觸感', 100, 2000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '電影票', '本券可加價使用於特殊版本電影或特殊影廳', 99, 10000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '拖鞋', '經典條紋簡約百搭、溫暖包頭設計', 5, 12000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '筷子', '台灣製造嚴格控管 原木的精品', 10, 5000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '拖把', '高效吸水強力清潔、簡潔經典設計，輕巧桶身 ', 10, 50000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '廣告', '幫助房屋增加曝光率', 999, 20000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '沐浴乳', '含萃取自茉莉的NaturalCalm?舒緩香氛配方；不流淚配方', 50, 5000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '礦泉水', 'Acqua Panna代表著純淨品味與優雅風格，水源處與生產地位於義大利國家天然保護區，天然純淨可見一斑。', 1000, 1000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '咖啡', '重烘培無糖即溶二合一咖啡，使用最頂級的造粒技術，力求最極致的極品咖啡感受，不加糖保留原始風味', 500, 2000, 'P001');
-INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '油切分解茶', '日本獨家苦瓜製程專利 ，苦瓜可以退火、去油、解膩', 200, 4000, 'P001');
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '衛生紙', '100%高級純紙漿，細緻棉柔親膚觸感', 100, 2000, 'P001', load_pg('G1.jpg'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '電影票', '本券可加價使用於特殊版本電影或特殊影廳', 99, 10000, 'P001', load_pg('G2.jpg'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '拖鞋', '經典條紋簡約百搭、溫暖包頭設計', 5, 12000, 'P001', load_pg('G3.jpg'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '筷子', '台灣製造嚴格控管 原木的精品', 10, 5000, 'P001', load_pg('G4.jpg'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '拖把', '高效吸水強力清潔、簡潔經典設計，輕巧桶身 ', 10, 50000, 'P001', load_pg('G5.jpg'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '廣告', '幫助房屋增加曝光率', 999, 20000, 'P001', load_pg('G6.jpg'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '沐浴乳', '含萃取自茉莉的NaturalCalm?舒緩香氛配方；不流淚配方', 50, 5000, 'P001', load_pg('G7.png'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '礦泉水', 'Acqua Panna代表著純淨品味與優雅風格，水源處與生產地位於義大利國家天然保護區，天然純淨可見一斑。', 1000, 1000, 'P001', load_pg('G8.jpg'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '咖啡', '重烘培無糖即溶二合一咖啡，使用最頂級的造粒技術，力求最極致的極品咖啡感受，不加糖保留原始風味', 500, 2000, 'P001', load_pg('G9.jpg'));
+INSERT INTO POINTGOODS (GOOD_ID, GOOD_NAM, GOOD_DSC, GOOD_AMO, GOOD_PRI, GOOD_STA, GOOD_PIC) VALUES ('P'||LPAD(to_char(pointgoods_seq.NEXTVAL), 9, '0'), '油切分解茶', '日本獨家苦瓜製程專利 ，苦瓜可以退火、去油、解膩', 200, 4000, 'P001', load_pg('G10.jpg'));
 
 ---------------------------積分商品訂單------------------------------
 CREATE TABLE GOOD_ORD(
