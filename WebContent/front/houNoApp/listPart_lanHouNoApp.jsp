@@ -9,14 +9,14 @@
 
 
 <%
-// 	MemVO memVO = (MemVO) session.getAttribute("memVO");
+	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	
-// 	LanService lanSvc = new LanService();
-// 	LanVO lanVO = lanSvc.getOneLanByMemId(memVO.getMem_id());
+	LanService lanSvc = new LanService();
+	LanVO lanVO = lanSvc.getOneLanByMemId(memVO.getMem_id());
     HouNoAppService houNoAppSvc = new HouNoAppService();
 //     HouNoAppVO houNoAppVO = new HouNoAppVO();
-//     List<HouNoAppVO> list = houNoAppSvc.getPart(lanVO.getLan_id());
-    List<HouNoAppVO> list = houNoAppSvc.getPart("L000000007");
+    List<HouNoAppVO> list = houNoAppSvc.getPart(lanVO.getLan_id());
+//     List<HouNoAppVO> list = houNoAppSvc.getPart("L000000007");
     pageContext.setAttribute("list",list);
 %>
 
@@ -66,8 +66,8 @@
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>我的不可預約資訊 - listPart_lanHouNoApp.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h3><%= memVO.getMem_name() %>房東的不可預約行程 - listPart_lanHouNoApp.jsp</h3>
+		 <h4><a href="<%=request.getContextPath() %>/front/index.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -86,6 +86,7 @@
 		<th>房屋編號</th>
 		<th>房屋名稱</th>
 		<th>房屋地址</th>
+		<th>租金</th>
 		<th>預約日期</th>
 		<th>取消不可預約</th>
 	</tr>
@@ -108,6 +109,13 @@
 					<c:forEach var="houVO" items="${houSvc.all}">
 						<c:if test="${houNoAppVO.hou_id == houVO.hou_id}">
 								${houVO.hou_address}
+						</c:if>
+					</c:forEach>
+				</td>
+				<td>
+					<c:forEach var="houVO" items="${houSvc.all}">
+						<c:if test="${houNoAppVO.hou_id == houVO.hou_id}">
+								${houVO.hou_rent}
 						</c:if>
 					</c:forEach>
 				</td>

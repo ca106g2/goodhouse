@@ -2,9 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.member.model.*" %> 
+<%@ page import="com.goodhouse.landlord.model.*" %>
 <%
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	pageContext.setAttribute("memVO", memVO);
+	String mem_id = "";
+	
+	if (memVO != null){
+		mem_id = memVO.getMem_id();
+		
+		
+	}
+	LanService lanSvc = new LanService();
+	LanVO lanVO = lanSvc.getOneLanByMemId(mem_id);
 %>
 <!DOCTYPE html>
 <html>
@@ -80,22 +90,33 @@
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/good_record_check.jsp">我的積分紀錄</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/mem_listAll_house_evaluate.jsp">我的評價紀錄</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_track/mem_house_track_listAll.jsp">我的最愛追蹤</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/appoint/listPart_memAppoint.jsp">預約看房行程表</a>
 					        </div>
 					    </li>
                    </li>
-                   <li class="nav-item">
-                       <li class="nav-item dropdown">
-					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					          房東
-					        </a>
-					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">電子合約管理</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/lan_listAll_evaluate.jsp">我的房屋評價</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/listAllHouse.jsp">我的所有房屋</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/addHouse.jsp">新增房屋</a>
-					        </div>
-					    </li>
-                   </li>
+                   <% if (lanVO != null && lanVO.getLan_accountstatus().equals("2")) {%>
+	                   <li class="nav-item">
+	                       <li class="nav-item dropdown">
+						        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						          房東
+						        </a>
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">電子合約管理</a>
+						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/lan_listAll_evaluate.jsp">我的房屋評價</a>
+						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/listAllHouse.jsp">我的所有房屋</a>
+						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/addHouse.jsp">新增房屋</a>
+						          <jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService" />
+						          <% if (houSvc.getOneByLanId(lanVO.getLan_id()) != null)
+						          		{%>
+						          <a class="dropdown-item" href="<%=request.getContextPath()%>/lanlordSetReserveDate_doGet.jsp">設定不可預約日期</a>
+						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/houNoApp/listPart_lanHouNoApp.jsp">不可預約行程列表</a>
+						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/appoint/listPart_lanAppoint.jsp">帶客看房行程表</a>
+						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/rentMess/listPartRentMess.jsp">租屋問題回覆</a>
+						          <% } %>
+						        </div>
+						    </li>
+	                   </li>
+	                   <% } %>
                    <li class="nav-item">
                        <li class="nav-item dropdown">
 					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

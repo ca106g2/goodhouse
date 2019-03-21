@@ -12,20 +12,43 @@
 <%@ page import="com.goodhouse.house_track.model.*"%>
 <%@ page import="com.goodhouse.ad_report.model.*"%>
 <%@ page import="com.goodhouse.house.model.*" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <%
 	String hou_id = request.getParameter("hou_id");
 	HouseService houSvc = new HouseService();
 	HouseVO houVO = houSvc.getOneHouse(hou_id);
 	pageContext.setAttribute("houVO", houVO);
+	
+	String lan_id = houVO.getLan_id();
+	pageContext.setAttribute("lan_id", lan_id);
+%>
+
+<%
+	SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+	Date date = new Date();
+	String strDate = sdFormat.format(date);
+	
 %>
 
 <!--======================= 慈慈 start-->
 <%
 	House_TrackService houTraSvc = new House_TrackService();
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
-	pageContext.setAttribute("memVO", memVO);
-	
+	String lan_id_mem = "";
+	if (memVO != null){
+		String mem_id = memVO.getMem_id();
+		
+		LanService lanSvc = new LanService();
+		LanVO lanVO = lanSvc.getOneLanByMemId(mem_id);
+		pageContext.setAttribute("lanSvc", lanSvc);
+		
+		if (lanVO != null){
+			lan_id_mem = lanVO.getLan_id();
+		}	
+		
+		pageContext.setAttribute("memVO", memVO);
+	}
 	House_EvaluateService houEvaSvc = new House_EvaluateService();
 	List<House_EvaluateVO> houEvaList = houEvaSvc.getListByHouId(houVO.getHou_id());
 	pageContext.setAttribute("houEvaList", houEvaList);
@@ -52,7 +75,6 @@
 <!-- 轉交請求，可選大日曆版 -->
 
 
-<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService" />
 <jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
 <jsp:useBean id="houNoAppSvc" scope="page" class="com.goodhouse.house_noappointment.model.HouNoAppService" />
 <jsp:useBean id="adSvc" scope="page" class="com.goodhouse.ad.model.AdService" />
@@ -294,15 +316,19 @@ input[type="checkbox"].switch_1{
 								</c:otherwise>
 							</c:choose>
 <!---======================================= 以下是慈慈的房屋評價功能 ===================================================--->						
-							<li class="nav-item">
-								<a class="nav-link" href="#evaluate" role="tab" data-toggle="tab">評價</a>
-							</li>
+							<c:if test="${memVO != null }">
+									<li class="nav-item">
+										<a class="nav-link" href="#evaluate" role="tab" data-toggle="tab">評價</a>
+									</li>
+							</c:if>
 						
 <!---========================================以上是慈慈的房屋評價功能 ================================================-->
 <!---========================================= 以下是 TIM 的廣告檢舉功能 =========================================--->
-					<li class="nav-item">
-						<a class="nav-link" href="#ad_report" role="tab" data-toggle="tab">廣告檢舉</a>
-					</li>
+						<c:if test="${memVO != null }">
+							<li class="nav-item">
+								<a class="nav-link" href="#ad_report" role="tab" data-toggle="tab">廣告檢舉</a>
+							</li>
+						</c:if>
 					
 					</ul>
 <!---=========================================以上是 TIM 的廣告檢舉功能 ==========================================--->
@@ -314,86 +340,81 @@ input[type="checkbox"].switch_1{
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="buzz">
 								  <div class="container myContainer">
-								  ${rentMessSvc.getOneByHouId(param.hou_id).size()}
-								  <c:forEach var="rentMessVO" items="${rentMessSvc.getOneByHouId(param.hou_id)}">
+<%-- 								  ${rentMessSvc.getPart(param.hou_id).size()} --%>
+								  <c:forEach var="rentMessVO" items="${rentMessSvc.getPart(param.hou_id)}">
 								    <div class="row">
 								        <div class="col-sm-2">
 								        	<div>
-								        		<span>${rentMessVO.ren_mes_id}</span>
+								        		<span>問題編號: ${rentMessVO.ren_mes_id}</span>
 								        	</div>
 								        </div>
 								        <div class="col-sm-10">
 								        	<div class="row">
-												<span>${rentMessVO.mem_id}</span>
+												<span>會員編號: ${rentMessVO.mem_id}</span>		<span>∫留言日期:    ${rentMessVO.ren_mes_time}∫</span>
 								        	</div>
 								        	<div class="row">
-								        		<span>${rentMessVO.ren_mes_request}</span>
+								        		<span>提問: ${rentMessVO.ren_mes_request}</span>
 								        	</div>
 								        	<div class="row">
-								        		<span>房東回覆</span>
+								        		<span>回覆: ${rentMessVO.ren_mes_response}</span>
 								        	</div>
 								        </div>
 								    </div>
 								   </c:forEach>
-								    <div class="row">
-								        <div class="col-sm-2">
-								        	<div>
-								        		<span>問題1</span>
-								        	</div>
-								        </div>
-								        <div class="col-sm-10">
-								        	<div class="row">
-												<span>會員A</span>
-								        	</div>
-								        	<div class="row">
-								        		<span>有沒有速成Ajax的八卦?</span>
-								        	</div>
-								        	<div class="row">
-								        		<span>房東回覆</span>
-								        	</div>
-								        </div>
-								    </div>
-								    <div class="row">
-								        <div class="col-sm-2">
-								        	<div>
-								        		<span>問題1</span>
-								        	</div>
-								        </div>
-								        <div class="col-sm-10">
-								        	<div class="row">
-												<span>會員A</span>
-								        	</div>
-								        	<div class="row">
-								        		<span>有沒有速成Ajax的八卦?</span>
-								        	</div>
-								        	<div class="row">
-								        		<span>房東回覆</span>
-								        	</div>
-								        </div>
-								    </div>
+<!-- 								    <div class="row"> -->
+<!-- 								        <div class="col-sm-2"> -->
+<!-- 								        	<div> -->
+<!-- 								        		<span>問題1</span> -->
+<!-- 								        	</div> -->
+<!-- 								        </div> -->
+<!-- 								        <div class="col-sm-10"> -->
+<!-- 								        	<div class="row"> -->
+<!-- 												<span>會員A</span> -->
+<!-- 								        	</div> -->
+<!-- 								        	<div class="row"> -->
+<!-- 								        		<span>有沒有速成Ajax的八卦?</span> -->
+<!-- 								        	</div> -->
+<!-- 								        	<div class="row"> -->
+<!-- 								        		<span>房東回覆</span> -->
+<!-- 								        	</div> -->
+<!-- 								        </div> -->
+<!-- 								    </div> -->
 							    </div>
-							    <div class="container myContainer">
-							    	<div class="row">
-							    		<span>提出問題</span>
-							    	</div>
-							    	<div class="row">
-							    		<span>提醒</span>
-							    	</div>
-							    	<div class="row">
-							    		<div>
-							    			<textarea id="myAsk" cols=100 rows=5></textarea>
-							    		</div>	
-							    	</div>
-									<div class="row">
-							    		<div class="col-sm-2"></div>
-							    		<div class="col-sm-8">
-							    			<input id="mySumit" class="btn btn-danger" type="button" name="" value="提出問題">	
-							    			<input id="myClear" class="btn btn-primary" type="button" name="" value="重新填寫">
-							    		</div>
-							    		<div class="col-sm-2"></div>
-							    	</div>
-							    </div>
-								
+							    <% if(!lan_id.equals(lan_id_mem)){%>
+							    	
+							    
+								    <div class="container myContainer">
+								    	<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/rentMess/rentMess.do">
+									    	<div class="row">
+									    		<span>提出問題</span>
+									    	</div>
+									    	<div class="row">
+									    		<span>提醒您開車不喝酒，喝酒開車好棒棒!給你一顆蘋果!</span>
+									    	</div>
+									    	<div class="row">
+									    		<div>
+									    			<textarea id="myAsk" cols=100 rows=5 name="ren_mes_request"></textarea>
+									    		</div>	
+									    	</div>
+											<div class="row">
+									    		<div class="col-sm-2"></div>
+									    		<div class="col-sm-8">
+									    			
+									    				<input  type="hidden" name="mem_id" value="${memVO.mem_id}">
+									    				<input  type="hidden" name="lan_id" value="<%=lan_id%>">
+									    				<input  type="hidden" name="hou_id" value="${houVO.hou_id }">
+									    				<input  type="hidden" name="ren_mes_time" value="<%=strDate%>">
+									    				<input  type="hidden" name="ren_mes_response" value="<%=""%>">
+										    			<input id="mySumit" class="btn btn-danger" type="submit"  value="提出問題">
+										    			<input type="hidden" name="action" value="insert">	
+										    			<input id="myClear" class="btn btn-primary" type="button" name="" value="重新填寫">
+									    			
+									    		</div>
+									    		<div class="col-sm-2"></div>
+									    	</div>
+									    </form>
+								    </div>
+								  <% } %>
 							</div>
 							<div role="tabpanel" class="tab-pane fade" id="references" style="height: 1000px;">
 								<div>

@@ -50,16 +50,16 @@ public class RentMessService {
 	public RentMessVO getOneRentMess(String ren_mes_id) {
 		return dao.findByPrimaryKey(ren_mes_id);
 	}
-	public List<RentMessVO> getOneByHouId(String hou_id) {
-		return dao.findByHouId(hou_id);
+	public List<RentMessVO> getPart(String hou_id) {
+		return dao.getPart(hou_id);
 	}
 
 	public List<RentMessVO> getAll() {
 		return dao.getAll();
 	}
-	public List<RentMessVO> getAllByHouId() {
-		return dao.getAllByHouId();
-	}
+//	public List<RentMessVO> getAllByHouId(String hou_id) {
+//		return dao.getAllByHouId(hou_id);
+//	}
 
 }
 //git上傳註解用無意義

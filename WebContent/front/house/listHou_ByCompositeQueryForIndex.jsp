@@ -33,7 +33,7 @@
 	<table id="table-1">
 	<tr><td>
 		<h3>查詢結果</h3>
-		<h4><a href="<%=request.getContextPath()%>/front/lin/houseBrowse.jsp">回首頁</a></h4>
+		<h4><a href="<%=request.getContextPath()%>/front/index.jsp">回首頁</a></h4>
 	</td></tr>
 	</table>
 

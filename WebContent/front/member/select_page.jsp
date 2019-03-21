@@ -180,17 +180,19 @@
 </c:if>
 
 <jsp:useBean id="landSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
+<!-- 0321 老師報告前跑流程隱藏-->
+
 <h3>房東管理</h3>
 <h5>若要申請房東，請先登入會員</h5>
 <c:if test="${not empty memVO}">
-	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == 1}">
-		<form method="post" action="<%=request.getContextPath()%>/front/landlord/addLan.jsp">
-   			<input type="submit" value="申請房屋物件" class="btn btn-success" disabled>
-		</form>
-	</c:if>
-	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == 2}">
-		<input type="submit" value="申請房屋物件" class="btn btn-success" >
-	</c:if>
+<%-- 	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == 1}"> --%>
+<%-- 		<form method="post" action="<%=request.getContextPath()%>/front/landlord/addLan.jsp"> --%>
+<!--    			<input type="submit" value="申請房屋物件" class="btn btn-success" disabled> -->
+<!-- 		</form> -->
+<%-- 	</c:if> --%>
+<%-- 	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == 2}"> --%>
+<!-- 		<input type="submit" value="申請房屋物件" class="btn btn-success" > -->
+<%-- 	</c:if> --%>
 	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == null}">
 		<form method="post" action="<%=request.getContextPath()%>/front/landlord/addLan.jsp">
    			<input type="submit" value="申請成為房東" class="btn btn-success" >

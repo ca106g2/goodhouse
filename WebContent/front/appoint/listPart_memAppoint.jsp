@@ -61,8 +61,8 @@
 <table>
 	<tr>
 		<td>
-			<h3>預約行程表 - listPart_memAppoint.jsp</h3>
-			<h4><a href="<%=request.getContextPath() %>/front/lin/houseBrowse.jsp"><img src="<%=request.getContextPath() %>/front/lin/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+			<h3><%= memVO.getMem_name()%>房客的預約看房行程表 - listPart_memAppoint.jsp</h3>
+			<h4><a href="<%=request.getContextPath() %>/front/index.jsp"><img src="<%=request.getContextPath() %>/front/appoint/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 		</td>
 	</tr>
 </table>

@@ -26,17 +26,16 @@
     pageContext.setAttribute("list",list);
 %>
 
-<%
-	
-%>
+
+
 <jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
+<jsp:useBean id="lanSvc2" class="com.goodhouse.landlord.model.LanService"></jsp:useBean>
 <jsp:useBean id="houSvc" class="com.goodhouse.house.model.HouseService" />
 
 
 <html>
 <head>
-<title>所有租屋訊息資料 - listAll_memAppoint.jsp</title>
-
+<title>房東的預約看房行程表 - listPart_lanAppoint.jsp</title>
 <style>
   table#table-1 {
 	background-color: #CCCCFF;
@@ -76,8 +75,8 @@
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>所有房預約行程資訊 - listAll_lanAppoint.jsp</h3>
-		 <h4><a href="<%=request.getContextPath() %>/front/lin/houseBrowse.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h3><%= memVO.getMem_name()%>房東的帶客看房行程表 - listPart_lanAppoint.jsp</h3>
+		 <h4><a href="<%=request.getContextPath() %>/front/index.jsp"><img src="<%=request.getContextPath() %>/front/appoint/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -157,10 +156,10 @@
 			     <input type="hidden" name="action"	value="deleteLan"></FORM>
 			</td>
 			<td>
-				<c:forEach var="lanVO" items="${lanSvc.all }">
+				<c:forEach var="lanVO" items="${lanSvc2.all }">
 					<c:forEach var="memVO" items="${memSvc.all }">
 						<c:if test="${appointVO.lan_id == lanVO.lan_id }">
-							<c:if test="${lanVO.mem_id == memVO.mem_id}">
+							<c:if test="${appointVO.mem_id == memVO.mem_id}">
 								${memVO.mem_id}
 							</c:if>
 						</c:if>
@@ -168,10 +167,10 @@
 				</c:forEach>
 			</td>
 			<td>
-				<c:forEach var="lanVO" items="${lanSvc.all}">
+				<c:forEach var="lanVO" items="${lanSvc2.all}">
 					<c:forEach var="memVO" items="${memSvc.all }">
 						<c:if test="${appointVO.lan_id == lanVO.lan_id }">
-							<c:if test="${lanVO.mem_id == memVO.mem_id}">
+							<c:if test="${appointVO.mem_id == memVO.mem_id}">
 								${memVO.mem_name }
 							</c:if>
 						</c:if>

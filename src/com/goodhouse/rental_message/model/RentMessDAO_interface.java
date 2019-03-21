@@ -7,9 +7,10 @@ public interface RentMessDAO_interface {
 	public void update(RentMessVO rentMessVO);
 	public void delete(String ren_mes_id);
 	public RentMessVO findByPrimaryKey(String ren_mes_id);
-	public List<RentMessVO> findByHouId(String hou_id);
+	public List<RentMessVO> getPart(String hou_id);
 	public List<RentMessVO> getAll();
-	public List<RentMessVO> getAllByHouId();
+//	public List<RentMessVO> getAllByHouId(String hou_id);
+//	public List<RentMessVO> getPart(String hou_id);
 	
 	
 	

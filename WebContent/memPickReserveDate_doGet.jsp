@@ -20,7 +20,10 @@
 
 <%
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
-	String mem_id = memVO.getMem_id();
+	String mem_id = "";
+	if (memVO != null){
+		mem_id = memVO.getMem_id();
+	}
 	%>
 
 <%

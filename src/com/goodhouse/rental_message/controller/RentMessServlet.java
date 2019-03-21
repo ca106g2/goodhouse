@@ -196,7 +196,7 @@ public class RentMessServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("rentMessVO", rentMessVO); // 資料庫update成功後,正確的的rentMessVO物件,存入req
-				String url = "/front/rentMess/listOneRentMess.jsp";
+				String url = "/front/rentMess/listPartRentMess.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneRentMess.jsp
 				successView.forward(req, res);
 
@@ -256,11 +256,7 @@ public class RentMessServlet extends HttpServlet {
 					errorMsgs.add("提問訊息請勿空白");
 				}
 				
-				String ren_mes_response = req.getParameter("ren_mes_response").trim();
-				if (ren_mes_response == null || ren_mes_response.trim().length() == 0) {
-					errorMsgs.add("回覆訊息請勿空白");
-				}
-			
+				String ren_mes_response = req.getParameter("ren_mes_response");
 				
 //				String deptno = new String(req.getParameter("deptno").trim());
 
@@ -276,7 +272,7 @@ public class RentMessServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("rentMessVO", rentMessVO); // 含有輸入格式錯誤的rentMessVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front/rentMess/addRentMess.jsp");
+							.getRequestDispatcher("/front/lin/listHouseDetail_reserveLink.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -286,7 +282,7 @@ public class RentMessServlet extends HttpServlet {
 				rentMessVO = rentMessSvc.addRentMess(hou_id, mem_id, lan_id, ren_mes_time, ren_mes_request, ren_mes_response);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/front/rentMess/listAllRentMess.jsp";
+				String url = "/front/lin/listHouseDetail_reserveLink.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // �s�W���\�����listAllRentMess.jsp
 				successView.forward(req, res);				
 				
@@ -294,7 +290,7 @@ public class RentMessServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/rentMess/addRentMess.jsp");
+						.getRequestDispatcher("/front/lin/listHouseDetail_reserveLink.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -316,7 +312,7 @@ public class RentMessServlet extends HttpServlet {
 				rentMessSvc.deleteRentMess(ren_mes_id);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/front/rentMess/listAllRentMess.jsp";
+				String url = "/front/rentMess/listPartRentMess.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -324,7 +320,7 @@ public class RentMessServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/rentMess/listAllRentMess.jsp");
+						.getRequestDispatcher("/front/rentMess/listPartRentMess.jsp");
 				failureView.forward(req, res);
 			}
 		}

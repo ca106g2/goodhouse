@@ -8,7 +8,7 @@
 
 <html>
 <head>
-<title>員工資料 - listOneRentMess.jsp</title>
+<title>問題 - listOneRentMess.jsp</title>
 
 <style>
   table#table-1 {

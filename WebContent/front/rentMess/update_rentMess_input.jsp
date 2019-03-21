@@ -71,30 +71,21 @@
 		<td>租屋訊息編號:<font color=red><b>*</b></font></td>
 		<td><%=rentMessVO.getRen_mes_id()%></td>
 	</tr>
-	<tr>
-		<td>房屋編號:</td>
-		<td><input type="TEXT" name="hou_id" size="45" value="<%=rentMessVO.getHou_id()%>" /></td>
-	</tr>
-	<tr>
-	<tr>
-		<td>會員編號:</td>
-		<td><input type="TEXT" name="mem_id" size="45" value="<%=rentMessVO.getMem_id()%>" /></td>
-	</tr>
-	<tr>
-		<td>房東編號:</td>
-		<td><input type="TEXT" name="lan_id" size="45"	value="<%=rentMessVO.getLan_id()%>" /></td>
-	</tr>
-	<tr>
-		<td>留言時間:</td>
-		<td><input name="ren_mes_time" id="f_date1" type="text" ></td>
-	</tr>
+<!-- 		<td>房屋編號:</td> -->
+		<td><input type="hidden" name="hou_id" size="45" value="<%=rentMessVO.getHou_id()%>" /></td>
+<!-- 		<td>會員編號:</td> -->
+		<td><input type="hidden" name="mem_id" size="45" value="<%=rentMessVO.getMem_id()%>" /></td>
+<!-- 		<td>房東編號:</td> -->
+		<td><input type="hidden" name="lan_id" size="45" value="<%=rentMessVO.getLan_id()%>" /></td>
+<!-- 		<td>留言時間:</td> -->
+		<td><input type="hidden" name="ren_mes_time" size="45"  value="<%=rentMessVO.getRen_mes_time() %>" ></td>
 	<tr>
 		<td>提問訊息:</td>
-		<td><input type="TEXT" name="ren_mes_request" size="45"	value="<%=rentMessVO.getRen_mes_request()%>" /></td>
+		<td><input type="text"  readonly name="ren_mes_request" size="45"	value="<%=rentMessVO.getRen_mes_request()%>" /></td>
 	</tr>
 	<tr>
 		<td>回覆訊息:</td>
-		<td><input type="TEXT" name="ren_mes_response" size="45" value="<%=rentMessVO.getRen_mes_response()%>" /></td>
+		<td><input type="text" name="ren_mes_response" size="45" value="<%=rentMessVO.getRen_mes_response()%>" /></td>
 	</tr>
 
 	<%-- <jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
