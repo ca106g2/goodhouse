@@ -16,10 +16,10 @@
 <jsp:include page="/BackHeaderFooter/Header.jsp" />
 <div class="container">
   <div class="row">
-    <div class="col-4">
-      <jsp:include page="/BackHeaderFooter/LeftList.jsp" />
-    </div>
-    <div class="col-8">
+<!--     <div class="col-4"> -->
+<%--       <jsp:include page="/BackHeaderFooter/LeftList.jsp" /> --%>
+<!--     </div> -->
+    <div class="col-12">
       <form method="post" action="pg.do" name="form1" enctype="multipart/form-data">
         <div class="form-group row">
           <label for="good_nam" class="col-sm-3 col-form-label">積分商品名稱:</label>

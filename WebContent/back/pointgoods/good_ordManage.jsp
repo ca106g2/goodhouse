@@ -18,10 +18,10 @@
 <jsp:include page="/BackHeaderFooter/Header.jsp" />
 <div class="container">
 	<div class="row">
-		<div class="col-4">
-			<jsp:include page="/BackHeaderFooter/LeftList.jsp" />
-		</div>
-		<div class="col-8">
+<!-- 		<div class="col-4"> -->
+<%-- 			<jsp:include page="/BackHeaderFooter/LeftList.jsp" /> --%>
+<!-- 		</div> -->
+		<div class="col-12">
 		<table border="1">
 			<tr>
 				<td>訂單編號</td>

@@ -18,11 +18,11 @@
 <jsp:include page="/BackHeaderFooter/Header.jsp" />
 <div class="container">
 	<div class="row">
-		<div class="col-4">
-			<jsp:include page="/BackHeaderFooter/LeftList.jsp" />
-		</div>
-		<div class="col-8">
-			<table>
+<!-- 		<div class="col-4"> -->
+<%-- 			<jsp:include page="/BackHeaderFooter/LeftList.jsp" /> --%>
+<!-- 		</div> -->
+		<div class="col-12">
+			<table border="1">
 				<tr>
 					<td>積分商品編號</td>
 					<td>積分商品名稱</td>
