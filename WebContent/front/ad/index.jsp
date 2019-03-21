@@ -19,6 +19,17 @@
   width : 50%;
   
 }
+
+
+    input[type="image"] {
+        border: 0;
+        background: url('request.getContextPath() %>/HouseServlet?hou_id=${adVO.hou_id}&photo=1') no-repeat -40px left;
+ 		height: 50%;
+  		width : 50%;
+    }
+
+
+
 </style>
 </head>
 <body >
@@ -40,7 +51,16 @@
 					<c:if test="${adVO.ad_sort_id eq 'ADS0000002' and adVO.ad_status eq '上架'}">
 							<c:if test="${adVO.hou_id eq hou_VO.hou_id}">
 									<div class="carousel-item">
-		          					<img class="d-block w-100" src="<%=request.getContextPath() %>/HouseServlet?hou_id=${adVO.hou_id}&photo=1" alt="">
+									
+												<form method="post" action="<%=request.getContextPath()%>/front/house/hou.do">
+													<input  class="d-block w-100" type="image" src="<%=request.getContextPath() %>/HouseServlet?hou_id=${adVO.hou_id}&photo=1">
+													<input type="hidden" name="hou_id" value="${adVO.hou_id}">
+													<input type="hidden" name="action" value="front_getOne_For_Display">
+												</form>
+									
+									
+									
+		          					
 		          				 </div>
 	   					</c:if>
 	   				</c:if>
