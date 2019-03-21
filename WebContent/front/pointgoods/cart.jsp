@@ -60,9 +60,7 @@
 			尚無選購商品
 		<% } %>
 		</div>
-
-
-
+		
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>
