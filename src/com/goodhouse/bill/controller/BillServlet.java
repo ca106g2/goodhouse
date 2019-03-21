@@ -284,60 +284,6 @@ public class BillServlet extends HttpServlet{
 			}
 		}
 		
-		//TODO (房東)所有房租帳單
-		if("billForLanListAll".equals(action)) {
-			
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
-			
-			
-			try {
-				/****1接收請求參數****************/
-				MemVO mVO = (MemVO) session.getAttribute("memVO");
-				String mem_id = mVO.getMem_id();
-				
-				/******2開始查詢資料*****************/
-				MemService mSvc = new MemService();
-				LanService lanSvc = new LanService();
-				
-				//取得lan_id
-				LanVO lanVO = lanSvc.getOneLanByMemId(mem_id);
-				String lan_id = lanVO.getLan_id();
-				
-				BillService billSvc = new BillService();
-				Ele_ContractService eleConSvc = new Ele_ContractService();
-				List<Ele_ContractVO> ele_contractForLanList = eleConSvc.getAllForEle_ConByLan_id(lan_id);
-				List<BillVO> billVOList = new ArrayList<BillVO>();
-				String bill_id = null;
-				
-				Iterator obj = ele_contractForLanList.iterator();
-				while(obj.hasNext()) {
-					Ele_ContractVO eleConVO = (Ele_ContractVO)obj.next();
-					for(BillVO billVO : billSvc.getAll()) {
-						if(eleConVO.getEle_con_id().equals(billVO.getEle_con_id())) {
-							bill_id = billVO.getBill_id();
-							billVOList.add(billVO);
-						}
-					}
-				}
-				
-				if(billVOList.isEmpty()) {
-					errorMsgs.add("無資料");
-				}
-				
-				/****3查詢完成準備轉交***************/
-				req.setAttribute("lastPage", true);
-				req.getSession().setAttribute("billVOList", billVOList);
-				String url = "/front/bill/lan_listAll_bill.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-				
-			} catch(Exception e) {
-				errorMsgs.add("無法取得資料" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front/bill/lan_select_page.jsp");
-				failureView.forward(req, res);
-			}
-		}
 		
 		//新增第一筆帳單
 		if("creatFirstBill".equals(action)) {
