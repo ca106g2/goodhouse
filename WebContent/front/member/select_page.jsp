@@ -10,7 +10,7 @@
 %>
 <html>
 <head>
-<title>Mem</title>
+<title>Mem: Home</title>
 
 <style>
   table#table-1 {
@@ -160,17 +160,17 @@
 		<FORM METHOD ="post" ACTION="<%=request.getContextPath()%>/front/member/mem.do" style="margin-bottom: 0px;">
 				<input type="submit" value="修改">
 				<input type="hidden" name="mem_id"  value="${memVO.mem_id}">
-				<input type="hidden" name="mem_name"  value="${memVO.mem_name}">
-				<input type="hidden" name="mem_birthday"  value="${memVO.mem_birthday}">
-				<input type="hidden" name="mem_password"  value="${memVO.mem_password}">
-				<input type="hidden" name="mem_address"  value="${memVO.mem_address}">
-				<input type="hidden" name="mem_zipcode"  value="${memVO.mem_zipcode}">
-				<input type="hidden" name="mem_telephone"  value="${memVO.mem_telephone}">
-				<input type="hidden" name="mem_phone"  value="${memVO.mem_phone}">
-				<input type="hidden" name="mem_email"  value="${memVO.mem_email}">
-				<input type="hidden" name="mem_status"  value="${memVO.mem_status}">
-				<input type="hidden" name="good_total"  value="${memVO.good_total}">
-				<input type="hidden" name="mem_sex"  value="${memVO.mem_sex}">
+<%-- 				<input type="hidden" name="mem_name"  value="${memVO.mem_name}"> --%>
+<%-- 				<input type="hidden" name="mem_birthday"  value="${memVO.mem_birthday}"> --%>
+<%-- 				<input type="hidden" name="mem_password"  value="${memVO.mem_password}"> --%>
+<%-- 				<input type="hidden" name="mem_address"  value="${memVO.mem_address}"> --%>
+<%-- 				<input type="hidden" name="mem_zipcode"  value="${memVO.mem_zipcode}"> --%>
+<%-- 				<input type="hidden" name="mem_telephone"  value="${memVO.mem_telephone}"> --%>
+<%-- 				<input type="hidden" name="mem_phone"  value="${memVO.mem_phone}"> --%>
+<%-- 				<input type="hidden" name="mem_email"  value="${memVO.mem_email}"> --%>
+<%-- 				<input type="hidden" name="mem_status"  value="${memVO.mem_status}"> --%>
+<%-- 				<input type="hidden" name="good_total"  value="${memVO.good_total}"> --%>
+<%-- 				<input type="hidden" name="mem_sex"  value="${memVO.mem_sex}"> --%>
 		     	<input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 		</td>
 		
