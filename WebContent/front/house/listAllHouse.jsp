@@ -74,6 +74,7 @@ div{
 		<th>房屋遊覽</th>
 		<th>申請廣告</th>	
 	</tr>
+
 		<%@ include file="pages/page1.file"%>
 	<c:forEach var="houVO" items="${listHou_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1 %>">
 	 	<tr  class="table-info" align='center' >
@@ -93,7 +94,10 @@ div{
 			</td>
 			
 			<td>
-			<c:if test="${houVO.hou_parkspace eq '未審核' }" >
+
+	<jsp:useBean id="adSvc" scope="page" class="com.goodhouse.ad.model.AdService"/>					
+			<c:if test="${houVO.hou_parkspace eq '已審核' }" >
+			<c:if test="${adSvc.getOneAdByHou(houVO.hou_id).ad_status ne '上架' and adSvc.getOneAdByHou(houVO.hou_id).ad_status ne '下架' }">
 			<form method="post" action="<%=request.getContextPath()%>/front/ad/addAd.jsp" style="margin-bottom: 0px;">
 				<input type="submit" value="申請廣告">
 				<input type="hidden" name="hou_id" value="${houVO.hou_id}">
@@ -102,6 +106,8 @@ div{
 				<input type="hidden" name="whichPage" value="<%=whichPage%>">
 			</form>
 			</c:if>
+			</c:if>
+			
 			</td>
 			
 		</tr>	
