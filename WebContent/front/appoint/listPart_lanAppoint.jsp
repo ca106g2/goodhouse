@@ -71,6 +71,7 @@
 
 </head>
 <body bgcolor='white'>
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 <h4>此頁練習採用 EL 的寫法取值:</h4>
 <table id="table-1">
@@ -177,14 +178,14 @@
 					</c:forEach>
 				</c:forEach>
 			</td>
-			<td>
-				<input type="button" value="檢舉會員">
-			</td>
+<!-- 			<td> -->
+<!-- 				<input type="button" value="檢舉會員"> -->
+<!-- 			</td> -->
 		</tr>
 	</c:forEach>
 </table>
 <%@ include file="page2.file" %>
-
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 <!-- //git上傳註解用無意義 -->
 </html>

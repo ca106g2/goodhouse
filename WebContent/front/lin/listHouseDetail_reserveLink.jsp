@@ -422,7 +422,7 @@ input[type="checkbox"].switch_1{
 								<div>
 									<input type="hidden" name="action" value="insert">
 <!-- 									選擇要轉交的日曆頁面 -->
-									<input type="button" value="我要預約" onClick="location.href='<%=request.getContextPath()%>/memPickReserveDate_doGet.jsp'">
+<%-- 									<input type="button" value="我要預約" onClick="location.href='<%=request.getContextPath()%>/memPickReserveDate_doGet.jsp'"> --%>
 									
 									<jsp:include page="/memPickReserveDate_doGet.jsp" />
 

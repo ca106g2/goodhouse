@@ -58,6 +58,7 @@
 </style>
 </head>
 <body bgcolor="white">
+<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 <table>
 	<tr>
 		<td>
@@ -152,5 +153,6 @@
 	</c:forEach>
 </table>
 <%@ include file="page2.file" %>
+<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>
