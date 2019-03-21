@@ -13,36 +13,47 @@
 <meta charset="UTF-8">
 <title>員工資料新增 </title>
 <style>
- #table1 { 
+  table#table-1 {
+	background-color: #CCCCFF;
+    border: 2px solid black;
+    text-align: center;
+  }
+  table#table-1 h4 {
+    color: red;
+    display: block;
+    margin-bottom: 1px;
+  }
+  h4 {
+    color: blue;
+    display: inline;
+  }
+</style>
 
-  font-family: 微軟正黑體; 
-  font-size:16px; 
-  width:500px;
-  text-align:center;
-  margin-left:auto; 
-  margin-right:auto;
-} 
- #table1 th { 
-  background-color: #009FCC;
-  padding:10px;
-
-  color:#fff;
-} 
- #table1 td { 
-  padding:5px;
-} 
-
-
+<style>
+  table {
+	width: 450px;
+	background-color: white;
+	margin-top: 1px;
+	margin-bottom: 1px;
+  }
+  table, th, td {
+    border: 0px solid #CCCCFF;
+  }
+  th, td {
+    padding: 1px;
+  }
 </style>
 </head>
 <body bgcolor='white'>
 <jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 <table id="table-1">
 	<tr><td>
-		 <h5><a href="">回員工首頁</a></h5>
+		 <h3>員工資料新增 - addEmp.jsp</h3></td><td>
+		 <h5><a href="select_page.jsp">回員工首頁</a></h5>
 	</td></tr>
 </table>
 
+<h3>資料新增:</h3>
 
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -54,7 +65,7 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="emp.do" name="form1">
-<table id="table1">
+<table>
 	<tr>
 		<td>員工姓名:</td>
 		<td><input type="TEXT" name="emp_name" size="45" 
@@ -86,26 +97,19 @@
 			</select>
 		</td>
 	</tr>
-		<tr>
-		<td></td>
-		<td>
-			<input type="hidden" name="action" value="insert">
-			<input type="submit" class="btn btn-light"  value="送出新增"></FORM>
-		</td>
-	</tr>
-
-	<tr>
-		<td></td>
-		<td>
-			<form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
-				<input type="submit" class="btn btn-light"  value="登出">
-			</form>
-		</td>
-	</tr>
+	
 	
 
-</table >
+</table>
 <br>
+<input type="hidden" name="action" value="insert">
+<input type="submit" value="送出新增"></FORM>
+
+
+
+<form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
+	<input type="submit" value="登出">
+</form>
 
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
