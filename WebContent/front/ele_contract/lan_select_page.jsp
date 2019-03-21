@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.ele_contract.model.*"%>
-<%
-	String mem_name = (String)session.getAttribute("mem_name");
-%>
 
 <!doctype html>
 <html lang="en">

@@ -113,43 +113,56 @@
 <script>
 
 $.datetimepicker.setLocale('zh');
-$('#ele_rent_f_day').datetimepicker({
-   theme: '',              //theme: 'dark',
-    timepicker:false,       //timepicker:true,
-    step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-    format:'Y-m-d',         //format:'Y-m-d H:i:s',
-	   value: '<%=eleConVO.getEle_rent_f_day()%>', // value:   new Date(),
-   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-   //startDate:	            '2017/07/10',  // 起始日
-   minDate:               '-1970-01-01', // 去除今日(不含)之前
-   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
-});
-
-
-$('#ele_rent_l_day').datetimepicker({
+$(function(){
+	$('#ele_rent_f_day').datetimepicker({
 	   theme: '',              //theme: 'dark',
-	   timepicker:false,       //timepicker:true,
-	   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	   format:'Y-m-d',         //format:'Y-m-d H:i:s',
-	   value: '<%=eleConVO.getEle_rent_l_day()%>', // value:   new Date(),
+	    timepicker:false,       //timepicker:true,
+	    step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+	    format:'Y-m-d',         //format:'Y-m-d H:i:s',
+		   value: '<%=eleConVO.getEle_rent_f_day()%>', // value:   new Date(),
 	   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
 	   //startDate:	            '2017/07/10',  // 起始日
 	   minDate:               '-1970-01-01', // 去除今日(不含)之前
 	   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+	   onShow:function(){
+		   this.setOptions({
+		    maxDate:$('#ele_rent_l_day').val() ? $('#ele_rent_l_day').val():false
+		   })
+		  },
+		  timepicker:false
 	});
+
+
+	$('#ele_rent_l_day').datetimepicker({
+		   theme: '',              //theme: 'dark',
+		   timepicker:false,       //timepicker:true,
+		   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+		   format:'Y-m-d',         //format:'Y-m-d H:i:s',
+		   value: '<%=eleConVO.getEle_rent_l_day()%>', // value:   new Date(),
+		   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
+		   //startDate:	            '2017/07/10',  // 起始日
+		   minDate:               '-1970-01-01', // 去除今日(不含)之前
+		   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+		   onShow:function(){
+			   this.setOptions({
+			    minDate:$('#ele_rent_f_day').val() ? $('#ele_rent_f_day').val():false
+			   })
+			  },
+			  timepicker:false
+		});
 	
-$('#ele_singdate').datetimepicker({
-	   theme: '',              //theme: 'dark',
-	   timepicker:false,       //timepicker:true,
-	   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-	   format:'Y-m-d',         //format:'Y-m-d H:i:s',
-	   value: '<%=eleConVO.getEle_singdate()%>', // value:   new Date(),
-	   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-	   //startDate:	            '2017/07/10',  // 起始日
-	   minDate:               '-1970-01-01', // 去除今日(不含)之前
-	   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
-	});
-
+	$('#ele_singdate').datetimepicker({
+		   theme: '',              //theme: 'dark',
+		   timepicker:false,       //timepicker:true,
+		   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+		   format:'Y-m-d',         //format:'Y-m-d H:i:s',
+		   value: '<%=eleConVO.getEle_singdate()%>', // value:   new Date(),
+		   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
+		   //startDate:	            '2017/07/10',  // 起始日
+		   minDate:               '-1970-01-01', // 去除今日(不含)之前
+		   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+		});
+});
 </script>
 
 

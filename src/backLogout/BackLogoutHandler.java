@@ -19,8 +19,12 @@ public class BackLogoutHandler extends HttpServlet {
        
 	//【檢查使用者輸入是否已連線】
 	//【實際上應至資料庫搜尋比對】
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		doPost(req, res);
+	}
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = res.getWriter();
@@ -31,7 +35,7 @@ public class BackLogoutHandler extends HttpServlet {
 		if(empVO != null) {
 			session.removeAttribute("empVO");
 			try {                                                        
-				res.sendRedirect(req.getContextPath()+"/back/employee/select_page.jsp");            
+				res.sendRedirect(req.getContextPath()+"/back/back_index.jsp");            
 			}catch (Exception ignored) { }
 		}
 		

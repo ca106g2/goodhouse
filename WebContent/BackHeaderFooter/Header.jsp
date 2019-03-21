@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.goodhouse.employee.model.*" %> 
+    
+<%
+	EmpVO empVO = (EmpVO) session.getAttribute("empVO");
+	pageContext.setAttribute("empVO", empVO);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,12 +36,12 @@
                        </a>
                    </li>
 					
-					<li class="nav-item dropdown" style="margin-left:100px">
+					<li class="nav-item dropdown" style="margin-left:180px">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					會員/員工管理</a>
 					     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/employee/listAllMem_emp.jsp">會員</a>
-					          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/employee/select_page.jsp">員工</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">會員</a>
+					          <a class="dropdown-item" href="<%=request.getContextPath()%>">員工</a>
 					     </div>
                     </li>
 
@@ -81,13 +87,16 @@
 					        </div>
                     </li> 
   <!-- 登出 --> 		
-  					<li class="nav-item active" style="margin-left:120px">
-  						<a class="nav-link" href="<%=request.getContextPath()%>">登入</a>
-                   </li>
-  					<li class="nav-item active" style="margin-left:20px">
-  						<a class="nav-link" href="<%=request.getContextPath()%>">登出</a>
-                   </li>
-
+  					<div style='display:${(empVO == null) ? "" : "none"}'>
+  						<li class="nav-item active" style="margin-left:120px">
+	  						<a class="nav-link" href="<%=request.getContextPath()%>/back/backLogin.jsp" tabindex="-1" aria-disabled="true">登入</a>
+                   		</li>
+  					</div>
+  					<div style='display:${(empVO != null) ? "" : "none"}'>
+  						<li class="nav-item active" style="margin-left:120px">
+	  						<a class="nav-link" href="<%=request.getContextPath()%>/BackLogoutHandler" tabindex="-1" aria-disabled="true">登出</a>
+                   		</li>
+					</div>
                </ul>
 
            </div>

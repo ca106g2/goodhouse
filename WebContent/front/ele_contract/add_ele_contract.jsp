@@ -62,7 +62,7 @@
 				<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
 												<div>房   屋   租   賃   契   約   書</div>
 				立契約書人：出租人   <b>${memVO.mem_name}</b>（以下簡稱甲方）、
-				承租人       <b><input type="text" name="mem_name" class="btn btn-light" value="${memSvc.getOneMem(eleConVO.mem_id).mem_name}"/></b> （以下簡稱乙方），茲為房屋一部租賃、雙方議定契約條款如下：<br>
+				承租人       <b><input type="text" id="mem_name" name="mem_name" class="btn btn-light" value="${memSvc.getOneMem(eleConVO.mem_id).mem_name}"/></b> （以下簡稱乙方），茲為房屋一部租賃、雙方議定契約條款如下：<br>
 				第一條︰租賃房屋地址︰
 				<div class="form-group">
 				<label for="exampleFormControlSelect1"></label>
@@ -94,6 +94,7 @@
 										立契約書人  甲            方：<b>${memVO.mem_name}</b><br>
 												身分證字號：<b><input type="text" name="lan_idnumber" value="${eleConVO.lan_idnumber}" class="btn btn-light"/></b><br>
 
+<!-- 												乙            方：<b id="mem_name2"></b><br> -->
 												乙            方：<b><input type="text" name="mem_name" class="btn btn-light" value="${memSvc.getOneMem(eleConVO.mem_id).mem_name}"/></b><br>
 												身份證字號：<b><input type="text" name="mem_idnumber" value="${eleConVO.mem_idnumber}" class="btn btn-light"/></b><br>
 
@@ -133,32 +134,53 @@
 
 <script>
 
+// $('#mem_name').
+
+
+
+
 $.datetimepicker.setLocale('zh');
-$('#ele_rent_f_day').datetimepicker({
-   theme: '',              //theme: 'dark',
-   timepicker:false,       //timepicker:true,
-   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
-   format:'Y-m-d',         //format:'Y-m-d H:i:s',
-   value: '<%=ele_rent_f_day%>', // value:   new Date(),
+
+$(function(){
+	$('#ele_rent_f_day').datetimepicker({
+  		theme: '',              //theme: 'dark',
+//    timepicker:false,       //timepicker:true,
+   		step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
+   		format:'Y-m-d',         //format:'Y-m-d H:i:s',
+<%--    value: '<%=ele_rent_f_day%>', // value:   new Date(), --%>
    //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
    //startDate:	            '2017/07/10',  // 起始日
-   minDate:               '-1970-01-01', // 去除今日(不含)之前
+   		minDate:               '-1970-01-01', // 去除今日(不含)之前
    //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+   		onShow:function(){
+	   this.setOptions({
+	    maxDate:$('#ele_rent_l_day').val() ? $('#ele_rent_l_day').val():false
+	   })
+	  },
+	  timepicker:false
+   
 	});
 
-$('#ele_rent_l_day').datetimepicker({
+	$('#ele_rent_l_day').datetimepicker({
 	   theme: '',              //theme: 'dark',
-	   timepicker:false,       //timepicker:true,
+// 	   timepicker:false,       //timepicker:true,
 	   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
 	   format:'Y-m-d',         //format:'Y-m-d H:i:s',
-	   value: '<%=ele_rent_l_day%>', // value:   new Date(),
+<%-- 	   value: '<%=ele_rent_l_day%>', // value:   new Date(), --%>
 	   //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
 	   //startDate:	            '2017/07/10',  // 起始日
 	   minDate:               '-1970-01-01', // 去除今日(不含)之前
 	   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
+	   onShow:function(){
+		   this.setOptions({
+		    minDate:$('#ele_rent_f_day').val() ? $('#ele_rent_f_day').val():false
+		   })
+		  },
+		  timepicker:false
+	   
 	});
 	
-$('#ele_singdate').datetimepicker({
+	$('#ele_singdate').datetimepicker({
 	   theme: '',              //theme: 'dark',
 	   timepicker:false,       //timepicker:true,
 	   step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
@@ -169,7 +191,7 @@ $('#ele_singdate').datetimepicker({
 	   minDate:               '-1970-01-01', // 去除今日(不含)之前
 	   //maxDate:               '+1970-01-01'  // 去除今日(不含)之後
 	});
-
+});
 </script>
 
 	<!-- 工作區結束 -->

@@ -57,10 +57,6 @@
 													<input type="hidden" name="hou_id" value="${adVO.hou_id}">
 													<input type="hidden" name="action" value="front_getOne_For_Display">
 												</form>
-									
-									
-									
-		          					
 		          				 </div>
 	   					</c:if>
 	   				</c:if>
