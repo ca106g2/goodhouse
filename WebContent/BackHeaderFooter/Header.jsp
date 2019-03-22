@@ -36,7 +36,7 @@
                        </a>
                    </li>
 					
-					<li class="nav-item dropdown" style="margin-left:180px">
+					<li class="nav-item dropdown" style="margin-left:180px ;margin-top:4px">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						會員管理</a>
 						     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -46,7 +46,7 @@
 						     </div>
                     </li>
                     
-					<li class="nav-item dropdown" style="margin-left:60px">
+					<li class="nav-item dropdown" style="margin-left:60px ;margin-top:4px">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						員工管理</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -56,7 +56,7 @@
                     </li>
 
  <!-- 房屋 --> 
-                   	<li class="nav-item dropdown" style="margin-left:60px">
+                   	<li class="nav-item dropdown" style="margin-left:60px ;margin-top:4px">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						房屋管理</a>
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -64,7 +64,7 @@
 						        </div>
                     </li>
   <!-- 廣告 --> 
-  				    <li class="nav-item dropdown" style="margin-left:60px">
+  				    <li class="nav-item dropdown" style="margin-left:60px ;margin-top:4px">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						廣告管理</a>
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -76,7 +76,7 @@
                     </li>
 
   <!-- 合約 --> 
-     				<li class="nav-item dropdown" style="margin-left:60px">
+     				<li class="nav-item dropdown" style="margin-left:60px;margin-top:4px">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						電子合約管理</a>
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -87,7 +87,7 @@
                     </li>
    
   <!-- 積分 --> 
-    		     	<li class="nav-item dropdown" style="margin-left:60px">
+    		     	<li class="nav-item dropdown" style="margin-left:60px;margin-top:4px">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						積分商城管理</a>
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -96,23 +96,32 @@
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/back/pointgoods/good_ordManage.jsp">訂單管理</a>
 						        </div>
                     </li> 
+					<div style='display:${(empVO != null) ? "" : "none"};margin-top:7px'>
+  						<li class="nav-item active" style="margin-left:60px">
+  						<p class=" "  tabindex="-1" aria-disabled="true">
+	                    	<img src="<%=request.getContextPath()%>/images/emp.png" style="width:25px;heigh:27px">
+	                    	<b style="color:#F74420 ; font-size:20px">${empVO.emp_name}</b>
+                        </p>
+                   		</li>
+					</div>
   <!-- 登出 --> 		
   					<div style='display:${(empVO == null) ? "" : "none"}'>
-  						<li class="nav-item active" style="margin-left:120px">
+  						<li class="nav-item active" style="margin-left:10px ;margin-top:4px">
 	  						<a class="nav-link" href="<%=request.getContextPath()%>/back/backLogin.jsp" tabindex="-1" aria-disabled="true">登入</a>
                    		</li>
   					</div>
   					<div style='display:${(empVO != null) ? "" : "none"}'>
-  						<li class="nav-item active" style="margin-left:120px">
+  						<li class="nav-item active" style="margin-left:10px ;margin-top:4px">
 	  						<a class="nav-link" href="<%=request.getContextPath()%>/BackLogoutHandler" tabindex="-1" aria-disabled="true">登出</a>
                    		</li>
 					</div>
+					
                </ul>
 
            </div>
     	</div>
 	</header>
-	<div style="height:80px;"></div>
+	<div style="height:100px;"></div>
 <!-- Feader尾-->
 
 </body>
