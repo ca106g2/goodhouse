@@ -487,7 +487,7 @@ input[type="checkbox"].switch_1{
 								  	<tbody>
 								  	<c:forEach var="houEvaVO" items="${houEvaList}" varStatus="houEva">
 									    <tr class="hou_eva_vo" >
-									      	<td>${houEvaVO.hou_eva_grade}</td>
+									      	<td>${houEvaVO.hou_eva_grade.substring(2)}</td>
 									      	<td>${houEvaVO.hou_eva_content}</td>
 									    </tr>
 								   	</c:forEach>
@@ -621,8 +621,12 @@ input[type="checkbox"].switch_1{
 					dataType: "json",
 					
 					success: function(data){
+						
+							var evaluate = data.hou_eva_grade;
+							var evaGrade = evaluate.substr(2);
+							var gradeNo = evaluate.substr(1,1);
 							
-							$('tbody').append( '<tr> <td>'+ data.hou_eva_grade +'</td> <td>' + data.hou_eva_content + '</td> </tr>');
+							$('tbody').append( '<tr> <td>'+ evaGrade +'</td> <td>' + data.hou_eva_content + '</td> </tr>');
 							
 							$("input:radio[name='hou_eva_grade']").prop("checked",false) ;
 							$(".houEevaContent").val("") ;
