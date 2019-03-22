@@ -398,7 +398,7 @@ input[type="checkbox"].switch_1{
 									    		<span>提出問題</span>
 									    	</div>
 									    	<div class="row">
-									    		<span>提醒您開車不喝酒，喝酒開車!</span>
+									    		<span>提醒您開車不喝酒，喝酒開車吃大便!</span>
 									    	</div>
 									    	<div class="row">
 									    		<div>

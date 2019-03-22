@@ -29,8 +29,9 @@
     		<td>良民證</td>
     		<td>修改狀態</td>
     	</tr>
+    	<%@ include file="page1.file"%>
     	<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService" />
-    	<c:forEach var="LanVO" items="${list}" >
+    	<c:forEach var="LanVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1 %>">
 	    	<tr>
 	    		<td>${memSvc.getOneMem(LanVO.mem_id).mem_name}</td>
 	    		<td>${LanVO.lan_account}</td>
@@ -63,6 +64,7 @@
 	    	</tr>
 	    </c:forEach>
     </table>
+    <%@ include file="page2.file" %>
   </div>
 </div> 
 <jsp:include page="/BackHeaderFooter/Footer.jsp"/>
