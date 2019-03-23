@@ -177,27 +177,27 @@
 							<div class="card-body">
 								<form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do">
 									<div class="form-check-inline">
-										<label class="form-check-label" for="check1"><input
-											type="radio" class="form-check-input" id="check1"
+										<label class="form-check-label" for="check5"><input
+											type="radio" class="form-check-input" id="check5"
 											name="hou_address" value="台北" > <span>台北</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
-										<label class="form-check-label" for="check2"> <input
-											type="radio" class="form-check-input" id="check2"
+										<label class="form-check-label" for="check6"> <input
+											type="radio" class="form-check-input" id="check6"
 											name="hou_address" value="台中"> <span>台中</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
-										<label class="form-check-label" for="check3"> <input
-											type="radio" class="form-check-input" id="check3"
+										<label class="form-check-label" for="check7"> <input
+											type="radio" class="form-check-input" id="check7"
 											name="hou_address" value="高雄"> <span>高雄</span>
 										</label>
 									</div>
 									<div class="form-check-inline">
-										<label class="form-check-label" for="check3"> <input
-											type="radio" class="form-check-input" id="check3"
-											name="hou_address" value="桃園"> <span>桃園</span>
+										<label class="form-check-label" for="check8"> <input
+											type="radio" class="form-check-input" id="check8"
+											name="hou_address" value="桃園" checked> <span>桃園</span>
 										</label>
 									</div>
 									<div class="input-group-append">
@@ -215,7 +215,7 @@
 							<div class="card-body">
 								<form	METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do">								
 										<div class="input-group">
-											<input type="text" class="form-control" placeholder="輸入租金" name="hou_rent">
+											<input type="text" class="form-control" placeholder="搜尋金額以下房屋" name="hou_rent">
 												<div class="input-group-append">
 													<input class="btn btn-secondary" type="submit" value="開始查詢">
 													<input type="hidden" name="action" value="listHou_ByCompositeQueryForIndex">
