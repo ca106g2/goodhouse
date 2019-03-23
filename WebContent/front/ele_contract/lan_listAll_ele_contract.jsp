@@ -81,13 +81,13 @@
 				        	<th scope="col">合約分類名稱</th>
 				        	<th scope="col">房客姓名</th>
 <!-- 				        	<th scope="col">房東姓名</th> -->
-				        	<th scope="col">房屋名稱</th>
+				        	<th scope="col">房屋地址</th>
 <!-- 				        	<th scope="col">每期租金</th> -->
 <!-- 				        	<th scope="col">押金</th> -->
-				        	<th scope="col">租賃期限</th>
+<!-- 				        	<th scope="col">租賃期限</th> -->
 				        	<th scope="col">租賃起訖日</th>
 				        	<th scope="col">租賃結束日</th>
-				        	<th scope="col">簽約日期</th>
+<!-- 				        	<th scope="col">簽約日期</th> -->
 				        	<th scope="col">合約狀態</th>
 <!-- 				        	<th scope="col">繳費型態</th> -->
 				        	<th scope="col"></th>
@@ -100,13 +100,13 @@
 				      		<td>${conSvc.getOneCon(eleConVO.con_id).con_name}</td>
 				      		<td>${memSvc.getOneMem(eleConVO.mem_id).mem_name}</td>
 <%-- 				      		<td>${memSvc.getOneMem(lanSvc1.getOneLan(eleConVO.lan_id).mem_id).mem_name}</td> --%>
-				      		<td>${houSvc.getOneHouse(eleConVO.hou_id).hou_name}</td>
+				      		<td>${houSvc.getOneHouse(eleConVO.hou_id).hou_address}</td>
 <%-- 				      		<td>${eleConVO.ele_rent_money}</td> --%>
 <%-- 				      		<td>${eleConVO.ele_deposit_money}</td> --%>
-				      		<td>${eleConVO.ele_rent_time}</td>
+<%-- 				      		<td>${eleConVO.ele_rent_time}</td> --%>
 				      		<td>${eleConVO.ele_rent_f_day}</td>
 				      		<td>${eleConVO.ele_rent_l_day}</td>
-				      		<td>${eleConVO.ele_singdate}</td>
+<%-- 				      		<td>${eleConVO.ele_singdate}</td> --%>
 				      		
 				      		<c:forEach var="Ele_con_status" items="${Ele_con_statusList}">
 								<c:if test="${Ele_con_status.status_no eq eleConVO.ele_con_status}">
@@ -130,8 +130,9 @@
 								<form method="post" action="ele_contract.do">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}"> 
 									<input type="hidden" name="action" value="getOne_For_look"> 
-									<input type="submit" value="查看" 
-											style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
+									<input type="submit" value="去看看" 
+											style='display:${(eleConVO.ele_con_status eq "s1") ? "none" : ""};font-weight:bold'
+											class="btn btn-outline-success " >
 								</form>
 							</td>
 				    	</tr>

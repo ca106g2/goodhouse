@@ -125,7 +125,7 @@
 	</script>	  
 	
 	<!-- Footer頭 -->
-	<div class="card border-light"  > 
+	<div  > 
 		<img src="<%=request.getContextPath()%>/images/background2.jpg" class="card-img" alt="..." style="">
 	</div>
 	 		
