@@ -336,9 +336,10 @@ input[type="checkbox"].switch_1{
 									<a class="nav-link" href="#ad_report" role="tab" data-toggle="tab">廣告檢舉</a>
 								</li>
 <%-- 						</c:if> --%>
-					
-						</ul>
 <!---=========================================以上是 TIM 的廣告檢舉功能 ==========================================--->
+	
+						</ul>
+
 
 						<!-- Tab panes -->
 						<div class="tab-content">
@@ -534,6 +535,19 @@ input[type="checkbox"].switch_1{
 								</c:if>
 							</div>					
 <!----===================================== 以上是TIM功能 ====================================--->		
+<!----===================================== 以下是TIM的MAP功能 ====================================--->								
+							<div role="tabpanel" class="embed-responsive embed-responsive-16by9" id="ad_report">				
+		 							 <iframe class="embed-responsive-item"
+    									  width="600" 
+     									 height="450" 
+     									 frameborder="0" 
+     									 style="border:0" 
+     									 src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBool9F4tfRQvkhMlnIVxEX_cYowoKzsS0&q=<%=houVO.getHou_address()%>" 
+     									 >
+ 									 </iframe>
+							</div>						
+			
+<!----===================================== 以上是TIM的MAP功能 ====================================--->							
 						</div>				
 					</div>
 					
