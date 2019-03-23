@@ -55,13 +55,6 @@ pageContext.setAttribute("list",list);
 </head>
 <body bgcolor="white">
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>
-<table id="table-1">
-	<tr><td>
-		<h3>所有員工資料 </h3>
-		<h4><a href="<%=request.getContextPath()%>/back/back_index.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回後台首頁</a></h4>
-
-	</td></tr>
-</table>
 
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -72,7 +65,7 @@ pageContext.setAttribute("list",list);
 	</ul>
 </c:if>
 
-<table>
+<table class="table table-hover">
 	<tr>
 		<th>員工編號</th>
 		<th>員工姓名</th>
@@ -111,9 +104,7 @@ pageContext.setAttribute("list",list);
 
 <%@ include file="page2.file" %>
 
-<form method="post" action="<%=request.getContextPath()%>/BackLogoutHandler">
-	<input type="submit" value="登出">
-</form>
+
 
 <jsp:include page="/BackHeaderFooter/Footer.jsp"/>
 </body>

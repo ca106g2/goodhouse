@@ -17,11 +17,9 @@
 <body>
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>
 <div class="container">
-	<div class="row col-12">
-		<h4><a href="<%=request.getContextPath()%>/back/back_index.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回後台首頁</a></h4>
-	</div>
   <div class="row col-12" >
-    <table border="1">
+ 	
+    <table border="1" class="table table-hover">
     	<tr>
     		<td>會員姓名</td>
     		<td>房東帳號</td>

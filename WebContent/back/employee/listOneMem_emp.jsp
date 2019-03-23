@@ -60,15 +60,6 @@
 <body bgcolor='white'>
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>
 
-<table id="table-1">
-	<tr><td>
-		 <h3>會員資料 - ListOneMem_emp.jsp</h3>
-		 
-		 <h4><a href="<%=request.getContextPath()%>/back/employee/listAllMem_emp.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回員工列表</a></h4>
-		 
-		 
-	</td></tr>
-</table>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -77,12 +68,12 @@
 		</c:forEach>
 	</ul>
 </c:if>
-<table>
+<table class="table table-hover">
 	<tr>
 		<th>會員編號</th>
 		<th>會員姓名</th>
 		<th>會員生日</th>
-		<th>會員密碼</th>
+<!-- 		<th>會員密碼</th> -->
 		<th>會員地址</th>
 		<th>會員郵遞區號</th>
 		<th>會員電話</th>
@@ -92,14 +83,14 @@
 		<th>會員照片</th>
 		<th>積分分數總合</th>
 		<th>會員性別</th>
-		<th>修改</th>
+<!-- 		<th>修改</th> -->
 	
 	</tr>
 	<tr>
 		<td><%=memVO.getMem_id()%></td>
 		<td><%=memVO.getMem_name()%></td>
 		<td><%=memVO.getMem_birthday()%></td>
-		<td><%=memVO.getMem_password()%></td>
+<%-- 		<td><%=memVO.getMem_password()%></td> --%>
 		<td><%=memVO.getMem_address()%></td>
 		<td><%=memVO.getMem_zipcode()%></td>
 		<td><%=memVO.getMem_telephone()%></td>
@@ -129,22 +120,22 @@
 			<td>女</td>		
 		<%}%>
 		<td>
-		<FORM METHOD ="post" ACTION="<%=request.getContextPath()%>/back/employee/mem.do" style="margin-bottom: 0px;">
-				<input type="submit" value="修改">
-				<input type="hidden" name="mem_id"  value="${memVO.mem_id}">
-				<input type="hidden" name="mem_name"  value="${memVO.mem_name}">
-				<input type="hidden" name="mem_birthday"  value="${memVO.mem_birthday}">
-				<input type="hidden" name="mem_password"  value="${memVO.mem_password}">
-				<input type="hidden" name="mem_address"  value="${memVO.mem_address}">
-				<input type="hidden" name="mem_zipcode"  value="${memVO.mem_zipcode}">
-				<input type="hidden" name="mem_telephone"  value="${memVO.mem_telephone}">
-				<input type="hidden" name="mem_phone"  value="${memVO.mem_phone}">
-				<input type="hidden" name="mem_email"  value="${memVO.mem_email}">
-				<input type="hidden" name="mem_status"  value="${memVO.mem_status}">
-				<input type="hidden" name="good_total"  value="${memVO.good_total}">
-				<input type="hidden" name="mem_sex"  value="${memVO.mem_sex}">
-		     	<input type="hidden" name="action"	value="getOne_For_Update_emp"></FORM>
-		</td>
+<%-- 		<FORM METHOD ="post" ACTION="<%=request.getContextPath()%>/back/employee/emp.do" style="margin-bottom: 0px;"> --%>
+<!-- 				<input type="submit" value="修改"> -->
+<%-- 				<input type="hidden" name="mem_id"  value="${memVO.mem_id}"> --%>
+<%-- 				<input type="hidden" name="mem_name"  value="${memVO.mem_name}"> --%>
+<%-- 				<input type="hidden" name="mem_birthday"  value="${memVO.mem_birthday}"> --%>
+<%-- 				<input type="hidden" name="mem_password"  value="${memVO.mem_password}"> --%>
+<%-- 				<input type="hidden" name="mem_address"  value="${memVO.mem_address}"> --%>
+<%-- 				<input type="hidden" name="mem_zipcode"  value="${memVO.mem_zipcode}"> --%>
+<%-- 				<input type="hidden" name="mem_telephone"  value="${memVO.mem_telephone}"> --%>
+<%-- 				<input type="hidden" name="mem_phone"  value="${memVO.mem_phone}"> --%>
+<%-- 				<input type="hidden" name="mem_email"  value="${memVO.mem_email}"> --%>
+<%-- 				<input type="hidden" name="mem_status"  value="${memVO.mem_status}"> --%>
+<%-- 				<input type="hidden" name="good_total"  value="${memVO.good_total}"> --%>
+<%-- 				<input type="hidden" name="mem_sex"  value="${memVO.mem_sex}"> --%>
+<!-- 		     	<input type="hidden" name="action"	value="getOne_For_Update_emp"></FORM> -->
+<!-- 		</td> -->
 
 	
 	

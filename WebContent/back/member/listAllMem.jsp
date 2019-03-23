@@ -16,13 +16,37 @@ pageContext.setAttribute("list",list);
 <html>
 <head>
 <meta charset="UTF-8">
+
+<style>
+  table {
+	width: 800px;
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+  }
+  table, th, td {
+    border: 1px solid #CCCCFF;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
+  
+    #bc{
+  	width:200px;
+  	height:200px;
+  	
+  }
+  
+</style>
+
+
 </head>
 <body bgcolor="white">
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>	
 
 <div class="container-fluid">
 	<div class="row col-12">
-		<h4><a href="<%=request.getContextPath()%>/back/back_index.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回後台首頁</a></h4>
 		<c:if test="${not empty errorMsgs }">
 				<c:forEach var="message" items="${errorMsgs}">
 					<p style="color:red">${message}</p><br>
@@ -30,12 +54,12 @@ pageContext.setAttribute("list",list);
 		</c:if>
 	</div>
 	<div class="row col-12">
-		<table>
+		<table class="table table-hover">
 			<tr>
 				<th>會員編號</th>
 				<th>會員姓名</th>
 				<th>會員生日</th>
-				<th>會員密碼</th>
+<!-- 				<th>會員密碼</th> -->
 				<th>會員地址</th>
 				<th>會員郵遞區號</th>
 				<th>會員電話</th>
@@ -54,7 +78,7 @@ pageContext.setAttribute("list",list);
 					<td>${memVO.mem_id}</td>
 					<td>${memVO.mem_name}</td>
 					<td>${memVO.mem_birthday}</td>
-					<td>${memVO.mem_password}</td>
+<%-- 					<td>${memVO.mem_password}</td> --%>
 					<td>${memVO.mem_address}</td>
 					<td>${memVO.mem_zipcode}</td>
 					<td>${memVO.mem_telephone}</td>

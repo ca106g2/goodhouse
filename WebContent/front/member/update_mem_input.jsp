@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.member.model.*"%>   
-
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64" %>
 <%
   MemVO memVO = (MemVO) request.getAttribute("memVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
@@ -16,7 +16,7 @@
 </head>
 <body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp"/>	
-<h3>資料修改:</h3>
+
 <div class="lowin">
 	<div class="lowin-brand">
 		<img src="images/kodinger.jpg" alt="logo">
@@ -76,6 +76,16 @@
 					<div class="lowin-group">
 						<label>會員圖片:</label>
 						<input type="file" name="mem_picture" autocomplete="current-password" class="lowin-input">
+						<%
+		    				byte b[] = null;
+		    				String encoding = null;
+		    				b = memVO.getMem_picture();
+		    				encoding = Base64.encode(b);
+		    			%>
+	    				<img id="bc" src="data:image/jpg;base64,<%=encoding %>" width="100px" height="100px">
+						
+						
+						
 						<font color="red"><b>${errorMsgs.mem_picture}</b></font>
 					</div>
 					<div class="lowin-group">

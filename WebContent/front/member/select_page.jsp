@@ -57,9 +57,7 @@
 </head>
 <body bgcolor='white'>
 <jsp:include page="/FrontHeaderFooter/Header.jsp"/>
-<table id="table-1">
-   <tr><td><h3>會員中心</h3></td></tr>
-</table>
+
 
 <c:if test="${empty memVO}">	
 <h3>會員資料管理</h3>
@@ -103,7 +101,7 @@
 </c:if>
 <c:if test="${not empty memVO}">
 <h3>基本會員資料</h3>
-<table>
+<table class="table table-hover">
 	<tr>
 		<th>會員編號</th>
 		<th>會員姓名</th>
@@ -182,8 +180,8 @@
 <jsp:useBean id="landSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
 <!-- 0321 老師報告前跑流程隱藏-->
 
-<h3>房東管理</h3>
-<h5>若要申請房東，請先登入會員</h5>
+
+
 <c:if test="${not empty memVO}">
 <%-- 	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == 1}"> --%>
 <%-- 		<form method="post" action="<%=request.getContextPath()%>/front/landlord/addLan.jsp"> --%>

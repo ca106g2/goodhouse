@@ -10,6 +10,28 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>房東資料修改 - update_lan_input.jsp</title>
+<style>
+ #table1 { 
+
+  font-family: 微軟正黑體; 
+  font-size:16px; 
+  width:500px;
+  text-align:center;
+  margin-left:auto; 
+  margin-right:auto;
+} 
+ #table1 th { 
+  background-color: #009FCC;
+  padding:10px;
+
+  color:#fff;
+} 
+ #table1 td { 
+  padding:5px;
+} 
+
+
+</style>
 </head>
 <body>
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>
@@ -17,7 +39,7 @@
   <div class="row">
     <div class="col-8">
     	<FORM METHOD="post" ACTION="lan.do" name="form1" enctype="multipart/form-data">
-			<table>
+			<table id="table1">
 				<tr>
 					<td>房東編號:<font color=red><b>*</b></font></td>
 					<td><%=lanVO.getLan_id()%></td>
@@ -66,11 +88,19 @@
 	    				<img id="bc" src="data:image/jpg;base64,<%=encoding %>" width="100px" height="100px">
 					</td>
 				</tr>
-			</table>
-			<br>
+		<tr>
+			<td></td>
+				<td>
 			<input type="hidden" name="action" value="update">
 			<input type="hidden" name="lan_id" value="<%=lanVO.getLan_id()%>">
-			<input type="submit" value="送出修改">
+			<input type="submit" class="btn btn-secondary" value="送出修改">
+				</td>
+		</tr>
+			
+			</table>
+			<br>
+		
+		
 		</FORM>
     </div>
   </div>

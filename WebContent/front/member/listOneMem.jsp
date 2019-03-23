@@ -60,15 +60,7 @@
 <body bgcolor='white'>
 <jsp:include page="/FrontHeaderFooter/Header.jsp"/>
 
-<table id="table-1">
-	<tr><td>
-		 <h3>會員資料</h3>
-		 
-		 <h4><a href="<%=request.getContextPath()%>/front/member/select_page.jsp">回會員中心</a></h4>
-		 
-		 
-	</td></tr>
-</table>
+
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -77,7 +69,7 @@
 		</c:forEach>
 	</ul>
 </c:if>
-<table>
+<table class="table table-hover">
 	<tr>
 		<th>會員編號</th>
 		<th>會員姓名</th>
@@ -152,9 +144,7 @@
 	</tr>
 </table>
 
-<form method="post" action="<%=request.getContextPath()%>/FrontLogoutHandler">
-	<input type="submit" value="登出">
-</form>
+
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>

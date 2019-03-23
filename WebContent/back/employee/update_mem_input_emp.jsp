@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.member.model.*"%>   
-
+<%@ page import="com.sun.org.apache.xerces.internal.impl.dv.util.Base64" %>
 <%
   MemVO memVO = (MemVO) request.getAttribute("memVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
@@ -12,53 +12,42 @@
 <head>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>會員資料修改 - update_mem_input.jsp</title>
+<title>會員資料修改</title>
 <meta charset="UTF-8">
-
 <style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+ #table1 { 
+
+  font-family: 微軟正黑體; 
+  font-size:16px; 
+  width:500px;
+  text-align:center;
+  margin-left:auto; 
+  margin-right:auto;
+} 
+ #table1 th { 
+  background-color: #009FCC;
+  padding:10px;
+
+  color:#fff;
+} 
+ #table1 td { 
+  padding:5px;
+} 
+
+
 </style>
 
-<style>
-  table {
-	width: 450px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
-</style>
 
 </head>
 <body bgcolor='white'>
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>	
 <table id="table-1">
 	<tr><td>
-		 <h3>會員資料修改 - update_mem_input_emp.jsp</h3>
-		 <a href="<%=request.getContextPath()%>/back/employee/select_page.jsp">回首頁</a>
 	</td></tr>
 </table>
 
-<h3>資料修改:</h3>
-<h1><%=memVO.getMem_id()%></h1>
+
+
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
 	<ul>
@@ -69,7 +58,7 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="mem.do" name="form1" enctype="multipart/form-data">
-<table>
+<table id="table1">
 	<tr>
 		<td>會員姓名:</td>
 		<td><%=memVO.getMem_name()%></td>
@@ -112,11 +101,29 @@
 			</select>
 		</td>
 	</tr>
+<!-- 	<tr> -->
+<!-- 		<td>會員圖片:</td> -->
+<!-- 		<td><input type="file" name="mem_picture" size="45"	alt="..."/></td> -->
+<!-- 	</tr> -->
+
 	<tr>
 		<td>會員圖片:</td>
-<%-- 		<td><%= memVO.getMem_picture%></td> --%>
-		<td><input type="file" name="mem_picture" size="45"	alt="..."/></td>
-	</tr>
+					<td>
+						<input type="file" name="mem_picture" size="45"	alt="..."/>
+						<%
+		    				byte b[] = null;
+		    				String encoding = null;
+		    				b = memVO.getMem_picture();
+		    				encoding = Base64.encode(b);
+		    			%>
+	    				<img id="bc" src="data:image/jpg;base64,<%=encoding %>" width="100px" height="100px">
+					</td>
+				</tr>
+	
+	
+	
+	
+	
 	<tr>
 		<td>積分總和:</td>
 		<td><%= memVO.getGood_total()%></td>
@@ -128,10 +135,10 @@
 		<td><%= memVO.getMem_sex()%></td>
 
 	</tr>
-	
-	
-</table>
-<br>
+<br>	
+	<tr>
+		<td></td>
+		<td>	
 <input type="hidden" name="action" value="updateback">
 <input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>">
 <input type="hidden" name="mem_name" value="<%=memVO.getMem_name()%>">
@@ -147,7 +154,12 @@
 <input type="hidden" name="good_total" value="<%=memVO.getGood_total()%>">
 <input type="hidden" name="mem_sex" value="<%=memVO.getMem_sex()%>">
 
-<input type="submit" value="送出修改"></FORM>
+<input type="submit" class="btn btn-secondary" value="送出修改"></FORM>
+		</td>
+	</tr>
+
+</table>
+
 
 
 <jsp:include page="/BackHeaderFooter/Footer.jsp"/>
