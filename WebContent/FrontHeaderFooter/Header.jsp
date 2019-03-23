@@ -34,7 +34,7 @@
 		
 	}
 	.navbar{
-		background-color: #EDF9DE !important;
+/* 		background-color: #EDF9DE !important; */
 		
 		border-radius: 0 !important;
 	}
@@ -48,7 +48,7 @@
 <body>
 <!-- Feader頭 -->
 	<header class="container-fluid">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded">
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>
@@ -160,7 +160,7 @@
               
            </div>
 	</header>
-	<div style="height:100px;"></div>
+	<div style="height:120px;"></div>
 <!-- Feader尾-->
 
 
