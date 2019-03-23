@@ -54,7 +54,7 @@
 			      	<th scope="col">繳交日期</th>
 			      	<th scope="col">帳單產生日期</th>
 			      	<th scope="col">帳單繳費狀態</th>
-			      	<th scope="col">付款方式</th>
+<!-- 			      	<th scope="col">付款方式</th> -->
 			      	<th scope="col">繳費型態</th>
 			      	<th scope="col"></th>
 		    	</tr>
@@ -89,7 +89,7 @@
 						</c:if>
 					</c:forEach>
 					
-					<td>${billVO.bill_paymethod}</td>
+<%-- 					<td>${billVO.bill_paymethod}</td> --%>
 					
 					<c:forEach var="bill_PaymentType" items="${Bill_PaymentTypeMap}">
 						<c:if test="${bill_PaymentType.key eq eleConVO.bill_paymenttype}">
@@ -101,7 +101,7 @@
 						<form method="post" action="bill.do">
 							<input type="hidden" name="bill_id" value="${billVO.bill_id}"> 
 							<input type="hidden" name="action" value="getOne_For_look"> 
-							<input type="submit" value="查看" >
+							<input type="submit" value="看明細" style="font-weight:bold">
 						</form>
 					</td>
 					

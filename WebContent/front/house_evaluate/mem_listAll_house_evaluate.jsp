@@ -24,7 +24,7 @@
 </head>
 <body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
-	<div class="container-fluid">
+	<div class="container">
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
 			<font style="color:red">請修正以下錯誤:</font>
@@ -34,12 +34,18 @@
 				</c:forEach>
 			</ul>
 		</c:if>
-		<table class="table table-hover">
+		<div class="row">
+		
+		<div class="col-2"></div>
+		
+		<div class="col-8">
+		
+		<table class="table table-hover" style="font-size:20px">
 		  	<thead>
 		    	<tr>
-		      		<th scope="col">房屋評價編號</th>
-		      		<th scope="col">評價者會員姓名</th>
-		      		<th scope="col">被評價房屋名稱</th>
+<!-- 		      		<th scope="col">房屋評價編號</th> -->
+<!-- 		      		<th scope="col">評價者會員姓名</th> -->
+		      		<th scope="col">房屋名稱</th>
 		      		<th scope="col">評價等級</th>
 		      		<th scope="col">評價內容</th>
 		    	</tr>
@@ -51,16 +57,53 @@
 			<c:forEach var="House_EvaluateVO" items="${list}" >
 				<c:if test="${House_EvaluateVO.mem_id eq memVO.mem_id}">
 		    	<tr>
-		      		<th>${House_EvaluateVO.hou_eva_id}</th>
-		      		<td>${mSvc.getOneMem(House_EvaluateVO.mem_id).mem_name}</td>
+<%-- 		      		<th>${House_EvaluateVO.hou_eva_id}</th> --%>
+<%-- 		      		<td>${mSvc.getOneMem(House_EvaluateVO.mem_id).mem_name}</td> --%>
 		      		<td>${houSvc.getOneHouse(House_EvaluateVO.hou_id).hou_name}</td>
-		      		<td>${House_EvaluateVO.hou_eva_grade}</td>
+		      		
+<%-- 		      		<td id="grade">${House_EvaluateVO.hou_eva_grade}</td>  <img src="<%=request.getContextPath()%>/front/lin/star.png">--%>
+		      		<td id="grade"><img src="<%=request.getContextPath()%>/front/lin/heart_red.png"></td>
+		      		 
+		      		<script> 
+		      		 
+		      		var gradeImg = "<img>";
+		      		gradeImg.src="/front/lin/star.png";
+		      		var grade = "${House_EvaluateVO.hou_eva_grade}";
+		      		var account = grade.substr(1,1);
+		      		
+		      		console.log(account);
+		      		
+		      		window.onload = function (){
+		      			
+<%-- 		      				$('#grade').append('<img src="'<%=request.getContextPath()%>'/front/lin/heart_red.png">'); --%>
+// 		      			if(account == 1 ){
+// 		      			}else if(account == 2){
+// 		      				$('#grade').append(gradeImg,gradeImg);
+// 		      			}else if( account == 3){
+// 		      				$('#grade').append(gradeImg,gradeImg,gradeImg);
+// 		      			}else if( account == 4){
+// 		      				$('#grade').append(gradeImg,gradeImg,gradeImg,gradeImg);
+// 		      			}else {
+// 		      				$('#grade').append(gradeImg,gradeImg,gradeImg,gradeImg,gradeImg);
+// 		      			}
+		      		
+		      		
+		      		
+		      		}
+		      		
+		      		</script>
+		      		
 		      		<td>${House_EvaluateVO.hou_eva_content}</td>
 		    	</tr>
 				</c:if>
 			</c:forEach>
 		  	</tbody>
 		</table>
+		
+		</div>
+		
+		<div class="col-2"></div>
+		</div>
 	</div>
 <%-- 	<%@ include file="page2.file" %> --%>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />

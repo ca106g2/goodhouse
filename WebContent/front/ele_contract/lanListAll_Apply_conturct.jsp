@@ -45,13 +45,13 @@
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<div class="container">
 		<div lass="row justfy-content-center">
-			<table class="table table-hover">
+			<table class="table table-hover text-center" style="">
 				<thead>
 			    	<tr>
-			      		<th scope="col">申請房客</th>
+			      		<th scope="col"></th>
+			      		<th scope="col">申請人</th>
 			      		<th scope="col">房屋名稱</th>
 			      		<th scope="col">申請選項</th>
-			      		<th scope="col">申請狀態</th>
 			      		<th scope="col">申請內容</th>
 			      		<th scope="col"></th>
 			    	</tr>
@@ -62,6 +62,16 @@
 			  	<tbody>
 					<c:forEach var="appConVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">	
 			    	<tr>
+<%-- 				     <c:forEach var="AppConStatus" items="${Apply_ConturctStatusMap}"> --%>
+						<c:if test="${appConVO.app_con_status eq 's1'}">
+							<td><img src="<%=request.getContextPath()%>/front/ele_contract/images/1.png" style="weight:40px;height:40px"></td>
+						</c:if>
+<%-- 					</c:forEach> --%>
+
+						<c:if test="${appConVO.app_con_status eq 's2'}">
+							<td><img src="<%=request.getContextPath()%>/front/ele_contract/images/2.png" style="weight:40px;height:40px"></td>
+						</c:if>
+						
 				      	<td>${houSvc.getOneHouse(appConVO.hou_id).hou_name}</td>
 				      	<td>${memSvc.getOneMem(appConVO.mem_id).mem_name}</td>
 				      	
@@ -71,11 +81,6 @@
 								</c:if>
 						</c:forEach>
 						
-				      	<c:forEach var="AppConStatus" items="${Apply_ConturctStatusMap}">
-								<c:if test="${AppConStatus.key eq appConVO.app_con_status}">
-									<td>${AppConStatus.value.status_name}</td>
-								</c:if>
-						</c:forEach>
 						
 				      	<td>${appConVO.app_con_other}</td>
 				      	<td>

@@ -36,11 +36,17 @@
 			</ul>
 		</c:if>
 		
-		<table class="table table-hover">
+		<div class="row">
+		
+		<div class="col-2"></div>
+		
+		<div class="col-8">
+		
+		<table class="table table-hover" style="font-size:20px">
 		  	<thead>
 			    <tr>
-			      	<th scope="col">評論者</th>
-			      	<th scope="col">被評價房屋地址</th>
+<!-- 			      	<th scope="col">評論者</th> -->
+			      	<th scope="col">房屋名稱</th>
 			      	<th scope="col">評價等級</th>
 			      	<th scope="col">評價內容</th>
 			    </tr>
@@ -53,8 +59,8 @@
 				<c:forEach var="House_EvaluateVO" items="${list}" >
 			    <tr>
 					<c:if test="${House_EvaluateVO.hou_id eq houSvc.getOneByLanId(lanSvc.getOneLanByMemId(memVO.mem_id).lan_id).hou_id}">
-					<td>${mSvc.getOneMem(House_EvaluateVO.mem_id).mem_name}</td>
-					<td>${houSvc.getOneHouse(House_EvaluateVO.hou_id).hou_address}</td>
+<%-- 					<td>${mSvc.getOneMem(House_EvaluateVO.mem_id).mem_name}</td> --%>
+					<td>${houSvc.getOneHouse(House_EvaluateVO.hou_id).hou_name}</td>
 					<td>${House_EvaluateVO.hou_eva_grade}</td>
 					<td>${House_EvaluateVO.hou_eva_content}</td>
 					</c:if>
@@ -62,6 +68,10 @@
 				</c:forEach>
 		  	</tbody>
 		</table>
+		
+		</div>
+		<div class="col-2"></div>
+		</div>
 <%-- 	<%@ include file="page2.file" %> --%>
 	</div>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
