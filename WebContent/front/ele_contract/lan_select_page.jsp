@@ -19,6 +19,7 @@
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<!-- 工作區開始 -->
 	<div class="container">
+			
 		
 				<div class="row col-12">
 					<%-- 錯誤表列 --%>
@@ -29,43 +30,38 @@
 							</c:forEach>
 					</c:if>
 				</div>
-
-				<form method="post" action="ele_contract.do">
-					<b>輸入電子合約編號</b>
-					<input type="text" name="ele_con_id" class="btn btn-light">
-					<input type="hidden" name="action" value="getOne_front">
-					<input type="submit" value="送出" class="btn btn-outline-success">
-				</form>
 				
-				<form method="post" action="ele_contract.do">
-					<b>輸入姓名</b>
-					<input type="text" name="mem_name" class="btn btn-light">
-					<input type="hidden" name="action" value="lanGetMemEle_ContractByName">
-					<input type="submit" value="送出" class="btn btn-outline-success">
-				</form>
+				<div class="card-deck">
 				
-				<h5 class="card-title">查看所有合約</h5>
-				<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lan_listAll_ele_contract.jsp">
-					<input type="hidden" name="action" value="lan_listAll">
-					<input type="submit" value="查看所有合約" class="btn btn-outline-success ">
-				</form>
-				
-				<h5 class="card-title">合約處理</h5>
-				<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lanListAll_Apply_conturct.jsp">
-					<input type="submit" value="合約處理列表" class="btn btn-outline-success">
-				</form>
-				
-<%-- 				<c:if test="${lanSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus eq '2'}"> --%>
-				<h5 class="card-title">新增電子合約</h5>
-				<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/select_contract.jsp">
-					<input type="submit" value="新增電子合約" class="btn btn-outline-success ">
-				</form>
-<%-- 				</c:if> --%>
-				
-				<h5 class="card-title">帳單列表</h5>
-				<form method="post" action="<%=request.getContextPath()%>/front/bill/lan_listAll_bill.jsp">
-					<input type="submit" value="帳單列表" class="btn btn-outline-success ">
-				</form>
+				  <div class="card text-center ">
+				    <img src="<%=request.getContextPath()%>/images/contract.png" class="card-img-top" alt="...">
+				    <div class="card-body">
+						<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lan_listAll_ele_contract.jsp">
+							<input type="hidden" name="action" value="lan_listAll">
+							<input type="submit" value="電子合約" class="btn btn-outline-success ">
+						</form>
+				    </div>
+				  </div>
+				  
+				  <div class="card text-center">
+				    <img src="..." class="card-img-top" alt="...">
+				    <div class="card-body">
+						<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lanListAll_Apply_conturct.jsp">
+							<input type="submit" value="合約處理" class="btn btn-outline-success">
+						</form>
+				    </div>
+				  </div>
+				  
+				  <div class="card text-center">
+				    <img src="..." class="card-img-top" alt="...">
+				    <div class="card-body">
+						<form method="post" action="<%=request.getContextPath()%>/front/bill/lan_listAll_bill.jsp">
+							<input type="submit" value="房租帳單" class="btn btn-outline-success ">
+						</form>
+				    </div>
+				  </div>
+				  
+				</div>
 		
 	</div>
 

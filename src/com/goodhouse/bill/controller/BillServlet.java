@@ -285,7 +285,7 @@ public class BillServlet extends HttpServlet{
 		}
 		
 		
-		//新增第一筆帳單
+		//TODO　新增第一筆帳單
 		if("creatFirstBill".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -474,5 +474,28 @@ public class BillServlet extends HttpServlet{
 			}
 			
 		}
+		
+		//TODO 前台使用者查看單一帳單
+		if("getOne_For_look".equals(action)) {
+			
+			
+				/****1接收請求參數******************/
+				//帳單編號
+				String bill_id = req.getParameter("bill_id");
+				/******2準備查詢***********************/
+				BillService billSvc = new BillService();
+				BillVO billVO = billSvc.getOneB(bill_id);
+				
+				//Bootstrap_modal
+				boolean openModal=true;
+				req.setAttribute("openModal",openModal );
+				
+				/******3查詢完成準備轉交************************/
+				req.setAttribute("billVO", billVO);
+				String url = "/front/bill/mem_listAll_bill.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+		}
+		
 	}
 }

@@ -78,7 +78,21 @@
 								
 								<c:forEach var="BillStatus" items="${BillStatusList}">
 									<c:if test="${BillStatus.status_no eq billVO.bill_status}">
-										<td>${BillStatus.status_name}</td>
+									
+									<c:choose>
+										<c:when test="${BillStatus.status_name eq '待繳款'  or BillStatus.status_name eq '待確認待繳款' }">
+											<td id="billStatus" style="color:#FF0000">${BillStatus.status_name}</td>
+										</c:when> 
+										
+										<c:when test="${BillStatus.status_name eq '延期待繳款'  or BillStatus.status_name eq '逾期未繳款'  }">
+											<td id="billStatus" style="color:#0000FF">${BillStatus.status_name}</td>
+										</c:when>
+										
+										<c:when test="${BillStatus.status_name eq '已繳款待撥款'  or BillStatus.status_name eq '已繳款已撥款'  }">
+											<td id="billStatus" style="color:#000000">${BillStatus.status_name}</td>
+										</c:when>
+									</c:choose>
+									
 									</c:if>
 								</c:forEach>
 								

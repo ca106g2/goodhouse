@@ -48,11 +48,19 @@
 				      		<td>${houSvc.getOneHouse(House_TrackVO.hou_id).hou_address}</td>
 				      		<td>${houSvc.getOneHouse(House_TrackVO.hou_id).hou_rent}</td>
 				      		<td>
-				      			<input type="submit" class="cancle" value="取消追蹤">
+				      			<input type="submit" class="cancle" value="取消追蹤" class="btn btn-outline-success ">
 				      			<input type="hidden" name="hou_id"  value="${House_TrackVO.hou_id}">
 				      			<input type="hidden" name="mem_id"  value="${House_TrackVO.mem_id}">
 				     			<input type="hidden" name="action" value="delete">
+				     			
+								<form method="post" action="house_track.do">
+									<input type="hidden" name="hou_id" value="${House_TrackVO.hou_id}"> 
+									<input type="hidden" name="action" value="getOne_For_look"> 
+									<input type="submit" value="查看" class="btn btn-outline-success ">
+								</form>
 				      		</td>
+				      		
+				      		
 				    	</tr>	
 				    	</c:forEach>
 				    <%@ include file="page2.file" %>

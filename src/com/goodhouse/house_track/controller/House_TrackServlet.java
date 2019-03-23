@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.goodhouse.house.model.HouseService;
+import com.goodhouse.house.model.HouseVO;
 import com.goodhouse.house_track.model.House_TrackService;
 import com.goodhouse.house_track.model.House_TrackVO;
 
@@ -86,5 +88,20 @@ public class House_TrackServlet extends HttpServlet{
 			}
 		}
 		
+		//TODO 前台使用者最愛追蹤查看房屋明細
+		if("getOne_For_look".equals(action)) {
+			
+			String hou_id = req.getParameter("hou_id");
+			
+			HouseService houSvc = new HouseService();
+			HouseVO houVO = houSvc.getOneHouse(hou_id);
+			
+			
+			/******3查詢完成準備轉交************************/
+			req.setAttribute("houVO", houVO);
+			String url = "/front/lin/listHouseDetail_reserveLink.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+		}
 	}
 }

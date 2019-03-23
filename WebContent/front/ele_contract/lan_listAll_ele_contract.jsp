@@ -21,6 +21,10 @@
 <head>
 
 <style>
+	.back{
+		font-family:impact;
+		font-color:;
+	}
 
 </style>
 
@@ -34,7 +38,14 @@
 					
 	<!-- 工作區開始 -->
 
-	<div class="container-fluid">
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-2">
+				
+				<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
+					<input type="submit" value="回電子合約管理" class="btn btn-outline-success ">
+				</form>
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<font style="color: red"></font>
@@ -42,22 +53,43 @@
 							<p style="color: red">${message}</p><br>
 						</c:forEach>
 				</c:if>
+
+			</div>
+			
+			<div class="col-6">
+				<form method="post" action="ele_contract.do">
+					<input type="text" name="mem_name" class="btn btn-light" placeholder="輸入姓名查找房客合約">
+					<input type="hidden" name="action" value="lanGetMemEle_ContractByName">
+					<input type="submit" value="送出" class="btn btn-outline-success" id="sendmem">
+				</form>
+			</div>
+			
+			<div class="col-4">
+				<form method="post" action="ele_contract.do">
+					<input type="hidden" name="action" value="jumpToSelectContract">
+					<input type="submit" value="新增電子合約" class="btn btn-outline-success ">
+				</form>
+			</div>
+			
+		</div>
+				
+		<div style="margin-top:10px">
 				<%@ include file="page1.file"%><br>
 				<table class="table table-hover">
 					<thead>
 				    	<tr>
 				        	<th scope="col">合約分類名稱</th>
 				        	<th scope="col">房客姓名</th>
-				        	<th scope="col">房東姓名</th>
+<!-- 				        	<th scope="col">房東姓名</th> -->
 				        	<th scope="col">房屋名稱</th>
-				        	<th scope="col">每期租金</th>
-				        	<th scope="col">押金</th>
+<!-- 				        	<th scope="col">每期租金</th> -->
+<!-- 				        	<th scope="col">押金</th> -->
 				        	<th scope="col">租賃期限</th>
 				        	<th scope="col">租賃起訖日</th>
 				        	<th scope="col">租賃結束日</th>
 				        	<th scope="col">簽約日期</th>
 				        	<th scope="col">合約狀態</th>
-				        	<th scope="col">繳費型態</th>
+<!-- 				        	<th scope="col">繳費型態</th> -->
 				        	<th scope="col"></th>
 				      	</tr>
 				   	</thead>
@@ -67,10 +99,10 @@
 				   		<tr>
 				      		<td>${conSvc.getOneCon(eleConVO.con_id).con_name}</td>
 				      		<td>${memSvc.getOneMem(eleConVO.mem_id).mem_name}</td>
-				      		<td>${memSvc.getOneMem(lanSvc1.getOneLan(eleConVO.lan_id).mem_id).mem_name}</td>
+<%-- 				      		<td>${memSvc.getOneMem(lanSvc1.getOneLan(eleConVO.lan_id).mem_id).mem_name}</td> --%>
 				      		<td>${houSvc.getOneHouse(eleConVO.hou_id).hou_name}</td>
-				      		<td>${eleConVO.ele_rent_money}</td>
-				      		<td>${eleConVO.ele_deposit_money}</td>
+<%-- 				      		<td>${eleConVO.ele_rent_money}</td> --%>
+<%-- 				      		<td>${eleConVO.ele_deposit_money}</td> --%>
 				      		<td>${eleConVO.ele_rent_time}</td>
 				      		<td>${eleConVO.ele_rent_f_day}</td>
 				      		<td>${eleConVO.ele_rent_l_day}</td>
@@ -82,11 +114,11 @@
 								</c:if>
 							</c:forEach>
 							
-				      		<c:forEach var="Bill_PaymentType" items="${Bill_PaymentTypeMap}">
-								<c:if test="${Bill_PaymentType.key eq eleConVO.bill_paymenttype}">
-									<td>${Bill_PaymentType.value.type_name}</td>
-								</c:if>
-							</c:forEach>
+<%-- 				      		<c:forEach var="Bill_PaymentType" items="${Bill_PaymentTypeMap}"> --%>
+<%-- 								<c:if test="${Bill_PaymentType.key eq eleConVO.bill_paymenttype}"> --%>
+<%-- 									<td>${Bill_PaymentType.value.type_name}</td> --%>
+<%-- 								</c:if> --%>
+<%-- 							</c:forEach> --%>
 				      		
 				      		<td>
 								<form method="post" action="ele_contract.do" style="margin-bottom: 0px;">
@@ -107,12 +139,76 @@
 				  	</tbody>
 				</table>
 				<%@ include file="page2.file"%>
+				
+		</div>
+	</div>
+
+	<!-- Flexbox container for aligning the toasts -->
+	<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+	
+	  <!-- Then put toasts within -->
+	  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+	    <div class="toast-header">
+	      <img src="..." class="rounded mr-2" alt="...">
+	      <strong class="mr-auto">Bootstrap</strong>
+	      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+	        <span aria-hidden="true">&times;</span>
+	      </button>
+	    </div>
+	    <div class="toast-body">
+	      <%-- 錯誤表列 --%>
+	      	
+	    </div>
+	  </div>
 	</div>
 
 	<!-- 工作區結束 -->
 
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 
+<c:if test="${openModal!=null}">
+
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+				
+			<div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="myModalLabel">請選擇合約分類</h3>
+            </div>
+			
+			<div class="modal-body">
+<!-- =========================================以下為原listOne.jsp的內容========================================== -->
+               <jsp:include page="/front/ele_contract/select_contract.jsp" />
+<!-- =========================================以上為原listOne.jsp的內容========================================== -->
+			</div>
+			
+			<div class="modal-footer">
+<!--                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+		
+		</div>
+	</div>
+</div>
+
+        <script>
+    		 $("#basicModal").modal({show: true});
+        </script>
+ </c:if>
+
+
+
+
+
 
 </body>
+
+<script >
+		
+		var errorMsgs = ${errorMsgs};
+	
+	
+
+</script>
 </html>

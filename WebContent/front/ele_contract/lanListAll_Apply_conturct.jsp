@@ -5,10 +5,12 @@
 <%@ page import="com.goodhouse.apply_conturct.model.*"%>
 <%@ page import="com.goodhouse.landlord.model.*"%>
 <%@ page import="com.goodhouse.house.model.*"%>
+<jsp:useBean id="eleConSvc" scope="page" class="com.goodhouse.ele_contract.model.Ele_ContractService"/>
+<jsp:useBean id="billSvc" scope="page" class="com.goodhouse.bill.model.BillService"/>
+<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"/>
 
 <%
 	MemVO mVO = (MemVO) session.getAttribute("memVO");
-	HouseService houSvc = new HouseService();
 	LanService lanSvc = new LanService();
 	Apply_ConturctService appConSvc = new Apply_ConturctService();
 	
@@ -41,14 +43,13 @@
 </head>
 <body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
-	<div class="container-fluid">
+	<div class="container">
 		<div lass="row justfy-content-center">
 			<table class="table table-hover">
 				<thead>
 			    	<tr>
-			      		<th scope="col">電子合約編號</th>
-			      		<th scope="col">會員編號</th>
-			      		<th scope="col">房屋編號</th>
+			      		<th scope="col">申請房客</th>
+			      		<th scope="col">房屋名稱</th>
 			      		<th scope="col">申請選項</th>
 			      		<th scope="col">申請狀態</th>
 			      		<th scope="col">申請內容</th>
@@ -57,15 +58,12 @@
 			  	</thead>
 					<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"></jsp:useBean>
 					<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"></jsp:useBean>
-					<jsp:useBean id="houSvc1" scope="page" class="com.goodhouse.house.model.HouseService"></jsp:useBean>
-					<jsp:useBean id="eleConSvc" scope="page" class="com.goodhouse.ele_contract.model.Ele_ContractService"></jsp:useBean>
 				<%@ include file="page1.file"%>
 			  	<tbody>
 					<c:forEach var="appConVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">	
 			    	<tr>
-			      		<td>${appConVO.ele_con_id}</td>
+				      	<td>${houSvc.getOneHouse(appConVO.hou_id).hou_name}</td>
 				      	<td>${memSvc.getOneMem(appConVO.mem_id).mem_name}</td>
-				      	<td>${houSvc1.getOneHouse(appConVO.hou_id).hou_name}</td>
 				      	
 				      	<c:forEach var="AppConChoose" items="${Apply_ConturctChooseMap}">
 								<c:if test="${AppConChoose.key eq appConVO.app_con_content}">
@@ -94,6 +92,6 @@
 			</table>
 		</div>
 	</div>
-
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

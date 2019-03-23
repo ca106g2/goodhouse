@@ -47,8 +47,8 @@
 					<thead>
 				    	<tr>
 				      		<th scope="col">合約分類名稱</th>
-				      		<th scope="col">房客姓名</th>
-				      		<th scope="col">房東姓名</th>
+<!-- 				      		<th scope="col">房客姓名</th> -->
+<!-- 				      		<th scope="col">房東姓名</th> -->
 				      		<th scope="col">房屋名稱</th>
 				      		<th scope="col">每期租金</th>
 				      		<th scope="col">押金</th>
@@ -67,8 +67,8 @@
 						end="<%=pageIndex+rowsPerPage-1%>">
 				   		<tr>
 				      		<td>${conSvc.getOneCon(eleConVO.con_id).getCon_name()}</td>
-				      		<td>${memSvc.getOneMem(eleConVO.mem_id).mem_name}</td>
-				      		<td>${memSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</td>
+<%-- 				      		<td>${memSvc.getOneMem(eleConVO.mem_id).mem_name}</td> --%>
+<%-- 				      		<td>${memSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</td> --%>
 				      		<td>${houSvc.getOneHouse(eleConVO.hou_id).hou_name}</td>
 				      		<td>${eleConVO.ele_rent_money}</td>
 				      		<td>${eleConVO.ele_deposit_money}</td>
@@ -94,22 +94,24 @@
 									<input type="hidden" name="action" value="apply_conturct">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
 									<input type="hidden" name="appConChoose" value="a2">
-									<input class="" type="submit" value="續約" id="renewORrelease" 
-													style='display:${(eleConVO.ele_con_status eq "s2") ? "" : "none"}'>
+									<input type="submit" value="續約" id="renewORrelease" 
+										style='display:${(eleConVO.ele_con_status eq "s2") ? "" : "none"}'
+										class="btn btn-outline-success"> 
 								</form>
 								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
 									<input type="hidden" name="action" value="apply_conturct">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
 									<input type="hidden" name="appConChoose" value="a1">
-									<input class="" type="submit" value="解約" id="renewORrelease" 
-													style='display:${(eleConVO.ele_con_status eq "s2") ? "" : "none"}'>
+									<input type="submit" value="解約" id="renewORrelease" 
+										style='display:${(eleConVO.ele_con_status eq "s2") ? "" : "none"}'
+										class="btn btn-outline-success">
 								</form>
 							</td>
 							<td>
 								<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/ele_contract.do">
 									<input type="hidden" name="action" value="getOne_For_look">
 									<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
-									<input class="" type="submit" value="查看" id="eleConCancle">
+									<input class="btn btn-outline-success" type="submit" value="查看" id="eleConCancle">
 								</form>
 							</td>
 				    	</tr>

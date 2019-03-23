@@ -198,6 +198,21 @@ public class Ele_ContractServlet extends HttpServlet{
 			}
 		}
 		
+		//TODO Bootstrap_modal 用
+		if("jumpToSelectContract".equals(action)) {
+			
+			//Bootstrap_modal
+			boolean openModal = true;
+			req.setAttribute("openModal", openModal );
+			
+			RequestDispatcher successView = req
+					.getRequestDispatcher("/front/ele_contract/lan_listAll_ele_contract.jsp");
+			successView.forward(req, res);
+			return;
+			
+		}
+		
+		
 		//TODO 前台房東新增前的查詢
 		if("select_contract".equals(action)) {
 			
@@ -728,7 +743,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				}
 				
 				if(!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front/ele_contract/lan_listAll_ele_contract.jsp");
 					failureView.forward(req,res);
 					return;//程式中斷
 				}
@@ -757,7 +772,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
+							.getRequestDispatcher("/front/ele_contract/lan_listAll_ele_contract.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -771,7 +786,7 @@ public class Ele_ContractServlet extends HttpServlet{
 			} catch (Exception e) {
 				errorMsgs.add("查無資料");
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/front/ele_contract/lan_select_page.jsp");
+						.getRequestDispatcher("/front/ele_contract/lan_listAll_ele_contract.jsp");
 				failureView.forward(req, res);
 			}
 		
