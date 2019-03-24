@@ -82,40 +82,6 @@
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<%@ include file="page1.file"%>
 <div class="container">
-   <div class="carousel slide" data-ride="carousel" id="carousel-demo">
-        <div class="carousel-inner">
-        	        <div class="carousel-item active carousel-item-left">
-         			 <img class="d-block w-100" src="images/45.jpg" alt="">
-        			</div>
-        			<div class="carousel-item carousel-item-next carousel-item-left">
-         			 <img class="d-block w-100" src="images/46.jpg" alt="">
-        			</div>
-	        <c:forEach var="adVO" varStatus="s" items="${adSvc2.all}">
-				<c:forEach var="hou_VO" items="${houSvc2.all}">
-					<c:if test="${adVO2.ad_sort_id eq 'ADS0000002' and adVO2.ad_status eq '上架'}">
-							<c:if test="${adVO2.hou_id eq hou_VO.hou_id}">
-									<div class="carousel-item">
-												<form method="post" action="<%=request.getContextPath()%>/front/house/hou.do">
-													<input  class="d-block w-100" type="image" src="<%=request.getContextPath() %>/HouseServlet?hou_id=${adVO2.hou_id}&photo=1">
-													<input type="hidden" name="hou_id" value="${adVO2.hou_id}">
-													<input type="hidden" name="action" value="front_getOne_For_Display">
-									</form>
-		          				 </div>
-	   					</c:if>
-	   				</c:if>
-	          	</c:forEach>
-	        </c:forEach>
-	        
-	        <a href="#carousel-demo" class="carousel-control-prev" data-slide="prev">
-	        <span class="carousel-control-prev-icon"></span>
-	        </a>
-	        <a href="#carousel-demo" class="carousel-control-next" data-slide="next">
-	         <span class="carousel-control-next-icon"></span>
-	        </a>
-        </div>
-
-      
-    </div>
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="row">
