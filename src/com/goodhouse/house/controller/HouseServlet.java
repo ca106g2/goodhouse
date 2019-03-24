@@ -706,11 +706,13 @@ public class HouseServlet extends HttpServlet {
 		// **********************TIM寫的為了積分為了部落(以下)
 			HttpSession session = req.getSession();
 			MemVO memVO = (MemVO) session.getAttribute("memVO");
+			if(memVO!=null) {
 			String mem_id = memVO.getMem_id();
 			com.goodhouse.member.model.MemService memSvc = new com.goodhouse.member.model.MemService();
 			com.goodhouse.member.model.MemVO memVO2 = memSvc.getOneMem(mem_id);				
 			session.removeAttribute("memVO");   //*工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
 			session.setAttribute("memVO", memVO2); 
+			}
 		// **********************TIM寫的為了積分為了部落(以上)	
 			List<String> errorMsgs = new LinkedList<String>();
 
