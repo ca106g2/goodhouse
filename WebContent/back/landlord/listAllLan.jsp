@@ -77,7 +77,7 @@ pageContext.setAttribute("list",list);
 		<th>房東編號</th>
 		<th>會員編號</th>
 		<th>房東發票</th>
-		<th>房東帳號</th>
+		<th>房東戶頭</th>
 		<th>房東狀態</th>
 		<th>良民證</th>
 		<th>修改</th>

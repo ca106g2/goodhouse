@@ -99,8 +99,9 @@ pageContext.setAttribute("list",list);
 						encoding = Base64.encode(b);
 					%>
 						<td><img id="bc" src="data:image/jpg;base64,<%=encoding %>"></td>
-					<%
-						}%>
+					<%}else{ %>
+						<td></td>
+					<% } %>
 					
 					<td>${memVO.good_total}</td>
 					<c:if test="${memVO.mem_sex==1}">
