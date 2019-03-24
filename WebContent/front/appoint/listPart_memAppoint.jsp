@@ -77,33 +77,34 @@
 	</ul>
 </c:if>
 
+<script>
+		
+		navigator.geolocation.getCurrentPosition((position) =>{
+			console.log(position.coords);
+		    var pos = {
+		        lat: position.coords.latitude,
+		        lng: position.coords.longitude
+		    };
+		
+		});
+
+
+</script>
+
 <table>
 	<tr>
 		<th>預約看房日期</th>
-<!-- 		<th>預約時段</th> -->
 		<th>房東名稱</th>
 		<th>房屋地址</th>
 		<th>房租</th>
 		<th>預約狀態</th>
 		<th>取消預約</th>
+		<th>地圖導覽</th>
 	</tr>
 	<%@ include file="page1.file" %>
 	<c:forEach var="appointVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	<tr>
 		<td><fmt:formatDate value="${appointVO.hou_app_date}" pattern="yyyy-MM-dd"/></td>
-<!-- 		<td> -->
-<%-- 				<c:if test="${appointVO.hou_app_time.equals('A1')}"> --%>
-<!-- 					早上	 -->
-<%-- 				</c:if> --%>
-<%-- 				<c:if test="${appointVO.hou_app_time.equals('A2')}"> --%>
-<!-- 					下午	 -->
-<%-- 				</c:if> --%>
-<%-- 				<c:if test="${appointVO.hou_app_time.equals('A3')}"> --%>
-<!-- 					晚上	 -->
-<%-- 				</c:if> --%>
-<!-- 		</td> -->
-		
-		
 			<td><c:forEach var="lanVO" items="${lanSvc.all}">
 					<c:forEach var="memVO" items="${memSvc.all}">
                     	<c:if test="${appointVO.lan_id==lanVO.lan_id}">
@@ -149,6 +150,15 @@
 			     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}"><!-- hidden表示看不到 但因為submit的關係，所以按下按鈕後整個Form表單會一起被送出。 -->
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
+			<td>
+				<c:forEach	var="houVO" items="${houSvc.all}">
+					<c:if test="${appointVO.hou_id == houVO.hou_id }">
+					<iframe width="150" height="150"  frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAS_rBXRnvCraOtQVhz5gQHPRQA4wLeWHE&zoom=10&origin=中央大學 &destination=${houVO.hou_address}">
+ </iframe>
+					</c:if>
+				</c:forEach>				
+			</td>
+			
 		</tr>
 	</c:forEach>
 </table>

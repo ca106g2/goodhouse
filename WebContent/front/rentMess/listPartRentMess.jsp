@@ -15,16 +15,25 @@
 	String lan_id = lanVO.getLan_id();
 	
 	HouseService houSvc = new HouseService();
+	
+	
 	HouseVO houVO = houSvc.getOneByLanId(lan_id);
-	String hou_id = houVO.getHou_id();
+	String hou_id = "";%>
+<%		if(houVO != null){
+			hou_id = houVO.getHou_id();
+		}else{%>
+		<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+		<a href="<%=request.getContextPath()%>/front/index.jsp">請先申請房屋，點我回首頁!</a>
+		
+<% 		}%>
 	
-	
+<%
     RentMessService rentMessSvc = new RentMessService();
     List<RentMessVO> list = rentMessSvc.getPart(hou_id);
     pageContext.setAttribute("list",list);
 %>
 
-
+<%if(houVO != null) {%>
 <html>
 <head>
 <title>租屋問題列表 - listPartRentMess.jsp</title>
@@ -122,3 +131,4 @@
 </body>
 
 </html>
+<%}%>

@@ -15,13 +15,23 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 
 <%
+	session.setAttribute("RentMess_insert_key",new Object());
 	String hou_id = request.getParameter("hou_id");
 	HouseService houSvc = new HouseService();
 	HouseVO houVO = houSvc.getOneHouse(hou_id);
 	pageContext.setAttribute("houVO", houVO);
 	
 	String lan_id = houVO.getLan_id();
+	LanService lanSvc = new LanService();
+	LanVO lanVO = lanSvc.getOneLan(lan_id);
 	pageContext.setAttribute("lan_id", lan_id);
+	pageContext.setAttribute("lanVO", lanVO);
+	
+// 	String action ="";
+// 	if (action != null){
+// 	action = request.getParameter("insert");
+// 	pageContext.setAttribute("insert", action);
+// 	}
 %>
 
 <%
@@ -212,39 +222,31 @@ input[type="checkbox"].switch_1{
 					<div class="col-sm-4"></div>
 					<div class="col-sm-4" style="text-align: right;">
 						<div class="price">
-							<span><%=houVO.getHou_rent()%></span><span>元/月</span>
+							<span>房租:<%=houVO.getHou_rent()%></span><span>元/月</span>
 						</div>
 						<div class="addr">
-							<span><%=houVO.getHou_address()%></span>
+							<span>房屋地址:<%=houVO.getHou_address()%></span>
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-4" style="text-align: left;">
+					<div class="col-sm-6" style="text-align: left;">
 						<div class="addr">
-							<span><%=houVO.getHou_name()%></span>
+							<span>房屋名稱 :<%=houVO.getHou_name()%></span>
 						</div>
 						<div class="addr">
-							<span><%=houVO.getHou_id()%></span>
+							<span>房屋編號 :<%=houVO.getHou_id()%></span>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
-						<span class="lan">房東：</span> 
-							<span> <c:forEach var="lanVO" items="${lanSvc.all}">
-										<c:forEach var="memVO" items="${memSvc.all}">
-											<c:if test="${houVO.lan_id==lanVO.lan_id}">
-												<c:if test="${lanVO.mem_id==memVO.mem_id}">
-													<c:if test="${memVO.mem_sex == 1 }">
-			                    						${mem.mem_id}【${memVO.mem_name} - 男】
-			                    					</c:if>			
-													<c:if test="${memVO.mem_sex == 2 }">
-			                    						${mem.mem_id}【${memVO.mem_name} - 女】
-			                    					</c:if>
-												</c:if>
-										</c:if>
-									</c:forEach>
+						<span class="lan">房東 : </span> 
+							<span> 
+								<c:forEach var="memVO" items="${memSvc.all}">
+									<c:if test="${lanVO.mem_id == memVO.mem_id}">
+										${memVO.mem_name}
+									</c:if>
 								</c:forEach>
 							</span>
 					</div>
@@ -264,11 +266,6 @@ input[type="checkbox"].switch_1{
 							</div>
 							<div class="col-sm-6">
 								<span class='type'>管理費：</span> <span><%=houVO.getHou_managefee()%></span>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<span class='type'>產權：</span> <span><%=houVO.getHou_property()%></span>
 							</div>
 						</div>
 					</div>
@@ -304,9 +301,6 @@ input[type="checkbox"].switch_1{
 										<a class="nav-link" href="#references" role="tab" data-toggle="tab">預約行程</a>
 									</li>
 								</c:when>
-								<c:otherwise>
-								
-								</c:otherwise>
 							</c:choose>
 <!---======================================= 以下是慈慈的房屋評價功能 ===================================================--->						
 <%-- 							<c:if test="${memVO != null }"> --%>
@@ -352,63 +346,55 @@ input[type="checkbox"].switch_1{
 								        		<span>提問: ${rentMessVO.ren_mes_request}</span>
 								        	</div>
 								        	<div class="row">
-								        		<span>回覆: ${rentMessVO.ren_mes_response}</span>
+								        		<span>房東回覆: ${rentMessVO.ren_mes_response}</span>
 								        	</div>
 								        </div>
 								    </div>
 								   </c:forEach>
-<!-- 								    <div class="row"> -->
-<!-- 								        <div class="col-sm-2"> -->
-<!-- 								        	<div> -->
-<!-- 								        		<span>問題1</span> -->
-<!-- 								        	</div> -->
-<!-- 								        </div> -->
-<!-- 								        <div class="col-sm-10"> -->
-<!-- 								        	<div class="row"> -->
-<!-- 												<span>會員A</span> -->
-<!-- 								        	</div> -->
-<!-- 								        	<div class="row"> -->
-<!-- 								        		<span>有沒有速成Ajax的八卦?</span> -->
-<!-- 								        	</div> -->
-<!-- 								        	<div class="row"> -->
-<!-- 								        		<span>房東回覆</span> -->
-<!-- 								        	</div> -->
-<!-- 								        </div> -->
-<!-- 								    </div> -->
 							    </div>
 <%-- 							    <% if(!lan_id.equals(lan_id_mem)){%> --%>
 							    	
 							    
 								    <div class="container myContainer">
-								    	<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/rentMess/rentMess.do">
-									    	<div class="row">
-									    		<span>提出問題</span>
-									    	</div>
-									    	<div class="row">
-									    		<span>提醒您開車不喝酒，喝酒開車吃大便!</span>
-									    	</div>
-									    	<div class="row">
-									    		<div>
-									    			<textarea id="myAsk" cols=100 rows=5 name="ren_mes_request"></textarea>
-									    		</div>	
-									    	</div>
-											<div class="row">
-									    		<div class="col-sm-2"></div>
-									    		<div class="col-sm-8">
-									    			
-									    				<input  type="hidden" name="mem_id" value="${memVO.mem_id}">
-									    				<input  type="hidden" name="lan_id" value="<%=lan_id%>">
-									    				<input  type="hidden" name="hou_id" value="${houVO.hou_id }">
-									    				<input  type="hidden" name="ren_mes_time" value="<%=strDate%>">
-									    				<input  type="hidden" name="ren_mes_response" value="<%=""%>">
-										    			<input id="mySumit" class="btn btn-danger" type="submit"  value="提出問題">
-										    			<input type="hidden" name="action" value="insert">	
-										    			<input id="myClear" class="btn btn-primary" type="button" name="" value="重新填寫">
-									    			
-									    		</div>
-									    		<div class="col-sm-2"></div>
-									    	</div>
-									    </form>
+								    	<% if (memVO != null) {%>
+								    		<% if (memVO.getMem_id() != null) {%>
+								    			<% if (lanVO != null) {%>
+								    				<% if (!lanVO.getMem_id().equals( memVO.getMem_id())){%>
+												    	<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/rentMess/rentMess.do">
+													    	<div class="row">
+													    		<span>提出問題</span>
+													    	</div>
+													    	<div class="row">
+													    		<span>提醒您開車不喝酒，喝酒開車吃大便!</span>
+													    	</div>
+													    	<div class="row">
+													    		<div>
+													    			<textarea id="myAsk" cols=100 rows=5 name="ren_mes_request"></textarea>
+													    		</div>	
+													    	</div>
+															<div class="row">
+													    		<div class="col-sm-2"></div>
+													    		<div class="col-sm-8">
+													    			
+													    				<input  type="hidden" name="mem_id" value="${memVO.mem_id}">
+													    				<input  type="hidden" name="lan_id" value="<%=lan_id%>">
+													    				<input  type="hidden" name="hou_id" value="${houVO.hou_id }">
+													    				<input  type="hidden" name="ren_mes_time" value="<%=strDate%>">
+													    				<input  type="hidden" name="ren_mes_response" value="<%=""%>">
+														    			<input id="mySumit" class="btn btn-danger" type="submit"  value="提出問題">
+<%-- 														    			<% if(action != null){ %> --%>
+														    			<input type="hidden" name="action" value="insert">
+<%-- 														    			<% } %> --%>
+														    			<input id="myClear" class="btn btn-primary" type="button" name="" value="重新填寫">
+													    			
+													    		</div>
+													    		<div class="col-sm-2"></div>
+													    	</div>
+													    </form>
+											    	<% } %>
+											    <% } %>
+										    <% } %>
+										  <% } %>
 								    </div>
 <%-- 								  <% } %> --%>
 							</div>
@@ -418,8 +404,15 @@ input[type="checkbox"].switch_1{
 									<input type="hidden" name="action" value="insert">
 <!-- 									選擇要轉交的日曆頁面 -->
 <%-- 									<input type="button" value="我要預約" onClick="location.href='<%=request.getContextPath()%>/memPickReserveDate_doGet.jsp'"> --%>
-									
-									<jsp:include page="/memPickReserveDate_doGet.jsp" />
+										<% if (memVO != null) {%>
+								    		<% if (memVO.getMem_id() != null) {%>
+								    			<% if (lanVO != null) {%>
+								    				<% if (!lanVO.getMem_id().equals( memVO.getMem_id())){%>
+														<jsp:include page="/memPickReserveDate_doGet.jsp" />
+													<% } %>
+											   <% } %>
+									   		<% } %>
+										<% } %>
 
 								</div>
 							</div>
