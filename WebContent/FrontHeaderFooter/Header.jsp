@@ -21,7 +21,7 @@
 <!-- Required meta tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-<%-- <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script> --%>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/all.css">
@@ -31,8 +31,8 @@
 <style>
 	header{
 		position:fixed;
-		z-index:9990;
-		height: 120px;
+		z-index:1500;
+		height: 80px;
 		width:auto;
 		
 	}
