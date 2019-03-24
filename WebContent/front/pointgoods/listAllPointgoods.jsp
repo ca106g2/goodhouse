@@ -66,9 +66,11 @@
 		<a href="goc.do?action=carCheck" style="margin-left: 120px;margin-top: 30px;">
 		    <img src="<%=request.getContextPath() %>/front/pointgoods/images/Shopping_cart.gif" style="">
 		</a>
-		<i style="position: absolute;right: -10%;top: -15%;z-index: 994;background-color: #e94b35;border-radius: 999em;width: 37px;height: 37px;">
-			 <span class="label" style="margin-left: 5px;color: #ffffff;font-size: 1.5rem;font-weight: bold;" id="carCount"> ${countCar} </span>
-		</i>
+<%-- 		<c:if test="${not empty countCar}"> --%>
+			<i style="position: absolute;right: -10%;top: -15%;z-index: 994;background-color: #e94b35;border-radius: 999em;width: 37px;height: 37px;">
+				 <span class="label" style="margin-left: 5px;color: #ffffff;font-size: 1.5rem;font-weight: bold;" id="carCount">${countCar}</span>
+			</i>		
+<%-- 		</c:if> --%>
 		</div>
 	</div>
 	<div class="row">
@@ -254,9 +256,15 @@
 	//加入購物車
 	$(".car").click(function(){
 		var element = $(this);
-		var carCount = parseInt($("#carCount").text());
+		var carCount;
+		if($("#carCount").text() === "") {
+			carCount = 0;
+		} else {
+			carCount = parseInt($("#carCount").text());
+		}
 		var amount = parseInt($('#good_nee'+element.attr('id')).val());
-		console.log(carCount);
+// 		console.log($("#carCount").text());
+// 		console.log(carCount);
 		$.ajax({
 			type: "POST",
 			url: "pgc.do",
@@ -277,7 +285,7 @@
 					$('#good_nee'+element.attr('id')).val(1);
 					element.prev().attr('max', 1);
 					carCount = carCount + amount;
-					console.log(carCount);
+// 					console.log(carCount);
 					$("#carCount").text(carCount);
 				}
 				if(response.max > 0) {
@@ -285,7 +293,7 @@
 					swal("完成","成功加入購物車","success");
 					$('#good_nee'+element.attr('id')).val(1);
 					carCount = carCount + amount;
-					console.log(carCount);
+// 					console.log(carCount);
 					$("#carCount").text(carCount);
 				}
 				if(response.full == "true") {

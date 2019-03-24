@@ -192,7 +192,20 @@ input[type="checkbox"].switch_1{
 
 	padding: 5px;
 }
-
+.swiper-container {
+    width: 100%;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.swiper-slide {
+    background-size: cover;
+    background-position: center;
+}
+#panorama {
+    width: 600px;
+    height: 500px;
+}
 
 </style>
 </head>
@@ -202,21 +215,19 @@ input[type="checkbox"].switch_1{
 		<div class="row">
 			<div class="col-12">
 				<div class="row">
-					<div class="col-sm-4">
-						<div
-							style="background-image: url(http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=1); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
+					<!-- Swiper -->
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide swiper-no-swiping" id="panorama"></div>
+							<div class="swiper-slide" style="background-image: url(http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=2); "></div>
+							<div class="swiper-slide" style="background-image: url(http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=1); "></div>
 						</div>
-					</div>
-					<div class="col-sm-4">
-						<div
-							style="background-image: url(http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=2); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div
-							style="background-image: url(http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=3); height: 300px; background-position: center; background-repeat: no-repeat; background-size: cover;">
-						</div>
-					</div>
+						<!-- Add Pagination -->
+       					<div class="swiper-pagination"></div>
+				    	<!-- Add Arrows -->
+				    	<div class="swiper-button-next swiper-button-white"></div>
+				    	<div class="swiper-button-prev swiper-button-white"></div>
+				    </div>
 				</div>
 				<div class="row justify-content-end">
 					<div class="col-sm-4"></div>
@@ -692,11 +703,16 @@ input[type="checkbox"].switch_1{
 %>
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/back/datetimepicker/jquery.datetimepicker.css" />
+<!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/dist/css/swiper.min.css">
+<link rel="stylesheet" href="https://cdn.pannellum.org/2.4/pannellum.css"/>
 <script
 	src="<%=request.getContextPath()%>/back/datetimepicker/jquery.js"></script>
 <script
 	src="<%=request.getContextPath()%>/back/datetimepicker/jquery.datetimepicker.full.js"></script>
-
+<!-- Swiper JS -->
+<script src="<%=request.getContextPath()%>/dist/js/swiper.min.js"></script>
+<script type="text/javascript" src="https://cdn.pannellum.org/2.4/pannellum.js"></script>
 <style>
 .xdsoft_datetimepicker .xdsoft_datepicker {
 	width: 300px; /* width:  300px; */
@@ -783,5 +799,22 @@ $(function(){
 	//              return [true, ""];
 	//      }});
 	//git上傳註解用無意義
+	var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        spaceBetween: 30
+    });
+	pannellum.viewer('panorama', {
+        "type": "equirectangular",
+        "panorama": "http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=3",
+        "autoLoad": true,
+        "showControls": true,
+        "showZoomCtrl": false,
+        "showFullscreenCtrl": false,
+        "compass": false,
+        "northOffset": 247.5,
+    });
 </script>
 </html>
