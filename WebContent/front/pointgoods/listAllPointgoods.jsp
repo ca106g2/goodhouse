@@ -53,6 +53,9 @@
     top: 15%;
     z-index: 994;
     }
+   body .modal-backdrop {
+    	z-index: 10000;
+    }
 </style>
 <link href="select2/pe-icon-7-stroke.css" rel="stylesheet" />
 <link href="select2/ct-navbar.css" rel="stylesheet" />
@@ -181,7 +184,7 @@
 </div>
 <c:if test="${openModal!=null}">
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 10001;">
   <div class="modal-dialog" role="document" style="max-width:939px;">
     <div class="modal-content">
       <div class="modal-header">
