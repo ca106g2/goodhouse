@@ -50,7 +50,7 @@
     .CarCar{
         position: fixed;
     right: 7%;
-    top: 12%;
+    top: 15%;
     z-index: 994;
     }
 </style>
@@ -85,7 +85,7 @@
 				<div class="card">
 					<img src="<%=request.getContextPath() %>/PointgoodsServlet?good_id=${pointgoodsVO.good_id}" class="card-img-top img-thumbnail" style="height:253.02px;" >
 				</div>
-				<div class="card-body" style="background-color: #EDF9DE !important;">
+				<div class="card-body" style="background-color: white !important;">
 					<jsp:useBean id="favorite_goodSvc" scope="page" class="com.goodhouse.favorite_good.model.Favorite_goodService"></jsp:useBean>
 					<c:if test="${memVO != null}">
 						<img src=" ${favorite_goodSvc.getOneFavorite_good(memVO.mem_id, pointgoodsVO.good_id)!= null?'images/heart_red.png':'images/heart_white.png'}"
@@ -97,10 +97,10 @@
 					</c:if>					
 					<h5 class="card-title">${pointgoodsVO.good_nam}</h5>
 					<p class="card-text">$${pointgoodsVO.good_pri}</p>
-					<a href="listOnePointgoods.jsp?good_id=${pointgoodsVO.good_id}" class="btn btn-primary">查看詳情</a>
+					<a href="listOnePointgoods.jsp?good_id=${pointgoodsVO.good_id}" class="btn btn-outline-success">查看詳情</a>
 					<form method="post" action="pgc.do" id="carpost">
 						<div class="row" style="padding:10px;">
-								<input type='button' value='-' class="qtyminus btn btn-primary" field='good_nee${pointgoodsVO.good_id}' style="width:36.91px;" />
+								<input type='button' value='-' class="qtyminus btn btn-outline-success" field='good_nee${pointgoodsVO.good_id}' style="width:36.91px;" />
 						    	<input id="good_nee${s.index}" type='text' name='good_nee${pointgoodsVO.good_id}' value='1' class="form-control" readonly="readonly" style="width: 110px;text-align: center;" />
 							    <c:choose>
 							    	<c:when test="${buylist != null}">
@@ -110,25 +110,25 @@
 								    				<c:when test="${buylist.indexOf(pointgoodsVO) >= 0}">
 								    					<c:choose>
 															<c:when test="${buylist.get(buylist.indexOf(pointgoodsVO)).good_nee <= buylist.get(buylist.indexOf(pointgoodsVO)).good_amo}">
-																<input type='button' value='+' class="qtyplus btn btn-primary" field='good_nee${pointgoodsVO.good_id}' max='${buylist.get(buylist.indexOf(pointgoodsVO)).good_amo - buylist.get(buylist.indexOf(pointgoodsVO)).good_nee}'/>
+																<input type='button' value='+' class="qtyplus btn btn-outline-success" field='good_nee${pointgoodsVO.good_id}' max='${buylist.get(buylist.indexOf(pointgoodsVO)).good_amo - buylist.get(buylist.indexOf(pointgoodsVO)).good_nee}'/>
 															</c:when>
 															<c:otherwise>
-																<input type='button' value='+' class="qtyplus btn btn-primary" field='good_nee${pointgoodsVO.good_id}' max='${pointgoodsVO.good_amo}'/>
+																<input type='button' value='+' class="qtyplus btn btn-outline-success" field='good_nee${pointgoodsVO.good_id}' max='${pointgoodsVO.good_amo}'/>
 															</c:otherwise>
 														</c:choose>
 								    				</c:when>
 								    				<c:otherwise>
-									    				<input type='button' value='+' class="qtyplus btn btn-primary" field='good_nee${pointgoodsVO.good_id}' max='${pointgoodsVO.good_amo}'/>
+									    				<input type='button' value='+' class="qtyplus btn btn-outline-success" field='good_nee${pointgoodsVO.good_id}' max='${pointgoodsVO.good_amo}'/>
 									    			</c:otherwise>
 						    					</c:choose>
 							    			</c:when>
 							    			<c:otherwise>
-							    				<input type='button' value='+' class="qtyplus btn btn-primary" field='good_nee${pointgoodsVO.good_id}' max='${pointgoodsVO.good_amo}'/>
+							    				<input type='button' value='+' class="qtyplus btn btn-outline-success" field='good_nee${pointgoodsVO.good_id}' max='${pointgoodsVO.good_amo}'/>
 							    			</c:otherwise>
 							    		</c:choose>
 							    	</c:when>
 							    	<c:otherwise>
-									    <input type='button' value='+' class="qtyplus btn btn-primary" field='good_nee${pointgoodsVO.good_id}' max='${pointgoodsVO.good_amo}'/>
+									    <input type='button' value='+' class="qtyplus btn btn-outline-success" field='good_nee${pointgoodsVO.good_id}' max='${pointgoodsVO.good_amo}'/>
 							    	</c:otherwise>
 							    </c:choose>
 <!-- 					    當購物車數量已經達到庫存量的時候要將加入購物車鎖住 -->
