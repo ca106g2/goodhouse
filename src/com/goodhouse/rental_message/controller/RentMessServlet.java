@@ -210,7 +210,12 @@ public class RentMessServlet extends HttpServlet {
 		}
 
         if ("insert".equals(action)) { // 來自addRentMess.jsp的請求  
-			
+        	
+			if(req.getSession().getAttribute("RentMess_insert_key") == null) {
+				RequestDispatcher successView = req.getRequestDispatcher("/front/lin/listHouseDetail_reserveLink.jsp");
+				successView.forward(req, res);
+				return;
+			}
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -257,6 +262,9 @@ public class RentMessServlet extends HttpServlet {
 				}
 				
 				String ren_mes_response = req.getParameter("ren_mes_response");
+//				action = req.getParameter("action");
+//				System.out.println(action);
+//				action = "";
 				
 //				String deptno = new String(req.getParameter("deptno").trim());
 
@@ -271,8 +279,9 @@ public class RentMessServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("rentMessVO", rentMessVO); // 含有輸入格式錯誤的rentMessVO物件,也存入req
+					String url = "/front/lin/listHouseDetail_reserveLink.jsp";
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/front/lin/listHouseDetail_reserveLink.jsp");
+							.getRequestDispatcher(url);
 					failureView.forward(req, res);
 					return;
 				}
@@ -282,10 +291,10 @@ public class RentMessServlet extends HttpServlet {
 				rentMessVO = rentMessSvc.addRentMess(hou_id, mem_id, lan_id, ren_mes_time, ren_mes_request, ren_mes_response);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/front/lin/listHouseDetail_reserveLink.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // �s�W���\�����listAllRentMess.jsp
+//				String url = "/front/lin/listHouseDetail_reserveLink.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher("/front/lin/listHouseDetail_reserveLink.jsp?action="+action); // �s�W���\�����listAllRentMess.jsp
 				successView.forward(req, res);				
-				
+				req.getSession().removeAttribute("RentMess_insert_key");
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());

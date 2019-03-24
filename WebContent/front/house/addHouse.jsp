@@ -88,19 +88,19 @@
 									</div>
 								</div>
 								
-								<div class="form-group">
-									<label class="col-md-4 control-label">房屋狀態:</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-												<select  size="1" name="hou_property"class="form-control" id="exampleFormControlSelect5">
-														<option value="${param.hou_property}"disabled selected>請選擇</option>
-														<option value="已出租">已出租</option>
-														<option value="未出租">未出租</option>
-												</select>											
-										</div>
-									</div>
-								</div>
+<!-- 								<div class="form-group"> -->
+<!-- 									<label class="col-md-4 control-label">房屋狀態:</label> -->
+<!-- 									<div class="col-md-8 inputGroupContainer"> -->
+<!-- 										<div class="input-group"> -->
+<!-- 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span> -->
+<!-- 												<select  size="1" name="hou_property"class="form-control" id="exampleFormControlSelect5"> -->
+<%-- 														<option value="${param.hou_property}"disabled selected>請選擇</option> --%>
+<!-- 														<option value="已出租">已出租</option> -->
+<!-- 														<option value="未出租">未出租</option> -->
+<!-- 												</select>											 -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 								
 								<div class="form-group">
 									<label class="col-md-4 control-label">是否可炊煮:</label>
@@ -272,7 +272,7 @@
 								<%
 									LanService lanSvc = new  LanService();
 								%>	
- 
+ 							<input type="hidden" name="hou_property" value="未出租">
 							<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">	
 							<input type="hidden" name="action" value="frontinsert">								
 							<input type="submit" value="送出新增" class="btn btn-primary">

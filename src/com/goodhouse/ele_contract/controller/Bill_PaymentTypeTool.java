@@ -44,6 +44,7 @@ public class Bill_PaymentTypeTool extends HttpServlet{
 		map.put("p2", new Bill_PaymentType("p2","季繳"));
 		map.put("p3", new Bill_PaymentType("p3","半年繳"));
 		map.put("p4", new Bill_PaymentType("p4","年繳"));
+		
 		getServletContext().setAttribute("Bill_PaymentTypeMap", map);
 	}
 	

@@ -5,11 +5,11 @@
 <%@ page import="com.goodhouse.member.model.*"%>
 
 <%
-    House_EvaluateService heSvc = new House_EvaluateService();
-    List<House_EvaluateVO> list = heSvc.getAll();
-    MemVO memVO = (MemVO)session.getAttribute("memVO");
-    Collections.reverse(list);
-    pageContext.setAttribute("list",list);
+	House_EvaluateService heSvc = new House_EvaluateService();
+	List<House_EvaluateVO> list = heSvc.getAll();
+	MemVO memVO = (MemVO) session.getAttribute("memVO");
+	Collections.reverse(list);
+	pageContext.setAttribute("list", list);
 %>
 
 <!DOCTYPE html>
@@ -18,52 +18,65 @@
 <meta charset="UTF-8">
 <title>房屋評價-listAllHouse_Evaluate</title>
 <style>
- 
 </style>
 
 
 </head>
 <body>
-<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+
 	<div class="container">
-		<%-- 錯誤表列 --%>
-		<c:if test="${not empty errorMsgs}">
-			<font style="color:red">請修正以下錯誤:</font>
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li style="color:red">${message}</li>
-				</c:forEach>
-			</ul>
-		</c:if>
-		
-		<table class="table table-hover">
-		  	<thead>
-			    <tr>
-			      	<th scope="col">評論者</th>
-			      	<th scope="col">被評價房屋地址</th>
-			      	<th scope="col">評價等級</th>
-			      	<th scope="col">評價內容</th>
-			    </tr>
-		  	</thead>
-			<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService" />
-			<jsp:useBean id="mSvc" scope="page" class="com.goodhouse.member.model.MemService" />
-			<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService" />
-<%-- 		<%@ include file="page1.file" %> --%>
-		  	<tbody>
-				<c:forEach var="House_EvaluateVO" items="${list}" >
-			    <tr>
-					<c:if test="${House_EvaluateVO.hou_id eq houSvc.getOneByLanId(lanSvc.getOneLanByMemId(memVO.mem_id).lan_id).hou_id}">
-					<td>${mSvc.getOneMem(House_EvaluateVO.mem_id).mem_name}</td>
-					<td>${houSvc.getOneHouse(House_EvaluateVO.hou_id).hou_address}</td>
-					<td>${House_EvaluateVO.hou_eva_grade}</td>
-					<td>${House_EvaluateVO.hou_eva_content}</td>
-					</c:if>
-			    </tr>
-				</c:forEach>
-		  	</tbody>
-		</table>
-<%-- 	<%@ include file="page2.file" %> --%>
+
+		<div class="row justify-content-center">
+
+
+			<jsp:useBean id="houSvc" scope="page"
+				class="com.goodhouse.house.model.HouseService" />
+			<jsp:useBean id="mSvc" scope="page"
+				class="com.goodhouse.member.model.MemService" />
+			<jsp:useBean id="lanSvc" scope="page"
+				class="com.goodhouse.landlord.model.LanService" />
+
+			<div class="card">
+
+				<div class="card-header">
+					<h3>我的房屋評價</h3>
+				</div>
+
+				<div class="card-body">
+					<div class="table-responsive">
+						<table
+							class="table table-bordered table-hover mb-0 text-nowrap text-center"
+							style="font-size: 20px">
+							<tbody>
+								<tr style="background-color: #EDF9DE;">
+									<!-- 			      	<th scope="col">評論者</th> -->
+									<th scope="col">房屋名稱</th>
+									<th scope="col">評價等級</th>
+									<th scope="col">評價內容</th>
+								</tr>
+								<%-- 		<%@ include file="page1.file" %> --%>
+								<c:forEach var="House_EvaluateVO" items="${list}">
+									<tr>
+										<c:if
+											test="${House_EvaluateVO.hou_id eq houSvc.getOneByLanId(lanSvc.getOneLanByMemId(memVO.mem_id).lan_id).hou_id}">
+											<%-- 					<td>${mSvc.getOneMem(House_EvaluateVO.mem_id).mem_name}</td> --%>
+											<td>${houSvc.getOneHouse(House_EvaluateVO.hou_id).hou_name}</td>
+											<td>${House_EvaluateVO.hou_eva_grade.substring(2)}</td>
+											<td>${House_EvaluateVO.hou_eva_content}</td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<%-- 	<%@ include file="page2.file" %> --%>
 	</div>
-<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

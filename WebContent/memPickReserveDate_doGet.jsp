@@ -19,6 +19,8 @@
 
 
 <%
+	session.setAttribute("Appoint_insert_key", new Object());
+	
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	String mem_id = "";
 	if (memVO != null){
@@ -30,18 +32,15 @@
 	String hou_id = request.getParameter("hou_id");
 	HouseService houSvc = new HouseService();
 	HouseVO houVO = houSvc.getOneHouse(hou_id);
-// 	String hou_id = "HOU0000005";
 
 	String lan_id = houVO.getLan_id();
 
 	HouNoAppService houNoAppSvc = new HouNoAppService();
-// 	List<HouNoAppVO> list = houNoAppSvc.getPart("L000000005");
 	List<HouNoAppVO> list = houNoAppSvc.getPart(lan_id);
 	pageContext.setAttribute("list", list);
 %>
 <%
 	AppointService AppointSvc = new AppointService();
-// 	List<AppointVO> listAppoint = AppointSvc.getPartMem("M000000001");
 	List<AppointVO> listAppoint = AppointSvc.getPartLan(lan_id);
 	pageContext.setAttribute("listAppoint", listAppoint);
 %>
@@ -56,11 +55,8 @@
 <script type="text/javascript">
 
 var action = "insert";
-// var mem_id = "M000000001";
 var mem_id = "<%= mem_id %>";
-// var lan_id = "L000000005";
 var lan_id = "<%= lan_id %>";
-// var hou_id = "HOU0000005";
 var hou_id = "<%= hou_id %>";
 var hou_app_time = "A1";
 var app_status = "A0";

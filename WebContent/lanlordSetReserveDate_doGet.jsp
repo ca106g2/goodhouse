@@ -26,13 +26,16 @@
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	LanService lanSvc = new LanService();
 	LanVO lanVO = lanSvc.getOneLanByMemId(memVO.getMem_id());
-	String lan_id = lanVO.getLan_id();
+	String lan_id ="";
+	if(lanVO != null)
+	lan_id = lanVO.getLan_id();
 	
 	HouNoAppService houNoAppSvc = new HouNoAppService();
 // 	List<HouNoAppVO> list = houNoAppSvc.getPart("L000000001");
 	List<HouNoAppVO> list = houNoAppSvc.getPart(lan_id);
 	pageContext.setAttribute("list",list);
 %>
+	
 <%
 	AppointService AppointSvc = new AppointService();
 	
@@ -46,11 +49,17 @@
 // 	String hou_id =  request.getParameter("hou_id");
 	HouseService houSvc = new HouseService();
 	HouseVO houVO = houSvc.getOneByLanId(lan_id);
-	String hou_id = houVO.getHou_id();
-// 	String hou_id =  "HOU0000007";
+	String hou_id = "";
+	if (houVO != null){
+		hou_id = houVO.getHou_id();
+		System.out.println("TEST1= " + hou_id);
+	}else{%>
+		<a href="<%=request.getContextPath()%>/front/index.jsp">請先申請房屋，點我回到首頁</a>
+	<%}%>
 
-%>
+<%if (houVO != null){ %>
 
+<%System.out.println("TEST2= " + hou_id);%>
 <html>
 
 <head>
@@ -68,7 +77,9 @@ var action = "insert";
 // var lan_id = "L000000001";
 var lan_id = "<%= lan_id %>";
 // var hou_id = "HOU0000001";
+
 var hou_id = "<%= hou_id %>";
+
 var hou_noapp_time = "A1";
 </script>
 
@@ -79,7 +90,9 @@ var hou_noapp_time = "A1";
 <link  href="<%=request.getContextPath() %>/glDatePicker/glDatePicker.darkneon1.css"  rel="stylesheet" type="text/css">  <!-- 原版預設 -->
 <link  href="<%=request.getContextPath() %>/glDatePicker/glDatePicker.flatwhite1.css" rel="stylesheet" type="text/css">  <!-- 原版預設 -->
 <script src="<%=request.getContextPath() %>/glDatePicker/jquery.min.js"></script>
-<script src="<%=request.getContextPath() %>/glDatePicker/glDatePicker2_80precent_backup9_lan_doGet.js"></script>                                     <!-- 此版自定 -->
+<script src="<%=request.getContextPath() %>/glDatePicker/glDatePicker2_80precent_backup9_lan_doGet.js"></script>
+
+                                     <!-- 此版自定 -->
 <style>
 .parent {
 	position: relative;
@@ -149,7 +162,6 @@ a:hover, a:active {
 // 			        { date: new Date(2019, 05, 25) },
 // 			        { date: new Date(2019, 06, 25) }
 // 			    ],
-
 				<%Calendar calendar = new GregorianCalendar();%>	//建立一個GregorianCalendar物件，叫做calendar
 							
 							selectableDateRange: // 可選的日期範圍 每個月的第1天到今天前的日期無法被預約
@@ -233,8 +245,6 @@ a:hover, a:active {
 // 	 }
 //*******************************************************************
     </script>
-
-    
-    
     </body>
 </html>
+<% }%>

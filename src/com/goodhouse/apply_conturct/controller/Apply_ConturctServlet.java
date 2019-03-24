@@ -228,7 +228,7 @@ public class Apply_ConturctServlet extends HttpServlet{
 					Map<String,AppConStatus> map = (Map<String,AppConStatus>)getServletContext().getAttribute("Apply_ConturctStatusMap");
 					appConVO.setApp_con_status(map.get("s2").getStatus_no());
 				}
-				appConVO.setApp_con_other("已處理");
+				appConVO.setApp_con_other(appConVO.getApp_con_other()+"<已處理>");
 				appConSvc.updateAppC(appConVO);
 				
 				//將電子合約狀態改變

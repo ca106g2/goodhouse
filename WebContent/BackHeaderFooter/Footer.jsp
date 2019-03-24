@@ -11,6 +11,18 @@
 	.text-center{
 		background-color: #FDFEFE;
 	}
+	
+	.card-img{
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -999;
+            min-height: 100%;
+            width: 100%;
+            opacity: 0.2;
+	}
 </style>
 </head>
 <body onload="connect();" onunload="disconnect();">
@@ -19,6 +31,10 @@
 	
 	<!-- Footer頭 -->
 	 <footer class="container-fluid" style="padding-bottom:10px">
+	 <div>
+		<img src="<%=request.getContextPath()%>/images/background2.jpg"
+			class="card-img" alt="..." style="">
+	</div>
 	 
     </div>
             <div class=" text-center" style="margin-bottom:0">

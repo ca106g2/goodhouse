@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import com.goodhouse.ele_contract.model.Ele_ContractVO;
 import com.goodhouse.house.model.*;
+import com.goodhouse.member.model.MemVO;
 
 @MultipartConfig
 public class HouseServlet extends HttpServlet {
@@ -224,61 +225,6 @@ public class HouseServlet extends HttpServlet {
 					}
 
 				}
-// **********************front_insert end		
-// **********************front_getOne_For_Display
-				//TIM的 複合式查詢用
-//				if ("front_getOne_For_Display".equals(action)) {
-//					List<String> errorMsgs = new LinkedList<String>();
-//
-//					req.setAttribute("errorMsgs", errorMsgs);
-//					try {
-//						String str = req.getParameter("hou_id");
-//						if (str == null || (str.trim()).length() == 0) {
-//							errorMsgs.add("請輸入房屋編號");
-//						}
-//						if (!errorMsgs.isEmpty()) {
-//							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
-//							failureView.forward(req, res);
-//							return;
-//						}
-//						String hou_id = null;
-//						try {
-//							hou_id = new String(str);
-//						} catch (Exception e) {
-//							errorMsgs.add("房屋編號格式錯誤");
-//						}
-//						if (!errorMsgs.isEmpty()) {
-//							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
-//							failureView.forward(req, res);
-//							return;
-//						}
-//						HouseService houSvc = new HouseService();
-//						HouseVO houVO = houSvc.getOneHouse(hou_id);
-//						if (houVO == null) {
-//							errorMsgs.add("查無資料");
-//						}
-//						if (!errorMsgs.isEmpty()) {
-//							RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
-//							failureView.forward(req, res);
-//							return;
-//						}
-//						req.setAttribute("houVO", houVO);
-//						String url = "/front/house/listOneHouse.jsp";
-//						RequestDispatcher successView = req.getRequestDispatcher(url);
-//						successView.forward(req, res);
-//
-//					} catch (Exception e) {
-//						errorMsgs.add("尋找資料失敗" + e.getMessage());
-//						RequestDispatcher failureView = req.getRequestDispatcher("/front/house/select_page.jsp");
-//						failureView.forward(req, res);
-//					}
-//
-//				}
-
-// **********************fornt_getOne_For_Display end		
-		
-		
-
 //**********************insert		
 		if ("insert".equals(action)) {
 
@@ -415,33 +361,33 @@ public class HouseServlet extends HttpServlet {
 		}
 		// **********************insert end
 
-		// **********************delete
-		if ("delete".equals(action)) {// 來自listAllEmp.jsp
-
-			List<String> errorMsgs = new LinkedList<String>();
-			// Store this set in the request scope, in case we need to
-			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-
-			try {
-				/*************************** 1.接收請求參數 ***************************************/
-				String hou_id = new String(req.getParameter("hou_id"));
-				/*************************** 2.開始刪除資料 ***************************************/
-				HouseService houSvc = new HouseService();
-				houSvc.deleteHouse(hou_id);
-
-				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/back/house/listAllHouse.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-
-			} catch (Exception e) {
-				errorMsgs.add("刪除資料失敗" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back/house/listAllHouse.jsp");
-				failureView.forward(req, res);
-			}
-		}
-		// **********************delete end
+//		// **********************delete
+//		if ("delete".equals(action)) {// 來自listAllEmp.jsp
+//
+//			List<String> errorMsgs = new LinkedList<String>();
+//			// Store this set in the request scope, in case we need to
+//			// send the ErrorPage view.
+//			req.setAttribute("errorMsgs", errorMsgs);
+//
+//			try {
+//				/*************************** 1.接收請求參數 ***************************************/
+//				String hou_id = new String(req.getParameter("hou_id"));
+//				/*************************** 2.開始刪除資料 ***************************************/
+//				HouseService houSvc = new HouseService();
+//				houSvc.deleteHouse(hou_id);
+//
+//				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
+//				String url = "/back/house/listAllHouse.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, res);
+//
+//			} catch (Exception e) {
+//				errorMsgs.add("刪除資料失敗" + e.getMessage());
+//				RequestDispatcher failureView = req.getRequestDispatcher("/back/house/listAllHouse.jsp");
+//				failureView.forward(req, res);
+//			}
+//		}
+//		// **********************delete end
 
 		// **********************getOne_For_Display
 		if ("getOne_For_Display".equals(action)) {
@@ -593,7 +539,6 @@ public class HouseServlet extends HttpServlet {
 				}
 				/**********************************/
 				// 圖片一
-//				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@");//除錯標記
 				Part hou_f_picture = req.getPart("hou_f_picture");
 				byte[] pictf;
 				if (hou_f_picture.getSize() == 0) {
@@ -601,8 +546,7 @@ public class HouseServlet extends HttpServlet {
 					HouseVO houVO = houSvc.getOneHouse(hou_id);
 					pictf = houVO.getHou_f_picture();
 				} else {
-//				System.out.println(hou_f_picture);//除錯確認是否hou_f_picture有抓到記憶體位置	
-//				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@");//除錯標記
+
 					BufferedInputStream buf = new BufferedInputStream(hou_f_picture.getInputStream());
 					ByteArrayOutputStream baf = new ByteArrayOutputStream();
 					int f;
@@ -670,8 +614,6 @@ public class HouseServlet extends HttpServlet {
 				req.setAttribute("houVO", houVO);
 
 				if (!errorMsgs.isEmpty()) {
-					// req.setAttribute("houVO", houVO);
-
 					RequestDispatcher failureView = req.getRequestDispatcher("/back/house/update_hou_input.jsp");
 					failureView.forward(req, res);
 					return;
@@ -682,8 +624,7 @@ public class HouseServlet extends HttpServlet {
 
 				if("已審核".equals(hou_parkspace)) {
 					//----------------------------------------------------------積分++
-					
-					
+						//HttpSession session = req.getSession();		
 						String mem_id = new String(req.getParameter("mem_id").trim());
 						com.goodhouse.member.model.MemService memSvc = new com.goodhouse.member.model.MemService();
 						com.goodhouse.member.model.MemVO memVO = memSvc.getOneMem(mem_id);
@@ -692,9 +633,9 @@ public class HouseServlet extends HttpServlet {
 						memSvc.updatePointTot(mem_id, good_total);
 						
 						com.goodhouse.good_record.model.Good_recordService gdSvc = new com.goodhouse.good_record.model.Good_recordService();
-						gdSvc.addGood_record(mem_id, "房屋新增", 10000, new Timestamp(System.currentTimeMillis()));
-						
-			
+						gdSvc.addGood_record(mem_id, "房屋新增", 100000, new Timestamp(System.currentTimeMillis()));						
+						memVO = memSvc.getOneMem(mem_id);
+		
 					
 //********************webSocket功能啟動*****************
 						Set<Session> allSessions = (Set<Session>)getServletContext().getAttribute("HouwebSocketSession");
@@ -702,7 +643,8 @@ public class HouseServlet extends HttpServlet {
 						JSONObject housesock = new JSONObject();
 					
 						try {
-							housesock.put("houMsgs", "新屋上架推一波~~~~!!!");
+							housesock.put("houMsgs","恭喜"+memVO.getMem_name()+
+									"新屋上架喔，還在找房的人快來看看是不是您的需求，GOODHOUSE祝福您順心!"+"恭喜獲得"+100000+"積分");
 						} catch (JSONException e) {
 						e.printStackTrace();
 						}
@@ -761,6 +703,17 @@ public class HouseServlet extends HttpServlet {
 		}
 		// **********************getOne_For_Display end  <---常慶的
 		if ("front_getOne_For_Display".equals(action)) {
+		// **********************TIM寫的為了積分為了部落(以下)
+			HttpSession session = req.getSession();
+			MemVO memVO = (MemVO) session.getAttribute("memVO");
+			if(memVO!=null) {
+			String mem_id = memVO.getMem_id();
+			com.goodhouse.member.model.MemService memSvc = new com.goodhouse.member.model.MemService();
+			com.goodhouse.member.model.MemVO memVO2 = memSvc.getOneMem(mem_id);				
+			session.removeAttribute("memVO");   //*工作2: 看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
+			session.setAttribute("memVO", memVO2); 
+			}
+		// **********************TIM寫的為了積分為了部落(以上)	
 			List<String> errorMsgs = new LinkedList<String>();
 
 			req.setAttribute("errorMsgs", errorMsgs);

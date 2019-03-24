@@ -27,7 +27,7 @@
 		  </div>
 		  
  		  <div class="col-sm-4"> 
- 		    <div class="card text-center">
+ 		    <div class="card text-center border-light mb-3">
  		    	<div class="col-auto">
 			    	<img class="card-img-left" src="<%=request.getContextPath()%>/images/back_emp.png" alt="Card image cap" style="width:50%">
 	            </div> 
@@ -40,7 +40,7 @@
  		  </div> 
  		  
 		  <div class="col-sm-4">
-		    <div class="card text-center">
+		    <div class="card text-center border-light mb-3">
 		    	<div class="col-auto">
 			    	<img class="card-img-left" src="<%=request.getContextPath()%>/images/house2.png" alt="Card image cap" style="width:50%">
 	            </div> 
@@ -56,9 +56,9 @@
 		<div class="row" style="margin:15px">
 		
 		  <div class="col-sm-4">
-		    <div class="card text-center">
+		    <div class="card text-center border-light mb-3">
 		    	<div class="col-auto">
-			    	<img class="card-img-left" src="<%=request.getContextPath()%>/images/back_emp.png" alt="Card image cap" style="width:50%">
+			    	<img class="card-img-left" src="<%=request.getContextPath()%>/images/ad.png" alt="Card image cap" style="width:50%">
 	            </div> 
 		      <div class="card-body">
 		        <h1 class="card-title">廣告管理</h1>
@@ -68,7 +68,7 @@
 		  </div>
 		  
 			  <div class="col-sm-4">
-			    <div class="card text-center">
+			    <div class="card text-center border-light mb-3">
 			    
 			    	<div class="col-auto">
 			    		<img class="card-img-left" src="<%=request.getContextPath()%>/images/contract.png" alt="Card image cap" style="width:50%">
@@ -84,7 +84,7 @@
 			  </div>
 		  
 			  <div class="col-sm-4">
-			    	<div class="card text-center">
+			    	<div class="card text-center border-light mb-3">
 				    	<div class="col-auto">
 				    		<img class="card-img-left" src="<%=request.getContextPath()%>/images/shop.png" alt="Card image cap" style="width:50%">
 		            	</div> 

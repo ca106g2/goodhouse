@@ -276,6 +276,14 @@ public class AppointServlet extends HttpServlet {
 		}
 
         if ("insert".equals(action)) { // 來自addAppoint.jsp的請求  
+        	System.out.println("TEST-a1");
+        	if(req.getSession().getAttribute("Appoint_insert_key") == null) {
+        		System.out.println("TEST-a2");
+        		String url = "/front/appoint/listPart_memAppoint.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllAppoint.jsp
+				successView.forward(req, res);
+				return;
+        	}
         	System.out.println("TEST1");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -285,6 +293,7 @@ public class AppointServlet extends HttpServlet {
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				System.out.println("TEST2");
+				System.out.println("TEST-a3");
 				
 				
 //				String mem_id = (String)session.getAttribute("mem_id");
@@ -364,6 +373,7 @@ public class AppointServlet extends HttpServlet {
 				String url = "/front/appoint/listPart_memAppoint.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllAppoint.jsp
 				successView.forward(req, res);
+				req.getSession().removeAttribute("Appoint_insert_key");
 				
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
