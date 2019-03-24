@@ -36,6 +36,33 @@
         } 
     }
     </script>
+    
+    <style>
+    
+#table2 {
+	font-family:Microsoft JhengHei;;
+	font-size: 16px;
+	width: 1200px;
+	text-align: center;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+th {
+	background-color: #009FCC;
+	padding: 10px;
+	color: #fff;
+
+}
+
+td {
+
+	padding: 5px;
+}
+    
+    
+    </style>
 </head>
 <body bgcolor='white'>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -64,8 +91,10 @@
 	</c:forEach>
 </select>
 			 -->
+<br>
+<br>
 <form method="post" action="ad.do" name="form1" enctype="multipart/form-date">
-	<table>
+	<table id="table2">
 		<tr>
 			<td>廣告類別</td>
 			<td>
@@ -124,18 +153,22 @@
 	<tr>
 		<td>廣告刊登日:</td>
 		<td><input type="text" name="ad_date" id="f_date1"></td>
+	</tr>
+		<tr>
+		<td></td>
+		<td>
+			<%
+				LanService lanSvc = new  LanService();
+			%>	
+
+			<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">
+			<input type="hidden" name="action" value="front_insert">
+			<input type="submit" class="btn btn-secondary" value="送出新增">
+		</td>
+		
 	</tr>	
 	</table>
 <br>
-<%
-	LanService lanSvc = new  LanService();
-%>	
-
-<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">
-
-<input type="hidden" name="action" value="front_insert">
-<input type="submit" value="送出新增">
-
 </form>
 
 

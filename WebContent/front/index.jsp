@@ -126,7 +126,7 @@
 								<span class="house_search">地址搜尋</span>
 							</div>
 							<div class="card-body">
-								<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do" >
+								<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/house/hou.do" >
 									<div class="input-group">
 										<input type="text" class="form-control"	placeholder="Search this house" name="hou_address">
 											<div class="input-group-append">
@@ -140,7 +140,7 @@
 						<div class="card w-75">
 							<div class="card-header">房型分類搜尋</div>
 							<div class="card-body">
-								<form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do">
+								<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/house/hou.do">
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check1"> <input
 											type="radio" class="form-check-input" id="check1"
@@ -175,7 +175,7 @@
 						<div class="card w-75">
 							<div class="card-header">地區分類搜尋</div>
 							<div class="card-body">
-								<form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do">
+								<form METHOD="post" ACTION="<%=request.getContextPath()%>/front/house/hou.do">
 									<div class="form-check-inline">
 										<label class="form-check-label" for="check5"><input
 											type="radio" class="form-check-input" id="check5"
@@ -213,7 +213,7 @@
 								<span class="house_search">價錢搜尋</span>
 							</div>
 							<div class="card-body">
-								<form	METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do">								
+								<form	METHOD="post" ACTION="<%=request.getContextPath()%>/front/house/hou.do">								
 										<div class="input-group">
 											<input type="text" class="form-control" placeholder="搜尋金額以下房屋" name="hou_rent">
 												<div class="input-group-append">
@@ -240,7 +240,7 @@
 										<div class="card-body" style="height: 170px;">
 											<h5 class="card-title">${houVO.hou_name}</h5>
 											<p class="card-text">${houVO.hou_rent}</p>
-										<Form METHOD="post" ACTION="<%=request.getContextPath()%>/back/house/hou.do"> 
+										<Form METHOD="post" ACTION="<%=request.getContextPath()%>/front/house/hou.do"> 
 											<input type="hidden" name="hou_id" value="${houVO.hou_id}">
 											<input type="hidden" name="action" value="front_getOne_For_Display">
 											<input type="submit" value="查看詳情" >

@@ -84,6 +84,7 @@ div{
 	 		<td>${houVO.hou_cook}</td>
 	 		<td>${houVO.hou_address}</td>
 			<td>
+			<input type="hidden" name="mem_id" value="${memVO.mem_id}">
 			<form method="post" action="<%=request.getContextPath()%>/front/house/hou.do" style="margin-bottom: 0px;">
 			<input type="submit" value="去看看">
 			<input type="hidden" name="hou_id" value="${houVO.hou_id}">
