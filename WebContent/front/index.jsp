@@ -75,8 +75,8 @@
 /*   		width : 50%; */
 /*     } */
   .swiper-container {
-        width: 100%;
-        height: 550px;
+        width: 90%;
+        height: 450px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -98,12 +98,7 @@
       -webkit-align-items: center;
       align-items: center;
     }
-    element.style {
-    background-repeat: no-repeat;
-    background-image: url(http://localhost:8081/<%=request.getContextPath() %>/HouseServlet?hou_id=${adVO2.hou_id}&photo=1);
-    margin-right: 30px;
-    background-size: 100%;
-}
+
 </style>
 </head>
 <body>

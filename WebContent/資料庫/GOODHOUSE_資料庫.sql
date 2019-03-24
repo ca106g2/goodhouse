@@ -307,11 +307,17 @@ HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_
 VALUES 
 ('HOU0000001','高級學生套房出租','套房','4坪','未出租','已審核','是','0','台北市士林區延平北路五段163巷35弄27號
 ','L000000001',4000,load_blob('1.jpg'),load_blob('2.jpg'),load_blob('3.jpg'),'房源描述
+
 ※本處套房租金包含水費、網路費、第四台、每月至少省2000元以上，不景氣中房東咬牙苦撐拼出租！！
+
 ※套房內可養寵物，但請保持環境清潔及住戶安寧，套房內皆附雙人床組，二人同住絕不加價，半年內之短租賃每月加收1000元！！
+
 ※本處套房室內禁止使用瓦斯炊具、存放危險物品，且禁止任何違法行為，並限制需有正當職業上班族或學生才可承租！！
+
 ※套房皆有獨立電錶，電費照錶計價，絕不加收其它費用，二人同租不加價，學生出租、長期租屋、房租半年或一年一付皆有優惠！！
+
 ※本處套房公共區域有專人負責清潔，房間設備故障皆有師傅即報即休，公用陽台有全自動洗衣機供房客免費使用！！
+
 ※本處套房皆為房東委託代理人自租，絕非仲介或二房東，看屋不論是否承租，絕不收取任何服務或仲介費用，歡迎來電預約看屋！！');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
@@ -319,13 +325,20 @@ HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE,
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000002','青埔聯上世界 全新裝潢景觀住家2房2廳','套房','17.36坪','未出租','已審核','是','0','桃園市大園區高鐵南路一段109號','L000000002',33000,load_blob('4.jpg'),load_blob('5.jpg'),load_blob('6.jpg'),'房源描述
+
 一.捷運到站就到家，距高鐵·捷運站走路三分鐘，公車站牌30秒(下樓即到)。
+
 二.全新設計風優雅小豪宅，打造屬於你的時尚生活。
 刷卡門禁，附監視保全(24小時監控錄影保全系統)、個人信箱，單純又安全
+
 三.量身訂做專屬玄關式鞋櫃，(室外禁止放鞋)、及超大衣櫃、大理石造型電視牆、壁櫃、抽屜等超級收納，美感與機能同時呈 現。(絕不會像樣品屋一住即亂，真正使你住的清雅，收的方便)
+
 四.獨立陽台附洗衣機、全新裝潢及家具、乾濕分離浴室(浴缸)、電器齊全(電視、冰箱、系統廚房)
+
 五.公共設施齊全有接待大廳、游泳池、健身房、遊戲區、閱讀區、影視廳 !
+
 六.住家位於13樓風景優美，採光、通風良好，附寬敞地下車位
+
 屋主諳日文，歡迎來電洽詢');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
@@ -333,19 +346,26 @@ HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE,
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000003','高爾夫全新公寓出租','公寓','45.40坪','未出租','已審核','是','0','澎湖縣馬公市貿商街75號 ','L000000003',98000,load_blob('7.jpg'),load_blob('8.jpg'),load_blob('9.jpg'),'馬公海灘，距離飛機場有1小時車程，位於情人港的懸崖頂端，設有1間享有迷人海景的景色。可以在游泳池畔沐浴陽光。
+
 設有所有房型均配有衛星電視、免費WiFi和迷你吧及24小時前台和免費停車場。
+
 除了網球場外，酒店還提供各種探險和休閒設施。戶外活動包括衝浪課程、充氣艇、滑梯和射箭。');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
-('HOU0000004','超級城市①３Ｆ▎近樹林火車站','套房','10.46坪','未出租','已審核','否','500','新北市新莊區樹新路222號','L000000004',30000,load_blob('10.jpg'),load_blob('11.jpg'),load_blob('12.jpg'),'房源描述
-▎適各行各業辦公室 	車位  平面雙車各+3000元／月
-■□交通便利-近公車/交流道/車站，戶外景觀佳，視野採光極佳，格局方正、通風良好，室內空間寬敞，開放空間彈性好規劃
-§ 位便利生活圈，鄰購物中心及傳統市集商場、綠地公園，近多所優質學區。
-§ 生活機能便利：餐廳小吃、各式商店林立，近大型購物中心及醫療院所僅數分鐘。
-§ 交通便捷-近公車/交流道/車站/客運等四通八達。');
+('HOU0000004','超級城市3F近樹林火車站','套房','10.46坪','未出租','已審核','否','500','新北市新莊區樹新路222號','L000000004',30000,load_blob('10.jpg'),load_blob('11.jpg'),load_blob('12.jpg'),'房源描述
+
+適各行各業辦公室 	車位  平面雙車各+3000元／月
+
+交通便利-近公車/交流道/車站，戶外景觀佳，視野採光極佳，格局方正、通風良好，室內空間寬敞，開放空間彈性好規劃
+
+位便利生活圈，鄰購物中心及傳統市集商場、綠地公園，近多所優質學區。
+
+生活機能便利：餐廳小吃、各式商店林立，近大型購物中心及醫療院所僅數分鐘。
+
+交通便捷-近公車/交流道/車站/客運等四通八達。');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
@@ -359,9 +379,13 @@ HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE,
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000006','新莊建中街獨立套房☆捷運新莊站步行5分鐘','套房','13.36坪','未出租','已審核','是','200','新北市新莊區建中街82巷19號','L000000006',9200,load_blob('16.jpg'),load_blob('17.jpg'),load_blob('18.jpg'),'房源描述
+
 ※本處套房租金包含水費、網路費、第四台、每月至少省2000元以上，不景氣中房東咬牙苦撐拼出租！！
+
 ※套房內可養寵物，但請保持環境清潔及住戶安寧，套房內皆附雙人床組，二人同住絕不加價，半年內之短租賃每月加收1000元！！
+
 ※本處套房室內禁止使用瓦斯炊具、存放危險物品，且禁止任何違法行為，並限制需有正當職業上班族或學生才可承租！！
+
 ※套房皆有獨立電錶，電費照錶計價，絕不加收其它費用，二人同租不加價，學生出租、長期租屋、房租半年或一年一付皆有優惠！！');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
@@ -369,9 +393,13 @@ HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE,
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000007','新成屋/大樓管理/屋主自租','公寓','20.47坪','未出租','已審核','否','200','新北市三重區環河南路118號','L000000007',21000,load_blob('19.jpg'),load_blob('20.jpg'),load_blob('21.jpg'),'房源描述
+
 一.面向淡水河，視野遼闊。
+
 二.離捷運站近，附近學校，市場，公園，生活機能方便。
+
 三.新交屋，所有家具都是新的，住起來就是舒服。（麻煩房客要愛惜房子）
+
 四.水電費依帳單繳納。');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
@@ -379,7 +407,9 @@ HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE,
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000008','臻美近錦興國小~台茂','公寓','52.46坪','未出租','已審核','否','200','桃園市蘆竹區南平街','L000000008',23000,load_blob('22.jpg'),load_blob('23.jpg'),load_blob('24.jpg'),'房源描述
+
 ▎三房一和室二廳二衛
+
 豐富的休閒設施：■健身房 ■視聽中心 ■兒童遊戲區 ■撞球室 ■閱覽室 ■中庭花園
 ');
 INSERT INTO HOUSE 
@@ -394,33 +424,52 @@ HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE,
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000010','板橋富山街近家樂福※含水、網路、第四台','公寓','20.46坪','未出租','已審核','是','200','新北市板橋區富山街6巷3號5樓B室','L000000010',7500 ,load_blob('28.jpg'),load_blob('29.jpg'),load_blob('30.jpg'),'房源描述
-☆本處套房租金包含水費、網路費、第四台，每月至少省２０００元以上，不景氣中房東咬牙苦撐搶拼出租！！
-★套房內可養寵物，但請保持環境清潔及住戶安寧；套房內皆附雙人床組，二人同住絕不加價；半年內之短期租賃每月須加收１０００元！！
-☆本處套房室內禁止使用瓦斯炊具、存放危險物品，且禁止任何違法行為，並限制有正當職業之上班族或學生承租！！
-★套房皆有獨立電錶，電費照錶計收，絕不加收其他費用；二人同住不加價；學生租屋、長期租屋、房租半年或一年一付皆有優惠！！
-☆本處套房公共區域有專人負責清潔，房間設備故障皆有師傅即報即修，公用陽台有全自動洗衣機供房客免費使用！！
-★本處套房皆為房東委託代理人自租，絕非仲介或二房東，看屋不論是否承租，絕對不收取任何服務或仲介費用，歡迎來電預約看屋！！');
 
+☆本處套房租金包含水費、網路費、第四台，每月至少省２０００元以上，不景氣中房東咬牙苦撐搶拼出租！！
+
+★套房內可養寵物，但請保持環境清潔及住戶安寧；套房內皆附雙人床組，二人同住絕不加價；半年內之短期租賃每月須加收１０００元！！
+
+☆本處套房室內禁止使用瓦斯炊具、存放危險物品，且禁止任何違法行為，並限制有正當職業之上班族或學生承租！！
+
+★套房皆有獨立電錶，電費照錶計收，絕不加收其他費用；二人同住不加價；學生租屋、長期租屋、房租半年或一年一付皆有優惠！！
+
+☆本處套房公共區域有專人負責清潔，房間設備故障皆有師傅即報即修，公用陽台有全自動洗衣機供房客免費使用！！
+
+★本處套房皆為房東委託代理人自租，絕非仲介或二房東，看屋不論是否承租，絕對不收取任何服務或仲介費用，歡迎來電預約看屋！！');
+INSERT INTO HOUSE 
+(HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
+HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
+HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 
 VALUES 
 ('HOU0000011','頂級設計師套房','套房','4坪','未出租','已審核','是','0','台北市信義區松仁路','L000000001',4000,load_blob('31.jpg'),load_blob('32.jpg'),load_blob('33.jpg'),'房源描述
+
 全新裝潢套房出租
+
 隔壁就是萬坪公園運動中心
+
 附近就有很多停車格
+
 坐捷運搭公車也很方便
-超商 夜市 公園...食衣住行機能好
+
+超商、夜市、公園、食衣住行、機能好
+
 位於2樓 爬一層就到家
+
 設有電子鎖及監視器 出入單純又安全
-全新裝潢 設備齊全 讓您入住方便 安心又放心
-');
+
+全新裝潢 設備齊全 讓您入住方便 安心又放心');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000012','【富春居】天母酒店式公寓-找房達人','套房','17.36坪','未出租','已審核','是','0','台北市士林區中山北路七段219巷8號','L000000002',33000,load_blob('34.jpg'),load_blob('35.jpg'),load_blob('36.jpg'),'房源描述
+
 本社區導入酒店公寓的管理，融合Resort與商務的雙重需求，渡假所需的貼心尊榮禮遇，
+
 商旅在意的準確客製均完美到位。除接待大廳，另規劃交誼廳、休閒娛樂館、空中花園、
+
 泳池、健身房、瑜珈室等休閒設施。居住空間以精品飯店為設計依規，呈現精緻優雅的裝潢品味');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
@@ -428,58 +477,71 @@ HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE,
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000013','近台北醫學大學好評公寓雅房~~急租','公寓','45.40坪','未出租','已審核','是','0','台北市信義區吳興街281巷45號3樓','L000000003',98000,load_blob('37.jpg'),load_blob('38.jpg'),load_blob('39.jpg'),'房源描述
+
 親愛的房客您好：
+
 房屋整潔、乾淨，陽光充足，後面有洗衣房可曬衣服
+
 周邊生活機能超好，附近都是吃的，離北醫走路5分鐘，生活品質、治安良好、交通去哪都方便。
+
 免費無線網路快速，包水不包電
-非常適合學生、北醫上班族、服務業者
-');
+
+非常適合學生、北醫上班族、服務業者');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000014','近交易村商務中心套房','套房','10.46坪','未出租','已審核','否','500','台北市大安區忠孝東路四段142號','L000000004',30000,load_blob('40.jpg'),load_blob('41.jpg'),load_blob('42.jpg'),'房源描述
+
 跟著網路上或朋友的名牌消息聽膩了嗎?
+
 想要自己累積實力找尋自己的獲利交易模式嗎?
-自己在家看盤沒有人可以互相交流切磋嗎?
-');
+
+自己在家看盤沒有人可以互相交流切磋嗎?');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000015','一般套房出租~~限制女性','套房','10.4坪','未出租','已審核','否','500','桃園市八德區中山路331巷43號','L000000005',8000,load_blob('43.jpg'),load_blob('44.jpg'),load_blob('45.jpg'),'房源描述
+
 鄰近新莊捷運站、新莊廟街夜市、新月橋、集交通、休閒、美景於一處的高樓層景觀宅、
-室內裝潢溫馨、附大部分家具家電之新大樓、另有車位可租
-');
+
+室內裝潢溫馨、附大部分家具家電之新大樓、另有車位可租');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000016','新莊廟街新月橋、溫馨裝潢景觀宅','套房','13.36坪','未出租','已審核','是','200','新北市新莊區新泰路2號','L000000006',9200,load_blob('46.jpg'),load_blob('47.jpg'),load_blob('48.jpg'),'房源描述
+
 臺北晶麒座落於萬華區康定路上．緊鄰龍山寺捷運站約600M捷運西門町站750M距離的豪華兩房一廳，
-大樓大廳宏偉氣派，門禁管理完善的五星級飯店式經營， 
-');
+
+大樓大廳宏偉氣派，門禁管理完善的五星級飯店式經營');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000017','新莊站全新機能美套，獨洗，生活機能好','公寓','20.47坪','未出租','已審核','否','200',' 新北市新莊區公園路 ','L000000007',21000,load_blob('49.jpg'),load_blob('50.jpg'),load_blob('51.jpg'),'房源描述
+
 全新裝潢套房出租
+
 隔壁就是萬坪公園運動中心
+
 附近就有很多停車格
+
 坐捷運搭公車也很方便
-超商 夜市 公園...食衣住行機能好
-');
+
+超商 夜市 公園...食衣住行機能好');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000018','眺望圓山飯店樓中樓','公寓','52.46坪','未出租','已審核','否','200','台北市士林區重慶北路四段165號9樓之2','L000000008',23000,load_blob('52.jpg'),load_blob('53.jpg'),load_blob('54.jpg'),'房源描述
+
 屋況新有整理
 樓中樓好視野');
 INSERT INTO HOUSE 
@@ -488,23 +550,33 @@ HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE,
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000019','永和博愛藝術街套房出租、捷運頂溪站三分鐘','公寓','35.40坪','未出租','已審核','否','500',' 新北市永和區博愛街16之7號4樓','L000000009',62000 ,load_blob('55.jpg'),load_blob('56.jpg'),load_blob('57.jpg'),'房源描述
+
 捷運/公車3分鐘 上班上課超方便 
+
 近頂溪捷運站藝術街套房，特色如下
+
 一.格局方正，設備齊全好用
+
 二.水泥格間安全性佳，住戶素質高
+
 三.備冷氣,電視,冰箱,洗衣機,衣櫃,床組,書桌
-四.免費光纖100M寬頻，水費等不另收費
-');
+
+四.免費光纖100M寬頻，水費等不另收費');
 INSERT INTO HOUSE 
 (HOU_ID, HOU_NAME, HOU_TYPE, HOU_SIZE, HOU_PROPERTY, 
 HOU_PARKSPACE, HOU_COOK, HOU_MANAGEFEE, 
 HOU_ADDRESS, LAN_ID, HOU_RENT, HOU_F_PICTURE, HOU_S_PICTURE, HOU_T_PICTURE, HOU_NOTE)
 VALUES 
 ('HOU0000020','台電大樓站5號出口3分鐘','套房','20.46坪','未出租','已審核','是','200','台北市中正區羅斯福路三段128巷25號','L000000010',7500 ,load_blob('58.jpg'),load_blob('59.jpg'),load_blob('60.jpg'),'房源描述
+
 水費$100/月
+
 電度一度5元
+
 禁養寵物
+
 禁止房內抽煙
+
 沒有對外窗, 但有2部抽風機');
 
 INSERT INTO HOUSE 
@@ -627,7 +699,7 @@ VALUES
 INSERT INTO AD
 (AD_ID,LAN_ID,HOU_ID,AD_DATE,AD_SORT_ID,AD_STATUS,AD_FORFREE,AD_STATUE,AD_PAYMETHOD)
 VALUES
-('AD00000002','L000000002','HOU0000002',to_date('2019-01-22','yyyy-mm-dd'),'ADS0000001','上架','走路離超商超市很近','已收','無');
+('AD00000002','L000000002','HOU0000002',to_date('2019-01-22','yyyy-mm-dd'),'ADS0000002','上架','走路離超商超市很近','已收','VISA金融卡');
 INSERT INTO AD
 (AD_ID,LAN_ID,HOU_ID,AD_DATE,AD_SORT_ID,AD_STATUS,AD_FORFREE,AD_STATUE,AD_PAYMETHOD)
 VALUES
@@ -635,19 +707,19 @@ VALUES
 INSERT INTO AD
 (AD_ID,LAN_ID,HOU_ID,AD_DATE,AD_SORT_ID,AD_STATUS,AD_FORFREE,AD_STATUE,AD_PAYMETHOD)
 VALUES
-('AD00000004','L000000004','HOU0000004',to_date('2019-01-02','yyyy-mm-dd'),'ADS0000002','上架','窗戶多，自然光充裕，通風良好','已收','VISA金融卡');
+('AD00000004','L000000004','HOU0000004',to_date('2019-01-02','yyyy-mm-dd'),'ADS0000001','上架','窗戶多，自然光充裕，通風良好','已收','無');
 INSERT INTO AD
 (AD_ID,LAN_ID,HOU_ID,AD_DATE,AD_SORT_ID,AD_STATUS,AD_FORFREE,AD_STATUE,AD_PAYMETHOD)
 VALUES
-('AD00000005','L000000005','HOU0000005',to_date('2019-01-01','yyyy-mm-dd'),'ADS0000002','上架','門前就有主要公車站','已收','信用卡');
+('AD00000005','L000000005','HOU0000005',to_date('2019-01-01','yyyy-mm-dd'),'ADS0000001','上架','門前就有主要公車站','已收','無');
 INSERT INTO AD
 (AD_ID,LAN_ID,HOU_ID,AD_DATE,AD_SORT_ID,AD_STATUS,AD_FORFREE,AD_STATUE,AD_PAYMETHOD)
 VALUES
-('AD00000006','L000000006','HOU0000006',to_date('2018-12-28','yyyy-mm-dd'),'ADS0000002','上架','歡迎短期或月租，租金另議','已收','信用卡');
+('AD00000006','L000000002','HOU0000012',to_date('2018-12-28','yyyy-mm-dd'),'ADS0000002','上架','歡迎短期或月租，租金另議','已收','信用卡');
 INSERT INTO AD
 (AD_ID,LAN_ID,HOU_ID,AD_DATE,AD_SORT_ID,AD_STATUS,AD_FORFREE,AD_STATUE,AD_PAYMETHOD)
 VALUES
-('AD00000007','L000000007','HOU0000007',to_date('2019-02-05','yyyy-mm-dd'),'ADS0000001','上架','遙控LED情境彩色燈','已收','無');
+('AD00000007','L000000007','HOU0000007',to_date('2019-02-05','yyyy-mm-dd'),'ADS0000002','上架','遙控LED情境彩色燈','已收','信用卡');
 INSERT INTO AD
 (AD_ID,LAN_ID,HOU_ID,AD_DATE,AD_SORT_ID,AD_STATUS,AD_FORFREE,AD_STATUE,AD_PAYMETHOD)
 VALUES
@@ -659,7 +731,7 @@ VALUES
 INSERT INTO AD
 (AD_ID,LAN_ID,HOU_ID,AD_DATE,AD_SORT_ID,AD_STATUS,AD_FORFREE,AD_STATUE,AD_PAYMETHOD)
 VALUES
-('AD00000010','L000000010','HOU0000010',to_date('2019-02-18','yyyy-mm-dd'),'ADS0000002','上架','兩個月押金，禁止寵物，禁止吸菸，短期或月租價錢另議','已收','VISA金融卡');
+('AD00000010','L000000001','HOU0000011',to_date('2019-02-18','yyyy-mm-dd'),'ADS0000002','上架','兩個月押金，禁止寵物，禁止吸菸，短期或月租價錢另議','已收','VISA金融卡');
 
 --------------------AD_REPORT---------------------
 CREATE TABLE AD_REPORT(
