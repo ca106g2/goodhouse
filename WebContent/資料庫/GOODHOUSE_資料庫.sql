@@ -122,6 +122,18 @@ INSERT INTO MEMBER
     VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '仙女', TO_DATE('1975-08-14','YYYY-MM-DD'), 'LILILI88', '台北市內湖區陽光路5號','78978',0282858787,0930587587,'LILI88@abc.com','1',load_mem('mem9.jpg'),3000,'2');
 INSERT INTO MEMBER 
     VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), 'Sammi', TO_DATE('1972-07-15','YYYY-MM-DD'), 'SAMMI888', '花蓮市花蓮路5號','55988',035333666,0921578578,'SAMMI888@abc.com','1',load_mem('mem10.jpg'),5,'2');
+ -------------------------無房東身份的會員假資料---------------------------------
+INSERT INTO MEMBER 
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '蕭峰', TO_DATE('1989-01-01','YYYY-MM-DD'), '123456', '台北市大安區羅斯福路四段1號','10617',0233663366,0912345678,'shafung@ylib.com','1',load_mem('mem20.jpg'),777777,'1');
+INSERT INTO MEMBER 
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '王語嫣', TO_DATE('1989-02-01','YYYY-MM-DD'), '123456', '南投縣魚池鄉中興路142號','555',0492855313,0987654321,'wangyu@ylib.com','1',load_mem('mem21.jpg'),666666,'2');
+INSERT INTO MEMBER 
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '楊過', TO_DATE('1989-03-01','YYYY-MM-DD'), '123456', '台南市東區大學路1號','701',062757575,0978965412,'yunggo@ylib.com','1',load_mem('mem22.jpg'),777777,'1');
+INSERT INTO MEMBER 
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '小龍女', TO_DATE('1989-04-01','YYYY-MM-DD'), '123456', '南投縣竹山鎮','557',0492611366,0975830022,'pretty@ylib.com','1',load_mem('mem23.jpg'),666666,'2');
+INSERT INTO MEMBER 
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '令狐沖', TO_DATE('1989-05-01','YYYY-MM-DD'), '123456', '桃園市中壢區中大路300號','320',034227151,0912365478,'linfu@ylib.com','1',load_mem('mem24.jpg'),777777,'1');
+    
 
 -----------------------------------員工------------------------------------------
 CREATE TABLE EMPLOYEE(

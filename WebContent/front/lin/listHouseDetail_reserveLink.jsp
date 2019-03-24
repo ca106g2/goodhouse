@@ -409,6 +409,8 @@ input[type="checkbox"].switch_1{
 								    			<% if (lanVO != null) {%>
 								    				<% if (!lanVO.getMem_id().equals( memVO.getMem_id())){%>
 														<jsp:include page="/memPickReserveDate_doGet.jsp" />
+													<% }else { %>
+														<span>這是你的房屋!</span>
 													<% } %>
 											   <% } %>
 									   		<% } %>
