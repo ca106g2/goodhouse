@@ -103,7 +103,7 @@
 <!-- <h3>基本會員資料</h3> -->
 <table class="table table-hover">
 	<tr style="background-color: #EDF9DE;">
-		<th>會員編號</th>
+<!-- 		<th>會員編號</th> -->
 		<th>會員姓名</th>
 		<th>會員生日</th>
 		<th>會員密碼</th>
@@ -121,7 +121,7 @@
 	
 	</tr>
 	<tr>
-		<td><%=memVO.getMem_id()%></td>
+<%-- 		<td><%=memVO.getMem_id()%></td> --%>
 		<td><%=memVO.getMem_name()%></td>
 		<td><%=memVO.getMem_birthday()%></td>
 		<td><%=memVO.getMem_password()%></td>
