@@ -4,19 +4,39 @@
 <html>
 <head>
 <style>
-	footer{
-		z-index:999;
-		bottom:0px;
+/* 	footer{ */
+/* 		position: fixed; */
+/* 	    width: 100%; */
+/* 	    z-index:999; */
+/*  	    margin-top: -60px;  */
+/* /*    		background-color: red; */ 
+/* 	} */
+
+	.footer {
+	    position: fixed;
+	    height: 55px;
+	    bottom: 0;
+	    color:#fff;
+	    padding-top:20px;
+	    width: 100%;
+ 	    background: linear-gradient(to right, #31BDE6, #00003E);  
+	    text-align:center;
+	    z-index:9990;
+ 	    margin-top: -60px; 
 	}
-	.text-center{
-		background-color: ;
+
+	
+	.navbar-fixed-bottom { 
+  		bottom: 0;  
+ 		margin-bottom: 0; 
+ 		border-width: 1px 0 0; 
 	}
 	
 	.card-img{
             position: fixed;
             top: 0;
             left: 0;
-            bottom: 0;
+            bottom: 0 px;
             right: 0;
             z-index: -999;
             min-height: 100%;
@@ -108,7 +128,7 @@
 			
 			webSocket2.onmessage = function(event) {
 		        var jsonObj = JSON.parse(event.data);
-		        swal(jsonObj.houMsgs);
+		        alert(jsonObj.houMsgs);
 			};
 
 			webSocket2.onclose = function(event) {
@@ -121,59 +141,81 @@
       		connect_poigoo();
    		 }
 
-		window.onload = init;
+		window.onload = init; 
 	</script>	  
 	
 	<!-- Footer頭 -->
-	<div  > 
-		<img src="<%=request.getContextPath()%>/images/background2.jpg" class="card-img" alt="..." style="">
+	<div>
+		<img src="<%=request.getContextPath()%>/images/background2.jpg"
+			class="card-img" alt="..." style="">
 	</div>
-	 		
-	 		<footer class="container-fluid" style="padding-bottom:10px">
-		 
-	            <div class=" text-center" style="margin-bottom:0">
-	                <div class="row mt-3 dark-grey-text justify-content-center">
-	                    <!-- Grid column -->
-	                    <div class="col-2 ">
-	                    </div>
-	                    <div class="col-3">
-	                        <!-- Content -->
-	                        <h6 class="text-uppercase font-weight-bold" style="font-color:#808080">GOODHOUSE</h6>
-	                        <p class="text-left text-secondary">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-	                            adipisicing elit.</p>
-	                    </div>
+	<div class="footer-banner__navi">
+		<footer class="footer text-center navbar-fixed-bottom">
+<!-- 		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded text-center"> -->
+	      <div class="container">
+	     	 <p>網站使用規範  |   服務免責聲明條款  | 租屋新聞連結</p><br>
+	     	 <p style="margin-top:0">© JAVA-CA106G2 平安住好宅</p>
+	     	 
+	      </div>
+<!-- 	    </nav> -->
+    	</footer>
+    	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<!-- 	<div class="footer-banner__navi"> -->
+<!-- 	 		<footer class="container-fluid navbar-fixed-bottom " style="padding-bottom:10px"> -->
+<!-- <!-- 	 	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded"> -->
+<!-- 	            <div class=" text-center" style="margin-bottom:0"> -->
+<!-- 	                <div class="row mt-3 dark-grey-text justify-content-center"> -->
+<!-- 	                    Grid column -->
+<!-- 	                    <div class=""> -->
+<!-- 	                    </div> -->
+<!-- 	                    <div class="col-3"> -->
+<!-- 	                        Content -->
+<!-- 	                        <h6 class="text-uppercase font-weight-bold" style="font-color:#808080">GOODHOUSE</h6> -->
+<!-- 	                        <p class="text-left text-secondary">Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur -->
+<!-- 	                            adipisicing elit.</p> -->
+<!-- 	                    </div> -->
 	                    
-	                    <div class="col-2">
-						  <h6 class="text-uppercase font-weight-bold">ABOUT</h6>
-				          <p><a class="text-left text-secondary" href="#!">網站使用規範</a></p>
-				          <p><a class="text-left text-secondary" href="#!">服務免責聲明條款</a></p>
-				          <p><a class="text-left text-secondary" href="#!">租屋新聞連結</a></p>
+<!-- 	                    <div class="col-2" style="padding:0">  -->
+<!-- 						  <h6 class="text-uppercase font-weight-bold">ABOUT</h6> -->
+<!-- 				          <p><a class="text-left text-secondary" href="#!">網站使用規範</a></p> -->
+<!-- 				          <p><a class="text-left text-secondary" href="#!">服務免責聲明條款</a></p> -->
+<!-- 				          <p><a class="text-left text-secondary" href="#!">租屋新聞連結</a></p> -->
 				
-				        </div>
+<!-- 				        </div> -->
 	                
-	                    <div class="col-2">
-	                        <!-- Links -->
-	                        <h6 class="text-uppercase font-weight-bold">Contact</h6>
-	                        <p><i class="text-left text-secondary"></i>Tibame</p>
-	                        <p><i class="text-left text-secondary"></i> info@example.com</p>
-	                        <p><i class="text-left text-secondary"></i> + 01 234 567 88</p>
-	                    </div>
-	                    <div class="col-2">
+<!-- 	                    <div class="col-2"> -->
+<!-- 	                        Links -->
+<!-- 	                        <h6 class="text-uppercase font-weight-bold">Contact</h6> -->
+<!-- 	                        <p><i class="text-left text-secondary"></i>Tibame</p> -->
+<!-- 	                        <p><i class="text-left text-secondary"></i> info@example.com</p> -->
+<!-- 	                        <p><i class="text-left text-secondary"></i> + 01 234 567 88</p> -->
+<!-- 	                    </div> -->
+<!-- 	                    <div class=""> -->
 	                    	
-	                    </div>
-	                    <!-- Grid column -->
-	                </div>
-	            </div>
-	            <div class="footer-copyright text-center text-black-50 py-3">© JAVA-CA106G2 Copyright:
-			      <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
-			    </div>
-        	</footer>
-        
-
+<!-- 	                    </div> -->
+<!-- 	                    Grid column -->
+<!-- 	                </div> -->
+<!-- 	            </div> -->
+<!-- 	            <div class="footer-copyright text-center text-black-50 ">© JAVA-CA106G2 Copyright: -->
+<!-- 			      <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a> -->
+<!-- 			    </div> -->
+<!-- <!--         </nav> --> 
+<!--         	</footer> -->
+<!-- 	</div> -->
         <!-- Optional JavaScript -->
 			<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
 			<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
+			
 		<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 	 <!-- Footer尾 -->
 	 

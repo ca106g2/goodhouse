@@ -21,7 +21,7 @@
 <!-- Required meta tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
-<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script> --%>
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/all.css">
@@ -31,13 +31,19 @@
 <style>
 	header{
 		position:fixed;
-		z-index:999;
+		z-index:9990;
+		height: 120px;
+		width:auto;
 		
 	}
 	.navbar{
 /* 		background-color: #EDF9DE !important; */
 		
 		border-radius: 0 !important;
+	}
+	body {  
+	    height: 100%;  
+	    min-height: 100%;  
 	}
 	
 </style>
@@ -124,12 +130,6 @@
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">電子合約管理</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/lan_listAll_evaluate.jsp">我的房屋評價</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/listAllHouse.jsp">我的所有房屋</a>
-						          <form action="">
-						          
-						          
-						          
-						          
-						          </form>			          
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/addHouse.jsp">新增房屋</a>
 						          <jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService" />
 <%-- 						          <% if (houSvc.getOneByLanId(lanVO.getLan_id()) != null) --%>

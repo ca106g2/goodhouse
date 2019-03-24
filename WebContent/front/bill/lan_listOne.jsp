@@ -19,7 +19,7 @@
 	<div class="container">
 		<div class="row justfy-content-center">
 			<div class="row col-12">
-				<table>
+				<table >
 					<tr>
 						<td>帳單編號</td>
 						<td>${billVO.bill_id}</td>

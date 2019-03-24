@@ -44,16 +44,16 @@
 				  </div>
 				  
 				  <div class="card text-center">
-				    <img src="..." class="card-img-top" alt="...">
+				    <img src="<%=request.getContextPath()%>/images/applyConturct.png" class="card-img-top" alt="...">
 				    <div class="card-body">
 						<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lanListAll_Apply_conturct.jsp">
 							<input type="submit" value="合約處理" class="btn btn-outline-success">
 						</form>
 				    </div>
 				  </div>
-				  
+				   
 				  <div class="card text-center">
-				    <img src="..." class="card-img-top" alt="...">
+				    <img src="<%=request.getContextPath()%>" class="card-img-top" alt="...">
 				    <div class="card-body">
 						<form method="post" action="<%=request.getContextPath()%>/front/bill/lan_listAll_bill.jsp">
 							<input type="submit" value="房租帳單" class="btn btn-outline-success ">
