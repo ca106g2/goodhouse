@@ -103,7 +103,7 @@
 								<form method="post" action="bill.do">
 									<input type="hidden" name="bill_id" value="${billVO.bill_id}"> 
 									<input type="hidden" name="action" value="getOne_For_look"> 
-									<input type="submit" value="查看" class="btn btn-outline-success">
+									<input type="submit" value="看明細" class="btn btn-outline-success" style="font-weight:bold">
 								</form>
 							</td>
 			    	</tr>

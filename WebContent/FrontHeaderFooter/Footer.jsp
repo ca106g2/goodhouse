@@ -39,7 +39,6 @@
 	    var webSocket1;
 
 		function connect_bill(){
-			console.log(endPointURL);
 			// 建立 websocket 物件
 			webSocket1 = new WebSocket(endPointURL);
 			
@@ -71,7 +70,6 @@
 
 		function connect_poigoo(){
 			// 新增積分商品
-			console.log(endPointURL3);
 			webSocket3 = new WebSocket(endPointURL3);
 			
 			webSocket3.onopen = function(event) {
@@ -103,7 +101,6 @@
 		function connect_hou(){
 
 			// 建立 websocket 物件
-			console.log(endPointURL2);
 			webSocket2 = new WebSocket(endPointURL2);
 
 			webSocket2.onopen = function(event) {
@@ -128,7 +125,7 @@
 	</script>	  
 	
 	<!-- Footer頭 -->
-	<div class="card border-light"  > 
+	<div  > 
 		<img src="<%=request.getContextPath()%>/images/background2.jpg" class="card-img" alt="..." style="">
 	</div>
 	 		

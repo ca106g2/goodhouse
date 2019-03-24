@@ -36,21 +36,7 @@
 	House_TrackService houTraSvc = new House_TrackService();
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	pageContext.setAttribute("memVO", memVO);
-// 	String lan_id_mem = "";
-
-// 	if (memVO != null){
-// 		String mem_id = memVO.getMem_id();
-		
-// 		LanService lanSvc = new LanService();
-// 		LanVO lanVO = lanSvc.getOneLanByMemId(mem_id);
-// 		pageContext.setAttribute("lanSvc", lanSvc);
-		
-// 		if (lanVO != null){
-// 			lan_id_mem = lanVO.getLan_id();
-// 		}	
-		
-
-// 	}
+	
 	House_EvaluateService houEvaSvc = new House_EvaluateService();
 	List<House_EvaluateVO> houEvaList = houEvaSvc.getListByHouId(houVO.getHou_id());
 	pageContext.setAttribute("houEvaList", houEvaList);
@@ -488,7 +474,7 @@ input[type="checkbox"].switch_1{
 								  	<tbody>
 								  	<c:forEach var="houEvaVO" items="${houEvaList}" varStatus="houEva">
 									    <tr class="hou_eva_vo" >
-									      	<td>${houEvaVO.hou_eva_grade.substring(2)}</td>
+									      	<td id="grade">${houEvaVO.hou_eva_grade.substring(2)}</td>
 									      	<td>${houEvaVO.hou_eva_content}</td>
 									    </tr>
 								   	</c:forEach>
@@ -640,7 +626,11 @@ input[type="checkbox"].switch_1{
 							var evaGrade = evaluate.substr(2);
 							var gradeNo = evaluate.substr(1,1);
 							
-							$('tbody').append( '<tr> <td>'+ evaGrade +'</td> <td>' + data.hou_eva_content + '</td> </tr>');
+// 							if(gradeNo == 1) {
+// 								$('tbody').append( '<tr> <td> <img src="/front/lin/heart_red.png"></td> <td>' + data.hou_eva_content + '</td> </tr>');
+// 							}
+							
+							$('tbody').append( '<tr> <td>'+ gradeNo +'</td> <td>' + data.hou_eva_content + '</td> </tr>');
 							
 							$("input:radio[name='hou_eva_grade']").prop("checked",false) ;
 							$(".houEevaContent").val("") ;

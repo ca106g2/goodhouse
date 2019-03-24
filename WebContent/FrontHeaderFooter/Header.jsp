@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.goodhouse.member.model.*" %> 
 <%@ page import="com.goodhouse.landlord.model.*" %>
+<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"/>
 <%
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	pageContext.setAttribute("memVO", memVO);
@@ -11,7 +12,6 @@
 	if (memVO != null){
 		mem_id = memVO.getMem_id();
 	}
-	LanService lanSvc = new LanService();
 	LanVO lanVO = lanSvc.getOneLanByMemId(mem_id);
 	pageContext.setAttribute("lanVO", lanVO);
 %>
@@ -21,6 +21,7 @@
 <!-- Required meta tags -->
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <script src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
 <!-- Bootstrap CSS start-->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/bootstrap/all.css">
@@ -48,47 +49,57 @@
 <body>
 <!-- Feader頭 -->
 	<header class="container-fluid">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded" style="padding:0px">
+           
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>
+            
+           <div class="collapse navbar-collapse" id="navbarTogglerDemo03" >
            
-           <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                   <li class="nav-item active">
-                       <a class="nav-link" href="<%=request.getContextPath()%>/front/index.jsp">
+               
+                   <li class="nav-item active" >
+                       <a class="nav-link" href="<%=request.getContextPath()%>/front/index.jsp" style="padding:0px"> 
                        <img src="<%=request.getContextPath()%>/share_pic/logo_color.png" style="width:40px ; height:37px;"/>
                        	首頁
                        	</a>
                    </li>
+                   
                    <c:if test="${empty memVO}">
                        <li class="nav-item active">
                            <a class="nav-link " href="<%=request.getContextPath()%>/front/member/addMem.jsp" tabindex="-1" aria-disabled="true"
-                           	style="margin-top:4px">註冊</a>
+                           	style="margin-top:4px;padding-top:0px">註冊</a>
                        </li>
                    </c:if>
 
-				   <c:if test="${empty memVO}">
+				   <c:if test="${empty memVO}"> 
                        <li class="nav-item">
                            <a class="nav-link " href="<%=request.getContextPath()%>/front/frontLogin.jsp" tabindex="-1" aria-disabled="true"
-                           	style="margin-top:4px">登入</a>
+                           	style="margin-top:4px;padding-top:0px">登入</a>
                        </li>
                    </c:if>
                    
                    <c:if test="${not empty memVO}">
                        <a class="nav-link " href="<%=request.getContextPath()%>/FrontLogoutHandler" tabindex="-1" aria-disabled="true"
-                       		style="margin-top:4px">登出</a>
+                       		style="margin-top:4px;padding-top:0px">登出</a>
 				   </c:if>
                    
-                   <li class="nav-item">
-                       <a class="nav-link" href="<%=request.getContextPath()%>/front/member/select_page.jsp"
-                       	style="margin-top:4px">會員中心</a>
+                   <li class="nav-item"> 
+                       <a class="nav-link" href="<%=request.getContextPath()%>/front/member/select_page.jsp" 
+	                       	style="margin-top:4px;padding-top:0px">
+	                       	<img src="<%=request.getContextPath()%>/images/back_mem.png" style="width:30px ; height:28px;"/>
+	                       	會員中心
+                      	</a>
                    </li>
+                    
                    <li class="nav-item">
                        <!-- 下拉選單 -->
 						<li class="nav-item dropdown">
 					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-					        	style="margin-top:4px"> 房客
+					        	style="margin-top:4px;padding-top:0px">
+					        	<img src="<%=request.getContextPath()%>/images/green_mem.png" style="width:30px ; height:28px;"/> 
+					        	房客
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/mem_listAll_ele_contract.jsp">我的合約列表</a>
@@ -101,13 +112,15 @@
 					    </li>
                    </li>
 <%--                    <% if (lanVO != null && lanVO.getLan_accountstatus().equals("2")) {%> --%>
-	                   <li class="nav-item">
-	                       <li class="nav-item dropdown">
-						        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-						        	style="margin-top:4px" >房東
-						        </a>
-						        <c:if test="${not empty lanVO }">
-						        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	               <li class="nav-item" >
+	                    <li class="nav-item dropdown" id="lan">
+						   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+						        style="margin-top:4px;padding-top:0px" >
+						        <img src="<%=request.getContextPath()%>/images/red_mem.png" style="width:30px ; height:28px;"/>
+						        	房東
+						   </a>
+						    <c:if test="${not empty lanVO }">
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">電子合約管理</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/lan_listAll_evaluate.jsp">我的房屋評價</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/listAllHouse.jsp">我的所有房屋</a>
@@ -127,14 +140,16 @@
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/rentMess/listPartRentMess.jsp">租屋問題回覆</a>
 <%-- 						          <% } %> --%>
 						        </div>
-						        </c:if>
-						    </li>
-	                   </li>
+						    </c:if>
+						 </li>
+	               </li>
 <%-- 	                   <% } %> --%>
                    <li class="nav-item">
                        <li class="nav-item dropdown">
 					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
-					        	style="margin-top:4px">積分商城
+					        	style="margin-top:4px;padding-top:0px">
+					        	<img src="<%=request.getContextPath()%>/images/shop.png" style="width:30px ; height:28px;"/>
+					        	積分商城
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/listAllPointgoods.jsp">瀏覽積分商城</a>
@@ -144,9 +159,20 @@
 					    </li>
                    </li>
                    
+                   <c:if test="${not empty memVO}">
+                   <c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == null}">
+                   <li class="nav-item" style="margin-top:4px"> 
+                         <li class="nav-item active" style="font-color:#F74420">
+                           <a class="nav-link " href="<%=request.getContextPath()%>/front/landlord/addLan.jsp" tabindex="-1" aria-disabled="true"
+                           	style="margin-top:4px;padding-top:0px">點我成為房東</a>
+                       </li> 
+                   </li>
+                   </c:if>
+                   </c:if>
+                   
  					<c:if test="${not empty memVO and empty lanVO}">
-                       <li class="nav-item" style="margin-left:900px;margin-top:4px">
-                           <p class="nav-link "  tabindex="-1" aria-disabled="true" >
+                       <li class="nav-item" style="margin-left:500px;margin-top:4px;padding-top:0px">
+                           <p class="nav-link "  tabindex="-1" aria-disabled="true" style="padding-top:0px">
 	                           <img src="<%=request.getContextPath()%>/images/green_mem.png" style="width:25px;heigh:27px">
 	                           <b style="color:#F74420 ; font-size:20px">${memVO.mem_name}</b>
                            </p>
@@ -154,22 +180,35 @@
                    	</c:if>  
                    	
                    	<c:if test="${not empty memVO and not empty lanVO}">
-                       <li class="nav-item" style="margin-left:900px;margin-top:4px">
-                           <p class=" "  tabindex="-1" aria-disabled="true">
+                       <li class="nav-item" style="margin-left:500px;margin-top:4px;padding-top:0px">
+                           <p class=" "  tabindex="-1" aria-disabled="true" style="padding-top:0px">
 	                           <img src="<%=request.getContextPath()%>/images/red_mem.png" style="width:25px;heigh:27px">
-	                           <b style="color:#F74420 ; font-size:20px">${memVO.mem_name}</b>
+	                           <b style="color:#F74420 ">${memVO.mem_name}</b>
                            </p>
                        </li>
-                   	</c:if>                
-                   
+                   	</c:if>                 
+                    
                </ul>
               
-           </div>
+          	 </div>
+           </nav>
 	</header>
-	<div style="height:120px;"></div>
+	<div style="height:130px;"></div>
 <!-- Feader尾-->
 
-
+<script >
+	
+// 	$('#lan	').click(function(){
+		
+// 		console.log("$(lanSvc.getOneLanByMemId(memVO.mem_id).lan_id)");
+// 		var lan = "$(lanSvc.getOneLanByMemId(memVO.mem_id).lan_id)";
+// 		if(  lan == null ){
+// 			swal("申請成為房東就可以用了喔^^");
+// 		}
+		
+// 	});
+	
+</script>
 
 
 
