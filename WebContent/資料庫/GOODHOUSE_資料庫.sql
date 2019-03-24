@@ -130,7 +130,7 @@ INSERT INTO MEMBER
 INSERT INTO MEMBER 
     VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '楊過', TO_DATE('1989-03-01','YYYY-MM-DD'), '123456', '台南市東區大學路1號','701',062757575,0978965412,'yunggo@ylib.com','1',load_mem('mem22.jpg'),777777,'1');
 INSERT INTO MEMBER 
-    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '小龍女', TO_DATE('1989-04-01','YYYY-MM-DD'), '123456', '南投縣竹山鎮','557',0492611366,0975830022,'pretty@ylib.com','1',load_mem('mem23.jpg'),666666,'2');
+    VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '小龍女', TO_DATE('1989-04-01','YYYY-MM-DD'), '123456', '南投縣竹山鎮','557',0492611366,0975830022,'pretty@ylib.com','1',load_mem('mem23.png'),666666,'2');
 INSERT INTO MEMBER 
     VALUES ('M'||LPAD(to_char(MEM_SEQ.NEXTVAL), 9, '0'), '令狐沖', TO_DATE('1989-05-01','YYYY-MM-DD'), '123456', '桃園市中壢區中大路300號','320',034227151,0912365478,'linfu@ylib.com','1',load_mem('mem24.jpg'),777777,'1');
     
