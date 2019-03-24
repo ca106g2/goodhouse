@@ -100,9 +100,9 @@
  </ul>
 </c:if>
 <c:if test="${not empty memVO}">
-<h3>基本會員資料</h3>
+<!-- <h3>基本會員資料</h3> -->
 <table class="table table-hover">
-	<tr>
+	<tr style="background-color: #EDF9DE;">
 		<th>會員編號</th>
 		<th>會員姓名</th>
 		<th>會員生日</th>
@@ -127,8 +127,8 @@
 		<td><%=memVO.getMem_password()%></td>
 		<td><%=memVO.getMem_address()%></td>
 		<td><%=memVO.getMem_zipcode()%></td>
-		<td><%=memVO.getMem_telephone()%></td>
-		<td><%=memVO.getMem_phone()%></td>
+		<td>0<%=memVO.getMem_telephone()%></td>
+		<td>0<%=memVO.getMem_phone()%></td>
 		<td><%=memVO.getMem_email()%></td>
 		<%
 			if(memVO.getMem_status().equals("1")){
@@ -191,11 +191,11 @@
 <%-- 	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == 2}"> --%>
 <!-- 		<input type="submit" value="申請房屋物件" class="btn btn-success" > -->
 <%-- 	</c:if> --%>
-	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == null}">
-		<form method="post" action="<%=request.getContextPath()%>/front/landlord/addLan.jsp">
-   			<input type="submit" value="申請成為房東" class="btn btn-success" >
-		</form>
-	</c:if>
+<%-- 	<c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == null}"> --%>
+<%-- 		<form method="post" action="<%=request.getContextPath()%>/front/landlord/addLan.jsp"> --%>
+<!--    			<input type="submit" value="申請成為房東" class="btn btn-success" > -->
+<!-- 		</form> -->
+<%-- 	</c:if> --%>
 </c:if>
 
 

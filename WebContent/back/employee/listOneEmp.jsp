@@ -48,8 +48,8 @@
 <jsp:include page="/BackHeaderFooter/Header.jsp"/>
 
 <table class="table table-hover">
-	<tr>
-		<th>員工編號</th>
+	<tr style="background-color: #EDF9DE;">
+<!-- 		<TH>員工編號</TH> -->
 		<th>員工姓名</th>
 		<th>員工電話</th>
 		<th>員工帳號</th>
@@ -57,7 +57,7 @@
 		<th>員工狀態</th>
 	</tr>
 	<tr>
-		<td><%=empVO.getEmp_id()%></td>
+<%-- 		<td><%=empVO.getEmp_id()%></td> --%>
 		<td><%=empVO.getEmp_name()%></td>
 		<td><%=empVO.getEmp_phone()%></td>
 		<td><%=empVO.getEmp_account()%></td>

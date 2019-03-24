@@ -20,7 +20,7 @@
   <div class="row col-12" >
  	
     <table border="1" class="table table-hover">
-    	<tr>
+    	<tr style="background-color: #EDF9DE;">
     		<td>會員姓名</td>
     		<td>房東戶頭</td>
     		<td>房東狀態</td>

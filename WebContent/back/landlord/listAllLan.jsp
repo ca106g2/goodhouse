@@ -73,9 +73,9 @@ pageContext.setAttribute("list",list);
 </c:if>
 
 <table class="table table-hover">
-	<tr>
-		<th>房東編號</th>
-		<th>會員編號</th>
+	<tr style="background-color: #EDF9DE;">
+<!-- 		<th>房東編號</th> -->
+		<th>會員姓名</th>
 		<th>房東發票</th>
 		<th>房東戶頭</th>
 		<th>房東狀態</th>
@@ -83,11 +83,12 @@ pageContext.setAttribute("list",list);
 		<th>修改</th>
     </tr>
 	<%@ include file="page1.file" %>
+	<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"/>
 	<c:forEach var="lanVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
 	<tr>
-		<td>${lanVO.lan_id}</td>
-		<td>${lanVO.mem_id}</td>
+<%-- 		<td>${lanVO.lan_id}</td> --%>
+		<td>${memSvc.getOneMem(lanVO.mem_id).mem_name}</td>
 		
 		<c:if test="${lanVO.lan_receipt==1}">
 			<td>慈善機構</td>
@@ -102,9 +103,11 @@ pageContext.setAttribute("list",list);
 		
 		<c:if test="${lanVO.lan_accountstatus==1}">
 			<td>審核中</td>
+
 		</c:if>
 		<c:if test="${lanVO.lan_accountstatus==2}">
 			<td>已審核</td>
+			
 		</c:if>
 			
 		<c:set var="lanVO" value="${lanVO}"/>

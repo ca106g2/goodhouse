@@ -401,21 +401,21 @@ public class MemberServlet extends HttpServlet {
 					
 					
 					byte mem_picture[] = null;
-					Part part = req.getPart("mem_picture");
-					if(part.getSize() == 0) {
-						MemService memSvc = new MemService();
-						MemVO memVO = memSvc.getOneMem(mem_id);
-						mem_picture = memVO.getMem_picture();
-					} else {
-						BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
-						ByteArrayOutputStream bao = new ByteArrayOutputStream();
-						int len;
-						byte[] b = new byte[8192];
-						while((len = bif.read(b)) != -1) {
-							bao.write(b);
-						}
-						mem_picture = bao.toByteArray();
-					}
+					MemService memSvc = new MemService();
+					MemVO memVO2 = memSvc.getOneMem(mem_id);
+					mem_picture = memVO2.getMem_picture();
+//					Part part = req.getPart("mem_picture");
+//					if(part.getSize() == 0) {
+//					} else {
+//						BufferedInputStream bif = new BufferedInputStream(part.getInputStream());
+//						ByteArrayOutputStream bao = new ByteArrayOutputStream();
+//						int len;
+//						byte[] b = new byte[8192];
+//						while((len = bif.read(b)) != -1) {
+//							bao.write(b);
+//						}
+//						mem_picture = bao.toByteArray();
+//					}
 
 					
 					Integer  good_total = null;
@@ -455,7 +455,7 @@ public class MemberServlet extends HttpServlet {
 				}
 				
 				/***************************2.開始修改資料***************************************/
-				MemService memSvc = new MemService();
+//				MemService memSvc = new MemService();
 				memVO = memSvc.updateMem(mem_name, mem_birthday,mem_password,mem_address,mem_zipcode,mem_telephone,mem_phone,mem_email,mem_status,mem_picture,good_total,mem_sex,mem_id);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				HttpSession session = req.getSession();

@@ -70,7 +70,7 @@
 	</ul>
 </c:if>
 <table class="table table-hover">
-	<tr>
+	<tr style="background-color: #EDF9DE;">
 		<th>會員編號</th>
 		<th>會員姓名</th>
 		<th>會員生日</th>
@@ -94,8 +94,8 @@
 		<td><%=memVO.getMem_password()%></td>
 		<td><%=memVO.getMem_address()%></td>
 		<td><%=memVO.getMem_zipcode()%></td>
-		<td><%=memVO.getMem_telephone()%></td>
-		<td><%=memVO.getMem_phone()%></td>
+		<td>0<%=memVO.getMem_telephone()%></td>
+		<td>0<%=memVO.getMem_phone()%></td>
 		<td><%=memVO.getMem_email()%></td>
 		<%
 			if(memVO.getMem_status().equals("1")){
