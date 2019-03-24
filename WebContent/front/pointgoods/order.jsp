@@ -13,70 +13,86 @@
  	pageContext.setAttribute("listCity", listCity);
 
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Order</title>
+<style>
+div .form-control {
+display: initial;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 <div class="container">
 	<div class="row">
-		<div class="col-4">
-			<jsp:include page="/FrontHeaderFooter/LeftList.jsp" />
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<h4>訂單填寫</h4>
+				</div>
+				<div class="card-body">
+					<form action="goc.do" method="post" class="form-horizontal">
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="name">收件人</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="name" placeholder="輸入姓名" 
+			    					value="${param.name}" >
+			    				<font color="red"><b>${errorMsgs.good_ord_nam}</b></font>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="name">電話</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="phone" placeholder="輸入電話"
+			    					value="${param.phone}" >
+			    				<font color="red"><b>${errorMsgs.phone}</b></font>
+							</div>
+						</div>	
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="name">信箱</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" name="email" placeholder="輸入信箱"
+			    					value="${param.email}">
+			    				<font color="red"><b>${errorMsgs.email}</b></font>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-md-3 col-form-label" for="name">地址</label>
+							<div class="col-md-9">
+								<select id="twCityName" name="twCityName" class="form-control" style="width:25%;">
+									<option value="0" >--請選擇縣市--</option>
+								    	<c:forEach var="city" items="${listCity}">
+											<option value="${city}"> ${city}</option>
+								    	</c:forEach>
+								</select>
+								<select id="CityAreaName" name="CityAreaName" class="form-control" style="width:25%;">
+									<option value="0" >--請選擇區域--</option>
+							    </select>
+								<select id="AreaRoadName" name="AreaRoadName" class="form-control" style="width:25%;">
+									<option value="0" >--請選擇路名--</option>
+							  	</select>
+							  	<input type="text" placeholder="請輸入門牌號碼" id="num" name="num" class="form-control" style="width:23%;">
+							 </div>
+						</div>
+						<div class="form-group">
+							<font color="red"><b>${errorMsgs.twCityName}</b></font>
+							<font color="red"><b>${errorMsgs.CityAreaName}</b></font>
+							<font color="red"><b>${errorMsgs.AreaRoadName}</b></font>
+							<font color="red"><b>${errorMsgs.num}</b></font>
+						</div>
+						<input type="hidden" name="action" value="order">
+						<input type="submit" value="送出 " class="btn btn-primary" style="float:right;">
+					</form>	
+				</div>
+			</div>
 		</div>
-		<div class="col-8">
-			<form action="goc.do" method="post">
-				<div class="form-group">
-					<label for="name">收件人</label>
-    				<input type="text" class="form-control" name="name" placeholder="輸入姓名" 
-    					value="${param.name}" >
-    				<font color="red"><b>${errorMsgs.good_ord_nam}</b></font>
-				</div>
-				<div class="form-group">
-					<label for="name">電話</label>
-    				<input type="text" class="form-control" name="phone" placeholder="輸入電話"
-    					value="${param.phone}" >
-    				<font color="red"><b>${errorMsgs.phone}</b></font>    				
-				</div>
-				<div class="form-group">
-					<label for="name">信箱</label>
-    				<input type="text" class="form-control" name="email" placeholder="輸入信箱"
-    					value="${param.email}">
-    				<font color="red"><b>${errorMsgs.email}</b></font>    				
-				</div>
-				<div class="form-group">
-					<div class="dropdown">
-					  <select id="twCityName" name="twCityName">
-							  <option value="0" >--請選擇縣市--</option>
-							  <c:forEach var="city" items="${listCity}">
-								<option value="${city}"> ${city}</option>
-							  </c:forEach>
-					  </select>
-					  <select id="CityAreaName" name="CityAreaName">
-							  <option value="0" >--請選擇區域--</option>
-					  </select>
-					  <select id="AreaRoadName" name="AreaRoadName" >
-							  <option value="0" >--請選擇路名--</option>
-					  </select>
-					  <input type="text" placeholder="請輸入門牌號碼" id="num" name="num">   			    
-					</div>
-				</div>
-				<div class="form-group">
-					<font color="red"><b>${errorMsgs.twCityName}</b></font>
-					<font color="red"><b>${errorMsgs.CityAreaName}</b></font>
-					<font color="red"><b>${errorMsgs.AreaRoadName}</b></font>
-					<font color="red"><b>${errorMsgs.num}</b></font>
-				</div>
-				<div class="form-group">
-					<label>總價</label>
-    				<%=amount %>
-				</div>
-				<input type="hidden" name="action" value="order">
-				<input type="submit" value="送出 " class="btn btn-primary">
-			</form>
-		</div>
+	</div>
+</div>
+
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 <script> 
 

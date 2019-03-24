@@ -373,7 +373,7 @@ public class PointgoodsServlet extends HttpServlet {
 			boolean match = false;
 			String good_id = req.getParameter("good_id");
 			String amount = req.getParameter("amount");
-//			System.out.println(amount);
+			System.out.println(amount);
 			Integer need = Integer.parseInt(amount);
 //			String page = req.getParameter("whichPage");
 
@@ -395,16 +395,22 @@ public class PointgoodsServlet extends HttpServlet {
 				for(int i = 0; i < buylist.size(); i ++) {
 					PointgoodsVO pointgoodsVO2 = buylist.get(i);
 					if(pointgoodsVO2.getGood_id().equals(pointgoodsVO.getGood_id())) {
-						// 重複下訂將數量相加
-						pointgoodsVO2.setGood_nee(pointgoodsVO2.getGood_nee() + pointgoodsVO.getGood_nee());
-//						System.out.println("===============2");
-						if(pointgoodsVO2.getGood_amo() == pointgoodsVO2.getGood_nee()) {
-							 checkMap.put("zero", "true");
-						} else if(pointgoodsVO.getGood_nee() < pointgoodsVO.getGood_amo()) {
-							checkMap.put("max", pointgoodsVO2.getGood_amo() - pointgoodsVO2.getGood_nee());
+						
+						if((pointgoodsVO2.getGood_nee() + pointgoodsVO.getGood_nee()) > pointgoodsVO.getGood_amo()) {
+							checkMap.put("full", "true");
+							match = true;
+						} else {
+							// 重複下訂將數量相加
+							pointgoodsVO2.setGood_nee(pointgoodsVO2.getGood_nee() + pointgoodsVO.getGood_nee());
+//							System.out.println("===============2");
+							if(pointgoodsVO2.getGood_amo() == pointgoodsVO2.getGood_nee()) {
+								 checkMap.put("zero", "true");
+							} else if(pointgoodsVO.getGood_nee() < pointgoodsVO.getGood_amo()) {
+								checkMap.put("max", pointgoodsVO2.getGood_amo() - pointgoodsVO2.getGood_nee());
+							}
+							buylist.set(i, pointgoodsVO2);
+							match = true;
 						}
-						buylist.set(i, pointgoodsVO2);
-						match = true;
 					}
 				}
 				
@@ -430,13 +436,34 @@ public class PointgoodsServlet extends HttpServlet {
 		}
 		if("deletecart".equals(action)) {
 			String del = req.getParameter("del");
-			int d = Integer.parseInt(del);
-			buylist.remove(d);
-
+			String removegood_id = req.getParameter("removegood_id");
+			HashMap checkMap = new HashMap();
+			
+			System.out.println("購物車刪除索引直 :" + del);
+			for(int i = 0; i < buylist.size(); i ++) {
+				PointgoodsVO pointgoodsVO = buylist.get(i);
+				if(pointgoodsVO.getGood_id().equals(del)) {
+					checkMap.put("amount", pointgoodsVO.getGood_nee());
+					buylist.remove(i);
+				}
+			}
+			
+			
+			if(buylist.size() == 0) {
+				checkMap.put("carZero", "true");
+			}
+			PointgoodsService pointgoodsSvc = new PointgoodsService();
+			PointgoodsVO pointgoodsVO = pointgoodsSvc.getOnePointgoods(removegood_id);
+			checkMap.put("removegood_id", removegood_id);
+			checkMap.put("removeMax", pointgoodsVO.getGood_amo());
 			session.setAttribute("shoppingcart", buylist);
-			String url = "/front/pointgoods/cart.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
+			JSONObject responseJSONObject = new JSONObject(checkMap);
+			PrintWriter out = res.getWriter();
+			out.println(responseJSONObject);
+			out.close();
+//			String url = "/front/pointgoods/cart.jsp";
+//			RequestDispatcher successView = req.getRequestDispatcher(url);
+//			successView.forward(req, res);
 		}
 		if("checkout".equals(action)) {
 			int total = 0;
@@ -484,47 +511,6 @@ public class PointgoodsServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-//		if("order".equals(action)) {
-//			
-//			List<String> errorMsgs = new LinkedList<String>();
-//			req.setAttribute("errorMsgs", errorMsgs);
-//
-//			try {
-//				// 要先轉成String型別，再轉成Ineteger，不然會有錯
-//				String tot = (String)session.getAttribute("amount");
-//				Integer good_ord_tot = Integer.parseInt(tot);
-//				String mem_email = (String)session.getAttribute("mem_email");
-//				String mem_password = (String)session.getAttribute("mem_password");
-//				
-//				MemService memSvc = new MemService();
-//				MemVO memVO = memSvc.getOneMem(mem_email, mem_password);
-//				String mem_id = memVO.getMem_id();
-//				Timestamp good_ord_dat = new Timestamp(System.currentTimeMillis());
-//				String good_ord_sta = "GO001";
-//				String good_ord_nam = req.getParameter("name");
-//				String good_ord_namReg = "^[(\u4e00-\u9fa5)]{2,4}$";
-//				if(good_ord_nam == null || good_ord_nam.trim().length() == 0) {
-//					errorMsgs.add("收件人名稱不可空白");
-//				} else if(!good_ord_nam.trim().matches(good_ord_namReg)) {
-//					errorMsgs.add("姓名需填入3個中文字");
-//				}
-//				String good_ord_add = req.getParameter("add");
-//				if(good_ord_add == null || good_ord_add.trim().length() == 0) {
-//					errorMsgs.add("收件地址請勿空白");
-//				}
-//				
-//				Good_ordService good_ordSvc = new Good_ordService();
-//				good_ordSvc.addGood_ord2(mem_id, good_ord_dat, good_ord_sta, good_ord_nam, good_ord_tot, good_ord_add, buylist);
-//				
-//				String url = "/front/pointgoods/listAllPointgoods.jsp";
-//				RequestDispatcher successView = req.getRequestDispatcher(url);
-//				successView.forward(req, res);
-//			} catch (Exception e) {
-//				errorMsgs.add(e.getMessage());
-//				RequestDispatcher failureView = req.getRequestDispatcher("/front/pointgoods/order.jsp");
-//				failureView.forward(req, res);
-//			}		
-//		}
 		
 		
 	}

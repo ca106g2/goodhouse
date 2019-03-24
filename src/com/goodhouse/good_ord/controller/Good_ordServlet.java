@@ -41,7 +41,21 @@ public class Good_ordServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		doPost(req, res);
+		String action = req.getParameter("action");
+		
+		if("carCheck".equals(action)) {
+			
+			try {
+				boolean openModal = true;
+				req.setAttribute("openModal", openModal);
+				
+				RequestDispatcher successView = req.getRequestDispatcher("/front/pointgoods/listAllPointgoods.jsp");
+				successView.forward(req, res);
+				return;
+			} catch (Exception e) {
+				throw new ServletException(e);
+			}
+		}
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -11,16 +11,19 @@
 <head>
 <meta charset="UTF-8">
 <title>List One Pointgoods</title>
+<style type="text/css">
+#pp p {
+	font-family:Microsoft JhengHei;
+	font-size: 25px;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 <div class="container">
 	<div class="row">
-		<div class="col-4">
-			<jsp:include page="/FrontHeaderFooter/LeftList.jsp" />
-		</div>
-		<div class="col-8">
+		<div class="col-12">
 			<div class="row">
 				<div class="col-5">
 					<div class="item">
@@ -28,7 +31,7 @@
 					</div>
 				</div>
 				<div class="col-7">
-					<div class="item">
+					<div class="item" id="pp">
 						<p class="font-weight-bold">
 							積分商品名稱 : <%=pointgoodsVO.getGood_nam() %>
 		<%-- 					${pointgoodsVO.good_nam} --%>

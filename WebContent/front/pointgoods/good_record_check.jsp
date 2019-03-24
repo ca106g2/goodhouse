@@ -16,36 +16,49 @@
 <head>
 <meta charset="UTF-8">
 <title>積分明細紀錄</title>
+<!--Style css-->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front/pointgoods/select2/style.css">
 </head>
 <body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 <div class="container">
 	<div class="row">
-		<div class="col-4">
-			<jsp:include page="/FrontHeaderFooter/LeftList.jsp" />
-		</div>
-		<div class="col-8">
-			<table border="1">
-				<tr>
-					<td>會員姓名</td>
-					<td>事由</td>
-					<td>點數</td>
-					<td>時間</td>
-				</tr>
-				<c:forEach var="good_recordVO" items="${recordlist}">
-				<tr>
-					<td>${memVO.mem_name}</td>
-					<td>${good_recordVO.good_rec_des}</td>
-					<c:if test="${good_recordVO.good_rec_des == '商城購物' }">
-						<td><font color="red">-${good_recordVO.good_rec_poi}</font></td>
-					</c:if>
-					<c:if test="${good_recordVO.good_rec_des != '商城購物' }">
-						<td><font color="green">${good_recordVO.good_rec_poi}</font></td>
-					</c:if>
-					<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${good_recordVO.good_rec_dat}"/></td>
-				</tr>
-				</c:forEach>
-			</table>
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header">
+					<h4>我的積分紀錄列表</h4>
+				</div>
+				<%if(recordlist != null && (recordlist.size() > 0)) {%>
+					<div class="card-body p-0">
+						<div class="table-responsive">
+							<table class="table table-striped mb-0">
+								<tr style="background-color:#EDF9DE">
+									<td>會員姓名</td>
+									<td>事由</td>
+									<td>點數</td>
+									<td>時間</td>
+								</tr>
+
+								<c:forEach var="good_recordVO" items="${recordlist}">
+								<tr>
+									<td>${memVO.mem_name}</td>
+									<td>${good_recordVO.good_rec_des}</td>
+									<c:if test="${good_recordVO.good_rec_des == '商城購物' }">
+										<td><font color="red">-${good_recordVO.good_rec_poi}</font></td>
+									</c:if>
+									<c:if test="${good_recordVO.good_rec_des != '商城購物' }">
+										<td><font color="green">${good_recordVO.good_rec_poi}</font></td>
+									</c:if>
+									<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${good_recordVO.good_rec_dat}"/></td>
+								</tr>
+								</c:forEach>
+							</table>
+						</div>
+					</div>
+				<%}else{ %>
+					<h4>尚無積分紀錄</h4>
+				<%} %>
+			</div>
 		</div>
 	</div>
 </div>
