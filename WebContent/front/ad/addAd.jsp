@@ -40,8 +40,8 @@
     <style>
     
 #table2 {
-	font-family:Microsoft JhengHei;;
-	font-size: 16px;
+	font-family:Microsoft JhengHei;
+	font-size: 25px;
 	width: 1200px;
 	text-align: center;
 	border-collapse: collapse;

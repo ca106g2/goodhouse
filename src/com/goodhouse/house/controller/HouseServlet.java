@@ -113,13 +113,22 @@ public class HouseServlet extends HttpServlet {
 						} else if (!hou_managefee.trim().matches(hou_managefeeReg)) {
 							errorMsgs.put("hou_managefee", "請填正整數2~6碼");
 						}
-						String hou_address = req.getParameter("hou_address").trim();
-						String hou_addressReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,200}$";
-						if (hou_address == null || hou_address.trim().length() == 0) {
-							errorMsgs.put("hou_address", "地址必須填寫(不然怎麼看房)");
-						} else if (!hou_address.trim().matches(hou_addressReg)) {
-							errorMsgs.put("hou_address", "格式不正確");
-						}
+
+						String twCityName = req.getParameter("twCityName");
+						String CityAreaName = req.getParameter("CityAreaName");
+						String AreaRoadName = req.getParameter("AreaRoadName");
+						String num = req.getParameter("num");
+						if(twCityName.equals("0")) {
+							errorMsgs.put("twCityName", "縣市未選擇");
+						} else if(CityAreaName.equals("0")) {
+							errorMsgs.put("CityAreaName", "區域未選擇");
+						} else if(AreaRoadName.equals("0")) {
+							errorMsgs.put("CityAreaName", "路名未選擇");
+						} else if(num == null || num.trim().length() == 0) {
+							errorMsgs.put("num", "門牌號碼請勿空白");
+						}						
+						String hou_address =  twCityName + CityAreaName + AreaRoadName + num;
+
 		//-------------------------------------------房屋金額用字串接在後端判斷完後改變型態存入資料庫				
 						String hou_rent_str = req.getParameter("hou_rent_str").trim();
 						String hou_rent_Reg = "^[1-9][0-9]{2,6}$";

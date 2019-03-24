@@ -4,10 +4,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="com.goodhouse.house.model.*" %>
 <%@ page import="com.goodhouse.landlord.model.*" %>
-<%@ page import="com.goodhouse.member.model.*" %>
+<%@ page import="java.util.*, com.goodhouse.member.model.*" %>
 
 <%
 	MemVO memVO = (MemVO)session.getAttribute("memVO");
+
+	String[] arrayCity  = new String[] {"台北市","基隆市","新北市","桃園市","新竹市","新竹縣","苗栗縣","台中市","彰化縣","南投縣","雲林縣","嘉義縣","台南市","高雄市","屏東縣","宜蘭縣","花蓮縣","台東縣","澎湖縣","金門縣","連江縣"};
+	List<String> listCity = Arrays.asList(arrayCity);  
+	pageContext.setAttribute("listCity", listCity);
+
 %>
 <html>
 <head>
@@ -24,6 +29,9 @@
 .form-gradient .header {
 	border-top-left-radius: .3rem;
 	border-top-right-radius: .3rem;
+}
+div .form-control {
+display: initial;
 }
 </style>
 <body>
@@ -151,21 +159,40 @@
 
 										</div>
 									</div>
-								</div>								
-								
-								
-								<div class="form-group">
-									<label class="col-md-4 control-label">房屋地址:</label>
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-											
-<input placeholder="請輸入房屋地址" class="form-control" required="true" type="text" name="hou_address" value="${param.hou_address}"/>${errorMsgs.hou_address}
-
-
-										</div>
-									</div>
-								</div>								
+								</div>	
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="name">地址</label>
+							<div class="col-md-9">
+								<select id="twCityName" name="twCityName" class="form-control" style="width:24%;">
+									<option value="0" >--請選擇縣市--</option>
+								    	<c:forEach var="city" items="${listCity}">
+											<option value="${city}"> ${city}</option>
+								    	</c:forEach>
+								</select>
+								<select id="CityAreaName" name="CityAreaName" class="form-control" style="width:24%;">
+									<option value="0" >--請選擇區域--</option>
+							    </select>
+								<select id="AreaRoadName" name="AreaRoadName" class="form-control" style="width:24%;">
+									<option value="0" >--請選擇路名--</option>
+							  	</select>
+							  	<input type="text" placeholder="請輸入門牌號碼" id="num" name="num" class="form-control" style="width:25%;">
+							 </div>
+						</div>
+						<div class="form-group">
+							<font color="red"><b>${errorMsgs.twCityName}</b></font>
+							<font color="red"><b>${errorMsgs.CityAreaName}</b></font>
+							<font color="red"><b>${errorMsgs.AreaRoadName}</b></font>
+							<font color="red"><b>${errorMsgs.num}</b></font>
+						</div>					
+<!-- 								<div class="form-group"> -->
+<!-- 									<label class="col-md-4 control-label">房屋地址:</label> -->
+<!-- 									<div class="col-md-8 inputGroupContainer"> -->
+<!-- 										<div class="input-group"> -->
+<!-- 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span> -->									
+<%-- <input placeholder="請輸入房屋地址" class="form-control" required="true" type="text" name="hou_address" value="${param.hou_address}"/>${errorMsgs.hou_address} --%>
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div>								 -->
 								
 								
 <!-- 							<div class="form-group">
@@ -293,6 +320,7 @@
 </html>
 <!-- 以下為秀圖片 -->
 <script>
+
 $("#d1").change(function(){
 	readURL(this,"#picture1");
 	   $("#picture1").show();
@@ -316,5 +344,50 @@ $("#d3").change(function(){
 	reader.readAsDataURL(input.files[0]);
 	}
 	}
+
+$(document).ready(function(){
 	
+	$("#twCityName").change(function(){
+		$.ajax({
+			 type: "POST",
+			 url: "<%=request.getContextPath()%>/Json2Read",
+			 data: {"action":"twCityName",
+				 	"twCityName":$('#twCityName option:selected').val()},
+			 dataType: "json",
+			 success: function(result){
+				 $("#CityAreaName").empty();
+				
+				 $("#CityAreaName").append("<option >--請選擇區域--</option>")
+				 for(var i=0; i<result.length; i++){
+				 	$("#CityAreaName").append('<option value="'+result[i]+'">'+result[i]+'</option>');
+				 }
+			 },
+	         error: function(){
+	        	 alert("AJAX-grade發生錯誤囉!")
+	        	 }
+	    });
+	});
+	
+	$("#CityAreaName").change(function(){
+		$.ajax({
+			 type: "POST",
+			 url: "<%=request.getContextPath()%>/Json2Read",
+			 data: {"action":"CityAreaName",
+				 	"twCityName":$('#twCityName option:selected').val(),
+				 	"CityAreaName":$('#CityAreaName option:selected').val()},
+			 dataType: "json",
+			 success: function(result){
+				 $("#AreaRoadName").empty();
+				 $("#AreaRoadName").append("<option >--請選擇區域--</option>")
+				 for(var i=0; i<result.length; i++){
+				 	$("#AreaRoadName").append('<option value="'+result[i]+'">'+result[i]+'</option>');
+				 }
+			 },
+	         error: function(){
+	        	 alert("AJAX-grade發生錯誤囉!")
+	        	 }
+	    });
+	});
+})
+
 </script>
