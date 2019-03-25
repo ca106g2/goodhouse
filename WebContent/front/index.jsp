@@ -113,7 +113,7 @@
 								<c:forEach var="hou_VO2" items="${houSvc2.all}">
 									<c:if test="${adVO2.ad_sort_id eq 'ADS0000002' and adVO2.ad_status eq '上架'}">
 										<c:if test="${adVO2.hou_id eq hou_VO2.hou_id}">
-													<div class="swiper-slide" style="background-repeat: no-repeat; background-image: url(http://localhost:8081/<%=request.getContextPath() %>/HouseServlet?hou_id=${adVO2.hou_id}&photo=1); margin-right: 30px; background-size: 100%;">
+													<div class="swiper-slide" style="background-repeat: no-repeat; background-image: url(<%=request.getContextPath() %>/HouseServlet?hou_id=${adVO2.hou_id}&photo=1); margin-right: 30px; background-size: 100%;">
 		          				 			</div>
 	   									</c:if>
 	   								</c:if>

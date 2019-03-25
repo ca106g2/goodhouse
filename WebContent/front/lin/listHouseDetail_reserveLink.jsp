@@ -219,8 +219,8 @@ input[type="checkbox"].switch_1{
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide swiper-no-swiping" id="panorama"></div>
-							<div class="swiper-slide" style="background-image: url(http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=2); "></div>
-							<div class="swiper-slide" style="background-image: url(http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=1); "></div>
+							<div class="swiper-slide" style="background-image: url(<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=2); "></div>
+							<div class="swiper-slide" style="background-image: url(<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=1); "></div>
 						</div>
 						<!-- Add Pagination -->
        					<div class="swiper-pagination"></div>
