@@ -64,7 +64,7 @@ display: initial;
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 												
-<input placeholder="請輸入房屋名稱" class="form-control" required="true" type="text" name="hou_name" value="${param.hou_name}"/>${errorMsgs.hou_name}
+<input id="hou_name" placeholder="請輸入房屋名稱" class="form-control" required="true" type="text" name="hou_name" value="${param.hou_name}"/>${errorMsgs.hou_name}
 
 										</div>
 									</div>
@@ -90,7 +90,7 @@ display: initial;
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 												
-<input placeholder="請輸入房屋坪數" class="form-control" required="true" type="text" name="hou_size" value="${param.hou_size}"/>${errorMsgs.hou_size}
+<input id="hou_size" placeholder="請輸入房屋坪數" class="form-control" required="true" type="text" name="hou_size" value="${param.hou_size}"/>${errorMsgs.hou_size}
 
 										</div>
 									</div>
@@ -130,7 +130,7 @@ display: initial;
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 												
-<input placeholder="請輸入房屋管理費" class="form-control" required="true" type="text" name="hou_managefee" value="${param.hou_managefee}"/>${errorMsgs.hou_managefee}
+<input id="hou_m" placeholder="請輸入房屋管理費" class="form-control" required="true" type="text" name="hou_managefee" value="${param.hou_managefee}"/>${errorMsgs.hou_managefee}
 										</div>
 									</div>
 								</div>
@@ -142,7 +142,7 @@ display: initial;
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 												
-<input placeholder="請輸入房屋租金" class="form-control" required="true"  type="text" name="hou_rent_str" value="${param.hou_rent_str}"/>${errorMsgs.hou_rent_str}
+<input id="hou_r" placeholder="請輸入房屋租金" class="form-control" required="true"  type="text" name="hou_rent_str" value="${param.hou_rent_str}"/>${errorMsgs.hou_rent_str}
 
 										</div>
 									</div>
@@ -250,7 +250,7 @@ display: initial;
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 											
-<input placeholder="房屋備註" class="form-control" required="true" type="text" name="hou_note" value="${param.hou_note}"/>${errorMsgs.hou_note}
+<input id="hou_n" placeholder="房屋備註" class="form-control" required="true" type="text" name="hou_note" value="${param.hou_note}"/>${errorMsgs.hou_note}
 
 										</div>
 									</div>
@@ -303,12 +303,14 @@ display: initial;
 							<input type="hidden" name="lan_id" value="<%=lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id()%>">	
 							<input type="hidden" name="action" value="frontinsert">								
 							<input type="submit" value="送出新增" class="btn btn-primary">
-							<input type="hidden" name="action" value="getOne_For_Display">	
+							<input type="hidden" name="action" value="getOne_For_Display">
 							</fieldset>
-
+		
 
 						</form>
-						
+							<button class="btn btn-primary" onclick="FirstHouse()">神奇小按鈕</button>	
+							<br>
+							<br>
 					</td>
 				</tr>
 			</tbody>
@@ -390,4 +392,12 @@ $(document).ready(function(){
 	});
 })
 
+
+function FirstHouse(){
+	$("#hou_name").val("一般套房.套房短期出租");
+	$("#hou_size").val("15坪");
+	$("#hou_m").val("666");
+	$("#hou_r").val("7777");
+	$("#hou_n").val("房源描述一.面向淡水河，視野遼闊。二.離捷運站近，附近學校，市場，公園，生活機能方便。三.新交屋，所有家具都是新的，住起來就是舒服。四.水電費依帳單繳納。");	
+}
 </script>
