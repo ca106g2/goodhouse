@@ -492,29 +492,29 @@ input[type="checkbox"].switch_1{
 <!----===================================== 以下是TIM功能 ====================================--->	
 							<div role="tabpanel" class="tab-pane fade in active" id="ad_report">
 								<c:if test="${memVO != null and houVO.hou_id eq adSvc.getOneAD(adSvc.getOneAdByHou(houVO.hou_id).ad_id).hou_id}">
-									<table id="table1">
-										<tr class="table-light">
-											<td>房屋檢舉 : </td>				
+									<table class="table table-borderless">
+										<tbody>
+										<tr>
+											<th>房屋檢舉 : </th>				
 												<td><%= houVO.getHou_name()%></td>
 										</tr>
-										<tr class="table-light">
-											<td>檢舉人 : </td>
+										<tr>
+											<th>檢舉人 : </th>
 												<td><%=memVO.getMem_name()%></td>
 										</tr>
-										<tr class="table-light">
-											<td>檢舉事由</td>
-												<td><label for="exampleFormControlTextarea1"></label> 
+										<tr>
+												<th>檢舉事由</th><td><label for="exampleFormControlTextarea1"></label> 
 												<textarea name="ad_rep_reason" class="form-control ad_rep_reason" placeholder="請輸入事由"  id="exampleFormControlTextarea1" rows="3"></textarea>
 											</td>
 										</tr>	
 										
-										<tr class="table-light">
-											<td>檢舉日期</td>
-											<td><input name="ad_rep_date" id="f_date1" type="text" class="ad_rep_date">
+										<tr>
+											
+											<th>檢舉日期</th><td><input name="ad_rep_date" id="f_date1" type="text" class="ad_rep_date">
 											</td>
 										</tr>
-										<tr class="table-light">
-											<td>	
+										<tr>
+											<th> </th><td>	
 												<input type="hidden" name="mem_id" value="<%=memVO.getMem_id()%>" class="ad_memId">	
 												<input type="hidden" name="ad_id" value="${adSvc.getOneAdByHou(houVO.hou_id).ad_id}" class="ad_Id">
 												<input type="hidden" name="ad_rep_status" value="檢舉審核中" class="ad_rep_status">
@@ -522,6 +522,7 @@ input[type="checkbox"].switch_1{
 												<input type="submit" class="btn btn-outline-secondary" value="送出" id="sum_ad_report" />
 											</td>
 										</tr>
+											</tbody>
 									</table>					
 							
 								</c:if>

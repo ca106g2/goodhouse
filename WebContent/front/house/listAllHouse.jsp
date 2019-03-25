@@ -31,39 +31,15 @@
 	crossorigin="anonymous">
 <!-- Bootstrap CSS end-->
 <title></title>
-<style>
-/* table {  */
 
-/*   font-family: 微軟正黑體;  */
-/*   font-size:16px;  */
-/*   width:1200px; */
-/*   border:2px solid #000; */
-/*   text-align:center; */
-/*   border-collapse:collapse; */
-/*   margin-left:auto;  */
-/*   margin-right:auto; */
-/* }  */
-/* th {  */
-/*   background-color: #009FCC; */
-/*   padding:10px; */
-
-/*   color:#fff; */
-/*   border:2px solid #000; */
-/* }  */
-/* td {  */
-/*   border:1px solid #000; */
-/*   padding:5px; */
-/* }  */
-div {
-	margin: 0px auto;
-}
-</style>
 
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
-	<div class="col-10">
-		<div class="card">
+<div class="container-fluid">
+	<div class="row justify-content-center">
+		<div class="col-10">
+			<div class="card">
 
 			<div class="card-header">
 				<h3>房屋列表</h3>
@@ -136,6 +112,8 @@ div {
 				</div>
 			</div>
 		</div>
+	</div>
+			</div>
 	</div>
 	<script
 		src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"
