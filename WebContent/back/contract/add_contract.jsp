@@ -33,7 +33,7 @@
 					<tr>
 						<td size="45">合約分類名稱</td>
 						<td>
-							<input type="text" name="con_name" size="45" value="<%= (conVO == null)? "合約分類名稱" : conVO.getCon_name()%>" />
+							<input type="text" name="con_name" size="45" value="<%= (conVO == null)? "合約分類名稱" : conVO.getCon_name()%>" class="btn btn-light"/>
 						</td>
 					</tr>
 					<tr>

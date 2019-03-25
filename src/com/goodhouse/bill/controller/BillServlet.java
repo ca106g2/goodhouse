@@ -124,57 +124,6 @@ public class BillServlet extends HttpServlet{
 			}
 		}
 		
-		//TODO 後臺使用者：單一編號查詢
-		if("back_getBy_bill_id".equals(action)) {
-			
-			List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
-			
-			try {
-				/****1接收請求參數******************/
-				//帳單編號
-				String bill_id = req.getParameter("bill_id");
-				if(bill_id == null || bill_id.trim().length() == 0) {
-					errorMsgs.add("帳單編號不能空白，請重新輸入");
-				}
-				// 如 ~ 帳單編號：20190226-B00001
-				String bill_idReq = "^[0-9]{8}[-]{1}[B]{1}[0-9]{5}$";
-				if(!bill_id.trim().matches(bill_idReq)) {
-					errorMsgs.add("帳單編號輸入格式 ( 如：20190226-B00001，含 - 共15碼 ) 錯誤，請重新輸入");
-				}
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back/bill/back_select_page.jsp");
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
-				
-				/******2準備查詢***********************/
-				BillService billSvc = new BillService();
-				BillVO billVO = billSvc.getOneB(bill_id);
-				
-				if(billVO == null) {
-					errorMsgs.add("查無資料");
-				}
-				
-				/******3查詢完成準備轉交************************/
-				req.setAttribute("billVO", billVO);
-				String url = "/back/bill/back_listOne.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);
-				
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req.getRequestDispatcher("/back/bill/back_select_page.jsp");
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
-				
-			} catch (Exception e) {
-				errorMsgs.add("無法取得資料");
-				RequestDispatcher failureView = req.getRequestDispatcher("/back/bill/back_select_page.jsp");
-				failureView.forward(req, res);
-			}
-		}
-		
 		//TODO 後台使用者：單一姓名查詢
 		if("back_getBy_mem_name".equals(action)) {
 			
@@ -521,14 +470,35 @@ public class BillServlet extends HttpServlet{
 		//TODO 後台使用者查看單一帳單
 		if("backBillForLook".equals(action)) {
 			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
 			
 			/****1接收請求參數******************/
 			//帳單編號
 			String bill_id = req.getParameter("bill_id");
+			
+			if(bill_id == null || bill_id.trim().length() == 0) {
+				errorMsgs.add("帳單編號不能空白，請重新輸入");
+			}
+			// 如 ~ 帳單編號：20190226-B00001
+			String bill_idReq = "^[0-9]{8}[-]{1}[B]{1}[0-9]{5}$";
+			if(!bill_id.trim().matches(bill_idReq)) {
+				errorMsgs.add("帳單編號輸入格式 ( 如：20190226-B00001，含 - 共15碼 ) 錯誤，請重新輸入");
+			}
+			if (!errorMsgs.isEmpty()) {
+				RequestDispatcher failureView = req.getRequestDispatcher("/back/bill/back_listAll_bill.jsp");
+				failureView.forward(req, res);
+				return;//程式中斷
+			}
+			
+			
 			/******2準備查詢***********************/
 			BillService billSvc = new BillService();
 			BillVO billVO = billSvc.getOneB(bill_id);
 			
+			if(billVO == null) {
+				errorMsgs.add("查無資料");
+			}
 			//Bootstrap_modal
 			boolean openModal=true;
 			req.setAttribute("openModal",openModal );

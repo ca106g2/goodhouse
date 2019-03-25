@@ -22,7 +22,7 @@
 <body>
 <!-- Feader頭 -->
 	<header class="container-fluid" style="position:fixed;z-index:999;">
-		<div class="navbar navbar-expand-lg navbar-light bg-light shadow" style="background-color: #FDFEFE	 !important;border-radius: 0 !important;">
+		<div class="navbar navbar-expand-lg navbar-light bg-light shadow row" style="background-color: #FDFEFE	 !important;border-radius: 0 !important;">
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
            </button>
@@ -34,7 +34,7 @@
                        <img src="<%=request.getContextPath()%>/share_pic/logo_color.png" width="40px" height="37px">
                        	後台首頁 <span class="sr-only"></span>
                        </a>
-                   </li>
+                   </li> 
 					
 					<li class="nav-item dropdown" style="margin-left:160px ;margin-top:4px">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

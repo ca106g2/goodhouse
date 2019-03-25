@@ -55,7 +55,7 @@
 <body>
 <!-- Feader頭 -->
 	<header class="container-fluid">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded" style="padding:0px">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded row" style="padding:0px">
            
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
@@ -102,12 +102,12 @@
                    <li class="nav-item">
                        <!-- 下拉選單 -->
 						<li class="nav-item dropdown">
-					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
 					        	style="margin-top:4px;padding-top:0px">
 					        	<img src="<%=request.getContextPath()%>/images/green_mem.png" style="width:30px ; height:28px;"/> 
 					        	房客
 					        </a>
-					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/mem_listAll_ele_contract.jsp">我的合約列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/bill/mem_listAll_bill.jsp">我的帳單列表</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/good_record_check.jsp">我的積分紀錄</a>
@@ -121,12 +121,12 @@
 						    <c:if test="${not empty lanVO and lanVO.lan_accountstatus == '2'}">
 	               <li class="nav-item" >
 	                    <li class="nav-item dropdown" id="lan">
-						   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+						   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
 						        style="margin-top:4px;padding-top:0px" >
 						        <img src="<%=request.getContextPath()%>/images/red_mem.png" style="width:30px ; height:28px;"/>
 						        	房東
 						   </a>
-						        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
+						        <div class="dropdown-menu" aria-labelledby="navbarDropdown2" >
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">電子合約管理</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/lan_listAll_evaluate.jsp">我的房屋評價</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house/listAllHouse.jsp">我的所有房屋</a>
@@ -146,12 +146,12 @@
 <%-- 	                   <% } %> --%>
                    <li class="nav-item">
                        <li class="nav-item dropdown">
-					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+					        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
 					        	style="margin-top:4px;padding-top:0px">
 					        	<img src="<%=request.getContextPath()%>/images/shop.png" style="width:30px ; height:28px;"/>
 					        	積分商城
 					        </a>
-					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/listAllPointgoods.jsp">瀏覽積分商城</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/good_favorite_check.jsp">我的最愛積分商品</a>
 					          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/pointgoods/good_order_check.jsp">訂單查詢</a>

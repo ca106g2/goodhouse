@@ -25,6 +25,12 @@
 
 	<div class="container">
 		<div class="row">
+			<div class="col-2">
+				<h4> 
+					<a href="<%=request.getContextPath()%>/back/back_index.jsp"><img
+						src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0"></a>
+				</h4>
+			</div>
 
 			<div class="col-4">
 				<c:if test="${not empty errorMsgs}">
@@ -38,7 +44,7 @@
 			</div>
 
 
-			<div class="col-8">
+			<div class="col-6 text-right">
 				<form method="post"
 					action="<%=request.getContextPath()%>/back/contract/add_contract.jsp">
 					<input type="submit" value="新增合約分類" class="btn btn-outline-info ">
@@ -75,7 +81,20 @@
 										<td>${conVO.con_id}</td>
 										<td>${conVO.con_name}</td>
 <%-- 										<td>${conVO.con_content}</td> --%>
-										<td>${conVO.con_status}</td>
+<%-- 										<td>${conVO.con_status}</td> --%>
+										<c:forEach var="con_status" items="${Con_statusList}">
+											<c:if test="${con_status.status_no_name eq conVO.con_status}">
+												<c:choose>
+													<c:when test="${con_status.status_no_name eq 'S1啟用'}">
+														<td style="color: #3498DB">${con_status.status_name}</td>
+													</c:when>
+													
+													<c:when test="${con_status.status_no_name eq 'S2停用' }">
+														<td style="color: #E74C3C">${con_status.status_name}</td>
+													</c:when>
+												</c:choose>
+											</c:if>
+										</c:forEach>
 
 										<td>
 											<form method="post"

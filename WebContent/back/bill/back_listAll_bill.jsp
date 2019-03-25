@@ -30,13 +30,17 @@
 							<p style="color:red">${message}</p><br>
 						</c:forEach>
 					</c:if>
+					
+					<a href="<%=request.getContextPath()%>/back/back_index.jsp">
+						<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+					</a>
 				</div>
 				
 				<div class="col-5 text-right">
 					<form method="post" action="bill.do">
 						<b>查詢帳單</b>
 						<input type="text" name="bill_id" class="btn btn-outline-info" placeholder="輸入帳單編號">
-						<input type="hidden" name="action" value="back_getBy_bill_id">
+						<input type="hidden" name="action" value="backBillForLook">
 						<input type="submit" value="送出" class="btn btn-outline-info">
 					</form>
 				</div>
@@ -156,7 +160,7 @@
 
 		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
 			aria-labelledby="basicModal" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
+			<div class="modal-dialog modal-m">
 				<div class="modal-content">
 
 					<div class="modal-header">

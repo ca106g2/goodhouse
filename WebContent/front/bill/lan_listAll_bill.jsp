@@ -50,6 +50,11 @@
 		<div class="row justify-content-center">
 
 			<div col="col-2">
+				<form method="post"
+					action="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
+					<input type="submit" value="回電子合約管理"
+						class="btn btn-outline-success ">
+				</form>
 				<c:if test="${not empty errorMsgs}">
 					<ul>
 						<c:forEach var="message" items="${errorMsgs}">

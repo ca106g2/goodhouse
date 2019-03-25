@@ -20,7 +20,16 @@
 	<!-- 工作區開始 -->
 
 	<div class="container">
-		<div class="row justfy-content-center ">
+		
+		<div>
+			<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lan_listAll_ele_contract.jsp">
+				 <input type="submit" value="回電子合約" class="btn btn-outline-success ">
+			</form>
+		
+		</div>
+	
+	
+		<div class="row justfy-content-center " style="margin-top:15px">
 			<%-- 錯誤表列 --%>
 			<c:if test="${not empty errorMsgs}">
 				<font style="color: red">請修正以下錯誤:</font>
@@ -117,7 +126,7 @@
 								
 							<div class="text-center">
 								<p>合約備註</p>
-								<textarea name="ele_con_note" rows="3" cols="100"
+								<textarea name="ele_con_note" rows="5" cols="150"
 									value="${eleConVO.ele_con_note}" class="btn btn-light"
 									placeholder="輸入其他特別協議">${eleConVO.ele_con_note}</textarea>
 								<br>

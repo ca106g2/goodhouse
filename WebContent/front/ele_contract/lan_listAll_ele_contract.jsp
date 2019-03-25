@@ -64,10 +64,9 @@
 
 			<div class="col-6">
 				<form method="post" action="ele_contract.do">
-					<input type="text" name="mem_name" class="btn btn-light"
-						placeholder="輸入姓名查找房客合約"> <input type="hidden"
-						name="action" value="lanGetMemEle_ContractByName"> <input
-						type="submit" value="送出" class="btn btn-outline-success"
+					<input type="text" name="mem_name" class="btn btn-light" placeholder="輸入姓名查找房客合約"> 
+					<input type="hidden" name="action" value="lanGetMemEle_ContractByName"> 
+					<input type="submit" value="送出" class="btn btn-outline-success"
 						id="sendmem">
 				</form>
 			</div>
@@ -75,8 +74,7 @@
 			<div class="col-4">
 				<form method="post" action="ele_contract.do">
 					<input type="hidden" name="action" value="jumpToSelectContract">
-					<input type="submit" value="新增電子合約"
-						class="btn btn-outline-success ">
+					<input type="submit" value="新增電子合約" class="btn btn-outline-success ">
 				</form>
 			</div>
 

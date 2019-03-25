@@ -26,7 +26,7 @@
 					<c:if test="${not empty errorMsgs}">
 						<font style="color: red"></font>
 							<c:forEach var="message" items="${errorMsgs}">
-								<p style="color: red">${message}</p>
+								<p style="color: red">${message}</p><br>
 							</c:forEach>
 					</c:if>
 				</div>

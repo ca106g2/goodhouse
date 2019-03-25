@@ -56,7 +56,7 @@
 						class="btn btn-outline-success ">
 				</form>
 			</div>
-			<div col="col-10">
+			<div col="col-10" style="margin-top:15px">
 				<div class="card">
 					<div class="card-header">
 						<h3>合約處理</h3>

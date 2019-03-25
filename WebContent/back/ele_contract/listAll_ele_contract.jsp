@@ -37,6 +37,9 @@
 							<p style="color:red">${message}</p><br>
 						</c:forEach>
 				</c:if>
+				<a href="<%=request.getContextPath()%>/back/back_index.jsp">
+					<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+				</a>
 			</div>
 			
 			<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"></jsp:useBean>

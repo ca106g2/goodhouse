@@ -58,7 +58,7 @@
     }
 </style>
 <link href="select2/pe-icon-7-stroke.css" rel="stylesheet" />
-<link href="select2/ct-navbar.css" rel="stylesheet" />
+<!-- <link href="select2/ct-navbar.css" rel="stylesheet" /> -->
 </head>
 <body>
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
