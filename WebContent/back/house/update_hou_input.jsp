@@ -91,7 +91,7 @@
 		<input type="hidden" name="hou_f_picture">
 		<input type="hidden" name="hou_s_picture">
 		<input type="hidden" name="hou_t_picture">
-		<input type="submit" class="btn btn-secondary" value="送出修改" >	
+		<input type="submit"  class="btn btn-outline-success" value="送出修改" >	
 		</td></th></tr>
 </table>
 <br>

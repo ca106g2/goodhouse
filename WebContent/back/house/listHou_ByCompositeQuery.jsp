@@ -53,6 +53,7 @@
 										<th scope="col">是否可烹飪</th>
 										<th scope="col">地區</th>
 										<th scope="col"></th>
+										<th scope="col"></th>
 									</tr>
 									<%@ include file="pages/page1.file"%>
 									<c:forEach var="houVO" items="${list}" begin="<%=pageIndex%>"
@@ -65,10 +66,20 @@
 											<td>${houVO.hou_cook}</td>
 											<td>${houVO.hou_address}</td>
 											<td>
+												<FORM METHOD="post"
+													ACTION="<%=request.getContextPath()%>/back/house/hou.do"
+													style="margin-bottom: 0px;">
+													<input type="submit" class="btn btn-outline-success"
+														value="修改"> <input type="hidden" name="hou_id"
+														value="${houVO.hou_id}"> <input type="hidden"
+														name="action" value="getOne_For_Update">
+												</FORM>
+											</td>										
+											<td>
 												<form method="post"
 													action="<%=request.getContextPath()%>/back/house/hou.do"
 													style="margin-bottom: 0px;">
-													<input type="submit" value="去看看"> <input
+													<input type="submit" class="btn btn-outline-success" value="去看看"> <input
 														type="hidden" name="hou_id" value="${houVO.hou_id}">
 													<input type="hidden" name="requestURL"
 														value="<%=request.getServletPath()%>"> <input

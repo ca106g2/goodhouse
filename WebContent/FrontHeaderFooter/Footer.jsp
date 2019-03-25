@@ -125,7 +125,7 @@
 
 			webSocket2.onmessage = function(event) {
 				var jsonObj = JSON.parse(event.data);
-				alert(jsonObj.houMsgs);
+				swal(jsonObj.houMsgs);
 			};
 
 			webSocket2.onclose = function(event) {

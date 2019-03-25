@@ -51,9 +51,15 @@
 		<tr><th>房屋地址 : <td><%=houVO.getHou_address()%></td></th></tr>
 		<tr><th>房屋租金 : <td><%=houVO.getHou_rent()%></td></th></tr>
 		<tr><th>備註 : <td><%=houVO.getHou_note()%></td></th></tr>
-		<tr><th>圖片一 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"></td></th></tr>
-		<tr><th>圖片二 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=2"></td></th></tr>
-		<tr><th>圖片三 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=3"></td></th></tr>
+		<tr><th>圖片一 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"style="
+    height: 300;
+"></td></th></tr>
+		<tr><th>圖片二 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=2"style="
+    height: 300;
+"></td></th></tr>
+		<tr><th>圖片三 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=3"style="
+    height: 300;
+"></td></th></tr>
 
 </table>
 <jsp:include page="/BackHeaderFooter/Footer.jsp" />	
