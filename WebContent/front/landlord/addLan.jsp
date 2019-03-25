@@ -77,7 +77,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td>房東帳號:</td>
+		<td>房東戶頭:</td>
 		<td><input type="TEXT"  name="lan_account" size="45"
 		value="<%= (lanVO==null)? "" : lanVO.getLan_account()%>"/></td>
 		
@@ -86,7 +86,8 @@
 
 	<tr>
 		<td>良民證:</td>
-		<td><input type="file" name="lan_ciziten" size="45"/></td>
+		<td><input type="file" name="lan_ciziten" autocomplete="current-password" class="lowin-input" id="img">						
+	    <img id="preview" src="#" style="display: none;" width="100" height="100"></td>
 	</tr>
 
 	<tr>
@@ -102,6 +103,29 @@
 </table>
 </FORM>
 <br>
+<script type="text/javascript">
+  
+  $("#img").click(function(){
+    $("#preview").attr('src',  '#');
+    $("#preview").hide();
+  });
+  
+  $("#img").change(function(){
+    readURL(this,"#preview");
+    $("#preview").show();
+  });
+  
+  function readURL(input,imgid){    
+      if(input.files && input.files[0]){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+         $(imgid).attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 </body>

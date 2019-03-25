@@ -55,8 +55,8 @@ pageContext.setAttribute("list",list);
 	</div>
 	<div class="row col-12">
 		<table class="table table-hover">
-			<tr>
-				<th>會員編號</th>
+			<tr style="background-color: #EDF9DE;">
+<!-- 				<th>會員編號</th> -->
 				<th>會員姓名</th>
 				<th>會員生日</th>
 <!-- 				<th>會員密碼</th> -->
@@ -75,14 +75,14 @@ pageContext.setAttribute("list",list);
 			<%@ include file="page1.file" %>
 			<c:forEach 	var="memVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 				<tr>
-					<td>${memVO.mem_id}</td>
+<%-- 					<td>${memVO.mem_id}</td> --%>
 					<td>${memVO.mem_name}</td>
 					<td>${memVO.mem_birthday}</td>
 <%-- 					<td>${memVO.mem_password}</td> --%>
 					<td>${memVO.mem_address}</td>
 					<td>${memVO.mem_zipcode}</td>
-					<td>${memVO.mem_telephone}</td>
-					<td>${memVO.mem_phone}</td>
+					<td>0${memVO.mem_telephone}</td>
+					<td>0${memVO.mem_phone}</td>
 					<td>${memVO.mem_email}</td>
 					<c:if test="${memVO.mem_status==1}">
 						<td>一般會員</td>
@@ -99,8 +99,9 @@ pageContext.setAttribute("list",list);
 						encoding = Base64.encode(b);
 					%>
 						<td><img id="bc" src="data:image/jpg;base64,<%=encoding %>"></td>
-					<%
-						}%>
+					<%}else{ %>
+						<td></td>
+					<% } %>
 					
 					<td>${memVO.good_total}</td>
 					<c:if test="${memVO.mem_sex==1}">

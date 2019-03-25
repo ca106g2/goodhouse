@@ -102,8 +102,8 @@ pageContext.setAttribute("list",list);
 			<td>${memVO.mem_password}</td>
 			<td>${memVO.mem_address}</td>
 			<td>${memVO.mem_zipcode}</td>
-			<td>${memVO.mem_telephone}</td>
-			<td>${memVO.mem_phone}</td>
+			<td>0${memVO.mem_telephone}</td>
+			<td>0${memVO.mem_phone}</td>
 			<td>${memVO.mem_email}</td>
 			<td>${memVO.mem_status}</td>
 			<c:set var="memVO" value="${memVO}"/>

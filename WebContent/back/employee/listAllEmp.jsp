@@ -66,8 +66,8 @@ pageContext.setAttribute("list",list);
 </c:if>
 
 <table class="table table-hover">
-	<tr>
-		<th>員工編號</th>
+	<tr style="background-color: #EDF9DE;">
+<!-- 		<th>員工編號</th> -->
 		<th>員工姓名</th>
 		<th>員工電話</th>
 		<th>員工帳號</th>
@@ -80,7 +80,7 @@ pageContext.setAttribute("list",list);
 	<c:forEach var="empVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
 	<tr>
-		<td>${empVO.emp_id}</td>
+<%-- 		<td>${empVO.emp_id}</td> --%>
 		<td>${empVO.emp_name}</td>
 		<td>${empVO.emp_phone}</td>
 		<td>${empVO.emp_account}</td>

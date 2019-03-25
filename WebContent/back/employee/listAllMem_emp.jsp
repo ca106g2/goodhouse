@@ -67,7 +67,7 @@ pageContext.setAttribute("list",list);
 						<td>封鎖中</td>
 					</c:if>
 					<c:set var="memVO" value="${memVO}"/>
-										<%
+					<%
 						byte b[] = null;
 						b = ((MemVO)pageContext.getAttribute("memVO")).getMem_picture();	
 						String encoding = null;
@@ -75,12 +75,12 @@ pageContext.setAttribute("list",list);
 						encoding = Base64.encode(b);
 					%>
 						<td><img id="bc" src="data:image/jpg;base64,<%=encoding %>"></td>
-					<%
-						}%>
-					
+					<% }else{ %>
+						<td></td>
+					<% } %>
 					<td>${memVO.good_total}</td>
 					<c:if test="${memVO.mem_sex==1}">
-						<td>男</td>
+						<td>男</td> 
 					</c:if>
 					<c:if test="${memVO.mem_sex==2}">
 						<td>女</td>

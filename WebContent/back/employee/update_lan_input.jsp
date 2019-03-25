@@ -60,7 +60,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>房東帳號:</td>
+					<td>房東戶頭:</td>
 					<td><input type="TEXT" name="lan_account" size="45"	value="<%=lanVO.getLan_account()%>" /></td>
 				</tr>
 			

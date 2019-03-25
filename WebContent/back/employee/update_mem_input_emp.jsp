@@ -109,7 +109,7 @@
 	<tr>
 		<td>會員圖片:</td>
 					<td>
-						<input type="file" name="mem_picture" size="45"	alt="..."/>
+<!-- 						<input type="file" name="mem_picture" size="45"	alt="..."/> -->
 						<%
 		    				byte b[] = null;
 		    				String encoding = null;
