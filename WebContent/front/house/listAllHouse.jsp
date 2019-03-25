@@ -4,15 +4,16 @@
 <%@ page import="com.goodhouse.house.model.*"%>
 <%@ page import="com.goodhouse.landlord.model.*"%>
 <%@ page import="com.goodhouse.member.model.*"%>
-<%@ page import="java.sql.*, javax.sql.*" %> 
+<%@ page import="java.sql.*, javax.sql.*"%>
 
 <%
 	System.out.println(session.getAttribute("memVO"));
-	String mem_id = ((MemVO)session.getAttribute("memVO")).getMem_id();
+	String mem_id = ((MemVO) session.getAttribute("memVO")).getMem_id();
 	LanService lanSvc = new LanService();
 	HouseService houSvc = new HouseService();
-	List<HouseVO> listHou_ByCompositeQuery =  houSvc.getAllFor_Hou_Lan_id(lanSvc.getOneLanByMemId(mem_id).getLan_id());
-	pageContext.setAttribute("listHou_ByCompositeQuery",listHou_ByCompositeQuery);
+	List<HouseVO> listHou_ByCompositeQuery = houSvc
+			.getAllFor_Hou_Lan_id(lanSvc.getOneLanByMemId(mem_id).getLan_id());
+	pageContext.setAttribute("listHou_ByCompositeQuery", listHou_ByCompositeQuery);
 %>
 
 
@@ -31,91 +32,110 @@
 <!-- Bootstrap CSS end-->
 <title></title>
 <style>
-table { 
+/* table {  */
 
-  font-family: 微軟正黑體; 
-  font-size:16px; 
-  width:1200px;
-  border:2px solid #000;
-  text-align:center;
-  border-collapse:collapse;
-  margin-left:auto; 
-  margin-right:auto;
-} 
-th { 
-  background-color: #009FCC;
-  padding:10px;
+/*   font-family: 微軟正黑體;  */
+/*   font-size:16px;  */
+/*   width:1200px; */
+/*   border:2px solid #000; */
+/*   text-align:center; */
+/*   border-collapse:collapse; */
+/*   margin-left:auto;  */
+/*   margin-right:auto; */
+/* }  */
+/* th {  */
+/*   background-color: #009FCC; */
+/*   padding:10px; */
 
-  color:#fff;
-  border:2px solid #000;
-} 
-td { 
-  border:1px solid #000;
-  padding:5px;
-} 
-
-div{
-	margin:0px auto;
+/*   color:#fff; */
+/*   border:2px solid #000; */
+/* }  */
+/* td {  */
+/*   border:1px solid #000; */
+/*   padding:5px; */
+/* }  */
+div {
+	margin: 0px auto;
 }
 </style>
 
 </head>
 <body>
- <div>
-<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	<div class="col-10">
+		<div class="card">
 
-<table>
-	<tr class="table-active">
-		<th>房屋名稱</th>
-		<th>房屋類別</th>
-		<th>房屋審核 </th>
-		<th>是否可烹飪</th>
-		<th>地區</th>
-		<th>房屋遊覽</th>
-		<th>申請廣告</th>	
-	</tr>
+			<div class="card-header">
+				<h3>房屋列表</h3>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table
+						class="table table-bordered table-hover mb-0 text-nowrap text-center">
+						<tbody>
+							<tr style="background-color: #EDF9DE;">
+								<th scope="col">房屋名稱</th>
+								<th scope="col">房屋類別</th>
+								<th scope="col">房屋審核</th>
+								<th scope="col">是否可烹飪</th>
+								<th scope="col">地區</th>
+								<th scope="col">房屋遊覽</th>
+								<th scope="col">申請廣告</th>
+							</tr>
 
-		<%@ include file="pages/page1.file"%>
-	<c:forEach var="houVO" items="${listHou_ByCompositeQuery}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1 %>">
-	 	<tr  class="table-info" align='center' >
-	 		<td>${houVO.hou_name}</td>
-	 		<td>${houVO.hou_type}</td>
-	 		<td>${houVO.hou_parkspace}</td>
-	 		<td>${houVO.hou_cook}</td>
-	 		<td>${houVO.hou_address}</td>
-			<td>
-			<input type="hidden" name="mem_id" value="${memVO.mem_id}">
-			<form method="post" action="<%=request.getContextPath()%>/front/house/hou.do" style="margin-bottom: 0px;">
-			<input type="submit" value="去看看">
-			<input type="hidden" name="hou_id" value="${houVO.hou_id}">
-			<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
-			<input type="hidden" name="whichPage" value="<%=whichPage%>">
-			<input type="hidden" name="action" value="front_getOne_For_Display">
-			</form>
-			</td>
-			
-			<td>
+							<%@ include file="pages/page1.file"%>
+							<c:forEach var="houVO" items="${listHou_ByCompositeQuery}"
+								begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1 %>">
+								<tr>
+									<td>${houVO.hou_name}</td>
+									<td>${houVO.hou_type}</td>
+									<td>${houVO.hou_parkspace}</td>
+									<td>${houVO.hou_cook}</td>
+									<td>${houVO.hou_address}</td>
+									<td><input type="hidden" name="mem_id"
+										value="${memVO.mem_id}">
+										<form method="post"
+											action="<%=request.getContextPath()%>/front/house/hou.do"
+											style="margin-bottom: 0px;">
+											<input type="submit" class="btn btn-success" value="去看看">
+											<input type="hidden" name="hou_id" value="${houVO.hou_id}">
+											<input type="hidden" name="requestURL"
+												value="<%=request.getServletPath()%>"> <input
+												type="hidden" name="whichPage" value="<%=whichPage%>">
+											<input type="hidden" name="action"
+												value="front_getOne_For_Display">
+										</form></td>
 
-	<jsp:useBean id="adSvc" scope="page" class="com.goodhouse.ad.model.AdService"/>					
-			<c:if test="${houVO.hou_parkspace eq '已審核' }" >
-			<c:if test="${adSvc.getOneAdByHou(houVO.hou_id).ad_status ne '上架' and adSvc.getOneAdByHou(houVO.hou_id).ad_status ne '下架' }">
-			<form method="post" action="<%=request.getContextPath()%>/front/ad/addAd.jsp" style="margin-bottom: 0px;">
-				<input type="submit" value="申請廣告">
-				<input type="hidden" name="hou_id" value="${houVO.hou_id}">
-				<input type="hidden" name="hou_name" value="${houVO.hou_name}">
-				<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
-				<input type="hidden" name="whichPage" value="<%=whichPage%>">
-			</form>
-			</c:if>
-			</c:if>
-			
-			</td>
-			
-		</tr>	
-	</c:forEach>
-	
-</table>
-	<%@ include file="pages/page2.file" %>
+									<td><jsp:useBean id="adSvc" scope="page"
+											class="com.goodhouse.ad.model.AdService" /> <c:if
+											test="${houVO.hou_parkspace eq '已審核' }">
+											<c:if
+												test="${adSvc.getOneAdByHou(houVO.hou_id).ad_status ne '上架' and adSvc.getOneAdByHou(houVO.hou_id).ad_status ne '下架' }">
+
+												<form method="post"
+													action="<%=request.getContextPath()%>/front/ad/addAd.jsp"
+													style="margin-bottom: 0px;">
+													<input type="submit" class="btn btn-success" value="申請廣告">
+													<input type="hidden" name="hou_id" value="${houVO.hou_id}">
+													<input type="hidden" name="hou_name"
+														value="${houVO.hou_name}"> <input type="hidden"
+														name="requestURL" value="<%=request.getServletPath()%>">
+													<input type="hidden" name="whichPage"
+														value="<%=whichPage%>">
+												</form>
+											</c:if>
+										</c:if></td>
+
+								</tr>
+							</c:forEach>
+
+
+						</tbody>
+					</table>
+					<%@ include file="pages/page2.file"%>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script
 		src="<%=request.getContextPath()%>/bootstrap/jquery-3.3.1.slim.min.js"

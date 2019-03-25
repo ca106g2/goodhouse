@@ -49,7 +49,10 @@ pageContext.setAttribute("list",list);
 </head>
 <jsp:include page="/BackHeaderFooter/Header.jsp" />	
 <body>
+<div class="container-fluid">
+		<div class="row justify-content-center">
 
+			<div col="col-2">
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤</font>
 	<ul>
@@ -58,20 +61,30 @@ pageContext.setAttribute("list",list);
 	</c:forEach>
 	</ul>
 </c:if>
-<br>
-<br>
-	<table id="table1">
-		<tr class="table-black">
-		<th>被檢舉廣告</th>
-		<th>檢舉房客</th>
-		<th>檢舉內容</th>
-		<th>檢舉狀態</th>
-		<th>檢舉日期</th>
-		<th></th>
+</div>
+
+<div class="col-10">
+<div class="card">
+
+					<div class="card-header">
+						<h3>廣告檢舉列表</h3>
+					</div>
+
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover mb-0 text-nowrap text-center">
+								<tbody>
+									<tr style="background-color: #EDF9DE;">
+		<th scope="col">被檢舉廣告</th>
+		<th scope="col">檢舉房客</th>
+		<th scope="col">檢舉內容</th>
+		<th scope="col">檢舉狀態</th>
+		<th scope="col">檢舉日期</th>
+		<th scope="col"></th>
 	</tr>
 	<%@ include file="page1.file" %>
 	<c:forEach var="ad_repVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">	
-	<tr class="table-info" align='center'>	
+	<tr>	
 		<td>${houSvc.getOneHouse(adSvc.getOneAD(ad_repVO.ad_id).hou_id).hou_name}</td>
 		<td>${memSvc.getOneMem(ad_repVO.mem_id).mem_name}</td>
 		<td>${ad_repVO.ad_rep_reason}</td>
@@ -80,15 +93,22 @@ pageContext.setAttribute("list",list);
 		<td>
 		
 		<form method="post" action="<%=request.getContextPath() %>/back/ad_report/ad_rep.do" style="margin-bottom: 0px;">
-		 <input type="submit" value="修改">
+		 <input type="submit" class="btn btn-outline-success" value="修改">
 		 <input type="hidden" name="ad_rep_id" value="${ad_repVO.ad_rep_id}">
 		 <input type="hidden" name="action"value="getOne_For_Update">
 		</form>
 		</td>
 	</tr>
 	</c:forEach>
-</table>
+								</tbody>
+							</table>
 <%@ include file="page2.file" %>
+					</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>		
 <jsp:include page="/BackHeaderFooter/Footer.jsp" />	
 </body>	
 </html>

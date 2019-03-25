@@ -20,11 +20,11 @@
 					<option value="公寓">公寓
 					<option value="套房">套房
 				</select>
-				<b>是否可烹飪</b>
-				<select size="1" name="hou_cook" class="form-control" id="exampleFormControlSelect1">
+				<b>房屋審核</b>
+				<select size="1" name="hou_parkspace" class="form-control" id="exampleFormControlSelect1">
 					<option value="">
-					<option value="是">是
-					<option value="否">否
+					<option value="未審核">未審核
+					<option value="已審核">已審核
 				</select>	
 				<b>地區收尋</b>
 				<input type="text" name="hou_address" class="form-control-plaintext" id="staticEmail2">
