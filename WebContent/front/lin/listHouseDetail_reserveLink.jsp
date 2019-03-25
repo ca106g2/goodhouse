@@ -809,7 +809,7 @@ $(function(){
     });
 	pannellum.viewer('panorama', {
         "type": "equirectangular",
-        "panorama": "http://localhost:8081/<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=3",
+        "panorama": "<%=request.getContextPath()%>/HouseServlet?hou_id=<%=houVO.getHou_id()%>&photo=3",
         "autoLoad": true,
         "showControls": true,
         "showZoomCtrl": false,
