@@ -75,8 +75,7 @@
 									data-toggle="tooltip" data-placement="right"
 									title="沒有房屋記得新增房屋喔!!">
 										<c:forEach var="houVO" items="${houSvc.all}">
-											<c:if
-												test="${houVO.lan_id eq lanSvc.getOneLanByMemId(memVO.mem_id).lan_id }">
+											<c:if test="${houVO.lan_id eq lanSvc.getOneLanByMemId(memVO.mem_id).lan_id }">
 												<option id="hou" value="${houVO.hou_id}"
 													class=" form-control btn btn-light" />
 													${houVO.hou_address}
@@ -126,7 +125,7 @@
 								
 							<div class="text-center">
 								<p>合約備註</p>
-								<textarea name="ele_con_note" rows="5" cols="150"
+								<textarea name="ele_con_note" rows="5" cols="100"
 									value="${eleConVO.ele_con_note}" class="btn btn-light"
 									placeholder="輸入其他特別協議">${eleConVO.ele_con_note}</textarea>
 								<br>

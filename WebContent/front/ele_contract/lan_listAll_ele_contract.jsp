@@ -140,7 +140,8 @@
 											<form method="post" action="ele_contract.do" style="margin-bottom: 0px;">
 												<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}"> 
 												<input type="hidden" name="action" value="getOne_For_Update">
-												<input type="submit" value="修改" style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"};font-weight:bold''>
+												<input type="submit" value="修改" style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"};font-weight:bold'
+													class="btn btn-outline-success ">
 											</form>
 											
 											<form method="post" action="ele_contract.do">

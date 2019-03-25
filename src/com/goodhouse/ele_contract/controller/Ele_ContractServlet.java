@@ -429,8 +429,11 @@ public class Ele_ContractServlet extends HttpServlet{
 			    String subject = "電子合約通知";
 			    LanService lanSvc = new LanService();
 //			    String passRandom = "慈慈測試";
-			    String messageText = "Hello! " + mSvc.getOneMem(mem_id).getMem_name() + "，" + mSvc.getOneMem(lanSvc.getOneLan(lan_id).getMem_id()).getMem_name()+ "已經將合約寄給妳囉，盡快確認喔"; 
-			       
+			    String messageText = "Hello! " + mSvc.getOneMem(mem_id).getMem_name() + "，" + 
+			    		mSvc.getOneMem(lanSvc.getOneLan(lan_id).getMem_id()).getMem_name() +
+			    		"已經將合約寄給妳囉，盡快確認喔!!!" + "\n" + "\n" + "http://" + req.getServerName() + ":" + 
+			    		req.getServerPort() + req.getContextPath() + "/front/frontLogin.jsp";
+			    
 			    MailService mailService = new MailService();
 			    mailService.sendMail(to, subject, messageText);
 				
