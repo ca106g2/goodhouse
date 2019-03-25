@@ -118,6 +118,7 @@
 					    </li>
                    </li>
 <%--                    <% if (lanVO != null && lanVO.getLan_accountstatus().equals("2")) {%> --%>
+						    <c:if test="${not empty lanVO and lanVO.lan_accountstatus == '2'}">
 	               <li class="nav-item" >
 	                    <li class="nav-item dropdown" id="lan">
 						   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -125,7 +126,6 @@
 						        <img src="<%=request.getContextPath()%>/images/red_mem.png" style="width:30px ; height:28px;"/>
 						        	房東
 						   </a>
-						    <c:if test="${not empty lanVO }">
 						        <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">電子合約管理</a>
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/house_evaluate/lan_listAll_evaluate.jsp">我的房屋評價</a>
@@ -140,9 +140,9 @@
 						          <a class="dropdown-item" href="<%=request.getContextPath()%>/front/rentMess/listPartRentMess.jsp">租屋問題回覆</a>
 <%-- 						          <% } %> --%>
 						        </div>
-						    </c:if>
 						 </li>
 	               </li>
+						    </c:if>
 <%-- 	                   <% } %> --%>
                    <li class="nav-item">
                        <li class="nav-item dropdown">
@@ -159,15 +159,13 @@
 					    </li>
                    </li>
                    
-                   <c:if test="${not empty memVO}">
-                   <c:if test="${landSvc.getOneLanByMemId(memVO.mem_id).lan_accountstatus == null}">
-                   <li class="nav-item" style="margin-top:4px"> 
-                         <li class="nav-item active" style="font-color:#F74420">
-                           <a class="nav-link " href="<%=request.getContextPath()%>/front/landlord/addLan.jsp" tabindex="-1" aria-disabled="true"
-                           	style="margin-top:4px;padding-top:0px">點我成為房東</a>
-                       </li> 
-                   </li>
-                   </c:if>
+                   <c:if test="${not empty memVO and empty lanVO}">
+		              <li class="nav-item" style="margin-top:4px"> 
+		                  <li class="nav-item active" style="font-color:#F74420">
+		                      <a class="nav-link " href="<%=request.getContextPath()%>/front/landlord/addLan.jsp" tabindex="-1" aria-disabled="true"
+		                           	style="margin-top:4px;padding-top:0px;" id="applyLan">點我成為房東</a>
+		                  </li> 
+		              </li>
                    </c:if>
                    
  					<c:if test="${not empty memVO and empty lanVO}">
@@ -198,15 +196,18 @@
 
 <script >
 	
-// 	$('#lan	').click(function(){
+// 		var lan = "${lanSvc.getOneLanByMemId(memVO.mem_id).lan_id}";
 		
-// 		console.log("$(lanSvc.getOneLanByMemId(memVO.mem_id).lan_id)");
-// 		var lan = "$(lanSvc.getOneLanByMemId(memVO.mem_id).lan_id)";
-// 		if(  lan == null ){
-// 			swal("申請成為房東就可以用了喔^^");
-// 		}
-		
+// 	$(document).ready(function(){
+// 			$('#lan').click(function(){
+// 				if(  lan == "" ){
+// 					alert("申請成為房東就可以用了喔^^");
+// 				}
+// 				}
+// 			)
 // 	});
+	
+	
 	
 </script>
 

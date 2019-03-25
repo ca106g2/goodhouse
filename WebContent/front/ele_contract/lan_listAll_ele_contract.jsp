@@ -82,7 +82,7 @@
 
 		</div>
 
-		<div style="margin-top: 10px">
+		<div style="margin-top: 15px">
 			<div class="card">
 
 				<div class="card-header">
@@ -96,21 +96,21 @@
 						<table
 							class="table table-bordered table-hover mb-0 text-nowrap text-center">
 							<tbody>
-							<tr style="background-color: #EDF9DE;">
-								<th scope="col">合約分類名稱</th>
-								<th scope="col">房客姓名</th>
-								<!-- 				        	<th scope="col">房東姓名</th> -->
-								<th scope="col">房屋地址</th>
-								<!-- 				        	<th scope="col">每期租金</th> -->
-								<!-- 				        	<th scope="col">押金</th> -->
-								<!-- 				        	<th scope="col">租賃期限</th> -->
-								<th scope="col">租賃起訖日</th>
-								<th scope="col">租賃結束日</th>
-								<!-- 				        	<th scope="col">簽約日期</th> -->
-								<th scope="col">合約狀態</th>
-								<!-- 				        	<th scope="col">繳費型態</th> -->
-								<th scope="col"></th>
-							</tr>
+								<tr style="background-color: #EDF9DE;">
+									<th scope="col">合約分類名稱</th>
+									<th scope="col">房客姓名</th>
+									<!-- 				        	<th scope="col">房東姓名</th> -->
+									<th scope="col">房屋地址</th>
+									<!-- 				        	<th scope="col">每期租金</th> -->
+									<!-- 				        	<th scope="col">押金</th> -->
+									<!-- 				        	<th scope="col">租賃期限</th> -->
+									<th scope="col">租賃起訖日</th>
+									<th scope="col">租賃結束日</th>
+									<!-- 				        	<th scope="col">簽約日期</th> -->
+									<th scope="col">合約狀態</th>
+									<!-- 				        	<th scope="col">繳費型態</th> -->
+									<th scope="col"></th>
+								</tr>
 								<c:forEach var="eleConVO" items="${list}" begin="<%=pageIndex%>"
 									end="<%=pageIndex+rowsPerPage-1%>">
 									<tr>
@@ -139,20 +139,16 @@
 										<%-- 							</c:forEach> --%>
 
 										<td>
-											<form method="post" action="ele_contract.do"
-												style="margin-bottom: 0px;">
-												<input type="hidden" name="ele_con_id"
-													value="${eleConVO.ele_con_id}"> <input
-													type="hidden" name="action" value="getOne_For_Update">
-												<input type="submit" value="修改"
-													style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
+											<form method="post" action="ele_contract.do" style="margin-bottom: 0px;">
+												<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}"> 
+												<input type="hidden" name="action" value="getOne_For_Update">
+												<input type="submit" value="修改" style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"};font-weight:bold''>
 											</form>
+											
 											<form method="post" action="ele_contract.do">
-												<input type="hidden" name="ele_con_id"
-													value="${eleConVO.ele_con_id}"> <input
-													type="hidden" name="action" value="getOne_For_look">
-												<input type="submit" value="去看看"
-													style='display:${(eleConVO.ele_con_status eq "s1") ? "none" : ""};font-weight:bold'
+												<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}"> 
+												<input type="hidden" name="action" value="getOne_For_look">
+												<input type="submit" value="去看看" style='display:${(eleConVO.ele_con_status eq "s1") ? "none" : ""};font-weight:bold'
 													class="btn btn-outline-success ">
 											</form>
 										</td>
@@ -193,19 +189,20 @@
 
 	<!-- 工作區結束 -->
 
-	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 
 	<c:if test="${openModal!=null}">
 
 		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
 			aria-labelledby="basicModal" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
+			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
 
 					<div class="modal-header">
+						<h5 class="modal-title">請選擇合約分類</h5>
 						<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-						<h3 class="modal-title" id="myModalLabel">請選擇合約分類</h3>
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
 
 					<div class="modal-body">
@@ -215,8 +212,8 @@
 					</div>
 
 					<div class="modal-footer">
-						<!--                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-						<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
 					</div>
 
 				</div>
@@ -230,6 +227,7 @@
 		</script>
 	</c:if>
 
+	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 
 
 

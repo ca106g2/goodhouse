@@ -17,8 +17,7 @@
 
 <%
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
-	List<Ele_ContractVO> eleConVOList = (List<Ele_ContractVO>) eleConSvc
-			.getAllForEle_ConByLan_id(lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id());
+	List<Ele_ContractVO> eleConVOList = (List<Ele_ContractVO>) eleConSvc.getAllForEle_ConByLan_id(lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id());
 	List<BillVO> list = new ArrayList<BillVO>();
 	String bill_id = null;
 
@@ -64,7 +63,7 @@
 				<div class="card">
 
 					<div class="card-header">
-						<h3>房屋列表</h3>
+						<h3>應收帳單</h3>
 					</div>
 
 					<div class="card-body">
@@ -97,19 +96,20 @@
 												<c:if test="${billStatus.status_no eq billVO.bill_status}">
 
 													<c:choose>
-														<c:when
-															test="${billStatus.status_name eq '待繳款'  or billStatus.status_name eq '待確認待繳款' }">
-															<td id="billStatus" style="color: #F74420">${billStatus.status_name}</td>
+														<c:when test="${billStatus.status_name eq '待繳款'  or billStatus.status_name eq '待確認待繳款' }">
+															<td id="billStatus" style="color: #A569BD">${billStatus.status_name}</td>
+														</c:when>
+														
+														<c:when test="${billStatus.status_name eq '待繳款'  or billStatus.status_name eq '待確認待繳款' }">
+															<td id="billStatus" style="color: #FF0000">${billStatus.status_name}</td>
 														</c:when>
 
-														<c:when
-															test="${billStatus.status_name eq '延期待繳款'  or billStatus.status_name eq '逾期未繳款'  }">
+														<c:when test="${billStatus.status_name eq '延期待繳款'  or billStatus.status_name eq '逾期未繳款'  }">
 															<td id="billStatus" style="color: #0000FF">${billStatus.status_name}</td>
 														</c:when>
 
-														<c:when
-															test="${billStatus.status_name eq '已繳款待撥款'  or billStatus.status_name eq '已繳款已撥款'  }">
-															<td id="billStatus" style="color: #000000">${billStatus.status_name}</td>
+														<c:when test="${billStatus.status_name eq '已繳款待撥款'  or billStatus.status_name eq '已繳款已撥款'  }">
+															<td id="billStatus" style="color: #717D7E">${billStatus.status_name}</td>
 														</c:when>
 													</c:choose>
 
@@ -131,7 +131,7 @@
 												<form method="post" action="bill.do">
 													<input type="hidden" name="bill_id"
 														value="${billVO.bill_id}"> <input type="hidden"
-														name="action" value="getOne_For_look"> <input
+														name="action" value="lanGetOne_For_look"> <input
 														type="submit" value="看明細" class="btn btn-outline-success"
 														style="font-weight: bold">
 												</form>
@@ -153,25 +153,28 @@
 
 			<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
 				aria-labelledby="basicModal" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
+				<div class="modal-dialog modal-sm">
 					<div class="modal-content">
 
 						<div class="modal-header">
+							<h5 class="modal-title">帳單明細</h5>
 							<button type="button" class="close" data-dismiss="modal"
-								aria-hidden="true">&times;</button>
-							<h3 class="modal-title" id="myModalLabel">帳單明細</h3>
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span> 
+							</button>
 						</div>
 
 						<div class="modal-body">
 							<!-- =========================================以下為原listOne.jsp的內容========================================== -->
-							<jsp:include page="/front/bill/lan_listOne.jsp" />
+							<jsp:include page="/front/bill/mem_listOne.jsp" />
 							<!-- =========================================以上為原listOne.jsp的內容========================================== -->
 						</div>
 
 						<div class="modal-footer">
-							<!--                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-							<!--                 <button type="button" class="btn btn-primary">Save changes</button> -->
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
 						</div>
+						
 					</div>
 				</div>
 			</div>

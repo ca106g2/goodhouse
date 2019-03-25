@@ -12,16 +12,16 @@
 <head>
 </head>
 <body>
-	<jsp:include page="/BackHeaderFooter/Header.jsp" />
+<%-- 	<jsp:include page="/BackHeaderFooter/Header.jsp" /> --%>
 
 	<!-- 工作區開始 -->
 	<div class="container">
-		<div class="row justfy-content-center">
+		<div class="row ">
 			<div class="row col-12">
-				<table id="table-1">
-					<p>回帳單列表<a href="<%=request.getContextPath()%>/back/bill/back_listAll_bill.jsp">
-					<img src="<%=request.getContextPath()%>/share_pic/back1.gif" width="100	" height="30 !important" ></a></p>
-				</table>
+<!-- 				<table id="table-1"> -->
+<%-- 					<p><a href="<%=request.getContextPath()%>/back/bill/back_listAll_bill.jsp"> --%>
+<%-- 					<img src="<%=request.getContextPath()%>/images/back.png" width="100	" height="100 !important" ></a></p> --%>
+<!-- 				</table> -->
 			</div>
 			
 			<div class="row col-12">
@@ -69,6 +69,6 @@
 
 
 	<!-- 工作區結束 -->
-	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+<%-- 	<jsp:include page="/BackHeaderFooter/Footer.jsp" /> --%>
 </body>
 </html>

@@ -18,10 +18,10 @@
             left: 0;
             bottom: 0;
             right: 0;
-            z-index: -999;
+            z-index: -99999;
             min-height: 100%;
             width: 100%;
-            opacity: 0.2;
+            opacity: 0.4;
 	}
 </style>
 </head>
@@ -30,40 +30,40 @@
 	</div>
 	
 	<!-- Footer頭 -->
-	 <footer class="container-fluid" style="padding-bottom:10px">
 	 <div>
 		<img src="<%=request.getContextPath()%>/images/background2.jpg"
-			class="card-img" alt="..." style="">
+			class="card-img" alt="" style="">
 	</div>
+	 <footer class="footer container-fluid fixed-bottom" style="padding-bottom:10px">
 	 
     </div>
             <div class=" text-center" style="margin-bottom:0">
                 <div class="row mt-3 dark-grey-text justify-content-center">
                     <!-- Grid column -->
-                    <div class="col-2 ">
-                    </div>
-                    <div class="col-3">
+<!--                     <div class="col-2 "> -->
+<!--                     </div> -->
+<!--                     <div class="col-3"> -->
                         <!-- Content -->
-                        <h6 class="text-uppercase font-weight-bold">GOODHOUSE</h6>
-                    </div>
+<!--                         <h6 class="text-uppercase font-weight-bold">GOODHOUSE</h6> -->
+<!--                     </div> -->
                     
-                    <div class="col-2">
-					  <h6 class="text-uppercase font-weight-bold">ABOUT</h6>
+<!--                     <div class="col-2"> -->
+<!-- 					  <h6 class="text-uppercase font-weight-bold">ABOUT</h6> -->
 			
-			        </div>
+<!-- 			        </div> -->
                 
-                    <div class="col-2">
+<!--                     <div class="col-2"> -->
                         <!-- Links -->
-                        <h6 class="text-uppercase font-weight-bold">Contact</h6>
-                    </div>
-                    <div class="col-2">
+<!--                         <h6 class="text-uppercase font-weight-bold">Contact</h6> -->
+<!--                     </div> -->
+<!--                     <div class="col-2"> -->
                     	
-                    </div>
+<!--                     </div> -->
                     <!-- Grid column -->
                 </div>
             </div>
-            <div class="footer-copyright text-center text-black-50 py-3">© JAVA-CA106G2 Copyright:
-		      <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+            <div class="footer-copyright text-center text-black-50 py-3">© 平安住好宅 Copyright:
+		      <a class="dark-grey-text" href="https://mdbootstrap.com/education/bootstrap/"> JAVA-CA106G2</a>
 		    </div>
         </footer>
         <!-- Optional JavaScript -->

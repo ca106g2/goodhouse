@@ -295,32 +295,31 @@ public class BillServlet extends HttpServlet{
 				/***1接收請求參數********/
 				//電子合約編號
 				String ele_con_id = req.getParameter("ele_con_id");
-				System.out.println(ele_con_id);
 				//繳交費用
 				Integer bill_pay = Integer.parseInt(req.getParameter("bill_pay"));
 				//信用卡錯誤驗證
-				try {
-					
-					String phovisa = null;
-					String phovisa0 = req.getParameter("phovisa0");
-					String phovisa1 = req.getParameter("phovisa1");
-					String phovisa2 = req.getParameter("phovisa2");
-					String phovisa3 = req.getParameter("phovisa3");
-					Integer test = null;
-					test = new Integer(phovisa0);
-					phovisa = phovisa0;
-					test = new Integer(phovisa1);
-					phovisa += phovisa1 ;
-					test = new Integer(phovisa2);
-					phovisa += phovisa2;
-					test = new Integer(phovisa3);
-					phovisa += phovisa3;
-					if(phovisa.length() != 16) {
-						errorMsgs.add("信用卡號碼長度錯誤");
-					}
-				} catch (Exception e) {
-					errorMsgs.add("信用卡號碼為數字");
-				}
+//				try {
+//					
+//					String phovisa = null;
+//					String phovisa0 = req.getParameter("phovisa0");
+//					String phovisa1 = req.getParameter("phovisa1");
+//					String phovisa2 = req.getParameter("phovisa2");
+//					String phovisa3 = req.getParameter("phovisa3");
+//					Integer test = null;
+//					test = new Integer(phovisa0);
+//					phovisa = phovisa0;
+//					test = new Integer(phovisa1);
+//					phovisa += phovisa1 ;
+//					test = new Integer(phovisa2);
+//					phovisa += phovisa2;
+//					test = new Integer(phovisa3);
+//					phovisa += phovisa3;
+//					if(phovisa.length() != 16) {
+//						errorMsgs.add("信用卡號碼長度錯誤");
+//					}
+//				} catch (Exception e) {
+//					errorMsgs.add("信用卡號碼為數字");
+//				}
 				//繳交日期
 				java.sql.Date bill_date = Date.valueOf(req.getParameter("bill_date"));
 				//帳單產生時間
@@ -475,7 +474,7 @@ public class BillServlet extends HttpServlet{
 			
 		}
 		
-		//TODO 前台使用者查看單一帳單
+		//TODO 房客使用者查看單一帳單
 		if("getOne_For_look".equals(action)) {
 			
 			
@@ -497,5 +496,48 @@ public class BillServlet extends HttpServlet{
 				successView.forward(req, res);
 		}
 		
+		//TODO 房東使用者查看單一帳單
+		if("lanGetOne_For_look".equals(action)) {
+			
+			
+			/****1接收請求參數******************/
+			//帳單編號
+			String bill_id = req.getParameter("bill_id");
+			/******2準備查詢***********************/
+			BillService billSvc = new BillService();
+			BillVO billVO = billSvc.getOneB(bill_id);
+			
+			//Bootstrap_modal
+			boolean openModal=true;
+			req.setAttribute("openModal",openModal );
+			
+			/******3查詢完成準備轉交************************/
+			req.setAttribute("billVO", billVO);
+			String url = "/front/bill/lan_listAll_bill.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+		}
+		
+		//TODO 後台使用者查看單一帳單
+		if("backBillForLook".equals(action)) {
+			
+			
+			/****1接收請求參數******************/
+			//帳單編號
+			String bill_id = req.getParameter("bill_id");
+			/******2準備查詢***********************/
+			BillService billSvc = new BillService();
+			BillVO billVO = billSvc.getOneB(bill_id);
+			
+			//Bootstrap_modal
+			boolean openModal=true;
+			req.setAttribute("openModal",openModal );
+			
+			/******3查詢完成準備轉交************************/
+			req.setAttribute("billVO", billVO);
+			String url = "/back/bill/back_listAll_bill.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+		}
 	}
 }

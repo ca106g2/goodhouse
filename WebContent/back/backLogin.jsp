@@ -9,6 +9,7 @@
 <title>backLogin</title>
 </head>
 <body>
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
 <div class="lowin lowin-purple">
 	<div class="lowin-brand">
 		<img src="images/kodinger.jpg" alt="logo">
@@ -47,6 +48,6 @@
 		login_url: '<%=request.getContextPath()%>/BackLoginHandler'
 	});
 </script>
-
+	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
 </body>
 </html>

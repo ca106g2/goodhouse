@@ -143,6 +143,7 @@
 
 	<!-- Footer頭 -->
 	<!-- 	<div class="footer-banner__navi"> -->
+	<div style="margin-top:20px"></div>
 	<div>
 		<img src="<%=request.getContextPath()%>/images/background2.jpg"
 			class="card-img" alt="..." style="">

@@ -19,9 +19,9 @@
 	            </div>
 		      <div class="card-body">
 		        <h1 class="card-title">會員管理</h1>
-		        <a href="<%=request.getContextPath()%>/back/member/listAllMem.jsp" class="btn btn-outline-success btn-lg" style="">會員列表</a>
-		        <a href="<%=request.getContextPath()%>/back/landlord/listAllLan.jsp" class="btn btn-outline-success btn-lg" style="margin-left:5px">房東列表</a>
 		        <a href="<%=request.getContextPath()%>/back/landlord/listAllLan.jsp" class="btn btn-outline-success btn-lg" style="margin-left:5px">審核房東資格</a>
+		        <a href="<%=request.getContextPath()%>/back/member/listAllMem.jsp" class="btn btn-outline-success btn-lg" style="">會員列表</a>	
+		        <a href="<%=request.getContextPath()%>/back/landlord/listAllLan.jsp" class="btn btn-outline-success btn-lg" style="margin-left:5px">房東列表</a>
 		      </div>
 		    </div>
 		  </div>
@@ -71,7 +71,7 @@
 			    <div class="card text-center border-light mb-3">
 			    
 			    	<div class="col-auto">
-			    		<img class="card-img-left" src="<%=request.getContextPath()%>/images/contract.png" alt="Card image cap" style="width:50%">
+			    		<img class="card-img-left" src="<%=request.getContextPath()%>/images/eleContract.png" alt="Card image cap" style="width:50%">
 	            	</div> 
 			      <div class="card-body">
 			        	<h1 class="card-title">合約管理</h1>
@@ -90,9 +90,9 @@
 		            	</div> 
 			      	<div class="card-body">
 			        	<h1 class="card-title">積分商城管理</h1>
-						<a href="<%=request.getContextPath()%>/back/pointgoods/listAllPointgoods.jsp" class="btn btn-outline-success btn-lg">積分商品列表</a>
-						<a href="<%=request.getContextPath()%>/back/pointgoods/addPointgoods.jsp" class="btn btn-outline-success btn-lg" style="margin-left:5px">新增積分商品</a>
-						<a href="<%=request.getContextPath()%>/back/pointgoods/good_ordManage.jsp" class="btn btn-outline-success btn-lg" style="margin-left:5px">訂單管理</a>
+						<a href="<%=request.getContextPath()%>/back/pointgoods/listAllPointgoods.jsp" class="btn btn-outline-success btn-lg">積分商品列表</a><br> 
+						<a href="<%=request.getContextPath()%>/back/pointgoods/addPointgoods.jsp" class="btn btn-outline-success btn-lg" style="margin-left:5px">新增積分商品</a><br>
+						<a href="<%=request.getContextPath()%>/back/pointgoods/good_ordManage.jsp" class="btn btn-outline-success btn-lg" style="margin-left:5px">訂單管理</a><br>
 					</div>
 			      </div>
 			   </div>
