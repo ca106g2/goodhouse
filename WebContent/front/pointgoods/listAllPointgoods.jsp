@@ -49,8 +49,8 @@
     }
     .CarCar{
         position: fixed;
-    right: 7%;
-    top: 15%;
+    right: 4%;
+    top: 16%;
     z-index: 994;
     }
    body .modal-backdrop {

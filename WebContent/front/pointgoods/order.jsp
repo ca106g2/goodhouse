@@ -21,7 +21,14 @@
 <title>Order</title>
 <style>
 div .form-control {
-display: initial;
+	display: initial;
+}
+.load{
+	z-index: 100012;
+   	background-image:url(images/loading.gif); 
+   	background-position:50% 50%; 
+   	background-attachment:fixed; 
+   	background-repeat:no-repeat;
 }
 </style>
 </head>
@@ -85,18 +92,40 @@ display: initial;
 							<font color="red"><b>${errorMsgs.num}</b></font>
 						</div>
 						<input type="hidden" name="action" value="order">
-						<input type="submit" value="送出 " class="btn btn-primary" style="float:right;">
+						<input type="submit" value="送出 " class="btn btn-primary sub" style="float:right;">
 					</form>	
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
+<img src="images/default.gif" width="400px" height="400px" style="cursor: default; display: none;" id="displayBox">
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+<script src="select2/jquery.blockUI.js"></script>
 <script> 
 
+$(".sub").click(function(){
+	$.blockUI({
+		message: $('#displayBox'), 
+		css: {
+			top:  ($(window).height() - 400) /2 + 'px', 
+            left: ($(window).width() - 400) /2 + 'px',
+		}
+	});
+// 	$.blockUI({ 
+// 		css: { 
+// 			color: '#fff',
+// 	   		background-image:url(images/loading.gif),
+// 	   		background-position:50% 50%,
+// 	   		background-attachment:fixed, 
+// 	   		background-repeat:no-repeat,
+// 		} 
+// 	});
+});
+
 $(document).ready(function(){
+	
+	
 	
 	$("#twCityName").change(function(){
 		$.ajax({
@@ -143,5 +172,6 @@ $(document).ready(function(){
 
 
 </script>
+
 </body>
 </html>

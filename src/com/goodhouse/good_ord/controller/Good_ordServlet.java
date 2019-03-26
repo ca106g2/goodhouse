@@ -351,9 +351,31 @@ public class Good_ordServlet extends HttpServlet {
 //				 String to = "ash75312468@gmail.com";
 			      
 		         String subject = "訂單成立";
-		      
-//		         String ch_name = "peter1";
-		         String messageText = "Hello! " + good_ord_nam +"\n" +" (訂單已成立)"; 
+		         StringBuilder sb = new StringBuilder();
+		         for(PointgoodsVO pointgoodsVO : buylist) {
+		        	 sb.append("<tr>");
+		        	 sb.append("<td>");
+		        	 sb.append(pointgoodsVO.getGood_nam());
+		        	 sb.append("</td>");
+		        	 sb.append("<td>");
+		        	 sb.append(pointgoodsVO.getGood_dsc());
+		        	 sb.append("</td>");
+		        	 sb.append("<td>");
+		        	 sb.append(pointgoodsVO.getGood_nee());
+		        	 sb.append("</td>");
+		        	 sb.append("<td>");
+		        	 sb.append(pointgoodsVO.getGood_pri());
+		        	 sb.append("</td>");
+		        	 sb.append("</tr>");
+        		 }
+		         String messageText = ""
+		        		 +"<h4>親愛的 " + good_ord_nam +"，您好 :<h4><br>" +" 您的訂單我們已經著手處裡了!感謝您的兌換!<br>"
+         				+ "以下是您的兌換商品清單寄貨資料，請您查看，感謝您!<br>" +
+		        		 "<h3>訂單明細</h3>"+
+		         		"<table border='1'><tr><th>商品名稱</th><th>商品描述</th><th>數量</th><th>商品價格</th></tr>"
+		        		+ sb.toString() + "<tr><td></td><td></td><td>總價 :</td><td><font color='red'><b>" + amount + "</b></font></td></tr>"
+		         		+ "</table>";
+//		         System.out.println(messageText);
 		       
 		         MailService mailService = new MailService();
 		         mailService.sendMail(email, subject, messageText);
@@ -403,9 +425,11 @@ public class Good_ordServlet extends HttpServlet {
 			   //設定信中的主旨  
 			   message.setSubject(subject);
 			   //設定信中的內容 
-			   message.setText(messageText);
-
+//			   message.setText(messageText);
+			   message.setContent(messageText,"text/html; charset=UTF-8");
 			   Transport.send(message);
+
+//			   Transport.send(message);
 			   System.out.println("傳送成功!");
 	     }catch (MessagingException e){
 		     System.out.println("傳送失敗!");

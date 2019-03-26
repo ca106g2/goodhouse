@@ -21,7 +21,7 @@
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-header">
-					<h4>我的最愛積分列表</h4>
+					<h4>積分商品管理</h4>
 				</div>
 				<div class="card-body p-0">
 					<div class="table-responsive">
