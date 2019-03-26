@@ -36,6 +36,10 @@
 					<button class="lowin-btn login-btn" type="submit">
 						登入
 					</button>
+					<div class="lowin-group">
+						<img src="<%=request.getContextPath()%>/images/magic.png" id="magic2" width="30px" height="30px">
+						<img src="<%=request.getContextPath()%>/images/magic.png" id="magic3" width="30px" height="30px">
+					</div>
 
 					<div class="text-foot">
 						<a href="" class="register-link">註冊</a>成為會員
@@ -50,7 +54,7 @@
 					<p>Let's create your account</p>
 						<div class="lowin-group">
 							<label>會員姓名:</label>
-							<input type="text" name="mem_name" autocomplete="name" class="lowin-input" 
+							<input id="mem_name1" type="text" name="mem_name" autocomplete="name" class="lowin-input" 
 								value="<%= (memVO==null)? "" : memVO.getMem_name()%>">
 							<font color="red"><b>${errorMsgs.mem_name}</b></font>
 						</div>
@@ -61,37 +65,37 @@
 						</div>
 						<div class="lowin-group">
 							<label>會員密碼:</label>
-							<input type="password" name="mem_password" autocomplete="current-password" class="lowin-input" 
+							<input id="mem_password1" type="password" name="mem_password" autocomplete="current-password" class="lowin-input" 
 								value="<%= (memVO==null)?"" : memVO.getMem_password()%>">
 							<font color="red"><b>${errorMsgs.mem_password}</b></font>
 						</div>
 						<div class="lowin-group">
 							<label>會員地址:</label>
-							<input type="TEXT" name="mem_address" autocomplete="current-password" class="lowin-input" 
+							<input id="mem_address1" type="TEXT" name="mem_address" autocomplete="current-password" class="lowin-input" 
 								value="<%= (memVO==null)?""  : memVO.getMem_address()%>">
 							<font color="red"><b>${errorMsgs.mem_address}</b></font>
 						</div>
 						<div class="lowin-group">
 							<label>會員郵遞區號:</label>
-							<input type="TEXT" name="mem_zipcode" autocomplete="current-password" class="lowin-input" 
+							<input id="mem_zipcode1" type="TEXT" name="mem_zipcode" autocomplete="current-password" class="lowin-input" 
 								value="<%= (memVO==null)? "" : memVO.getMem_zipcode()%>">
 							<font color="red"><b>${errorMsgs.mem_zipcode}</b></font>
 						</div>
 						<div class="lowin-group">
 							<label>會員電話:</label>
-							<input type="TEXT" name="mem_telephone" autocomplete="current-password" class="lowin-input"
+							<input id="mem_telephone1" type="TEXT" name="mem_telephone" autocomplete="current-password" class="lowin-input"
 								value="<%= (memVO==null)? "" : memVO.getMem_telephone()%>">
 							<font color="red"><b>${errorMsgs.mem_telephone}</b></font>
 						</div>
 						<div class="lowin-group">
 							<label>會員手機:</label>
-							<input type="TEXT" name="mem_phone" autocomplete="current-password" class="lowin-input" 
+							<input id="mem_phone1" type="TEXT" name="mem_phone" autocomplete="current-password" class="lowin-input" 
 								value="<%= (memVO==null)? "" : memVO.getMem_phone()%>">
 							<font color="red"><b>${errorMsgs.mem_phone}</b></font>
 						</div>
 						<div class="lowin-group">
 							<label>會員信箱:</label>
-							<input type="email" name="mem_email" autocomplete="current-password" class="lowin-input"
+							<input id="mem_email1" type="email" name="mem_email" autocomplete="current-password" class="lowin-input"
 								value="<%= (memVO==null)? "" : memVO.getMem_email()%>">
 							<font color="red"><b>${errorMsgs.mem_email}</b></font>
 						</div>
@@ -112,6 +116,9 @@
 						<button class="lowin-btn" type="submit">
 							註冊
 						</button>
+						<div class="lowin-group">
+							<img src="<%=request.getContextPath()%>/front/pointgoods/images/magic.gif" id="magic" width="30px" height="30px">
+						</div>
 						<font color="red"><b>${errorMsgs.Exception}</b></font>
 					<div class="text-foot">
 						Already have an account? <a href="" class="login-link">Login</a>
@@ -132,52 +139,6 @@
 		forgot_url: '<%=request.getContextPath()%>/front/member/mem.do'
 	});
 </script>
-<%-- 	<form action="<%=request.getContextPath()%>/FrontLoginHandler" method="post"> --%>
-		
-<!-- 			<table border=1> -->
-<!-- 				<tr> -->
-<!-- 					<td colspan=2> -->
-<!-- 						<p align=center> -->
-<!-- 							輸入<b>(測試登入)</b>:<br>  -->
-<!-- 							會員帳號:LOREN88@abc.com<br> -->
-<!-- 							會員密碼:LOREN88<br> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-
-<!-- 				<tr> -->
-<!-- 					<td> -->
-<!-- 						<p align=right> -->
-<!-- 							<b>會員信箱:</b> -->
-<!-- 					</td> -->
-<!-- 					<td> -->
-<!-- 						<p> -->
-<!-- 							<input type=text name="mem_email" value="" size=15> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-
-<!-- 				<tr> -->
-<!-- 					<td> -->
-<!-- 						<p align=right> -->
-<!-- 							<b>會員密碼:</b> -->
-<!-- 					</td> -->
-<!-- 					<td> -->
-<!-- 						<p> -->
-<!-- 							<input type=password name="mem_password" value="" size=15> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-
-
-<!-- 				<tr> -->
-<!-- 					<td colspan=2 align=center> -->
-										
-<!-- 							<input type=submit value="  ok   "> -->
-						
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
-			
-<!-- 	</form> -->
-	
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
 <script src="datetimepicker/jquery.js"></script>
@@ -195,4 +156,23 @@
  
 </script>
 </body>
+<script>
+$("#magic").click(function(){
+  $("#mem_name1").val("PeterWu");
+  $("#mem_password1").val("123456");
+  $("#mem_address1").val("新北市蘆洲區三民路1號");
+  $("#mem_zipcode1").val("24751");
+  $("#mem_telephone1").val("0229786230");
+  $("#mem_phone1").val("0933022999");
+  $("#mem_email1").val("housepeople@gmail.com");
+});
+$("#magic2").click(function(){
+	  $("#mem_email").val("housepeople@gmail.com");
+	  $("#mem_password").val("123456");
+});
+$("#magic3").click(function(){
+	  $("#mem_email").val("TIM878@abc.com");
+	  $("#mem_password").val("TIM878");
+});
+</script>
 </html>

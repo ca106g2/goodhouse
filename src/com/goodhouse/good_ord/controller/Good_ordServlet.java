@@ -382,6 +382,9 @@ public class Good_ordServlet extends HttpServlet {
 				
 				session.removeAttribute("shoppingcart");
 				session.removeAttribute("amount");
+				session.removeAttribute("memVO");
+				MemVO memVO2 = memSvc.getOneMem(mem_id);
+				session.setAttribute("memVO", memVO2);
 				String url = "/front/pointgoods/listAllPointgoods.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);

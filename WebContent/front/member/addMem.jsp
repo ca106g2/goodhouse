@@ -92,13 +92,16 @@
 					<button class="lowin-btn" type="submit">
 						註冊
 					</button>
+					<div class="lowin-group">
+						<img src="<%=request.getContextPath()%>/front/pointgoods/images/magic.gif" id="magic" width="30px" height="30px">
+					</div>
 					<font color="red"><b>${errorMsgs.Exception}</b></font>
 				</form>
 			</div>
 		</div>
 	</div>
 	<footer class="lowin-footer">
-		<input type="button" value="神奇小按鈕" id="magic" class="btn btn-secondary">	
+			
 	</footer>
 </div>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>

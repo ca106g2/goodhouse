@@ -112,6 +112,9 @@
 						<button class="lowin-btn" type="submit">
 							註冊
 						</button>
+						<div class="lowin-group">
+							<img src="<%=request.getContextPath()%>/front/pointgoods/images/magic.gif" id="magic" width="30px" height="30px">
+						</div>
 						<font color="red"><b>${errorMsgs.Exception}</b></font>
 					<div class="text-foot">
 						Already have an account? <a href="" class="login-link">Login</a>
@@ -132,51 +135,6 @@
 		forgot_url: '<%=request.getContextPath()%>/front/member/mem.do'
 	});
 </script>
-<%-- 	<form action="<%=request.getContextPath()%>/FrontLoginHandler" method="post"> --%>
-		
-<!-- 			<table border=1> -->
-<!-- 				<tr> -->
-<!-- 					<td colspan=2> -->
-<!-- 						<p align=center> -->
-<!-- 							輸入<b>(測試登入)</b>:<br>  -->
-<!-- 							會員帳號:LOREN88@abc.com<br> -->
-<!-- 							會員密碼:LOREN88<br> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-
-<!-- 				<tr> -->
-<!-- 					<td> -->
-<!-- 						<p align=right> -->
-<!-- 							<b>會員信箱:</b> -->
-<!-- 					</td> -->
-<!-- 					<td> -->
-<!-- 						<p> -->
-<!-- 							<input type=text name="mem_email" value="" size=15> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-
-<!-- 				<tr> -->
-<!-- 					<td> -->
-<!-- 						<p align=right> -->
-<!-- 							<b>會員密碼:</b> -->
-<!-- 					</td> -->
-<!-- 					<td> -->
-<!-- 						<p> -->
-<!-- 							<input type=password name="mem_password" value="" size=15> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-
-
-<!-- 				<tr> -->
-<!-- 					<td colspan=2 align=center> -->
-										
-<!-- 							<input type=submit value="  ok   "> -->
-						
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
-			
-<!-- 	</form> -->
 	
 
 <jsp:include page="/FrontHeaderFooter/Footer.jsp"/>
@@ -195,4 +153,17 @@
  
 </script>
 </body>
+<script>
+
+$("#magic").click(function(){
+  $("#mem_name").val("曾冠娼");
+  $("#mem_password").val("123456");
+  $("#mem_address").val("新北市蘆洲區三民路1號");
+  $("#mem_zipcode").val("24751");
+  $("#mem_telephone").val("0229786230");
+  $("#mem_phone").val("0933022999");
+  $("#mem_email").val("cow18181818@gmail.com");
+});
+
+</script>
 </html>
