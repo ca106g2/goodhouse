@@ -323,7 +323,13 @@ input[type="checkbox"].switch_1{
 								</li>
 <%-- 						</c:if> --%>
 <!---=========================================以上是 TIM 的廣告檢舉功能 ==========================================--->
-	
+<!---========================================= 以下是 TIM 的廣告檢舉功能 =========================================--->
+<%-- 						<c:if test="${memVO != null }"> --%>
+								<li class="nav-item">
+									<a class="nav-link" href="#hou_map" role="tab" data-toggle="tab">房屋地標</a>
+								</li>
+<%-- 						</c:if> --%>
+<!---=========================================以上是 TIM 的廣告檢舉功能 ==========================================--->	
 						</ul>
 
 
@@ -524,7 +530,7 @@ input[type="checkbox"].switch_1{
 							</div>					
 <!----===================================== 以上是TIM功能 ====================================--->		
 <!----===================================== 以下是TIM的MAP功能 ====================================--->								
-							<div role="tabpanel" class="embed-responsive embed-responsive-16by9" id="ad_report">				
+							<div role="tabpanel" class="tab-pane fade in active embed-responsive embed-responsive-16by9" id="hou_map">				
 		 							 <iframe class="embed-responsive-item"
     									  width="600" 
      									 height="450" 
