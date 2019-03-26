@@ -1,27 +1,23 @@
 package com.goodhouse.house.controller;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.naming.*;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
-import javax.sql.DataSource;
 import javax.websocket.Session;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.goodhouse.ele_contract.model.Ele_ContractVO;
 import com.goodhouse.house.model.*;
+import com.goodhouse.landlord.model.LanService;
 import com.goodhouse.member.model.MemVO;
 
 @MultipartConfig
@@ -653,7 +649,25 @@ public class HouseServlet extends HttpServlet {
 						com.goodhouse.good_record.model.Good_recordService gdSvc = new com.goodhouse.good_record.model.Good_recordService();
 						gdSvc.addGood_record(mem_id, "房屋新增", 100000, new Timestamp(System.currentTimeMillis()));						
 						memVO = memSvc.getOneMem(mem_id);
-		
+
+						/********新增完畢電子合約，寄e-mail通知房客**********************/
+						
+						String to = memSvc.getOneMem(mem_id).getMem_email() ;
+					      
+					    String subject = "電子合約通知";
+					    LanService lanSvc = new LanService();
+//					    String passRandom = "慈慈測試";
+					    String messageText = "Hello! " + memSvc.getOneMem(mem_id).getMem_name() + "，" + 
+					    		memSvc.getOneMem(mem_id).getMem_name() +
+					    		"恭喜您的房屋審核通過囉~趕快去申請廣告吧!!!" + "\n" + "\n" + "http://" + req.getServerName() + ":" + 
+					    		req.getServerPort() + req.getContextPath() + "/front/frontLogin.jsp";
+					    
+					    MailService mailService = new MailService();
+					    mailService.sendMail(to, subject, messageText);	
+						
+						
+						
+						
 					
 //********************webSocket功能啟動*****************
 						Set<Session> allSessions = (Set<Session>)getServletContext().getAttribute("HouwebSocketSession");
@@ -831,5 +845,46 @@ public class HouseServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+	}
+	public class MailService {
+		
+		// 設定傳送郵件:至收信人的Email信箱,Email主旨,Email內容
+		public void sendMail(String to, String subject, String messageText) {
+				
+		   try {
+			   // 設定使用SSL連線至 Gmail smtp Server
+			   Properties props = new Properties();
+			   props.put("mail.smtp.host", "smtp.gmail.com");
+			   props.put("mail.smtp.socketFactory.port", "465");
+			   props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+			   props.put("mail.smtp.auth", "true");
+			   props.put("mail.smtp.port", "465");
+
+	       // ●設定 gmail 的帳號 & 密碼 (將藉由你的Gmail來傳送Email)
+	       // ●須將myGmail的【安全性較低的應用程式存取權】打開
+		     final String myGmail = "ixlogic.wu@gmail.com";//寄件者自己的帳號
+		     final String myGmail_password = "BBB45678";//寄件者自己的密碼
+		     javax.mail.Session session = javax.mail.Session.getInstance(props, new Authenticator() {
+				   protected PasswordAuthentication getPasswordAuthentication() {
+					   return new PasswordAuthentication(myGmail, myGmail_password);
+				   }
+			   });
+
+			   Message message = new MimeMessage(session);
+			   message.setFrom(new InternetAddress(myGmail));
+			   message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
+			  
+			   //設定信中的主旨  
+			   message.setSubject(subject);
+			   //設定信中的內容 
+			   message.setText(messageText);
+
+			   Transport.send(message);
+			   System.out.println("傳送成功!");
+	     }catch (MessagingException e){
+		     System.out.println("傳送失敗!");
+		     e.printStackTrace();
+	     }
+	   }
 	}
 }
