@@ -756,43 +756,43 @@ NOCACHE;
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000001','AD00000001','M000000001','檢舉審核中','房屋資訊造假',to_date('2018-12-18','yyyy-mm-dd'));
+('ADR0000001','AD00000001','M000000001','1檢舉審核中','房屋資訊造假',to_date('2018-12-18','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000002','AD00000002','M000000002','檢舉審核中',';房東資訊造假',to_date('2019-01-28','yyyy-mm-dd'));
+('ADR0000002','AD00000002','M000000002','1檢舉審核中',';房東資訊造假',to_date('2019-01-28','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000003','AD00000003','M000000003','檢舉審核中','房東心術不正',to_date('2019-02-28','yyyy-mm-dd'));
+('ADR0000003','AD00000003','M000000003','1檢舉審核中','房東心術不正',to_date('2019-02-28','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000004','AD00000004','M000000004','檢舉審核中','房屋照片不輔和',to_date('2019-01-08','yyyy-mm-dd'));
+('ADR0000004','AD00000004','M000000004','1檢舉審核中','房屋照片不輔和',to_date('2019-01-08','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000005','AD00000005','M000000005','檢舉成功','房東的房屋裡面堆放很多垃圾',to_date('2019-02-08','yyyy-mm-dd'));
+('ADR0000005','AD00000005','M000000005','3檢舉成功','房東的房屋裡面堆放很多垃圾',to_date('2019-02-08','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000006','AD00000006','M000000006','檢舉失敗','房屋價格太高',to_date('2019-01-11','yyyy-mm-dd'));
+('ADR0000006','AD00000006','M000000006','2檢舉失敗','房屋價格太高',to_date('2019-01-11','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000007','AD00000007','M000000007','檢舉失敗','房屋格音色被不好',to_date('2019-01-13','yyyy-mm-dd'));
+('ADR0000007','AD00000007','M000000007','2檢舉失敗','房屋格音色被不好',to_date('2019-01-13','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000008','AD00000008','M000000008','檢舉失敗','房屋環境很糟',to_date('2018-12-11','yyyy-mm-dd'));
+('ADR0000008','AD00000008','M000000008','2檢舉失敗','房屋環境很糟',to_date('2018-12-11','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000009','AD00000009','M000000009','檢舉審核中','房屋圖片有人露點',to_date('2018-11-18','yyyy-mm-dd'));
+('ADR0000009','AD00000009','M000000009','1檢舉審核中','房屋圖片有人露點',to_date('2018-11-18','yyyy-mm-dd'));
 INSERT INTO AD_REPORT
 (AD_REP_ID,AD_ID,MEM_ID,AD_REP_STATUS,AD_REP_REASON,AD_REP_DATE)
 VALUES
-('ADR0000010','AD00000010','M000000010','檢舉審核中','房屋地址在深山裡面海拔20000公尺(是要當深山野人嗎)',to_date('2019-03-18','yyyy-mm-dd'));
+('ADR0000010','AD00000010','M000000010','1檢舉審核中','房屋地址在深山裡面海拔20000公尺(是要當深山野人嗎)',to_date('2019-03-18','yyyy-mm-dd'));
 
 
 -----------------ACC-----------------------

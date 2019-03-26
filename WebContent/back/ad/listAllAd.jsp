@@ -18,30 +18,7 @@
 <html>
 <head>
 
-<style>
-#table1 {
-	font-family: 微軟正黑體;
-	font-size: 16px;
-	width: 1500px;
-	border: 2px solid #000;
-	text-align: center;
-	border-collapse: collapse;
-	margin-left: auto;
-	margin-right: auto;
-}
 
-#table1 th {
-	background-color: #009FCC;
-	padding: 10px;
-	color: #fff;
-	border: 2px solid #000;
-}
-
-#table1 td {
-	border: 1px solid #000;
-	padding: 5px;
-}
-</style>
 
 </head>
 <div margent=left;></div>

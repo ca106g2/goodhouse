@@ -14,7 +14,7 @@
 <style>
 #table1 {
 	font-family:Microsoft JhengHei;;
-	font-size: 16px;
+	font-size: 25px;
 	width: 1200px;
 	text-align: center;
 	border-collapse: collapse;
@@ -115,7 +115,7 @@
 		<input type="hidden" name="mem_name" value="<%=memVO.getMem_name() %>">
 		<input type="hidden" name="ad_id" value="<%=ad_repVO.getAd_id() %>">
 
-		<input type="submit" value="送出修改">
+		<input type="submit" class="btn btn-outline-success" value="送出修改">
 		</td>
 		</tr>
 		</table>

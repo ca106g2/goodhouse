@@ -137,7 +137,7 @@ public class AdServlet extends HttpServlet{
 					memSvc.updatePointTot(mem_id, good_total);
 					
 					com.goodhouse.good_record.model.Good_recordService gdSvc = new com.goodhouse.good_record.model.Good_recordService();
-					gdSvc.addGood_record(mem_id, "廣告新增", 10000, new Timestamp(System.currentTimeMillis()));
+					gdSvc.addGood_record(mem_id, "廣告新增", 100000, new Timestamp(System.currentTimeMillis()));
 
 					
 				}else {

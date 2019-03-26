@@ -58,4 +58,8 @@ public class AdService {
 	public AdVO getOneAdByHou(String hou_id) {
 		return dao.findByHouID(hou_id);
 	}
+	
+	public void updateAd(AdVO adVO) {
+		dao.update(adVO);
+	}
 } 
