@@ -90,7 +90,7 @@
 			<div class="card">
 
 				<div class="card-header">
-					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的帶客看房行程表 </h3>
+					<h3 style="color:red; display:inline;" ><%= memVO.getMem_name()%></h3><h3 style="display:inline;">房東的帶客看房行程表 </h3>
 				</div>
 
 				<div class="card-body">
@@ -151,23 +151,23 @@
 			<td>
 				<c:if test="${appointVO.app_status.equals('A0')}">
 				  	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
-				     <input type="submit" value="取消預約">
+				     <input type="submit" value="取消預約" class="btn btn-danger">
 				     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}">
 				     <input type="hidden" name="action"	value="deleteLan"></FORM>
 			    </c:if>
 			    <c:if test="${!appointVO.app_status.equals('A0')}">
-				     <input type="button"  disabled="disabled" value="取消預約">
+				     <input type="button"  disabled="disabled" value="取消預約" class="btn btn-danger">
 			    </c:if>
 			</td>
 			<td>
 				<c:if test="${appointVO.app_status.equals('A0')}">
 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
-				    <input type="submit" value="完成預約">
+				    <input type="submit" value="完成預約"  class="btn btn-success">
 				    <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}">
-				    <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+				    <input type="hidden" name="action"	value="getOne_For_Update_Lan" ></FORM>
 				</c:if>
 				<c:if test="${!appointVO.app_status.equals('A0')}">
-				    <input type="button" disabled="disabled" value="完成預約">
+				    <input type="button" disabled="disabled" value="完成預約"  class="btn btn-success">
 				</c:if>
 			</td>
 			<td>
