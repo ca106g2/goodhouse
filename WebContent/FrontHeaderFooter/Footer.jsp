@@ -20,7 +20,7 @@
 	width: 100%;
 /* 	background: linear-gradient(to right,; */
 	text-align: center;
-	z-index: 9990;
+	z-index: 1000;
 	margin-top: -60px;
 	box-shadow: 1rem 0.5rem rgba(0,0,0,.15)!important;
 }
@@ -216,12 +216,10 @@
 	<!--         	</footer> -->
 	<!-- 	</div> -->
 	<!-- Optional JavaScript -->
+	
 	<script src="<%=request.getContextPath()%>/bootstrap/popper.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"
-		type="text/javascript"></script>
+	<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js"></script>
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS end-->
 	<!-- Footer尾 -->

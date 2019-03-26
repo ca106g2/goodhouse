@@ -24,6 +24,12 @@
 	td{
 	font-size:18px;
 	}
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
 
 </style>
 
@@ -33,13 +39,15 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-2">
+			<div id="back">
 				<h4> 
 					<a href="<%=request.getContextPath()%>/back/back_index.jsp"><img
 						src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0"></a>
 				</h4>
 			</div>
-
+		</div>
+		<div class="row">
+			<div class="col-2"></div>
 			<div class="col-4">
 				<c:if test="${not empty errorMsgs}">
 					<font style="color: red">請修正以下錯誤:</font>
@@ -56,7 +64,7 @@
 			
 				<form method="post"
 					action="<%=request.getContextPath()%>/back/contract/add_contract.jsp">
-					<input type="submit" value="新增合約分類" class="btn btn-outline-info " style="font-weight:bold;margin-top:15px;font-size:20px">
+					<input type="submit" value="新增合約分類" class="btn btn-outline-info btn-lg" style="font-weight:bold;margin-top:15px;font-size:20px">
 				</form>
 			</div>
 		</div> 
@@ -72,7 +80,7 @@
 						<table class="table table-bordered table-hover mb-0 text-nowrap text-center">
 							<tbody>
 								<tr style="background-color: #EDF9DE;">
-									<th scope="col">合約分類編號</th>
+<!-- 									<th scope="col">合約分類編號</th> -->
 									<th scope="col">合約分類名稱</th>
 <!-- 									<th scope="col">合約內容</th> -->
 									<th scope="col">合約分類狀態</th>
@@ -83,7 +91,7 @@
 								<%-- 			<%@ include file="page1.file" %>  --%>
 								<c:forEach var="conVO" items="${list}">
 									<tr>
-										<td>${conVO.con_id}</td>
+<%-- 										<td>${conVO.con_id}</td> --%>
 										<td>${conVO.con_name}</td>
 <%-- 										<td>${conVO.con_content}</td> --%>
 <%-- 										<td>${conVO.con_status}</td> --%>
@@ -115,7 +123,7 @@
 											<form method="post"
 												action="<%=request.getContextPath()%>/back/contract/contract.do"
 												style="margin-bottom: 0px;">
-												<input type="submit" value="啟用/停用" class="btn btn-outline-info " style="font-weight:bold;margin-top:15px;font-size:20px"> 
+												<input type="submit" value="啟用/停用" class="btn btn-outline-info btn-lg" style="font-weight:bold;margin-top:15px;font-size:20px"> 
 												<input type="hidden" name="con_id" value="${conVO.con_id}">
 												<input type="hidden" name="action" value="getOne_For_Stop">
 											</form>
@@ -124,7 +132,7 @@
 											<form method="post"
 												action="<%=request.getContextPath()%>/back/contract/contract.do"
 												style="margin-bottom: 0px;">
-												<input type="submit" value="查看" class="btn btn-outline-info " style="font-weight:bold;margin-top:15px;font-size:20px"> 
+												<input type="submit" value="查看" class="btn btn-outline-info btn-lg" style="font-weight:bold;margin-top:15px;font-size:20px"> 
 												<input type="hidden" name="con_id" value="${conVO.con_id}">
 												<input type="hidden" name="action" value="getOne_For_Display">
 											</form>

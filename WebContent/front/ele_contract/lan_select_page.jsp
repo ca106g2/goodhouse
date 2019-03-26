@@ -38,7 +38,7 @@
 				    <div class="card-body">
 						<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lan_listAll_ele_contract.jsp">
 							<input type="hidden" name="action" value="lan_listAll">
-							<input type="submit" value="電子合約" class="btn btn-outline-success ">
+							<input type="submit" value="電子合約" class="btn btn-outline-success btn-lg" style="font-weight:bold">
 						</form>
 				    </div>
 				  </div>
@@ -47,7 +47,7 @@
 				    <img src="<%=request.getContextPath()%>/images/applyConturct.png" class="card-img-top" alt="...">
 				    <div class="card-body">
 						<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lanListAll_Apply_conturct.jsp">
-							<input type="submit" value="合約處理" class="btn btn-outline-success">
+							<input type="submit" value="合約處理" class="btn btn-outline-success btn-lg" style="font-weight:bold">
 						</form>
 				    </div>
 				  </div>
@@ -56,7 +56,7 @@
 				    <img src="<%=request.getContextPath()%>/images/bill.png" class="card-img-top" alt="...">
 				    <div class="card-body">
 						<form method="post" action="<%=request.getContextPath()%>/front/bill/lan_listAll_bill.jsp">
-							<input type="submit" value="房租帳單" class="btn btn-outline-success ">
+							<input type="submit" value="房租帳單" class="btn btn-outline-success btn-lg" style="font-weight:bold">
 						</form>
 				    </div>
 				  </div>

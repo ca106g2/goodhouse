@@ -16,6 +16,12 @@
 	b{
 		color:#3498DB;
 	}
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
 </style>
 
 </head>
@@ -29,7 +35,7 @@
 			<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService" />
 
 	<div class="container">
-		<div>
+		<div id="back">
 			<a href="<%=request.getContextPath()%>/back/ele_contract/listAll_ele_contract.jsp">
 				<img src="<%=request.getContextPath()%>/images/back.png" width="100	" height="100 !important">
 			</a>
@@ -111,9 +117,9 @@
 								</div>
 						</div>
 					</div>
-					
+					</div>
 				</div>
-			
+			</div>
 		</div>
 	</div>
 	<!-- 工作區結束 -->

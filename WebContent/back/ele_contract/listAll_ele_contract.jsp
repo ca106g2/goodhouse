@@ -19,7 +19,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-	 
+<style>
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>	 
 
 </head>
 <body>
@@ -29,7 +36,11 @@
 	<div class="container">
 		
 		<div class="row">
-			<div class="col-2">
+			<div id="back">
+				<a href="<%=request.getContextPath()%>/back/back_index.jsp">
+					<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+				</a>
+			</div>
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<font style="color:red">請修正以下錯誤:</font>
@@ -37,18 +48,15 @@
 							<p style="color:red">${message}</p><br>
 						</c:forEach>
 				</c:if>
-				<a href="<%=request.getContextPath()%>/back/back_index.jsp">
-					<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
-				</a>
-			</div>
-			
+		</div>
 			<jsp:useBean id="conSvc" scope="page" class="com.goodhouse.contract.model.ContractService"></jsp:useBean>
 			<jsp:useBean id="memSvc" scope="page" class="com.goodhouse.member.model.MemService"></jsp:useBean>
 			<jsp:useBean id="houSvc" scope="page" class="com.goodhouse.house.model.HouseService"></jsp:useBean>
 			<jsp:useBean id="lanSvc" scope="page" class="com.goodhouse.landlord.model.LanService"></jsp:useBean>
 			
+			<div class="row">
 <!-- 			<div class="col-10"> -->
-			
+				<div class="col-2"></div>
 				<div class="col-5 text-right" >
 <%-- 				<img src="<%=request.getContextPath()%>/images/magic.png" width="25" height="25" style="margin-bottom:10px" id="magic"> --%>
 					<form method="post" action="ele_contract.do">
@@ -64,7 +72,7 @@
 						<form method="post" action="ele_contract.do">
 							<input type="text" name="mem_name" class="btn btn-outline-info" placeholder="輸入房客姓名" id="">
 							<input type="hidden" name="action" value="getNameForEle_Contract">
-							<input type="submit" value="送出" class="btn btn-outline-info">
+							<input type="submit" value="送出" class="btn btn-outline-info btn-lg" style="font-weight:bold">
 						</form>
 					</div>
 <!-- 				</div> -->
@@ -134,9 +142,9 @@
 											
 											<td>
 												<form method="post" action="<%=request.getContextPath()%>/back/ele_contract/ele_contract.do" style="margin-bottom:0px;">
-													<input type="submit" value="查看" class="btn btn-outline-info">
+													<input type="submit" value="查看" class="btn btn-outline-info btn-lg" style="font-weight:bold">
 													<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
-													<input type="hidden" name="action" value="getOne_For_Display">
+													<input type="hidden" name="action" value="getOne_For_Display" >
 												</form>
 											</td>
 										</tr>

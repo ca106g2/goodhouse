@@ -22,7 +22,14 @@ pageContext.setAttribute("list", list);
 <!doctype html>
 <html lang="en">
 <head>
-
+<style>
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
@@ -32,18 +39,11 @@ pageContext.setAttribute("list", list);
 	<div class="container">
 		<div class="row">
 
-			<div class="col-2">
-				<table id="table-1">
-					<p>
-						<a
-							href="<%=request.getContextPath()%>/back/ele_contract/listAll_ele_contract.jsp">
-							<img src="<%=request.getContextPath()%>/images/back.png"
-							width="100	" height="100 !important">
-						</a>
-					</p>
-				</table>
+			<div id="back">
+				<a href="<%=request.getContextPath()%>/back/ele_contract/listAll_ele_contract.jsp">
+					<img src="<%=request.getContextPath()%>/images/back.png" width="100	" height="100 !important">
+				</a>
 			</div>
-			<div>
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<font style="color: red">請修正以下錯誤:</font>
@@ -52,7 +52,6 @@ pageContext.setAttribute("list", list);
 						<br>
 					</c:forEach>
 				</c:if>
-			</div>
 		</div>
 		<div style="margin-top: 15px">
 			<div class="card">
@@ -119,7 +118,7 @@ pageContext.setAttribute("list", list);
 											<form method="post"
 												action="<%=request.getContextPath()%>/back/ele_contract/ele_contract.do"
 												style="margin-bottom: 0px;">
-												<input type="submit" value="查看" style="font-weight:bold" class="btn btn-outline-info"> 
+												<input type="submit" value="查看" style="font-weight:bold" class="btn btn-outline-info bt-lg" > 
 												<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}"> 
 												<input type="hidden" name="action" value="getOne_For_Display">
 											</form>

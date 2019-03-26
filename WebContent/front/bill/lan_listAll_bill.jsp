@@ -42,19 +42,27 @@
 <head>
 <meta charset="UTF-8">
 
+<style>
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>
+
+
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 	<div class="container-fluid">
-		<div class="row justify-content-center">
+		<div class="back">
+			<a href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
+				<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+			</a>
 
 			<div col="col-2">
-				<form method="post"
-					action="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
-					<input type="submit" value="回電子合約管理"
-						class="btn btn-outline-success ">
-				</form>
 				<c:if test="${not empty errorMsgs}">
 					<ul>
 						<c:forEach var="message" items="${errorMsgs}">
@@ -63,7 +71,8 @@
 					</ul>
 				</c:if>
 			</div>
-
+		</div>
+		<div class="row justify-content-center">
 			<div class="col-10">
 				<div class="card">
 
@@ -137,7 +146,7 @@
 													<input type="hidden" name="bill_id"
 														value="${billVO.bill_id}"> <input type="hidden"
 														name="action" value="lanGetOne_For_look"> <input
-														type="submit" value="看明細" class="btn btn-outline-success"
+														type="submit" value="看明細" class="btn btn-outline-success btn-lg"
 														style="font-weight: bold">
 												</form>
 											</td>

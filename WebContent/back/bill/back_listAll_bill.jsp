@@ -13,8 +13,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-
-<title></title>
+<style>
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
@@ -24,31 +30,33 @@
 		
 			<div class="row">
 			
-				<div class="col-2">
-					<c:if test="${not empty errorMsgs}">
-						<c:forEach var="message" items="${errorMsgs}">
-							<p style="color:red">${message}</p><br>
-						</c:forEach>
-					</c:if>
+				<div id="back">
 					
 					<a href="<%=request.getContextPath()%>/back/back_index.jsp">
 						<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
 					</a>
 				</div>
-				
+					<c:if test="${not empty errorMsgs}">
+						<c:forEach var="message" items="${errorMsgs}">
+							<p style="color:red">${message}</p><br>
+						</c:forEach>
+					</c:if>
+			</div>
+			<div class="row">
+				<div class="col-2"></div>
 				<div class="col-5 text-right">
 					<form method="post" action="bill.do">
 						<b>查詢帳單</b>
-						<input type="text" name="bill_id" class="btn btn-outline-info" placeholder="輸入帳單編號">
+						<input type="text" name="bill_id" class="btn btn-outline-info " placeholder="輸入帳單編號">
 						<input type="hidden" name="action" value="backBillForLook">
-						<input type="submit" value="送出" class="btn btn-outline-info">
+						<input type="submit" value="送出" class="btn btn-outline-info bt-lg" style="font-weight:bold">
 					</form>
 				</div>
 				<div class="col-5">
 					<form method="post" action="bill.do">
 						<input type="text" name="mem_name" class="btn btn-outline-info" placeholder="輸入姓名">
 						<input type="hidden" name="action" value="back_getBy_mem_name">
-						<input type="submit" value="送出" class="btn btn-outline-info">
+						<input type="submit" value="送出" class="btn btn-outline-info" style="font-weight:bold">
 					</form>
 				</div>
 				
@@ -132,10 +140,10 @@
 											<td>
 												
 												
-												<form method="post" action="bill.do">
+												<form method="post" action="bill.do" style="size:18px">
 													<input type="hidden" name="action" value="backBillForLook">
 													<input type="hidden" name="bill_id" value="${billVO.bill_id}">
-													<input type="submit" name="" value="查看明細" class="btn btn-outline-info">
+													<input type="submit" name="" value="查看明細" class="btn btn-outline-info btn-lg" style="font-weight:bold">
 												</form>
 											</td>
 										</tr>

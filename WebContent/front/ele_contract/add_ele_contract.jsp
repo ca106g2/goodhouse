@@ -11,6 +11,12 @@
 <html lang="en">
 <head>
 <style>
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
 </style>
 <title></title>
 </head>
@@ -21,15 +27,10 @@
 
 	<div class="container">
 		
-		<div>
+		<div id="back">
 			<a href="<%=request.getContextPath()%>/front/ele_contract/lan_listAll_ele_contract.jsp">
 				<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
 			</a>
-		
-		</div>
-	
-	
-		<div class="row justfy-content-center " style="margin-top:15px">
 			<%-- 錯誤表列 --%>
 			<c:if test="${not empty errorMsgs}">
 				<font style="color: red">請修正以下錯誤:</font>
@@ -38,6 +39,10 @@
 					<br>
 				</c:forEach>
 			</c:if>
+		</div>
+	
+	
+		<div class="row justfy-content-center " style="margin-top:15px">
 			<img src="<%=request.getContextPath()%>/images/magic.png" width="25" height="25" style="margin-bottom:10px" id="magic">
 			<div class="card">
 				<div class="card-header">
@@ -295,8 +300,6 @@ $('#exampleFormControlSelect1').change(function(){
 			error: function(){alert("AJAX發生錯誤")}
 			
 				});
-	
-	
 })
 
 
@@ -305,10 +308,9 @@ $('#exampleFormControlSelect1').change(function(){
 
 	<!-- 工作區結束 -->
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />
-	<link rel="stylesheet" type="text/css"
-		href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 	<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+	<script src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+	
 </body>
 </html>

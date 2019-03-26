@@ -46,7 +46,7 @@
 	<!-- 工作區開始 -->
 	<div class="container-fluid">
 		<div class="row justify-content-center">
-			<div col="col-2">
+<!-- 			<div class="col-2"> -->
 				<c:if test="${not empty errorMsgs}">
 					<font style="color: red">請修正以下錯誤:</font>
 					<ul>
@@ -55,7 +55,9 @@
 						</c:forEach>
 					</ul>
 				</c:if>
-			</div>
+<!-- 			</div> -->
+		</div>
+		<div class="row justify-content-center">
 			<div class="col-10">
 				<div class="card">
 
@@ -69,22 +71,36 @@
 								class="table table-bordered table-hover mb-0 text-nowrap text-center">
 								<tbody>
 									<tr style="background-color: #EDF9DE;">
-										<!-- 				      	<th scope="col">帳單編號</th> -->
+<!-- 														      	<th scope="col">帳單編號</th> -->
+										<th></th>
 										<th scope="col">出租房屋地址</th>
 										<th scope="col">繳交費用</th>
 										<th scope="col">繳交期限</th>
 										<th scope="col">帳單產生日期</th>
 										<th scope="col">帳單繳費狀態</th>
 										<!-- 				      	<th scope="col">付款方式</th> -->
-										<th scope="col">繳費型態</th>
+<!-- 										<th scope="col">繳費型態</th> -->
 										<th scope="col"></th>
 									</tr>
 									<%@include file="page1.file"%>
 									<c:forEach var="billVO" items="${list}" begin="<%=pageIndex%>"
 										end="<%=pageIndex+rowsPerPage-1%>">
 										<tr>
-											<%-- 			      			<td>${billVO.bill_id}</td> --%>
-
+<%-- 														      			<td>${billVO.bill_id}</td> --%>
+											<td>
+											<c:forEach var="billStatus" items="${BillStatusList}">
+												<c:if test="${billStatus.status_no eq billVO.bill_status}">
+													<c:choose> 
+													<c:when test="${billStatus.status_no eq 's2' }">
+														<img class="payrent" src="<%=request.getContextPath()%>/images/1.png" data-param="${billVO.bill_id}" style="weight:50px;height:50px">
+													</c:when> 
+													<c:when test="${billStatus.status_no ne 's2' }">
+														<img src="<%=request.getContextPath()%>/images/2.png" data-param="${billVO.bill_id}" style="weight:50px;height:50px">
+													</c:when>
+													</c:choose>
+												</c:if>
+											</c:forEach>
+											</td>
 											<td>${houSvc.getOneHouse(eleConSvc.getOneEC(billVO.ele_con_id).hou_id).hou_address}</td>
 											<td>${billVO.bill_pay}</td>
 											<td>${billVO.bill_date}</td>
@@ -94,8 +110,7 @@
 												<c:if test="${billStatus.status_no eq billVO.bill_status}">
 
 													<c:choose>
-														<c:when
-															test="${billStatus.status_name eq '待繳款'  or billStatus.status_name eq '待確認待繳款' }">
+														<c:when test="${billStatus.status_name eq '待繳款'  or billStatus.status_name eq '待確認待繳款' }">
 															<td id="billStatus" style="color: #FF0000">${billStatus.status_name}</td>
 														</c:when>
 
@@ -115,13 +130,13 @@
 
 											<%-- 							<td>${billVO.bill_paymethod}</td> --%>
 
-											<c:forEach var="bill_PaymentType"
-												items="${Bill_PaymentTypeMap}">
-												<c:if
-													test="${bill_PaymentType.value.type_no eq billVO.bill_paymenttype}">
-													<td>${bill_PaymentType.value.type_name}</td>
-												</c:if>
-											</c:forEach>
+<%-- 											<c:forEach var="bill_PaymentType" --%>
+<%-- 												items="${Bill_PaymentTypeMap}"> --%>
+<%-- 												<c:if --%>
+<%-- 													test="${bill_PaymentType.value.type_no eq billVO.bill_paymenttype}"> --%>
+<%-- 													<td>${bill_PaymentType.value.type_name}</td> --%>
+<%-- 												</c:if> --%>
+<%-- 											</c:forEach> --%>
 
 											<td>
 												<form method="post" action="bill.do">
@@ -182,6 +197,14 @@
 			});
 		</script>
 	</c:if>
+	
+	<script>
+	$('.payrent').click(function(){
+		var param = $(this).attr('data-param');
+		window.location.assign("<%=request.getContextPath()%>/front/bill/creatOtherBill.jsp?bill_id="+param);
+	})
+	</script>
+
 
 
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp"></jsp:include>

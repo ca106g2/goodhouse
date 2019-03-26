@@ -12,6 +12,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<style>
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
@@ -20,15 +29,16 @@
 		<div class="row ">
 
 
-			<div class="col-2">
+			<div id="back">
 				<h4>
 					<a href="<%=request.getContextPath()%>/back/contract/listAll_contract.jsp">
 						<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
 					</a>
 				</h4>
 			</div>
-
-			<div class="col-10">
+		</div>
+		<div class="row ">
+			<div class="col-12">
 				<div class="card">
 
 					<div class="card-header">
@@ -39,10 +49,10 @@
 						<div class="table-responsive">
 							<table class="table table-bordered table-hover mb-0 text-nowrap text-center h3">
 								<tbody>
-									<tr>
-										<th scope="row">合約分類編號</th>
-										<td>${conVO.con_id}</td>
-									</tr>
+<!-- 									<tr> -->
+<!-- 										<th scope="row">合約分類編號</th> -->
+<%-- 										<td>${conVO.con_id}</td> --%>
+<!-- 									</tr> -->
 									<tr>
 										<th>合約分類名稱</th>
 										<td>${conVO.con_name}</td>

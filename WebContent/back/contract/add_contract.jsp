@@ -10,7 +10,14 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
+<style>
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>
 </head>
 <body bgcolor='white'>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
@@ -18,13 +25,14 @@
 	<div class="container">
 		<div class="row justify-content-center">
 
-			<div class="col-2">
+			<div class="col-2" id="back">
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/back/contract/listAll_contract.jsp"><img
 						src="<%=request.getContextPath()%>/images/back.png" width="100"
 						height="100" border="0"></a>
 				</h4>
+			</div>
 				
 				<c:if test="${not empty errorMsgs}">
 					<c:forEach var="message" items="${errorMsgs}">
@@ -32,9 +40,11 @@
 						<br>
 					</c:forEach>
 				</c:if>
-			</div>
+		</div>
 			<jsp:useBean id="conSvc" scope="page"
 				class="com.goodhouse.contract.model.ContractService" />
+		<div class="row justify-content-center">
+			<div class="col-2"></div>
 			<div class="col-10"></div>
 			<div class="col-10">
 				<div class="card">
@@ -80,7 +90,7 @@
 								</table>
 								<input type="hidden" name="action" value="insert" /> 
 								<input type="hidden" name="con_content" id="con_content" value="" /> 
-								<input type="submit" value="送出新增" class="btn btn-outline-info"
+								<input type="submit" value="送出新增" class="btn btn-outline-info btn-lg"
 									style="margin-top: 15px; font-weight: bold; font-size: 20px" />
 							</form>
 						</div>

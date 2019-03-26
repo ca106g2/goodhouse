@@ -11,12 +11,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
 	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-2">
+		<div class="row ">
+			<div id="back">
 				<h4>
 					<a
 						href="<%=request.getContextPath()%>/back/contract/listAll_contract.jsp">
@@ -24,6 +32,7 @@
 						width="100" height="100" border="0">
 					</a>
 				</h4>
+			</div>
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<c:forEach var="message" items="${errorMsgs}">
@@ -31,7 +40,9 @@
 						<br>
 					</c:forEach>
 				</c:if>
-			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-2"></div>
 			<div class="col-10 ">
 				<div class="card">
 					<div class="card-body">

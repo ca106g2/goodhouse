@@ -42,20 +42,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style >
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>
+
+
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<div class="container">
 
-		<div lass="row">
-
-			<div col="col-2">
-				<form method="post"
-					action="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
-					<input type="submit" value="回電子合約管理"
-						class="btn btn-outline-success ">
-				</form>
+		<div class="row">
+			
+			<div id="back">
+				<a href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
+					<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+				</a>
 			</div>
+
+		</div>
+		<div lass="row">
+			<div col="col-2"></div>
 			<div col="col-10" style="margin-top:15px">
 				<div class="card">
 					<div class="card-header">

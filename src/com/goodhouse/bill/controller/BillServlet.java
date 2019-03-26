@@ -509,5 +509,47 @@ public class BillServlet extends HttpServlet{
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 		}
+		
+		//TODO 房客繳交其他帳單
+		if("payOtherBill".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			try {
+				/***1取得請求參數****************/
+				String bill_id = req.getParameter("bill_id");
+				System.out.println(bill_id);
+				/***2查詢資料更改狀態********************/
+				BillService billSvc = new BillService();
+				BillVO billVO = billSvc.getOneB(bill_id);
+				
+				billVO.setBill_id(billVO.getBill_id());
+				billVO.setEle_con_id(billVO.getEle_con_id());
+				billVO.setBill_pay(billVO.getBill_pay());
+				billVO.setBill_date(billVO.getBill_date());
+				billVO.setBill_producetime(billVO.getBill_producetime());
+				if(billVO.getBill_status().equals("s2")) {
+					billVO.setBill_status("s3");
+				}
+				billVO.setBill_paymenttype(billVO.getBill_paymenttype());
+				billVO.setBill_paymethod(billVO.getBill_paymethod());
+				
+				billSvc.updateB(billVO);
+				
+				/***3狀態改完準備轉交************/
+				req.setAttribute("lastPage", true);
+				String url = "/front/bill/mem_listAll_bill.jsp";
+				RequestDispatcher success = req.getRequestDispatcher(url);
+				success.forward(req, res);
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+				errorMsgs.add("無法取得資料" + e.getMessage());
+				RequestDispatcher failure = req.getRequestDispatcher("/front/bill/mem_listAll_bill.jsp");
+				failure.forward(req, res);
+			}
+			
+		}
 	}
 }

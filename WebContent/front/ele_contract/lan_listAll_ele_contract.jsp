@@ -21,10 +21,13 @@
 <head>
 
 <style>
-.back {
-	font-family: impact;
-	font-color:;
-}
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+	
 </style>
 
 </head>
@@ -44,13 +47,17 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-2">
-
-				<form method="post"
-					action="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
-					<input type="submit" value="回電子合約管理"
-						class="btn btn-outline-success ">
-				</form>
+				
+				<div id="back">
+					<a href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
+						<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+					</a>
+				</div>
+<!-- 				<form method="post" -->
+<%-- 					action="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp"> --%>
+<!-- 					<input type="submit" value="回電子合約管理" -->
+<!-- 						class="btn btn-outline-success "> -->
+<!-- 				</form> -->
 				<%-- 錯誤表列 --%>
 				<c:if test="${not empty errorMsgs}">
 					<font style="color: red"></font>
@@ -60,21 +67,22 @@
 					</c:forEach>
 				</c:if>
 
-			</div>
-
+		</div>
+		<div class="row">
+			<div class="col-2"></div>
 			<div class="col-6">
 				<form method="post" action="ele_contract.do">
 					<input type="text" name="mem_name" class="btn btn-light" placeholder="輸入姓名查找房客合約"> 
 					<input type="hidden" name="action" value="lanGetMemEle_ContractByName"> 
-					<input type="submit" value="送出" class="btn btn-outline-success"
-						id="sendmem">
+					<input type="submit" value="送出" class="btn btn-outline-success btn-lg"
+						id="sendmem" style="font-weight:bold">
 				</form>
 			</div>
 
 			<div class="col-4">
 				<form method="post" action="ele_contract.do">
 					<input type="hidden" name="action" value="jumpToSelectContract">
-					<input type="submit" value="新增電子合約" class="btn btn-outline-success ">
+					<input type="submit" value="新增電子合約" class="btn btn-outline-success btn-lg" style="font-weight:bold">
 				</form>
 			</div>
 

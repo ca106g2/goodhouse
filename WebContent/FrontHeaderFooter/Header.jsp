@@ -31,7 +31,7 @@
 <style>
 	header{
 		position:fixed;
-		z-index:1500;
+		z-index:9990;
 		height: 80px;
 		width:auto;
 		
