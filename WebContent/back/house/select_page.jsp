@@ -8,7 +8,8 @@
 	 <table>
 	 	<td>
 			<form method="post" action="<%=request.getContextPath()%>/back/house/hou.do" name="form1">
-				<b><font color=blue>租屋查詢</font></b><br>
+				<br><br>
+				<b><font color=blue>租屋查詢</font></b>
 				<br>
 				<br>
 				<b>房屋名稱</b>

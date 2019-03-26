@@ -26,8 +26,12 @@
 <body>
 
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
-
 	<div class="container-fluid">
+			<div>
+			<a href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp">
+				<img src="<%=request.getContextPath()%>/images/back.png" width="100	" height="100 !important">
+			</a>
+		</div>
 		<div class="row justify-content-center">
 
 			<div class="col-10">

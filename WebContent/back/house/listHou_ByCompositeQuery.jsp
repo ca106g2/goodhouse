@@ -30,6 +30,11 @@
 <body>
 
 	<jsp:include page="/BackHeaderFooter/Header.jsp" />
+	<div>
+			<a href="<%=request.getContextPath()%>/back/house/listAllHouse.jsp">
+				<img src="<%=request.getContextPath()%>/images/back.png" width="100	" height="100 !important">
+			</a>
+	</div>
 	<div class="container-fluid">
 		<div class="row justify-content-center">
 

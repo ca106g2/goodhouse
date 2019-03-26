@@ -55,27 +55,70 @@
 <br>
 <br>
 <FORM METHOD="post" ACTION="hou.do" name="form1" enctype="multipart/form-data">
-<table>
-		<tr><th>房屋審核 :
+<div class="container-fluid">
+
+	<div class="row ">
+		
+		<div class="col-4">
+			<div class="card">
+				<div class="card-head">
+				圖片一
+				</div>
+				<div class="card-body">
+				<img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"style="height: 500;width: 600px;">
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="card">
+				<div class="card-head">
+				圖片二
+				</div>
+				<div class="card-body">
+				<img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=2"style="height: 500;width: 600px;">
+				</div>			
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="card">
+				<div class="card-head">
+				圖片三
+				</div>
+				<div class="card-body">
+				<img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=3"style="height: 500;width: 600px;">
+				</div>			
+			</div>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="card">
+		<div class="card-body">
+		<div class="table-responsive">
+		
+		<table class="table table-bordered table-hover mb-0 text-nowrap text-center">
+			<tbody>
+			
+		<tr>
+		<th>房屋審核 :</th>
 		<td>												
 			<select  size="1" name="hou_parkspace"class="form-control" id="exampleFormControlSelect5">	
 				<option value="已審核">已審核</option>
 			</select></td>
-			</th>
+			
 			</tr>
-		<tr><th>房屋名稱 : <td><%=houVO.getHou_name()%></td></th></tr>
-		<tr><th>房屋型別 : <td><%=houVO.getHou_type()%></td></th></tr>
-		<tr><th>房屋坪數 : <td><%=houVO.getHou_size()%></td></th></tr>
-		<tr><th>房屋狀態 : <td><%=houVO.getHou_property()%></td></th></tr>
-		<tr><th>是否可開火 : <td><%=houVO.getHou_cook()%></td></th></tr>
-		<tr><th>是否有管理費 : <td><%=houVO.getHou_managefee()%></td></th></tr>
-		<tr><th>房屋地址 : <td><%=houVO.getHou_address()%></td></th></tr>
-		<tr><th>房屋租金 : <td><%=houVO.getHou_rent()%></td></th></tr>
-		<tr><th>備註 : <td><%=houVO.getHou_note()%></td></th></tr>
-		<tr><th>圖片一 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"></td></th></tr>
-		<tr><th>圖片二 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=2"></td></th></tr>
-		<th>圖片三 : <td><img src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=3"></td></th>
-		<tr><th> <td>
+		<tr><th scope="row">房屋名稱 : </th><td><%=houVO.getHou_name()%></td></tr>
+		<tr><th scope="row">房屋型別 : </th><td><%=houVO.getHou_type()%></td></tr>
+		<tr><th scope="row">房屋坪數 : </th><td><%=houVO.getHou_size()%></td></tr>
+		<tr><th scope="row">房屋狀態 :</th> <td><%=houVO.getHou_property()%></td></tr>
+		<tr><th scope="row">是否可開火 :</th> <td><%=houVO.getHou_cook()%></td></tr>
+		<tr><th scope="row">是否有管理費 :</th> <td><%=houVO.getHou_managefee()%></td></tr>
+		<tr><th scope="row">房屋地址 :</th> <td><%=houVO.getHou_address()%></td></tr>
+		<tr><th scope="row">房屋租金 : </th><td><%=houVO.getHou_rent()%></td></tr>
+		<tr><th scope="row">備註 : </th><td>
+				<textarea disabled rows="20" cols="100" style="resize:none;" >
+				<%=houVO.getHou_note()%></textarea></td></tr>
+
+		<tr><th scope="row"></th> <td>
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="mem_id" value="${memSvc.getOneMem(lanSvc.getOneLan(houVO.lan_id).mem_id).mem_id}">
 		<input type="hidden" name="hou_id" value="<%=houVO.getHou_id()%>">
@@ -92,9 +135,15 @@
 		<input type="hidden" name="hou_s_picture">
 		<input type="hidden" name="hou_t_picture">
 		<input type="submit"  class="btn btn-outline-success" value="送出修改" >	
-		</td></th></tr>
-</table>
-<br>
+		</td></tr>
+	
+				</tbody>
+			</table>		
+		</div>
+		</div>
+		</div>	
+	</div>
+</div>
 </FORM>
 
 <jsp:include page="/BackHeaderFooter/Footer.jsp" />	

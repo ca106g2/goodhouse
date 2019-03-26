@@ -36,7 +36,10 @@
 					</ul>
 				</c:if>
 			</div>
-			<div class="col-10">
+<!-- 			<div class="col-10"> -->
+
+		<div class="" style="margin-top:15px">
+			<br>	
 				<div class="card">
 
 					<div class="card-header">
@@ -52,7 +55,7 @@
 										<!-- 			      	<th scope="col">帳單編號</th> -->
 										<th scope="col">房屋名稱</th>
 										<th scope="col">房屋型別</th>
-										<th scope="col">房屋坪數</th>
+<!-- 										<th scope="col">房屋坪數</th> -->
 										<!-- 		<th scope="col">房屋狀態</th> -->
 										<th scope="col">房屋審核</th>
 										<!-- 		<th>是否可開火</th> -->
@@ -71,7 +74,7 @@
 										<tr>
 											<td>${houVO.hou_name}</td>
 											<td>${houVO.hou_type}</td>
-											<td>${houVO.hou_size}</td>
+<%-- 											<td>${houVO.hou_size}</td> --%>
 											<%-- 			<td>${houVO.hou_property}</td> --%>
 											<td>${houVO.hou_parkspace}</td>
 											<%-- 			<td>${houVO.hou_cook}</td> --%>
