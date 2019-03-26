@@ -80,7 +80,7 @@
 			<div class="card">
 
 				<div class="card-header">
-					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的不可預約行程表 </h3>
+					<h3 style="color:red; display:inline;" ><%= memVO.getMem_name()%></h3><h3 style="display:inline;">房東的不可預約行程表 </h3>
 				</div>
 
 				<div class="card-body">
@@ -129,7 +129,7 @@
 				<td><fmt:formatDate value="${houNoAppVO.hou_noapp_date}" pattern="yyyy-MM-dd"/></td>
 				<td>
 				  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/houNoApp/houNoApp.do" style="margin-bottom: 0px;">
-				     <input type="submit" value="取消不可預約">
+				     <input type="submit" value="取消不可預約" class="btn btn-danger">
 				     <input type="hidden" name="hou_noapp_id"  value="${houNoAppVO.hou_noapp_id}"><!-- hidden表示看不到 但因為submit的關係，所以按下按鈕後整個Form表單會一起被送出。 -->
 				     <input type="hidden" name="action" value="delete"></FORM>
 				</td>

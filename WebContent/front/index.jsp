@@ -22,7 +22,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HouseBrowse</title>
+<title>GoodHouse</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/front/dist/css/swiper.min.css">
 <style type="text/css">
 .page-item:first-child .page-link, .page-item:last-child .page-link {
@@ -98,6 +98,13 @@
       -webkit-align-items: center;
       align-items: center;
     }
+    
+    #howming {
+	  overflow : hidden;
+	  text-overflow : ellipsis;
+	  white-space : nowrap;
+	  width : 200px;
+	}
 
 </style>
 </head>
@@ -237,10 +244,10 @@
 								<form METHOD="post"
 									ACTION="<%=request.getContextPath()%>/front/house/hou.do">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="搜尋金額以下房屋"
+										<input type="text" class="form-control" placeholder="金額以下"
 											name="hou_rent">
 										<div class="input-group-append">
-											<input class="btn btn-secondary" type="submit" value="開始查詢">
+											<input class="btn btn-secondary" type="submit" value="查詢">
 											<input type="hidden" name="action"
 												value="listHou_ByCompositeQueryForIndex">
 										</div>
@@ -251,6 +258,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="col-sm-8">
 				<div class="row">
 					<c:forEach var="houVO" varStatus="s" items="${list}"
@@ -262,16 +270,15 @@
 									<img
 										src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"
 										class="card-img-top">
-									<div class="card-body" style="height: 170px;">
-										<h5 class="card-title">${houVO.hou_id}</h5>
-										<h5 class="card-title">${houVO.hou_name}</h5>
-										<p class="card-text">${houVO.hou_rent}</p>
+									<div class="card-body" style="height: 175px;">
+										<h8 class="card-title">${houVO.hou_id}</h5>
+										<h5 class="card-title" id="howming" style="font-family:Microsoft JhengHei">${houVO.hou_name}</h5>
+										<div class="card-text" style="color:#ffc107; font-family:Microsoft JhengHei">$ ${houVO.hou_rent}</div>
 										<Form METHOD="post"
 											ACTION="<%=request.getContextPath()%>/front/house/hou.do">
 											<input type="hidden" name="hou_id" value="${houVO.hou_id}">
-											<input type="hidden" name="action"
-												value="front_getOne_For_Display"> <input
-												type="submit" value="查看詳情">
+											<input type="hidden" name="action" value="front_getOne_For_Display">
+											<input class="btn btn-warning" type="submit" value="查看詳情">
 										</Form>
 										<!-- 											<p class="card-text"> -->
 										<%-- 												<small class="text-muted">${houVO.hou_note}</small> --%>
