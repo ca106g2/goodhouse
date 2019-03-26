@@ -99,6 +99,7 @@ public class BillSchedule extends HttpServlet{
 						Calendar nextTime = new GregorianCalendar(year, nextMonth, date);
 						java.sql.Date nextBill_date = new java.sql.Date(nextTime.getTime().getTime());
 //						System.out.println("nextBill_date = "+nextBill_date);
+						
 					//如果合約狀態是已簽約
 					if(eleConVO.getEle_con_status().equals("s2")) {
 						System.out.println("if1");
