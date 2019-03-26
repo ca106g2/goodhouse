@@ -23,7 +23,24 @@
 			hou_id = houVO.getHou_id();
 		}else{%>
 		<jsp:include page="/FrontHeaderFooter/Header.jsp" />
-		<a href="<%=request.getContextPath()%>/front/index.jsp">請先申請房屋，點我回首頁!</a>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10">
+					<div class="card">
+						<div class="card-header">
+							  	溫馨小提醒
+						</div>
+						<div class="card-body">
+						    <h5 class="card-title">QQ...還未申請房屋!</h5>
+						    <p class="card-text">請先完成新增房屋流程再使用本功能</p>
+						    <a href="<%=request.getContextPath()%>/front/index.jsp" class="btn btn-primary">回到首頁</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+		</div>
 		
 <% 		}%>
 	
@@ -36,7 +53,7 @@
 <%if(houVO != null) {%>
 <html>
 <head>
-<title>租屋問題列表 - listPartRentMess.jsp</title>
+<title>租屋問題列表</title>
 
 <style>
   table#table-1 {
@@ -75,34 +92,45 @@
 <body bgcolor='white'>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
-<h4>此頁練習採用 EL 的寫法取值:</h4>
-<table id="table-1">
-	<tr><td>
-		 <h3>ψ<%= houVO.getHou_name() %>ψ租屋問題列表 - listPartRentMess.jsp</h3>
-		 <span>ψ<%= memVO.getMem_name() %>ψ房東liho</span>
-		 <h4><a href="<%=request.getContextPath()%>/front/index.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
 
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
 
-<table>
-	<tr>
-		<th>租屋留言編號</th>
-		<th>會員編號</th>
-		<th>留言日期</th>
-		<th>提問內容</th>
-		<th>回覆內容</th>
-	</tr>
-    <%@ include file="page1.file" %> 
+
+<div class="container">
+
+		<div class="row">
+			<div class="col-2">
+
+				<form method="post"
+					action="<%=request.getContextPath() %>/front/index.jsp">
+					<input type="submit" value="回到首頁"
+						class="btn btn-outline-success ">
+				</form>
+			</div>
+		</div>
+
+		<div style="margin-top: 10px">
+			<div class="card">
+
+				<div class="card-header">
+					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的帶客看房行程表 </h3>
+				</div>
+
+				<div class="card-body">
+					<div class="table-responsive">
+
+						<table
+							class="table table-bordered table-hover mb-0 text-nowrap text-center">
+							<tbody>
+								<tr style="background-color: #EDF9DE;">
+									<th scope="col">租屋留言編號</th>
+									<th scope="col">會員編號</th>
+									<th scope="col">留言日期</th>
+									<th scope="col">提問內容</th>
+									<th scope="col">回覆內容</th>
+									<th scope="col">回覆</th>
+									<th scope="col">刪除</th>
+									
+<%@ include file="page1.file" %>
 	<c:forEach var="rentMessVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
 		<tr>
@@ -125,8 +153,88 @@
 			</td>
 		</tr>
 	</c:forEach>
+	</tbody>
 </table>
 <%@ include file="page2.file" %>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Flexbox container for aligning the toasts -->
+	<div aria-live="polite" aria-atomic="true"
+		class="d-flex justify-content-center align-items-center"
+		style="min-height: 200px;">
+
+		<!-- Then put toasts within -->
+		<div class="toast" role="alert" aria-live="assertive"
+			aria-atomic="true">
+			<div class="toast-header">
+				<img src="..." class="rounded mr-2" alt="..."> <strong
+					class="mr-auto">Bootstrap</strong>
+				<button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="toast-body">
+				<%-- 錯誤表列 --%>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- 工作區結束 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <table> -->
+<!-- 	<tr> -->
+<!-- 		<th>租屋留言編號</th> -->
+<!-- 		<th>會員編號</th> -->
+<!-- 		<th>留言日期</th> -->
+<!-- 		<th>提問內容</th> -->
+<!-- 		<th>回覆內容</th> -->
+<!-- 	</tr> -->
+<%-- <%--     <%@ include file="page1.file" %>  --%>
+<%-- 	<c:forEach var="rentMessVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+		
+<!-- 		<tr> -->
+<%-- 			<td>${rentMessVO.ren_mes_id}</td> --%>
+<%-- 			<td>${rentMessVO.mem_id}</td> --%>
+<%-- 			<td><fmt:formatDate value="${rentMessVO.ren_mes_time}" pattern="yyyy-MM-dd"/></td> --%>
+<%-- 			<td>${rentMessVO.ren_mes_request}</td> --%>
+<%-- 			<td>${rentMessVO.ren_mes_response}</td>  --%>
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/rentMess/rentMess.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     <input type="submit" value="回覆"> -->
+<%-- 			     <input type="hidden" name="ren_mes_id"  value="${rentMessVO.ren_mes_id}"> --%>
+<!-- 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/rentMess/rentMess.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     <input type="submit" value="刪除"> -->
+<%-- 			     <input type="hidden" name="ren_mes_id"  value="${rentMessVO.ren_mes_id}"><!-- hidden表示看不到 但因為submit的關係，所以按下按鈕後整個Form表單會一起被送出。 --> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"></FORM> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
+<%-- 	</c:forEach> --%>
+<!-- </table> -->
+<%-- <%@ include file="page2.file" %> --%>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 

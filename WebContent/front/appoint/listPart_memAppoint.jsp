@@ -59,49 +59,46 @@
 </head>
 <body bgcolor="white">
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
-<table>
-	<tr>
-		<td>
-			<h3><%= memVO.getMem_name()%>房客的預約看房行程表 - listPart_memAppoint.jsp</h3>
-			<h4><a href="<%=request.getContextPath() %>/front/index.jsp"><img src="<%=request.getContextPath() %>/front/appoint/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-		</td>
-	</tr>
-</table>
-<%-- 錯誤列表 --%>
-<c:if test="${not empty errorMsgs }">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
-<script>
-		
-		navigator.geolocation.getCurrentPosition((position) =>{
-			console.log(position.coords);
-		    var pos = {
-		        lat: position.coords.latitude,
-		        lng: position.coords.longitude
-		    };
-		
-		});
 
 
-</script>
+<div class="container">
 
-<table>
-	<tr>
-		<th>預約看房日期</th>
-		<th>房東名稱</th>
-		<th>房屋地址</th>
-		<th>房租</th>
-		<th>預約狀態</th>
-		<th>取消預約</th>
-		<th>地圖導覽</th>
-	</tr>
-	<%@ include file="page1.file" %>
+		<div class="row">
+			<div class="col-2">
+
+				<form method="post"
+					action="<%=request.getContextPath() %>/front/index.jsp">
+					<input type="submit" value="回到首頁"
+						class="btn btn-outline-success ">
+				</form>
+			</div>
+		</div>
+
+		<div style="margin-top: 10px">
+			<div class="card">
+
+				<div class="card-header">
+					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房客的預約看房行程表</h3>
+				</div>
+
+				<div class="card-body">
+					<div class="table-responsive">
+
+						<table
+							class="table table-bordered table-hover mb-0 text-nowrap text-center">
+							<tbody>
+								<tr style="background-color: #EDF9DE;">
+									<th scope="col">預約看房日期</th>
+									<th scope="col">房東名稱</th>
+									<th scope="col">房屋地址</th>
+									<th scope="col">房租</th>
+									<th scope="col">預約狀態</th>
+									<th scope="col">取消預約</th>
+									<th scope="col">地圖導覽</th>
+								</tr>
+								
+								
+<%@ include file="page1.file" %>
 	<c:forEach var="appointVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 	<tr>
 		<td><fmt:formatDate value="${appointVO.hou_app_date}" pattern="yyyy-MM-dd"/></td>
@@ -163,6 +160,146 @@
 	</c:forEach>
 </table>
 <%@ include file="page2.file" %>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Flexbox container for aligning the toasts -->
+	<div aria-live="polite" aria-atomic="true"
+		class="d-flex justify-content-center align-items-center"
+		style="min-height: 200px;">
+
+		<!-- Then put toasts within -->
+		<div class="toast" role="alert" aria-live="assertive"
+			aria-atomic="true">
+			<div class="toast-header">
+				<img src="..." class="rounded mr-2" alt="..."> <strong
+					class="mr-auto">Bootstrap</strong>
+				<button type="button" class="ml-2 mb-1 close" data-dismiss="toast"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="toast-body">
+				<%-- 錯誤表列 --%>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- 工作區結束 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <table> -->
+<!-- 	<tr> -->
+<!-- 		<td> -->
+<%-- 			<h3><%= memVO.getMem_name()%>房客的預約看房行程表</h3> --%>
+<%-- 			<h4><a href="<%=request.getContextPath() %>/front/index.jsp"><img src="<%=request.getContextPath() %>/front/appoint/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> --%>
+<!-- 		</td> -->
+<!-- 	</tr> -->
+<!-- </table> -->
+
+<!-- <script> -->
+		
+<!-- // 		navigator.geolocation.getCurrentPosition((position) =>{ -->
+<!-- // 			console.log(position.coords); -->
+<!-- // 		    var pos = { -->
+<!-- // 		        lat: position.coords.latitude, -->
+<!-- // 		        lng: position.coords.longitude -->
+<!-- // 		    }; -->
+		
+<!-- // 		}); -->
+
+
+<!-- </script> -->
+
+<!-- <table> -->
+<!-- 	<tr> -->
+<!-- 		<th>預約看房日期</th> -->
+<!-- 		<th>房東名稱</th> -->
+<!-- 		<th>房屋地址</th> -->
+<!-- 		<th>房租</th> -->
+<!-- 		<th>預約狀態</th> -->
+<!-- 		<th>取消預約</th> -->
+<!-- 		<th>地圖導覽</th> -->
+<!-- 	</tr> -->
+<%-- 	<%@ include file="page1.file" %> --%>
+<%-- 	<c:forEach var="appointVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>"> --%>
+<!-- 	<tr> -->
+<%-- 		<td><fmt:formatDate value="${appointVO.hou_app_date}" pattern="yyyy-MM-dd"/></td> --%>
+<%-- 			<td><c:forEach var="lanVO" items="${lanSvc.all}"> --%>
+<%-- 					<c:forEach var="memVO" items="${memSvc.all}"> --%>
+<%--                     	<c:if test="${appointVO.lan_id==lanVO.lan_id}"> --%>
+<%--                     		<c:if test="${lanVO.mem_id == memVO.mem_id}"> --%>
+<%-- 	                    		<c:if test="${memVO.mem_sex==1}"> --%>
+<%-- 	                    			${memVO.mem_name} - 先生 --%>
+<%-- 	                    		</c:if> --%>
+<%-- 	                    		<c:if test="${memVO.mem_sex==2}"> --%>
+<%-- 	                    			${memVO.mem_name} - 女士 --%>
+<%-- 	                    		</c:if> --%>
+<%--                     		</c:if> --%>
+<%--                     	</c:if> --%>
+<%--                     </c:forEach> --%>
+<%--                 </c:forEach> --%>
+<!-- 			</td> -->
+<!-- 			<td> -->
+<%-- 				<c:forEach var="houVO" items="${houSvc.all}"> --%>
+<%-- 						<c:if test="${appointVO.hou_id == houVO.hou_id}"> --%>
+<%-- 								${houVO.hou_address} --%>
+<%-- 						</c:if> --%>
+<%-- 				</c:forEach> --%>
+<!-- 			</td> -->
+			
+<!-- 			<td> -->
+<%-- 				<c:forEach	var="houVO" items="${houSvc.all}"> --%>
+<%-- 					<c:if test="${appointVO.hou_id == houVO.hou_id }"> --%>
+<%-- 								${houVO.hou_rent} --%>
+<%-- 					</c:if> --%>
+<%-- 				</c:forEach>				 --%>
+<!-- 			</td> -->
+			
+<!-- 			<td> -->
+<%-- 				<c:if test="${appointVO.app_status.equals('A0')}"> --%>
+<!-- 					已預約	 -->
+<%-- 				</c:if> --%>
+<%-- 				<c:if test="${appointVO.app_status.equals('A1')}"> --%>
+<!-- 					取消預約 -->
+<%-- 				</c:if> --%>
+<!-- 			</td> -->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     <input type="submit" value="取消預約"> -->
+<%-- 			     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}"><!-- hidden表示看不到 但因為submit的關係，所以按下按鈕後整個Form表單會一起被送出。 --> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"></FORM> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<%-- 				<c:forEach	var="houVO" items="${houSvc.all}"> --%>
+<%-- 					<c:if test="${appointVO.hou_id == houVO.hou_id }"> --%>
+<%-- 					<iframe width="150" height="150"  frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAS_rBXRnvCraOtQVhz5gQHPRQA4wLeWHE&zoom=10&origin=中央大學 &destination=${houVO.hou_address}"> --%>
+<!--  </iframe> -->
+<%-- 					</c:if> --%>
+<%-- 				</c:forEach>				 --%>
+<!-- 			</td> -->
+			
+<!-- 		</tr> -->
+<%-- 	</c:forEach> --%>
+<!-- </table> -->
+<%-- <%@ include file="page2.file" %> --%>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 </body>
 </html>

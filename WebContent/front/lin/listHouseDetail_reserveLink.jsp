@@ -27,11 +27,6 @@
 	pageContext.setAttribute("lan_id", lan_id);
 	pageContext.setAttribute("lanVO", lanVO);
 	
-// 	String action ="";
-// 	if (action != null){
-// 	action = request.getParameter("insert");
-// 	pageContext.setAttribute("insert", action);
-// 	}
 %>
 
 <%

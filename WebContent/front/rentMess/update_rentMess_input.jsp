@@ -46,65 +46,95 @@
 </head>
 <body bgcolor='white'>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+	
+	
+	<div class="container">
+		<FORM METHOD="post" ACTION="rentMess.do" name="form1" >
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10">
+					<div class="card">
+						<div class="card-header">
+							<font color="red">租屋留言編號:</font>
+								<%=rentMessVO.getRen_mes_id()%>
+							<a href="<%=request.getContextPath()%>/front/index.jsp" class="btn btn-primary">回到首頁</a>
+						</div>
+						<div class="card-body">
+						    <h5 class="card-title">
+							    	提問訊息:<%=rentMessVO.getRen_mes_request()%>
+							   <input type="hidden"  readonly name="ren_mes_request" size="45"	value="<%=rentMessVO.getRen_mes_request()%>" />
+						    </h5>
+						    <p class="card-text">
+						    	回覆訊息:<input type="text" name="ren_mes_response" size="45" value="<%=rentMessVO.getRen_mes_response()%>" /><input type="submit" value="送出訊息">
+						    </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+			<!-- 		<td>房屋編號:</td> -->
+					<input type="hidden" name="hou_id" size="45" value="<%=rentMessVO.getHou_id()%>" />
+			<!-- 		<td>會員編號:</td> -->
+					<input type="hidden" name="mem_id" size="45" value="<%=rentMessVO.getMem_id()%>" />
+			<!-- 		<td>房東編號:</td> -->
+					<input type="hidden" name="lan_id" size="45" value="<%=rentMessVO.getLan_id()%>" />
+			<!-- 		<td>留言時間:</td> -->
+					<input type="hidden" name="ren_mes_time" size="45"  value="<%=rentMessVO.getRen_mes_time() %>" >
+			<!-- 					<td>提問訊息:</td> -->
+					<input type="hidden"  readonly name="ren_mes_request" size="45"	value="<%=rentMessVO.getRen_mes_request()%>" />
+			
+				<input type="hidden" name="action" value="update">
+				<input type="hidden" name="ren_mes_id" value="<%=rentMessVO.getRen_mes_id()%>">
+				
+		</FORM>
+	</div>
 
-<table id="table-1">
-	<tr><td>
-		 <h3>租屋訊息修改 - update_rentMess_input.jsp</h3>
-		 <h4><a href="<%=request.getContextPath()%>/front/index.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
-
-<h3>資料修改:</h3>
-
-<%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
-<FORM METHOD="post" ACTION="rentMess.do" name="form1" >
-<table>
-	<tr>
-		<td>租屋訊息編號:<font color=red><b>*</b></font></td>
-		<td><%=rentMessVO.getRen_mes_id()%></td>
-	</tr>
-<!-- 		<td>房屋編號:</td> -->
-		<td><input type="hidden" name="hou_id" size="45" value="<%=rentMessVO.getHou_id()%>" /></td>
-<!-- 		<td>會員編號:</td> -->
-		<td><input type="hidden" name="mem_id" size="45" value="<%=rentMessVO.getMem_id()%>" /></td>
-<!-- 		<td>房東編號:</td> -->
-		<td><input type="hidden" name="lan_id" size="45" value="<%=rentMessVO.getLan_id()%>" /></td>
-<!-- 		<td>留言時間:</td> -->
-		<td><input type="hidden" name="ren_mes_time" size="45"  value="<%=rentMessVO.getRen_mes_time() %>" ></td>
-	<tr>
-		<td>提問訊息:</td>
-		<td><input type="text"  readonly name="ren_mes_request" size="45"	value="<%=rentMessVO.getRen_mes_request()%>" /></td>
-	</tr>
-	<tr>
-		<td>回覆訊息:</td>
-		<td><input type="text" name="ren_mes_response" size="45" value="<%=rentMessVO.getRen_mes_response()%>" /></td>
-	</tr>
-
-	<%-- <jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
-	<tr>
-		<td>部門:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="deptno">
-			<c:forEach var="deptVO" items="${deptSvc.all}">
-				<option value="${deptVO.deptno}" ${(rentMessVO.deptno==deptVO.deptno)?'selected':'' } >${deptVO.dname}
-			</c:forEach>
-		</select></td>
-	</tr>
---%>
-</table>
-<br>
-<input type="hidden" name="action" value="update">
-<input type="hidden" name="ren_mes_id" value="<%=rentMessVO.getRen_mes_id()%>">
-<input type="submit" value="送出修改"></FORM>
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
+	
+	
+	
+	
+	
+	
+	
+
+<!-- <table id="table-1"> -->
+<!-- 	<tr><td> -->
+<!-- 		 <h3>租屋修改 - update_rentMess_input.jsp</h3> -->
+<%-- 		 <h4><a href="<%=request.getContextPath()%>/front/index.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> --%>
+<!-- 	</td></tr> -->
+<!-- </table> -->
+
+
+<!-- <FORM METHOD="post" ACTION="rentMess.do" name="form1" > -->
+<!-- <table> -->
+<!-- 	<tr> -->
+<!-- 		<td>租屋訊息編號:<font color=red><b>*</b></font></td> -->
+<%-- 		<td><%=rentMessVO.getRen_mes_id()%></td> --%>
+<!-- 	</tr> -->
+<!-- <!-- 		<td>房屋編號:</td> --> 
+<%-- 		<td><input type="hidden" name="hou_id" size="45" value="<%=rentMessVO.getHou_id()%>" /></td> --%>
+<!-- <!-- 		<td>會員編號:</td> --> 
+<%-- 		<td><input type="hidden" name="mem_id" size="45" value="<%=rentMessVO.getMem_id()%>" /></td> --%>
+<!-- <!-- 		<td>房東編號:</td> --> 
+<%-- 		<td><input type="hidden" name="lan_id" size="45" value="<%=rentMessVO.getLan_id()%>" /></td> --%>
+<!-- <!-- 		<td>留言時間:</td> --> 
+<%-- 		<td><input type="hidden" name="ren_mes_time" size="45"  value="<%=rentMessVO.getRen_mes_time() %>" ></td> --%>
+<!-- 	<tr> -->
+<!-- 		<td>提問訊息:</td> -->
+<%-- 		<td><input type="text"  readonly name="ren_mes_request" size="45"	value="<%=rentMessVO.getRen_mes_request()%>" /></td> --%>
+<!-- 	</tr> -->
+<!-- 	<tr> -->
+<!-- 		<td>回覆訊息:</td> -->
+<%-- 		<td><input type="text" name="ren_mes_response" size="45" value="<%=rentMessVO.getRen_mes_response()%>" /></td> --%>
+<!-- 	</tr> -->
+
+<!-- </table> -->
+<!-- <br> -->
+<!-- <input type="hidden" name="action" value="update"> -->
+<%-- <input type="hidden" name="ren_mes_id" value="<%=rentMessVO.getRen_mes_id()%>"> --%>
+<!-- <input type="submit" value="送出修改"></FORM> -->
+<%-- <jsp:include page="/FrontHeaderFooter/Footer.jsp" /> --%>
 </body>
 
 

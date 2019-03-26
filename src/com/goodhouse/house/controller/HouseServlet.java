@@ -33,7 +33,15 @@ public class HouseServlet extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
+		//*****************************常慶複合查詢轉到doPost用*********/
+		if(req.getParameter("action") != null && req.getParameter("action").equals("listHou_ByCompositeQueryForIndex")) {
+			doPost(req, res);
+			return;
+		}else {
 
+		//*****************************結束*********************************/
+			
 		req.setCharacterEncoding("UTF-8");
 		res.setContentType("image/jpeg");
 		ServletOutputStream out = res.getOutputStream();
@@ -65,6 +73,7 @@ public class HouseServlet extends HttpServlet {
 			}
 			in.close();
 		}
+		}//常慶複合查詢用esle括號
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

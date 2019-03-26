@@ -663,7 +663,7 @@
 								
 								cell.html("<div class='parent'>"
 	                           		 + "<iframe src=\'" +select_page+ "?theDate=" + theDate + "\'" 
-	                           		 + " style='background-color: white; border-color: black; border: 1px 1px 1px 1px;'"
+	                           		 + " style='background-color: white; border-color: black; border: 1px 1px 1px 1px; font-family: Microsoft JhengHei;'"
 	                           		 + " width=95% height=80% scrolling=no></iframe>"
 	                           		 + "<div class='link'>"
 	                           		 + "<a href=\'" +select_page2+ "?action=" + action + "&" + "hou_id=" + hou_id + "&" + "lan_id=" + lan_id +  "&" + "hou_noapp_time=" + hou_noapp_time + "&" + "hou_noapp_date=" + theDate + "\'>"

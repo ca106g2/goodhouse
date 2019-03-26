@@ -14,14 +14,6 @@
 <!-- 參考網址 -->
 <!-- http://glad.github.io/glDatePicker/ -->
 <!-- https://github.com/oschina/glDatePicker -->
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">請修正以下錯誤:</font>
-	<ul>
-	    <c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
 <%	
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	LanService lanSvc = new LanService();
@@ -31,7 +23,6 @@
 	lan_id = lanVO.getLan_id();
 	
 	HouNoAppService houNoAppSvc = new HouNoAppService();
-// 	List<HouNoAppVO> list = houNoAppSvc.getPart("L000000001");
 	List<HouNoAppVO> list = houNoAppSvc.getPart(lan_id);
 	pageContext.setAttribute("list",list);
 %>
@@ -39,27 +30,41 @@
 <%
 	AppointService AppointSvc = new AppointService();
 	
-// 	List<AppointVO> listAppoint = AppointSvc.getPartLan("L000000001");
 	List<AppointVO> listAppoint = AppointSvc.getPartLan(lanSvc.getOneLanByMemId(memVO.getMem_id()).getLan_id());
 	
 	pageContext.setAttribute("listAppoint",listAppoint);
 %>
 
 <%
-// 	String hou_id =  request.getParameter("hou_id");
 	HouseService houSvc = new HouseService();
 	HouseVO houVO = houSvc.getOneByLanId(lan_id);
 	String hou_id = "";
 	if (houVO != null){
 		hou_id = houVO.getHou_id();
-		System.out.println("TEST1= " + hou_id);
 	}else{%>
-		<a href="<%=request.getContextPath()%>/front/index.jsp">請先申請房屋，點我回到首頁</a>
+		<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10">
+					<div class="card">
+						<div class="card-header">
+							  	溫馨小提醒
+						</div>
+						<div class="card-body">
+						    <h5 class="card-title">QQ...還未申請房屋!</h5>
+						    <p class="card-text">請先完成新增房屋流程再使用本功能</p>
+						    <a href="<%=request.getContextPath()%>/front/index.jsp" class="btn btn-primary">回到首頁</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+		</div>
 	<%}%>
 
 <%if (houVO != null){ %>
 
-<%System.out.println("TEST2= " + hou_id);%>
 <html>
 
 <head>
@@ -74,9 +79,7 @@
 
 <script type="text/javascript">
 var action = "insert";
-// var lan_id = "L000000001";
 var lan_id = "<%= lan_id %>";
-// var hou_id = "HOU0000001";
 
 var hou_id = "<%= hou_id %>";
 
@@ -98,7 +101,7 @@ var hou_noapp_time = "A1";
 	position: relative;
 	float: left;
 	width: 92%;
-	height: 100px;
+	height: 40px;
 	text-align: left;
 	z-index: 1;
 	border: solid 0px red;
@@ -110,24 +113,82 @@ var hou_noapp_time = "A1";
 	left: 50%;
 	margin-left: -50%;
 	width: 100%;
-	bottom: -60%;				
+	bottom: -200%;				
 	text-align: center;
 }
 </style>
 <style>
 a:visited, a:link {
-	color: inherit;
+/* 	color: inherit; */
 	text-decoration: none;
 }
 a:hover, a:active {
-	color: cyan;
+/* 	color: cyan; */
 	text-decoration: none;
 }
+
+.gldp-default .noday {
+    color: #88bfe8;
+    font-weight: normal;
+    background: #fff7ac;
+  }
+  
+.gldp-default .border {
+    border-style: solid;
+ }
+ 
+ .gldp-default .core {
+/*  	background-color: #9dff9d; */
+	font-size: 28;
+ }
+ 
+ .gldp-default .dow {
+ 	font-family: Microsoft JhengHei;
+ 	font-size: 24px;
+ 	font-weight: bold;
+    cursor: wait !important;
+ 	background: #dff5f0;
+ }
+ 
+ element.style {
+    background-color: #88bfe8;
+}
+
+.gldp-default .monyear,
+.gldp-default .monyear select {
+    color: aliceblue;
+    font-family: Microsoft JhengHei;
+    font-size: 32px;
+    font-weight: bold;
+    background-color: #88bfe8;
+    
+}
+
+.gldp-default {
+    position: absolute;
+    font-family: Microsoft JhengHei;
+    background-color: #88bfe8;
+}
+ 
+ .gldp-default .selected {
+ 
+ 	background-color: #fb6e6e;
+ 
+ }
+ 
+ .gldp-default .today {
+ 	background: #a1f0f8;
+ }
+
+
+
+
+
 </style>
 </head>
 <body>
 	
-	<input gldp-id="mydate" style="width: 1000px; height: 30px; visibility: visible; color:blue; font-weight: bold;" type="text" id="mydate"/>
+	<input gldp-id="mydate" style="width: 1000px; height: 30px; visibility: visible; color:#88bfe8; font-weight: bold; background-color:#fff7ac; font-size:24px; font-family:Microsoft JhengHei;" type="text" id="mydate"/>
     <div   gldp-el="mydate" style="width: 1000px; height:1000px; position:  absolute;"> </div>
 <!-- div控制顏色外框，白色內框詳glDatePicker2_80precent 664行註解     -->
 	<script type="text/javascript">

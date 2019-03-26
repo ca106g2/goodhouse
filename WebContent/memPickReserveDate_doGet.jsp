@@ -24,7 +24,7 @@
 	MemVO memVO = (MemVO) session.getAttribute("memVO");
 	String mem_id = "";
 	if (memVO != null){
-		mem_id = memVO.getMem_id();
+	 	mem_id = memVO.getMem_id();
 	}
 	%>
 
@@ -34,7 +34,6 @@
 	HouseVO houVO = houSvc.getOneHouse(hou_id);
 
 	String lan_id = houVO.getLan_id();
-
 	HouNoAppService houNoAppSvc = new HouNoAppService();
 	List<HouNoAppVO> list = houNoAppSvc.getPart(lan_id);
 	pageContext.setAttribute("list", list);
@@ -83,42 +82,101 @@ var app_remind = "A0";
 	src="<%=request.getContextPath()%>/glDatePicker/glDatePicker2_80precent_backup9_mem_doGet.js"></script>
 <!-- 此版自定 -->
 <style>
-.parent {
-	position: relative;
+.parent2 {
+	position: absolute;
 	float: left;
 	width: 92%;
-	height: 100px;
-	text-align: left;
+	height: 60px;
+	text-align: Top;
 	z-index: 1;
 	border: solid 0px red;
 	margin: 5%;
+	Top : -30%;
 }
 
-.link { /* 調整日期位置 */
+.link2 { /* 調整日期位置 */
 	position: absolute;
 	left: 50%;
 	margin-left: -50%;
 	width: 100%;
-	bottom: -60%;
+	bottom: -160%;
 	text-align: center;
 }
 </style>
 <style>
 a:visited, a:link {
-	color: inherit;
+/* 	color: inherit; */
 	text-decoration: none;
 }
 
 a:hover, a:active {
-	color: cyan;
+/* 	color: cyan; */
 	text-decoration: none;
 }
+
+.gldp-default .noday {
+    color: #88bfe8;
+    font-weight: normal;
+    background: #fff7ac;
+  }
+  
+.gldp-default .border {
+    border-style: solid;
+ }
+ 
+ .gldp-default .core {
+/*  	background-color: #9dff9d; */
+	font-size: 28;
+	line-height: 0px;
+ }
+ 
+ .gldp-default .core.border{
+ 	line-height: 0px;
+ }
+ 
+ .gldp-default .dow {
+ 	font-family: Microsoft JhengHei;
+ 	font-size: 24px;
+ 	font-weight: bold;
+    cursor: wait !important;
+ 	background: #9dff9d;
+ }
+ 
+ element.style {
+    background-color: #88bfe8;
+}
+
+.gldp-default .monyear,
+.gldp-default .monyear select {
+    color: aliceblue;
+    font-family: Microsoft JhengHei;
+    font-size: 32px;
+    font-weight: bold;
+    background-color: #88bfe8;
+    
+}
+
+.gldp-default {
+    position: absolute;
+    font-family: Microsoft JhengHei;
+    background-color: #88bfe8;
+}
+ 
+ .gldp-default .selected {
+ 
+ 	background-color: #fb6e6e;
+ 
+ }
+ 
+ .gldp-default .today {
+ 	background: #a1f0f8;
+ }
 </style>
 </head>
 <body>
 
 	<input gldp-id="mydate"
-		style="width: 1000px; height: 30px; visibility: visible; color: blue; font-weight: bold;"
+		style="width: 1000px; height: 30px; visibility: visible; color:#88bfe8; font-weight: bold; background-color:#fff7ac; font-size:24px; font-family:Microsoft JhengHei;"
 		type="text" id="mydate" />
 	<div gldp-el="mydate"
 		style="width: 1000px; height: 1000px; position: absolute;"></div>
