@@ -94,6 +94,7 @@
 									<th scope="col">房租</th>
 									<th scope="col">預約狀態</th>
 									<th scope="col">取消預約</th>
+									<th scope="col">完成預約</th>
 									<th scope="col">地圖導覽</th>
 								</tr>
 								
@@ -137,21 +138,40 @@
 				<c:if test="${appointVO.app_status.equals('A0')}">
 					已預約	
 				</c:if>
-				<c:if test="${appointVO.app_status.equals('A1')}">
-					取消預約
+				<c:if test="${appointVO.app_status.equals('A2')}">
+					完成看房
+				</c:if>
+				<c:if test="${appointVO.app_status.equals('A3')}">
+					未完成看房
 				</c:if>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="取消預約">
-			     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}"><!-- hidden表示看不到 但因為submit的關係，所以按下按鈕後整個Form表單會一起被送出。 -->
-			     <input type="hidden" name="action" value="delete"></FORM>
+				<c:if test="${appointVO.app_status.equals('A0')}">
+				  	 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
+				     <input type="submit" value="取消預約">
+				     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}"><!-- hidden表示看不到 但因為submit的關係，所以按下按鈕後整個Form表單會一起被送出。 -->
+				     <input type="hidden" name="action" value="delete"></FORM>
+				 </c:if>
+				 <c:if test="${!appointVO.app_status.equals('A0')}">
+				     <input type="button"  disabled="disabled" value="取消預約">
+			    </c:if>
+			</td>
+			<td>
+				<c:if test="${appointVO.app_status.equals('A0')}">
+				  	 <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
+				     <input type="submit" value="完成預約">
+				     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}"><!-- hidden表示看不到 但因為submit的關係，所以按下按鈕後整個Form表單會一起被送出。 -->
+				     <input type="hidden" name="action" value="getOne_For_Update"></FORM>
+				 </c:if>
+				 <c:if test="${!appointVO.app_status.equals('A0')}">
+				     <input type="button"  disabled="disabled" value="完成預約">
+			    </c:if>
 			</td>
 			<td>
 				<c:forEach	var="houVO" items="${houSvc.all}">
 					<c:if test="${appointVO.hou_id == houVO.hou_id }">
 					<iframe width="150" height="150"  frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyAS_rBXRnvCraOtQVhz5gQHPRQA4wLeWHE&zoom=10&origin=中央大學 &destination=${houVO.hou_address}">
- </iframe>
+ 					</iframe>
 					</c:if>
 				</c:forEach>				
 			</td>

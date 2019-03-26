@@ -37,7 +37,7 @@ a:hover, a:active {
 <BODY>
 <table>
 	<tr>
-	<td>選擇預約日期</td>
+	<td >選擇預約日期</td>
 	</tr>
 </table>
 </BODY>

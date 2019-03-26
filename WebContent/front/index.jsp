@@ -263,6 +263,7 @@
 										src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"
 										class="card-img-top">
 									<div class="card-body" style="height: 170px;">
+										<h5 class="card-title">${houVO.hou_id}</h5>
 										<h5 class="card-title">${houVO.hou_name}</h5>
 										<p class="card-text">${houVO.hou_rent}</p>
 										<Form METHOD="post"

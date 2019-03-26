@@ -80,7 +80,7 @@
 			<div class="card">
 
 				<div class="card-header">
-					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的帶客看房行程表 </h3>
+					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的不可預約行程表 </h3>
 				</div>
 
 				<div class="card-body">
@@ -94,7 +94,7 @@
 									<th scope="col">房屋名稱</th>
 									<th scope="col">房屋地址</th>
 									<th scope="col">租金</th>
-									<th scope="col">預約日期態</th>
+									<th scope="col">預約日期</th>
 									<th scope="col">取消不可預約</th>
 								</tr>
 <%@ include file="page1.file" %>

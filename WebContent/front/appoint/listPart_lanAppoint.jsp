@@ -106,6 +106,7 @@
 									<th scope="col">房租</th>
 									<th scope="col">預約狀態</th>
 									<th scope="col">取消預約</th>
+									<th scope="col">完成預約</th>
 									<th scope="col">會員編號</th>
 									<th scope="col">會員姓名</th>
 								</tr>
@@ -140,15 +141,34 @@
 				<c:if test="${appointVO.app_status.equals('A0')}">
 					已預約	
 				</c:if>
-				<c:if test="${appointVO.app_status.equals('A1')}">
-					取消預約
+				<c:if test="${appointVO.app_status.equals('A2')}">
+					完成看房
+				</c:if>
+				<c:if test="${appointVO.app_status.equals('A3')}">
+					未完成看房
 				</c:if>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="取消預約">
-			     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}">
-			     <input type="hidden" name="action"	value="deleteLan"></FORM>
+				<c:if test="${appointVO.app_status.equals('A0')}">
+				  	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
+				     <input type="submit" value="取消預約">
+				     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}">
+				     <input type="hidden" name="action"	value="deleteLan"></FORM>
+			    </c:if>
+			    <c:if test="${!appointVO.app_status.equals('A0')}">
+				     <input type="button"  disabled="disabled" value="取消預約">
+			    </c:if>
+			</td>
+			<td>
+				<c:if test="${appointVO.app_status.equals('A0')}">
+					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
+				    <input type="submit" value="完成預約">
+				    <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}">
+				    <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+				</c:if>
+				<c:if test="${!appointVO.app_status.equals('A0')}">
+				    <input type="button" disabled="disabled" value="完成預約">
+				</c:if>
 			</td>
 			<td>
 				<c:forEach var="lanVO" items="${lanSvc2.all }">

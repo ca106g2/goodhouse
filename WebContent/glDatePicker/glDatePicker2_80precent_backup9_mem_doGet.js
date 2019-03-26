@@ -663,7 +663,7 @@
 								console.log(theDate);
 								cell.html("<div class='parent2'>"
 	                           		 + "<iframe src=\'" +select_page+ "?theDate=" + theDate + "\'" 
-	                           		 + " style='line-height: 0px; background-color: white; border-color: black; border: 1px 1px 1px 1px; font-family: Microsoft JhengHei;'"
+	                           		 + " style='line-height: 0px; background-color: white; border-color: black; border: 0px; font-family: Microsoft JhengHei;'"
 	                           		 + " width=95% height=60% scrolling=no></iframe>"
 	                           		 + "<div class='link2'>"
 	                           		 + "<a href=\'" +select_page2+ "?action=" + action + "&" + "mem_id=" + mem_id + "&" + "lan_id=" + lan_id + "&" + "hou_id=" + hou_id + "&" + "hou_app_time=" + hou_app_time + "&" + "hou_app_date=" + theDate + "&" + "app_status=" + app_status + "&" + "app_remind=" + app_remind +"\'>"

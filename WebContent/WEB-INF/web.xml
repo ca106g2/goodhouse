@@ -371,6 +371,17 @@
 	    <url-pattern>/front/appoint/appoint.do</url-pattern>
   	</servlet-mapping>
   	
+<!--   	排程器 -->
+  	   <servlet>
+		    <servlet-name>ScheduleServletForAppointment</servlet-name>
+		    <servlet-class>com.goodhouse.schedule_servlet_for_appointment.ScheduleServletForAppointment</servlet-class>
+		    <load-on-startup>20</load-on-startup>
+	  </servlet>
+	  <servlet-mapping>
+		    <servlet-name>ScheduleServletForAppointment</servlet-name>
+		    <url-pattern>/ScheduleServletForAppointment</url-pattern>
+	  </servlet-mapping>
+  	
   <!--通知訊息註冊  //git上傳註解用無意義-->
   	<servlet>
 	    <servlet-name>NoticeServlet</servlet-name>

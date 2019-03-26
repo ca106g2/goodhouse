@@ -94,16 +94,18 @@ public class AppointServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-			
 			try {
 				/***************************1.接收請求參數****************************************/
 				String appoint_id = new String(req.getParameter("appoint_id"));
 				/***************************2.開始查詢資料****************************************/
 				AppointService appointSvc = new AppointService();
 				AppointVO appointVO = appointSvc.getOneAppoint(appoint_id);
+				
+				appointSvc.updateAppoint(appointVO.getAppoint_id(), appointVO.getMem_id(), appointVO.getLan_id(), appointVO.getHou_id(), appointVO.getHou_app_time(), appointVO.getHou_app_date(), "A2", appointVO.getApp_remind());
+				System.out.println("getApp_status = " + appointVO.getApp_status());
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("appointVO", appointVO);         // 資料庫取出的AppointVO物件,存入req
-				String url = "/back/appoint/update_appoint_input.jsp";
+				String url = "/front/appoint/listPart_lanAppoint.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_appoint_input.jsp
 				successView.forward(req, res);
 
@@ -112,7 +114,7 @@ public class AppointServlet extends HttpServlet {
 				e.printStackTrace();
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/back/appoint/listAllAppoint.jsp");
+						.getRequestDispatcher("/front/appoint/listPart_lanAppoint.jsp");
 				failureView.forward(req, res);
 			}
 			

@@ -187,11 +187,13 @@ a:hover, a:active {
 </style>
 </head>
 <body>
-	
+	<div role="tabpanel" class="tab-pane fade" id="references" style="height: 1000px;">
 	<input gldp-id="mydate" style="width: 1000px; height: 30px; visibility: visible; color:#88bfe8; font-weight: bold; background-color:#fff7ac; font-size:24px; font-family:Microsoft JhengHei;" type="text" id="mydate"/>
     <div   gldp-el="mydate" style="width: 1000px; height:1000px; position:  absolute;"> </div>
 <!-- div控制顏色外框，白色內框詳glDatePicker2_80precent 664行註解     -->
 	<script type="text/javascript">
+// $(function(){
+			
 	$('#mydate').glDatePicker(
 			{
 				showAlways : true,       // 預設為 false
@@ -293,6 +295,23 @@ a:hover, a:active {
                 }
 
 			});
+// });
+
+// 	$(function(){
+// 		$('#myTest').on('click', function(){
+// 			$('input[gldp-id="mydate"]').trigger('click');
+// 			$('input[gldp-id="mydate"]').css('visibility', 'hidden');
+// 			$('div[gldp-el="mydate"]').css('top', '100px');
+// 			$('div[gldp-el="mydate"]').css('left', '20px');
+// 		});
+		
+// 		$('#profile').addClass('show');
+		
+// 		$('#myClear').on('click', function(){
+// 			$('#myAsk').val('');
+// 		})
+		
+// 	});
 //***js傳參數到servlet方法參考:https://www.itread01.com/p/1076679.html***	   
 // 	function test()
 // 	{
@@ -306,6 +325,9 @@ a:hover, a:active {
 // 	 }
 //*******************************************************************
     </script>
+    </div>
+<%--     <jsp:include page="/FrontHeaderFooter/Header.jsp" /> --%>
+<%--     <jsp:include page="/FrontHeaderFooter/Footer.jsp" /> --%>
     </body>
 </html>
 <% }%>
