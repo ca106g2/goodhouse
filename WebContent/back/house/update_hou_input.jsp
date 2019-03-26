@@ -40,7 +40,7 @@
 
 </head>
 <body bgcolor='white'>
-<jsp:include page="/FrontHeaderFooter/Header.jsp" />
+<jsp:include page="/BackHeaderFooter/Header.jsp" />
 
 
 <%-- 錯誤表列 --%>
