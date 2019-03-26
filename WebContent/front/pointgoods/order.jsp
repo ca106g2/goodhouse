@@ -47,7 +47,7 @@ div .form-control {
 							<label class="col-md-3 col-form-label" for="name">收件人</label>
 							<div class="col-md-9">
 								<input type="text" class="form-control" name="name" placeholder="輸入姓名" 
-			    					value="${param.name}" >
+			    					value="${param.name}" id="rec">
 			    				<font color="red"><b>${errorMsgs.good_ord_nam}</b></font>
 							</div>
 						</div>
@@ -55,7 +55,7 @@ div .form-control {
 							<label class="col-md-3 col-form-label" for="name">電話</label>
 							<div class="col-md-9">
 								<input type="text" class="form-control" name="phone" placeholder="輸入電話"
-			    					value="${param.phone}" >
+			    					value="${param.phone}" id='phone' >
 			    				<font color="red"><b>${errorMsgs.phone}</b></font>
 							</div>
 						</div>	
@@ -63,7 +63,7 @@ div .form-control {
 							<label class="col-md-3 col-form-label" for="name">信箱</label>
 							<div class="col-md-9">
 								<input type="text" class="form-control" name="email" placeholder="輸入信箱"
-			    					value="${param.email}">
+			    					value="${param.email}" id="mail">
 			    				<font color="red"><b>${errorMsgs.email}</b></font>
 							</div>
 						</div>
@@ -93,6 +93,7 @@ div .form-control {
 						</div>
 						<input type="hidden" name="action" value="order">
 						<input type="submit" value="送出 " class="btn btn-primary sub" style="float:right;">
+						<img src="images/magic.gif" class="magic" width="30px" height="30px">
 					</form>	
 				</div>
 			</div>
@@ -112,15 +113,12 @@ $(".sub").click(function(){
             left: ($(window).width() - 400) /2 + 'px',
 		}
 	});
-// 	$.blockUI({ 
-// 		css: { 
-// 			color: '#fff',
-// 	   		background-image:url(images/loading.gif),
-// 	   		background-position:50% 50%,
-// 	   		background-attachment:fixed, 
-// 	   		background-repeat:no-repeat,
-// 		} 
-// 	});
+});
+
+$('.magic').click(function(){
+	$('#rec').val('帥帥');
+	$('#phone').val('0912345678');
+	$('#mail').val('goodhouse3939@gmail.com');	
 });
 
 $(document).ready(function(){

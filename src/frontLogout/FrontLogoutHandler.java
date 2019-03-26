@@ -33,6 +33,7 @@ public class FrontLogoutHandler extends HttpServlet {
 		MemVO memVO = (MemVO) session.getAttribute("memVO");
 		if(memVO != null) {
 			session.removeAttribute("memVO");
+			session.removeAttribute("shoppingcart");
 			try {                                                        
 				res.sendRedirect(req.getContextPath()+"/front/index.jsp");            
 			}catch (Exception ignored) { }
