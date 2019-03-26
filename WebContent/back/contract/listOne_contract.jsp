@@ -37,7 +37,7 @@
 
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered table-hover mb-0 text-nowrap text-center">
+							<table class="table table-bordered table-hover mb-0 text-nowrap text-center h3">
 								<tbody>
 									<tr>
 										<th scope="row">合約分類編號</th>
@@ -79,16 +79,16 @@
 		</div>
 		
 		<div class="row " style="margin-top:15px">
-		<div class="card">
-					<div class="card-header">
-						<div class="text-center" style="">
-							<b style="font-size: 60px; color:#000000">房   屋   租   賃   契   約   書</b>
+		<div class="card" 	>
+					<div class="card-header" >
+						<div class="text-center" style="background-color: #E8F8F5">
+							<b style="font-size: 60px; color:#E74C3C">房   屋   租   賃   契   約   書</b>
 						</div>
 					</div>
 					
 					<div class="card-body">
 						<div style="font-size:20px">
-						
+						<div>
 						立契約書人：出租人  <input class="btn btn-outline-light">（以下簡稱甲方）、
 						承租人     <input class="btn btn-outline-light">（以下簡稱乙方），茲為房屋一部租賃、雙方議定契約條款如下：<br>
 						<br>
@@ -118,13 +118,17 @@
 								<br>
 								上列各項條款均經雙方自願決不反悔，恐口無憑特立本契約二紙各執一份切實履行。<br>
 										本契約正本二份，分由甲、乙雙方各執為憑。<br>
+						</div>
 								<div class="text-center">
-									<p>合約備註</p><br>
-									<textarea rows="5" cols="100" placeholder="輸入其他特別協議" class="btn btn-outline-light"></textarea><br>
+									<p>(合約備註)</p><br>
+									<textarea rows="5" cols="100" placeholder="" class="btn btn-outline-light"></textarea><br>
 								</div>
 								
-								<div style="font-size: 20px;" class="text-center">
-									立契約書人  甲            方：<input class="btn btn-outline-light"><br>
+						<div class="row">
+							<div class="col-4"></div>
+								<div style="font-size: 20px;" class="text-left class="col-4"">
+									立契約書人  <br><br>
+									甲            方：<input class="btn btn-outline-light"><br>
 									身分證字號：<input class="btn btn-outline-light"><br>
 			
 									乙            方： <input class="btn btn-outline-light"><br>
@@ -133,27 +137,12 @@
 									簽約日：<input class="btn btn-outline-light"><br>
 									
 								</div>
+							<div class="col-4"></div>
+						</div>
+						
 						</div>
 					</div>
 					
-					<div class="row" style="margin-bottom:10px">
-						<div class="col-6 text-right">
-							<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
-								<input type="hidden" name="action" value="eleConCheck">
-								<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
-								<input class="btn btn-outline-success" type="submit" value="確認合約" id="eleConCheck" 
-									style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
-							</form>
-						</div>
-						<div class="col-6">
-							<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/apply_conturct.do">
-								<input type="hidden" name="action" value="eleConCancle">
-								<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
-								<input class="btn btn-outline-success" type="submit" value="取消合約" id="eleConCancle" 
-									style='display:${(eleConVO.ele_con_status eq "s1") ? "" : "none"}'>
-							</form>
-						</div>
-					</div>
 					
 				</div>
 			

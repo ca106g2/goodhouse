@@ -22,9 +22,9 @@
 	<div class="container">
 		
 		<div>
-			<form method="post" action="<%=request.getContextPath()%>/front/ele_contract/lan_listAll_ele_contract.jsp">
-				 <input type="submit" value="回電子合約" class="btn btn-outline-success ">
-			</form>
+			<a href="<%=request.getContextPath()%>/front/ele_contract/lan_listAll_ele_contract.jsp">
+				<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+			</a>
 		
 		</div>
 	
@@ -38,7 +38,7 @@
 					<br>
 				</c:forEach>
 			</c:if>
-
+			<img src="<%=request.getContextPath()%>/images/magic.png" width="25" height="25" style="margin-bottom:10px" id="magic">
 			<div class="card">
 				<div class="card-header">
 					<div class="text-center" style="">
@@ -56,7 +56,7 @@
 				<div class="card-body">
 					<p type="text" value="${conVO.con_name}">
 					
-					<form method="post" action="ele_contract.do" name="form1">
+					<form method="post" action="ele_contract.do" name="form1" autocomplete="off">
 
 						<div style="font-size: 20px">
 
@@ -76,7 +76,7 @@
 									title="沒有房屋記得新增房屋喔!!">
 										<c:forEach var="houVO" items="${houSvc.all}">
 											<c:if test="${houVO.lan_id eq lanSvc.getOneLanByMemId(memVO.mem_id).lan_id }">
-												<option id="hou" value="${houVO.hou_id}"
+												<option id="houId" value="${houVO.hou_id}"
 													class=" form-control btn btn-light" />
 													${houVO.hou_address}
 											</c:if>
@@ -88,11 +88,11 @@
 							第二條︰出租部份︰廁所浴室及廚房共用（即租用一樓者共同使用一樓之衛生設備。租用二樓者共同使用二樓之衛生設備）。<br>
 							<br> 
 							
-							第三條︰租賃期間︰共<b><input type="text"
+							第三條︰租賃期間︰共<b><input id="ele_rent_time" type="text"
 								name="ele_rent_time" value="${eleConVO.ele_rent_time}"
 								class="btn btn-light" placeholder="輸入總租期(共幾個月)" /></b>個月 （即<b>
 								<input type="text" name="ele_rent_f_day" id="ele_rent_f_day"
-								value="${eleConVO.ele_rent_f_day}" class="btn btn-light" /></b>起 至<b>
+								value="${eleConVO.ele_rent_f_day}" class="btn btn-light" autocomplete="off"/></b>起 至<b>
 								<input type="text" name="ele_rent_l_day" id="ele_rent_l_day"
 								value="${eleConVO.ele_rent_l_day}" class="btn btn-light" /></b>止）
 								期滿乙方應即無條件遷還房屋不得提出任何要求獲條件。乙方並應依規定申報戶口（包括流動戶口）。<br>
@@ -127,7 +127,7 @@
 								<p>合約備註</p>
 								<textarea name="ele_con_note" rows="5" cols="100"
 									value="${eleConVO.ele_con_note}" class="btn btn-light"
-									placeholder="輸入其他特別協議">${eleConVO.ele_con_note}</textarea>
+									placeholder="輸入其他特別協議" id="ele_con_note">${eleConVO.ele_con_note}</textarea>
 								<br>
 							</div>
 
@@ -137,14 +137,14 @@
 							立契約書人 甲 方：<b>${memVO.mem_name}</b><br> 
 							身分證字號：<b>
 							<input type="text" name="lan_idnumber" value="${eleConVO.lan_idnumber}"
-								class="btn btn-light" placeholder="輸入房東身分證字號" />
+								class="btn btn-light" placeholder="輸入房東身分證字號" id="lan_idnumber"/>
 								</b><br>
 							<!-- 												乙            方：<b id="mem_name2"></b><br> -->
 							<%-- 					乙            方：<b><input type="text" id="mem_name2" name="mem_name" class="btn btn-light" value="${memSvc.getOneMem(eleConVO.mem_id).mem_name}"/></b><br> --%>
 							乙 方：<b><p id="mem_name2"></p></b><br> 
 							身份證字號：<b>
 							<input type="text" name="mem_idnumber" value="${eleConVO.mem_idnumber}"
-								class="btn btn-light" placeholder="輸入房客身份證字號" />
+								class="btn btn-light" id="mem_idnumber" placeholder="輸入房客身份證字號" />
 								</b><br> 
 							簽約日：<b>
 							<input type="text" name="ele_singdate" id="ele_singdate"
@@ -193,13 +193,9 @@
 		
 	  	$('#mem_name2').text( $('#mem_name').val() );
 	  	
-		});
+	});
+
 	
-	//租金連動改變
-// 	$('#exampleFormControlSelect1').selected(function(){
-		
-// 		$('#ele_rent_money').text( ${houVO.hou_rent} );
-// 	});
 
 
 
@@ -257,6 +253,55 @@ $(function(){
 	});
 });
 </script>
+<script > 
+
+
+$('#magic').click(function(){
+	
+	$('#mem_name').val('PeterWu');
+	$('#ele_rent_time').val('6');
+	$('#ele_rent_money').val('');
+	$('#ele_deposit_money').val('');
+	$('#lan_idnumber').val('P122384596');
+	$('#mem_idnumber').val('A135492857	');
+	
+})
+ </script> 
+<script>
+
+$('#exampleFormControlSelect1').change(function(){
+	
+	var houId = $('#exampleFormControlSelect1').val();
+	console.log(houId);
+	
+	$.ajax({
+
+			type: "POST",
+			url: "<%=request.getContextPath()%>/front/ele_contract/ele_contract.do",
+			data: {
+				"hou_id":houId,
+				"action":"lookHou"
+				},
+				
+			dataType: "json",
+			
+			success: function(data){
+				
+					var hou_rent = data.hou_rent;
+					
+					$('#ele_rent_money').val(hou_rent);
+					
+				},
+			error: function(){alert("AJAX發生錯誤")}
+			
+				});
+	
+	
+})
+
+
+
+</script> 
 
 	<!-- 工作區結束 -->
 	<jsp:include page="/FrontHeaderFooter/Footer.jsp" />

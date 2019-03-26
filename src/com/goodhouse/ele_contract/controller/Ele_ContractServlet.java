@@ -1,6 +1,7 @@
 package com.goodhouse.ele_contract.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,11 +23,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.goodhouse.bill.model.BillVO;
 import com.goodhouse.contract.model.ContractService;
 import com.goodhouse.contract.model.ContractVO;
 import com.goodhouse.ele_contract.model.Ele_ContractService;
 import com.goodhouse.ele_contract.model.Ele_ContractVO;
+import com.goodhouse.house.model.HouseService;
+import com.goodhouse.house.model.HouseVO;
 import com.goodhouse.landlord.model.LanService;
 import com.goodhouse.landlord.model.LanVO;
 import com.goodhouse.member.model.MemService;
@@ -424,7 +430,7 @@ public class Ele_ContractServlet extends HttpServlet{
 				
 				/********新增完畢電子合約，寄e-mail通知房客**********************/
 				
-				String to = "rosebaby0426@gmail.com";
+				String to = "housepeople@gmail.com";
 			      
 			    String subject = "電子合約通知";
 			    LanService lanSvc = new LanService();
@@ -813,7 +819,36 @@ public class Ele_ContractServlet extends HttpServlet{
 			successView.forward(req, res);
 			
 		}
+		
+		//TODO 新增墊子合約時，選擇房屋時租金ajax變動
+		if("lookHou".equals(action)) {
+			
+			String hou_id = (String)req.getParameter("hou_id");
+			HouseService houSvc = new HouseService();
+			HouseVO houVO = houSvc.getOneHouse(hou_id);
+			
+			Integer hou_rent = houVO.getHou_rent();
+			JSONObject houVOjson = new JSONObject();
+			try {
+				houVOjson.put("hou_rent", hou_rent);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			/***************************3.新增完成,準備回應***********/
+			res.setCharacterEncoding("UTF-8");
+			PrintWriter out = res.getWriter();
+			out.println(houVOjson.toString());
+			out.close();
+			
+		}
+		
+		
 	}
+	
+	
 	
 	
 	//TODO 寄出e-mail通知

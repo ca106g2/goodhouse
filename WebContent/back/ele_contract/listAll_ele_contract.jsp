@@ -50,17 +50,19 @@
 <!-- 			<div class="col-10"> -->
 			
 				<div class="col-5 text-right" >
+<%-- 				<img src="<%=request.getContextPath()%>/images/magic.png" width="25" height="25" style="margin-bottom:10px" id="magic"> --%>
 					<form method="post" action="ele_contract.do">
 						<b>查詢合約</b>
-						<input type="text" name="ele_con_id" class="btn btn-outline-info" placeholder="輸入電子合約編號">
-						<input type="hidden" name="action" value="getOne_For_Display">
-						<input type="submit" value="送出" class="btn btn-outline-info">
+<!-- 						<input type="text" name="ele_con_id" class="btn btn-outline-info" placeholder="輸入電子合約編號"> -->
+<!-- 						<input type="hidden" name="action" value="getOne_For_Display"> -->
+<!-- 						<input type="submit" value="送出" class="btn btn-outline-info"> -->
 					</form>
 				</div>
 				
 					<div class="col-5">
+					<img src="<%=request.getContextPath()%>/images/magic.png" width="25" height="25" style="margin-bottom:10px" id="magic2"> 
 						<form method="post" action="ele_contract.do">
-							<input type="text" name="mem_name" class="btn btn-outline-info" placeholder="輸入會員姓名">
+							<input type="text" name="mem_name" class="btn btn-outline-info" placeholder="輸入房客姓名" id="">
 							<input type="hidden" name="action" value="getNameForEle_Contract">
 							<input type="submit" value="送出" class="btn btn-outline-info">
 						</form>
@@ -154,5 +156,13 @@
 	<!-- 工作區結束 -->
 	
 	<jsp:include page="/BackHeaderFooter/Footer.jsp" />
+	
+	<script>
+		$('#magic2').click(function(){
+			
+			
+		})
+	
+	</script>
 </body>
 </html>

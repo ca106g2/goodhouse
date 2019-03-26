@@ -22,6 +22,7 @@
 	text-align: center;
 	z-index: 9990;
 	margin-top: -60px;
+	box-shadow: 1rem 0.5rem rgba(0,0,0,.15)!important;
 }
 
 .navbar-fixed-bottom {
@@ -150,8 +151,8 @@
 	</div>
 	
 	<footer class="footer text-center navbar-fixed-bottom"
-		style="margin-bottom: 20px ; margin-top:10px">
-		<nav class="navbar navbar-light bg-light shadow bg-white rounded">
+		style="margin-bottom: 20px ; margin-top:10px" >
+		<nav class="navbar navbar-light bg-light  bg-white rounded">
 		<!-- 		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow p-3 mb-5 bg-white rounded text-center"> -->
 		<div class="container">
 			<p>網站使用規範 | 服務免責聲明條款 | 租屋新聞連結</p>

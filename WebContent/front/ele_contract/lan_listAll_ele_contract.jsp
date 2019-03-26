@@ -192,8 +192,8 @@
 	<c:if test="${openModal!=null}">
 
 		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
-			aria-labelledby="basicModal" aria-hidden="true">
-			<div class="modal-dialog modal-sm">
+			aria-labelledby="basicModal" aria-hidden="true" style="z-index:99999">
+			<div class="modal-dialog modal-dialog-centered modal-sm">
 				<div class="modal-content">
 
 					<div class="modal-header">

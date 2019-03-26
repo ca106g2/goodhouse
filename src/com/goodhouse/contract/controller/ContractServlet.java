@@ -47,11 +47,6 @@ public class ContractServlet extends HttpServlet{
 					return;//程式中斷
 				}
 				
-//				try {
-//					con_id = new String(con_id);
-//				} catch (Exception e) {
-//					errorMsgs.add("員工編號格式不正確");
-//				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -72,7 +67,7 @@ public class ContractServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back/contract/select_page.jsp");
+							.getRequestDispatcher("/back/contract/listAll_contract.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}

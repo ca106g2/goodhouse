@@ -6,7 +6,7 @@
 <%
 	ContractService conSvc = new ContractService();
 	List<ContractVO> list = conSvc.getAll();
-	//     Collections.reverse(list);
+	    Collections.reverse(list);
 	pageContext.setAttribute("list", list);
 %>
 
@@ -17,6 +17,14 @@
 <meta charset="UTF-8">
 <title>合約分類資料 - listAll_contract.jsp</title>
 <style>
+	th{
+	font-size:20px;
+	}
+	
+	td{
+	font-size:18px;
+	}
+
 </style>
 
 </head>
@@ -45,21 +53,18 @@
 
 
 			<div class="col-6 text-right">
+			
 				<form method="post"
 					action="<%=request.getContextPath()%>/back/contract/add_contract.jsp">
-					<input type="submit" value="新增合約分類" class="btn btn-outline-info ">
+					<input type="submit" value="新增合約分類" class="btn btn-outline-info " style="font-weight:bold;margin-top:15px;font-size:20px">
 				</form>
-				<%-- 				<a href='<%=request.getContextPath()%>/back/contract/add_contract.jsp'>Add</a>新增合約分類 --%>
 			</div>
-		</div>
+		</div> 
 
 		<div class="" style="margin-top: 15px">
 
 			<div class="card">
 
-				<div class="card-header">
-					<h3>合約分類</h3>
-				</div>
 
 				<div class="card-body">
 					<div class="table-responsive">
@@ -85,7 +90,7 @@
 										<c:forEach var="con_status" items="${Con_statusList}">
 											<c:if test="${con_status.status_no_name eq conVO.con_status}">
 												<c:choose>
-													<c:when test="${con_status.status_no_name eq 'S1啟用'}">
+													<c:when test="${con_status.status_no_name eq 'S1啟用' }">
 														<td style="color: #3498DB">${con_status.status_name}</td>
 													</c:when>
 													
@@ -100,17 +105,17 @@
 											<form method="post"
 												action="<%=request.getContextPath()%>/back/contract/contract.do"
 												style="margin-bottom: 0px;">
-												<input type="submit" value="修改" class="btn btn-outline-info " style="font-weight:bold"> 
+												<input type="submit" value="修改" class="btn btn-outline-info h3" style="font-weight:bold;margin-top:15px;font-size:20px"> 
 												<input type="hidden" name="con_id" value="${conVO.con_id}">
 												<input type="hidden" name="action" value="getOne_For_Update">
 											</form>
 										</td>
-
+ 
 										<td>
 											<form method="post"
 												action="<%=request.getContextPath()%>/back/contract/contract.do"
 												style="margin-bottom: 0px;">
-												<input type="submit" value="停用" class="btn btn-outline-info " style="font-weight:bold"> 
+												<input type="submit" value="啟用/停用" class="btn btn-outline-info " style="font-weight:bold;margin-top:15px;font-size:20px"> 
 												<input type="hidden" name="con_id" value="${conVO.con_id}">
 												<input type="hidden" name="action" value="getOne_For_Stop">
 											</form>
@@ -119,7 +124,7 @@
 											<form method="post"
 												action="<%=request.getContextPath()%>/back/contract/contract.do"
 												style="margin-bottom: 0px;">
-												<input type="submit" value="查看" class="btn btn-outline-info " style="font-weight:bold"> 
+												<input type="submit" value="查看" class="btn btn-outline-info " style="font-weight:bold;margin-top:15px;font-size:20px"> 
 												<input type="hidden" name="con_id" value="${conVO.con_id}">
 												<input type="hidden" name="action" value="getOne_For_Display">
 											</form>

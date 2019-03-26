@@ -46,7 +46,7 @@
 					
 					<div class="card-body">
 						<div style="font-size:20px">
-						
+						<div>
 						立契約書人：出租人  <b> ${mSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</b>（以下簡稱甲方）、
 						承租人     <b>${mSvc.getOneMem(eleConVO.mem_id).mem_name} </b>（以下簡稱乙方），茲為房屋一部租賃、雙方議定契約條款如下：<br>
 						<br>
@@ -80,13 +80,20 @@
 								<br>
 								上列各項條款均經雙方自願決不反悔，恐口無憑特立本契約二紙各執一份切實履行。<br>
 										本契約正本二份，分由甲、乙雙方各執為憑。<br>
+										
+							<div>
+							
 								<div class="text-center">
-									<p>合約備註</p><br>
+									<p>(合約備註)</p><br>
 									<p> <b>${eleConVO.ele_con_note}</b></p><br>
 								</div>
 								
-								<div style="font-size: 20px;" class="text-center">
-									立契約書人  甲            方：<b>${mSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</b><br>
+								<div class="row">
+								<div class="col-4"></div>
+								
+								<div style="font-size: 20px;" class="text-left col-4">
+									立契約書人 <br><br>
+									 甲            方：<b>${mSvc.getOneMem(lanSvc.getOneLan(eleConVO.lan_id).mem_id).mem_name}</b><br>
 									身分證字號：<b>${eleConVO.lan_idnumber}</b><br>
 			
 									乙            方： <b>${mSvc.getOneMem(eleConVO.mem_id).mem_name}</b><br>
@@ -99,6 +106,8 @@
 												<td>${Ele_con_status.status_name}</td>
 											</c:if>
 										</c:forEach>
+								</div>
+								<div class="col-4"></div>
 								</div>
 						</div>
 					</div>
