@@ -29,7 +29,7 @@
 				<table id="table-1">
 					<p>
 						回首頁<a href="mem_select_page.jsp"><img
-							src="<%=request.getContextPath()%>/share_pic/back1.gif"
+							src="<%=request.getContextPath()%>/images/back.png"
 							width="100" height="30 !important"></a>
 					</p>
 					<tr>

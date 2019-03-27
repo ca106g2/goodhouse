@@ -127,7 +127,7 @@ public class BillSchedule extends HttpServlet{
 			}
 		};
 		Calendar cal = new GregorianCalendar(2019,Calendar.MARCH, 11,0,0,0);
-		timerSch.scheduleAtFixedRate(task, cal.getTime(), 24*60*60*1000);//24(時)*60(分)*60(秒)*1000(毫秒)
+		timerSch.scheduleAtFixedRate(task, cal.getTime(), 25*60*1000);//24(時)*60(分)*60(秒)*1000(毫秒)
 	}
 	
 

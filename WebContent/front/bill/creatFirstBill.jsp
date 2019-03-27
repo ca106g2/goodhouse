@@ -37,6 +37,7 @@
 				class="com.goodhouse.house.model.HouseService"></jsp:useBean>
 		
 			<div class="container">
+			<img src="<%=request.getContextPath()%>/images/magic.png" width="25" height="25" style="margin-bottom:10px" id="magic">
 				<div class="row">
 				
 <!-- 					<div class="card"> -->
@@ -160,6 +161,19 @@
 
 
 </body>
+<script>
+$('#magic').click(function(){
+	
+	$('#cn1').val('2841');
+	$('#cn2').val('5718');
+	$('#cn3').val('9284');
+	$('#cn4').val('2284');
+	$('#vm').val('02');
+	$('#vy').val('25');
+	$('#switch').val('113');
+	
+	})
+</script>
 
 <script>
 

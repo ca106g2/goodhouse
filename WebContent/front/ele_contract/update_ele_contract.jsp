@@ -11,7 +11,17 @@
 <!doctype html>
 <html lang="en">
 <head>
-
+<style>
+	b{
+		color:#3498DB;
+	}
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
@@ -22,12 +32,11 @@
 		<div class="row justfy-content-center">
 
 			<div class="row">
-				<div class="col-2">
-					<h3 style="color: blue">房東修改電子合約</h3>
-					<%-- 錯誤表列 --%>
-					<a href="lan_select_page.jsp"><img
-						src="<%=request.getContextPath()%>/share_pic/back1.gif"
-						width="100" height="32" border="0">回首頁</a><br>
+					<div id="back">
+						<a href="<%=request.getContextPath()%>/front/ele_contract/lan_select_page.jsp">
+							<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+						</a>
+					</div>
 					<c:if test="${not empty errorMsgs}">
 						<font style="color: red">請修正以下錯誤:</font>
 						<ul>
@@ -36,8 +45,8 @@
 							</c:forEach>
 						</ul>
 					</c:if>
-				</div>
-
+			</div>
+			<div class="row">
 				<jsp:useBean id="memSvc" scope="page"
 					class="com.goodhouse.member.model.MemService" />
 				<jsp:useBean id="conSvc" scope="page"
@@ -47,7 +56,7 @@
 				<jsp:useBean id="houSvc" scope="page"
 					class="com.goodhouse.house.model.HouseService" />
 
-				<div class="col-10">
+				<div class="col-12">
 					<div class="card">
 
 						<div class="card-header">
@@ -111,17 +120,19 @@
 											value="${eleConVO.ele_singdate}" class="btn btn-light" /><br>
 									</div>
 								</div>
-								<input type="hidden" name="action" value="update"> <input
-									type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
+								<div class="text-center">
+								<input type="hidden" name="bill_paymenttype"
+									value="${eleConVO.bill_paymenttype}" /> <input type="hidden"
+									name="ele_con_status" value="${eleConVO.ele_con_status}" /> <input
+									type="submit" name="" class="btn btn-outline-success btn-lg"
+									value="送出修改">
+								</div>
+								<input type="hidden" name="action" value="update"> 
+								<input type="hidden" name="ele_con_id" value="${eleConVO.ele_con_id}">
 								<input type="hidden" name="con_id" value="${eleConVO.con_id}" />
 								<input type="hidden" name="mem_id" value="${eleConVO.mem_id}" />
 								<input type="hidden" name="lan_id" value="${eleConVO.lan_id}" />
 								<input type="hidden" name="hou_id" value="${eleConVO.hou_id}" />
-								<input type="hidden" name="bill_paymenttype"
-									value="${eleConVO.bill_paymenttype}" /> <input type="hidden"
-									name="ele_con_status" value="${eleConVO.ele_con_status}" /> <input
-									type="submit" name="" class="btn btn-outline-secondary"
-									value="送出修改">
 							</form>
 						</div>
 					</div>

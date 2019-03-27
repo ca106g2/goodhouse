@@ -145,8 +145,8 @@
 								class="btn btn-light" placeholder="輸入房東身分證字號" id="lan_idnumber"/>
 								</b><br>
 							<!-- 												乙            方：<b id="mem_name2"></b><br> -->
-							<%-- 					乙            方：<b><input type="text" id="mem_name2" name="mem_name" class="btn btn-light" value="${memSvc.getOneMem(eleConVO.mem_id).mem_name}"/></b><br> --%>
-							乙 方：<b><p id="mem_name2"></p></b><br> 
+							乙            方：<b><input type="text" id="mem_name2" name="mem_name" class="btn btn-light" value="${memSvc.getOneMem(eleConVO.mem_id).mem_name}"/></b><br>
+<!-- 							乙 方：<b><p id="mem_name2"></p></b><br>  -->
 							身份證字號：<b>
 							<input type="text" name="mem_idnumber" value="${eleConVO.mem_idnumber}"
 								class="btn btn-light" id="mem_idnumber" placeholder="輸入房客身份證字號" />
@@ -194,15 +194,15 @@
 
 	<script>
 	//乙方名字連動改變
-	$('#mem_name').change(function(){
+// 	$('#mem_name').change(function(){
 		
-	  	$('#mem_name2').text( $('#mem_name').val() );
+// 	  	$('#mem_name2').text( $('#mem_name').val() );
 	  	
-	});
+// 	});
 
 	
-
-
+	</script>
+<script>
 
 $.datetimepicker.setLocale('zh');
 
@@ -263,12 +263,13 @@ $(function(){
 
 $('#magic').click(function(){
 	
-	$('#mem_name').val('PeterWu');
+	$('#mem_name').val('蕭峰');
+	$('#mem_name2').val('蕭峰');
 	$('#ele_rent_time').val('6');
-	$('#ele_rent_money').val('');
-	$('#ele_deposit_money').val('');
-	$('#lan_idnumber').val('P122384596');
-	$('#mem_idnumber').val('A135492857	');
+// 	$('#ele_rent_money').val('');
+// 	$('#ele_deposit_money').val('');
+	$('#lan_idnumber').val('P125478456');
+	$('#mem_idnumber').val('A125487953');
 	
 })
  </script> 
