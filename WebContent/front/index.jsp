@@ -11,7 +11,7 @@
 	class="com.goodhouse.ad_sort.model.Ad_sortService" />
 <jsp:useBean id="houSvc2" scope="page"
 	class="com.goodhouse.house.model.HouseService" />
-
+<jsp:useBean id="houTraSvc1" scope="page" class="com.goodhouse.house_track.model.House_TrackService" />
 <%
 	HouseService houSvc = new HouseService();
 	List<HouseVO> list = houSvc.getAll();
@@ -271,9 +271,9 @@
 										src="<%=request.getContextPath() %>/HouseServlet?hou_id=${houVO.hou_id}&photo=1"
 										class="card-img-top">
 									<div class="card-body" style="height: 175px;">
-										<h8 class="card-title">${houVO.hou_id}</h5>
+<%-- 										<h8 class="card-title">${houVO.hou_id}</h5> --%>
 										<h5 class="card-title" id="howming" style="font-family:Microsoft JhengHei">${houVO.hou_name}</h5>
-<!--========================================= 以下是慈慈的加入追蹤功能 ====================================================================--->
+<!--========================================= 以下是慈慈的加入追蹤功能 ====================================================================- -->
 											<div class="text-right">
 											<c:if test="${memVO != null}">
 												<img src="<%=request.getContextPath()%>/front/lin/${houTraSvc1.findByHouIdAndMem_id(houVO.hou_id, memVO.mem_id) == null ? 'heart_white.png' : 'heart_red.png'}" 
@@ -285,7 +285,7 @@
 												<input type="hidden" name="mem_id" value="${memVO.mem_id}">
 											</c:if>
 											</div>
-<!--==========================================以上是慈慈的加入追蹤功能 ====================================================================---->
+<!--==========================================以上是慈慈的加入追蹤功能 ====================================================================-- -->
 										<div class="card-text" style="color:#ffc107; font-family:Microsoft JhengHei">$ ${houVO.hou_rent}
 										</div>
 										<Form METHOD="post" ACTION="<%=request.getContextPath()%>/front/house/hou.do">

@@ -78,9 +78,9 @@
 
 									</tr>
 								</c:forEach>
-								<%@ include file="page2.file"%>
 							</tbody>
 						</table>
+								<%@ include file="page2.file"%>
 					</div>
 				</div>
 			</div>
