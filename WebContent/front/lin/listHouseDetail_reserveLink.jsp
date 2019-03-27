@@ -80,6 +80,12 @@
 <title>List HouseDetail</title>
 <style type="text/css">
 
+	#back{
+		position:fixed;
+		top: 20%;
+		z-index: 994;
+		left: 4%;
+	}
 
 
 	.wrapper{
@@ -207,6 +213,17 @@ input[type="checkbox"].switch_1{
 <body>
 	<jsp:include page="/FrontHeaderFooter/Header.jsp" />
 	<div class="container">
+	
+		<div class="row">
+			<div id="back">
+					
+				<a href="<%=request.getContextPath()%>/front/index.jsp">
+					<img src="<%=request.getContextPath()%>/images/back.png" width="100" height="100" border="0">
+				</a>
+			</div>
+		
+		</div>
+		
 		<div class="row">
 			<div class="col-12">
 				<div class="row">
@@ -461,7 +478,11 @@ input[type="checkbox"].switch_1{
 											
 											<dt class="col-sm-3">請寫下評論</dt>
 											<dd class="col-sm-9">
-												<textarea name="hou_eva_content" rows="3" cols=50 class="houEevaContent"></textarea>
+												<div class="form-group">
+<!-- 												    <label for="exampleFormControlTextarea1">Example textarea</label> -->
+													<textarea id="exampleFormControlTextarea1" name="hou_eva_content" rows="3" cols=50 class="form-control houEevaContent"></textarea>
+<!-- 												    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+												</div>
 											</dd>
 										</dl>
 										<input type="hidden" name="action" value="insert2">
@@ -638,7 +659,7 @@ input[type="checkbox"].switch_1{
 // 								$('tbody').append( '<tr> <td> <img src="/front/lin/heart_red.png"></td> <td>' + data.hou_eva_content + '</td> </tr>');
 // 							}
 							
-							$('tbody').append( '<tr> <td>'+ gradeNo +'</td> <td>' + data.hou_eva_content + '</td> </tr>');
+							$('tbody').append( '<tr> <td>'+ evaGrade +'</td> <td>' + data.hou_eva_content + '</td> </tr>');
 							
 							$("input:radio[name='hou_eva_grade']").prop("checked",false) ;
 							$(".houEevaContent").val("") ;
