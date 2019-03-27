@@ -62,13 +62,16 @@
 	            </div> 
 		      <div class="card-body">
 		        <h1 class="card-title">廣告管理</h1>
-		        <a href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp" class="btn btn-outline-success btn-lg" style="font-weight:bold">廣告列表</a>
+		        <a href="<%=request.getContextPath()%>/back/ad_sort/listAllAd_sort.jsp" class="btn btn-outline-success btn-lg" style="font-weight:bold">廣告類型列表</a>
+		        <a href="<%=request.getContextPath()%>/back/ad_sort/addAd_sort.jsp" class="btn btn-outline-success btn-lg" style="margin-top:5px;font-weight:bold">廣告類型新增</a><br>
+		        <a href="<%=request.getContextPath()%>/back/ad/listAllAd.jsp" class="btn btn-outline-success btn-lg" style="margin-top:5px;font-weight:bold">廣告列表</a><br>
+		        <a href="<%=request.getContextPath()%>/back/ad_report/listAllAd_report.jsp" class="btn btn-outline-success btn-lg" style="margin-top:5px;font-weight:bold">廣告檢舉</a>
 		      </div>
 		    </div>
 		  </div>
 		  
 			  <div class="col-sm-4">
-			    <div class="card text-center border-light mb-3">
+			    <div class="card text-center border-light mb-3"> 
 			    
 			    	<div class="col-auto">
 			    		<img class="card-img-left" src="<%=request.getContextPath()%>/images/eleContract.png" alt="Card image cap" style="width:50%">
