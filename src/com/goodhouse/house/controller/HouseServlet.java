@@ -643,11 +643,11 @@ public class HouseServlet extends HttpServlet {
 						com.goodhouse.member.model.MemService memSvc = new com.goodhouse.member.model.MemService();
 						com.goodhouse.member.model.MemVO memVO = memSvc.getOneMem(mem_id);
 						Integer good_total = memVO.getGood_total();
-						good_total = good_total + 10000;
+						good_total = good_total + 100000;
 						memSvc.updatePointTot(mem_id, good_total);
 						
 						com.goodhouse.good_record.model.Good_recordService gdSvc = new com.goodhouse.good_record.model.Good_recordService();
-						gdSvc.addGood_record(mem_id, "房屋新增", 100000, new Timestamp(System.currentTimeMillis()));						
+						gdSvc.addGood_record(mem_id, "房屋新增", 1000000, new Timestamp(System.currentTimeMillis()));						
 						memVO = memSvc.getOneMem(mem_id);
 
 						/********新增完畢電子合約，寄e-mail通知房客**********************/
@@ -676,7 +676,7 @@ public class HouseServlet extends HttpServlet {
 					
 						try {
 							housesock.put("houMsgs","恭喜"+memVO.getMem_name()+
-									"新屋上架喔，還在找房的人快來看看是不是您的需求，GOODHOUSE祝福您順心!"+"恭喜獲得"+100000+"積分");
+									"新屋上架喔，還在找房的人快來看看是不是您的需求，GOODHOUSE祝福您順心!"+"恭喜獲得"+1000000+"積分");
 						} catch (JSONException e) {
 						e.printStackTrace();
 						}
