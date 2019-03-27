@@ -23,13 +23,6 @@
 div .form-control {
 	display: initial;
 }
-.load{
-	z-index: 100012;
-   	background-image:url(images/loading.gif); 
-   	background-position:50% 50%; 
-   	background-attachment:fixed; 
-   	background-repeat:no-repeat;
-}
 </style>
 </head>
 <body>
@@ -100,7 +93,7 @@ div .form-control {
 		</div>
 	</div>
 </div>
-<img src="images/default.gif" width="400px" height="400px" style="cursor: default; display: none;" id="displayBox">
+<img src="images/loading.gif" width="200px" height="200px" style="cursor: default; display: none;" id="displayBox">
 <jsp:include page="/FrontHeaderFooter/Footer.jsp" />
 <script src="select2/jquery.blockUI.js"></script>
 <script> 
@@ -113,12 +106,18 @@ $(".sub").click(function(){
             left: ($(window).width() - 400) /2 + 'px',
 		}
 	});
+// 	 $.blockUI({
+//          message: "<i class='fa fa-spinner fa-pulse orange' style='font-size:600%'></i>", 
+//          //borderWidth:'0px' 和透明背景
+//          css: { borderWidth: '0px', backgroundColor: 'transparent' },
+//      });
 });
 
 $('.magic').click(function(){
 	$('#rec').val('帥帥');
 	$('#phone').val('0912345678');
-	$('#mail').val('goodhouse3939@gmail.com');	
+	$('#mail').val('goodhouse3939@gmail.com');
+	$('#num').val('25號6樓');
 });
 
 $(document).ready(function(){

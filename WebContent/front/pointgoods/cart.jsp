@@ -14,15 +14,6 @@
 <body>
 <div class="container">
 	<div class="row">
-<!-- 		<div class="col-4"> -->
-<%-- 			<%if(buylist != null && (buylist.size() > 0)) {%> --%>
-<!-- 				<form action="pgc.do" method="post" style="margin-left: 120px;margin-top: 30px;"> -->
-<!-- 					<input type="hidden" name="action" value="checkout"> -->
-<!-- 					<input type="submit" value="付款結帳" class="btn btn-success" > -->
-<!-- 				</form> -->
-<%-- 			<%} %> --%>
-<!-- 			<a href="listAllPointgoods.jsp" class="btn btn-success" style="margin-left: 120px;margin-top: 30px;">繼續購物</a> -->
-<!-- 		</div> -->
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-header">
