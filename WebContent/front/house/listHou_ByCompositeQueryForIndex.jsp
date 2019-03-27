@@ -33,6 +33,10 @@
     padding: 5px;
     text-align: center;
   }
+  	
+	#container {
+   		 max-width: 1500px;
+	}
 </style>
 </head>
 <body bdcolor="white">
@@ -40,7 +44,7 @@
 <jsp:include page="/FrontHeaderFooter/Header.jsp" />
 
 
-<div class="container">
+<div class="container" id="container">
 
 		<div class="row">
 			<div class="col-2">
@@ -101,7 +105,7 @@
 		 		<td>${houVO.hou_address}</td>
 				<td>
 				<form method="post" action="<%=request.getContextPath()%>/front/house/hou.do" style="margin-bottom: 0px;">
-				<input type="submit" value="查看詳情">
+				<input type="submit" value="查看詳情" class="btn btn-warning">
 				<input type="hidden" name="hou_id" value="${houVO.hou_id}">
 				<input type="hidden" name="requestURL" value="<%=request.getServletPath()%>">
 				<input type="hidden" name="whichPage" value="<%=whichPage%>">

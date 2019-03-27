@@ -152,6 +152,7 @@
 				<c:if test="${appointVO.app_status.equals('A0')}">
 				  	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
 				     <input type="submit" value="取消預約" class="btn btn-danger">
+				     <input type="hidden" name="whichPage"	value="<%=whichPage%>">
 				     <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}">
 				     <input type="hidden" name="action"	value="deleteLan"></FORM>
 			    </c:if>
@@ -163,6 +164,7 @@
 				<c:if test="${appointVO.app_status.equals('A0')}">
 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/appoint/appoint.do" style="margin-bottom: 0px;">
 				    <input type="submit" value="完成預約"  class="btn btn-success">
+				    <input type="hidden" name="whichPage"	value="<%=whichPage%>">
 				    <input type="hidden" name="appoint_id"  value="${appointVO.appoint_id}">
 				    <input type="hidden" name="action"	value="getOne_For_Update_Lan" ></FORM>
 				</c:if>
