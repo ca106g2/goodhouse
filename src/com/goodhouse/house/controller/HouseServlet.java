@@ -24,7 +24,7 @@ import com.goodhouse.member.model.MemVO;
 public class HouseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public HouseServlet() {
+	public HouseServlet() { 
 		super();
 	}
 
