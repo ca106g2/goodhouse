@@ -19,7 +19,78 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
-	
+	<!-- =================================================== -->
+<!-- ==================Lily============================== -->	
+<!-- =================================================== -->	
+  <servlet>
+    <servlet-name>AndroidHouseServlet</servlet-name>
+    <servlet-class>android.com.goodhouse.house.controller.AndroidHouseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AndroidHouseServlet</servlet-name>
+    <url-pattern>/AndroidHouseServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AndroidMemberServlet</servlet-name>
+    <servlet-class>android.com.goodhouse.member.controller.AndroidMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AndroidMemberServlet</servlet-name>
+    <url-pattern>/AndroidMemberServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <servlet-name>AndroidHouse_trackServlet</servlet-name>
+    <servlet-class>android.com.goodhouse.house_track.controller.AndroidHouse_trackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AndroidHouse_trackServlet</servlet-name>
+    <url-pattern>/AndroidHouse_trackServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AndroidLanServlet</servlet-name>
+    <servlet-class>android.com.goodhouse.landlord.controller.AndroidLanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AndroidLanServlet</servlet-name>
+    <url-pattern>/AndroidLanServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AndroidADServlet</servlet-name>
+    <servlet-class>android.com.goodhouse.ad.controller.AndroidADServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AndroidADServlet</servlet-name>
+    <url-pattern>/AndroidADServlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>AndroidAppointmentServlet</servlet-name>
+    <servlet-class>android.com.goodhouse.appointment.controller.AndroidAppointmentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AndroidAppointmentServlet</servlet-name>
+    <url-pattern>/AndroidAppointmentServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AndroidHouNoAppServlet</servlet-name>
+    <servlet-class>android.com.goodhouse.house_noappointment.controller.AndroidHouNoAppServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AndroidHouNoAppServlet</servlet-name>
+    <url-pattern>/AndroidHouNoAppServlet</url-pattern>
+  </servlet-mapping>
+  
+
+
+
+
+
 <!-- =================================================== -->
 <!-- ==================承偉============================== -->	
 <!-- =================================================== -->	
