@@ -12,6 +12,8 @@ import com.goodhouse.ad_report.model.Ad_reportService;
 import com.goodhouse.ad_report.model.Ad_reportVO;
 import com.goodhouse.employee.model.EmpService;
 import com.goodhouse.employee.model.EmpVO;
+import com.goodhouse.house.model.HouseService;
+import com.goodhouse.house.model.HouseVO;
 import com.goodhouse.member.model.MemService;
 import com.goodhouse.member.model.MemVO;
 
@@ -203,15 +205,16 @@ public class Ad_reportServlet extends HttpServlet {
 				System.out.println("檢查3");
 					AdService adSvc = new AdService();
 					AdVO adVO = adSvc.getOneAD(ad_id);
-
+					
 				System.out.println("檢查4");	
 					List<Ad_Status> list = new ArrayList<Ad_Status>();
 					
 				if ("3檢舉成功".equals(ad_rep_status)) {
+					String hou_id = null;
 //				if (list.get(2).getRep_status_all().equals(ad_rep_status)) {
 					adVO.setAd_id(adVO.getAd_id());
 					adVO.setLan_id(adVO.getLan_id());
-					adVO.setHou_id(adVO.getHou_id());
+					adVO.setHou_id(adVO.getHou_id());				
 					adVO.setAd_date(adVO.getAd_date());
 					adVO.setAd_sort_id(adVO.getAd_sort_id());
 					adVO.setAd_status("下架");
@@ -219,7 +222,26 @@ public class Ad_reportServlet extends HttpServlet {
 					adVO.setAd_statue(adVO.getAd_statue());
 					adVO.setAd_paymethod(adVO.getAd_paymethod());
 					adSvc.updateAd(adVO);
-					
+//------------------------房屋狀態改變start
+					hou_id=adVO.getHou_id();
+					HouseService houSvc = new HouseService();
+					HouseVO houVO = houSvc.getOneHouse(hou_id);
+					houVO.setHou_id(hou_id);
+					houVO.setHou_name(houVO.getHou_name());
+					houVO.setHou_type(houVO.getHou_type());
+					houVO.setHou_size(houVO.getHou_size());
+					houVO.setHou_property(houVO.getHou_property());
+					houVO.setHou_parkspace("審核中");
+					houVO.setHou_cook(houVO.getHou_cook());
+					houVO.setHou_managefee(houVO.getHou_managefee());
+					houVO.setHou_address(houVO.getHou_address());
+					houVO.setHou_rent(houVO.getHou_rent());
+					houVO.setHou_note(houVO.getHou_note());
+					houVO.setHou_f_picture(houVO.getHou_f_picture());
+					houVO.setHou_s_picture(houVO.getHou_s_picture());
+					houVO.setHou_t_picture(houVO.getHou_t_picture());
+					houSvc.update(houVO);
+//------------------------房屋狀態改變end
 					Ad_reportService ad_repSvc = new Ad_reportService();
 					ad_repVO = ad_repSvc.updateAd_report(ad_rep_id, ad_id, mem_id, ad_rep_status, ad_rep_reason,
 							ad_rep_date);
