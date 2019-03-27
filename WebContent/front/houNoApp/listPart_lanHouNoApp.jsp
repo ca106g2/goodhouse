@@ -130,6 +130,7 @@
 				<td>
 				  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front/houNoApp/houNoApp.do" style="margin-bottom: 0px;">
 				     <input type="submit" value="取消不可預約" class="btn btn-danger">
+				     <input type="hidden" name="whichPage"	value="<%=whichPage%>">
 				     <input type="hidden" name="hou_noapp_id"  value="${houNoAppVO.hou_noapp_id}"><!-- hidden表示看不到 但因為submit的關係，所以按下按鈕後整個Form表單會一起被送出。 -->
 				     <input type="hidden" name="action" value="delete"></FORM>
 				</td>
