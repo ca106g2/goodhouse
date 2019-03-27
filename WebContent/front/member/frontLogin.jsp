@@ -156,13 +156,13 @@
 <script>
 
 $("#magic").click(function(){
-  $("#mem_name").val("曾冠娼");
-  $("#mem_password").val("123456");
-  $("#mem_address").val("新北市蘆洲區三民路1號");
-  $("#mem_zipcode").val("24751");
-  $("#mem_telephone").val("0229786230");
-  $("#mem_phone").val("0933022999");
-  $("#mem_email").val("cow18181818@gmail.com");
+	  $("#mem_name").val("DavidWu");
+	  $("#mem_password").val("123456");
+	  $("#mem_address").val("新北市蘆洲區三民路1號");
+	  $("#mem_zipcode").val("24751");
+	  $("#mem_telephone").val("0229786230");
+	  $("#mem_phone").val("0933022999");
+	  $("#mem_email").val("housepeople@gmail.com");
 });
 
 </script>

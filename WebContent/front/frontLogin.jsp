@@ -158,7 +158,7 @@
 </body>
 <script>
 $("#magic").click(function(){
-  $("#mem_name1").val("PeterWu");
+  $("#mem_name1").val("DavidWu");
   $("#mem_password1").val("123456");
   $("#mem_address1").val("新北市蘆洲區三民路1號");
   $("#mem_zipcode1").val("24751");

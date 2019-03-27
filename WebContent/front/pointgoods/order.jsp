@@ -85,7 +85,7 @@ div .form-control {
 							<font color="red"><b>${errorMsgs.num}</b></font>
 						</div>
 						<input type="hidden" name="action" value="order">
-						<input type="submit" value="送出 " class="btn btn-primary sub" style="float:right;">
+						<input type="submit" value="送出 " class="btn btn-outline-success sub" style="float:right;">
 						<img src="images/magic.gif" class="magic" width="30px" height="30px">
 					</form>	
 				</div>

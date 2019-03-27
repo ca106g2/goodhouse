@@ -52,7 +52,7 @@
 								<td><img src="<%=request.getContextPath() %>/PointgoodsServlet?good_id=${pointgoodsVO.good_id}" width="100" height="100"></td>
 								<td>
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/pointgoods/pg.do" style="margin-bottom: 0px;">
-								    	<input type="submit" value="修改">
+								    	<input type="submit" value="修改" class="btn btn-outline-success">
 								    	<input type="hidden" name="good_id"  value="${pointgoodsVO.good_id}">
 								    	<input type="hidden" name="requestURL" value="<%=request.getServletPath() %>">
 								    	<input type="hidden" name="whichPage" value="<%=whichPage %>">
@@ -61,7 +61,7 @@
 								</td>
 								<td>
 									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back/pointgoods/pg.do" style="margin-bottom: 0px;">
-										<input type="submit" value="刪除">
+										<input type="submit" value="刪除" class="btn btn-outline-success">
 										<input type="hidden" name="good_id"  value="${pointgoodsVO.good_id}">
 										<input type="hidden" name="requestURL" value="<%=request.getServletPath() %>">
 								    	<input type="hidden" name="whichPage" value="<%=whichPage %>">

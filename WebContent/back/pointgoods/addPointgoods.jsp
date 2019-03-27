@@ -67,9 +67,11 @@
         </div>
         <br>
         <div class="form-group row">
+          <div class="col-sm-3">
+          </div>
           <div class="col-sm-9">
             <input type="hidden" name="action" value="insert">
-              <button type="submit" class="btn btn-primary">送出新增</button>
+              <button type="submit" class="btn btn-outline-success" style="float: right;">送出新增</button>
           </div>
         </div>
       </form>

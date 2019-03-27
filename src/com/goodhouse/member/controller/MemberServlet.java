@@ -459,8 +459,8 @@ public class MemberServlet extends HttpServlet {
 				memVO = memSvc.updateMem(mem_name, mem_birthday,mem_password,mem_address,mem_zipcode,mem_telephone,mem_phone,mem_email,mem_status,mem_picture,good_total,mem_sex,mem_id);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				HttpSession session = req.getSession();
-				session.removeAttribute("memVO");
-				session.setAttribute("memVO", memVO);
+				//session.removeAttribute("memVO");
+				//session.setAttribute("memVO2", memVO);
 				req.setAttribute("memVO", memVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/back/employee/listOneMem_emp.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp

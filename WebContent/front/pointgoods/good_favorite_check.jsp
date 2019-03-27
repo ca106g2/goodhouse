@@ -46,7 +46,7 @@
 											<td>${pointgoodsSvc.getOnePointgoods(favorite_goodVO.good_id).good_amo}</td>
 											<td>${pointgoodsSvc.getOnePointgoods(favorite_goodVO.good_id).good_pri}</td>
 											<td>
-												<input type="button" value="移除" class="btn btn-primary heart" id="${favorite_goodVO.good_id}">
+												<input type="button" value="移除" class="btn btn-outline-success heart" id="${favorite_goodVO.good_id}">
 												<input type="hidden" name="good_id" value="${favorite_goodVO.good_id}">
 												<input type="hidden" name="mem_id" value="${favorite_goodVO.mem_id}">
 											</td>

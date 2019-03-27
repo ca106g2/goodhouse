@@ -15,10 +15,7 @@
 <jsp:include page="/BackHeaderFooter/Header.jsp" />
 <div class="container">
 	<div class="row">
-		<div class="col-4">
-			<jsp:include page="/BackHeaderFooter/LeftList.jsp" />
-		</div>
-		<div class="col-8">
+		<div class="col-12">
 			<form method="post" action="pg.do" name="form1" enctype="multipart/form-data">
 				<div class="form-group row">
 		          <label for="good_nam" class="col-sm-3 col-form-label">積分商品編號:<font color=red><b>*</b></font></label>
@@ -65,7 +62,7 @@
 		        </div>
 				<div class="form-group row">
 		          <label for="img" class="col-sm-3 col-form-label">積分商品圖片:</label>
-		            <div class="col-sm-9">
+		            <div class="col-sm-9" style="display: flex;">
 		              <input type="file" class="form-control-file" name="good_pic" id="img" />
 		              <div class="col-sm-2">
 		              	修改前:
@@ -88,9 +85,11 @@
 				<input type="hidden" name="whichPage" value="<%=request.getParameter("whichPage") %>">
 				<input type="hidden" name="good_id" value="<%=pointgoodsVO.getGood_id()%>">
 				<div class="form-group row">
+				  <div class="col-sm-3">
+				  </div>
 		          <div class="col-sm-9">
 		            <input type="hidden" name="action" value="insert">
-		              <button type="submit" class="btn btn-primary">送出修改</button>
+		              <button type="submit" class="btn btn-outline-success" style="float: right;">送出修改</button>
 		          </div>
 		        </div>
 				</form>

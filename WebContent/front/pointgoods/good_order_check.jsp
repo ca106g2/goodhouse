@@ -58,7 +58,7 @@
 												<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${good_ordVO.good_ord_dat}"/>
 											</td>
 											<td>
-												<input type="button" value="查看詳情" class="btn btn-success heart" id="${good_ordVO.good_ord_id}">
+												<input type="button" value="查看詳情" class="btn btn-outline-success heart" id="${good_ordVO.good_ord_id}">
 											</td>
 										</tr>
 									</c:forEach>
