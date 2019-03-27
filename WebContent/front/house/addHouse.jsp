@@ -263,7 +263,7 @@ display: initial;
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 											
 <input id="d1"  value="" type="file" name="hou_f_picture" value="${param.hou_f_picture}"/>
-<img src="" id="picture1" >
+<img style="height: 700;width: 800px; display:none;" src="" id="picture1" >
 										</div>
 									</div>
 								</div>	
@@ -278,7 +278,7 @@ display: initial;
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 											
 <input id="d2" value="" type="file" name="hou_s_picture" value="${param.hou_s_picture}"/>
-<img src="" id="picture2" >
+<img style="height: 700;width: 800px; display:none;" src="" id="picture2" >
 										</div>
 									</div>
 								</div>	
@@ -292,7 +292,7 @@ display: initial;
 											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
 											
 <input id="d3"  value="" type="file" name="hou_t_picture" value="${param.hou_t_picture}"/>
-<img src="" id="picture3">
+<img style="height: 700;width: 800px; display:none;" src="" id="picture3">
 										</div>
 									</div>
 								</div>						
