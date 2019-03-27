@@ -273,9 +273,22 @@
 									<div class="card-body" style="height: 175px;">
 										<h8 class="card-title">${houVO.hou_id}</h5>
 										<h5 class="card-title" id="howming" style="font-family:Microsoft JhengHei">${houVO.hou_name}</h5>
-										<div class="card-text" style="color:#ffc107; font-family:Microsoft JhengHei">$ ${houVO.hou_rent}</div>
-										<Form METHOD="post"
-											ACTION="<%=request.getContextPath()%>/front/house/hou.do">
+<!--========================================= 以下是慈慈的加入追蹤功能 ====================================================================--->
+											<div class="text-right">
+											<c:if test="${memVO != null}">
+												<img src="<%=request.getContextPath()%>/front/lin/${houTraSvc1.findByHouIdAndMem_id(houVO.hou_id, memVO.mem_id) == null ? 'heart_white.png' : 'heart_red.png'}" 
+													class="heart"  title="${houTraSvc1.findByHouIdAndMem_id(houVO.hou_id, memVO.mem_id) != null ? '取消收藏' : '加入收藏' }"
+													alt="${houTraSvc1.findByHouIdAndMem_id(houVO.hou_id, memVO.mem_id) != null ? 'favorite' : 'unfavorite' }"
+													style="width:25px;heidth:25px" id="${houVO.hou_id}" >
+											
+												<input type="hidden" name="hou_id" value="${houVO.hou_id}">
+												<input type="hidden" name="mem_id" value="${memVO.mem_id}">
+											</c:if>
+											</div>
+<!--==========================================以上是慈慈的加入追蹤功能 ====================================================================---->
+										<div class="card-text" style="color:#ffc107; font-family:Microsoft JhengHei">$ ${houVO.hou_rent}
+										</div>
+										<Form METHOD="post" ACTION="<%=request.getContextPath()%>/front/house/hou.do">
 											<input type="hidden" name="hou_id" value="${houVO.hou_id}">
 											<input type="hidden" name="action" value="front_getOne_For_Display">
 											<input class="btn btn-warning" type="submit" value="查看詳情">
@@ -307,6 +320,61 @@ var swiper = new Swiper('.swiper-container', {
         loop :true
     });
 	</script>
+			<script type="text/javascript">
+/****************************以下慈慈的加入最愛追蹤功能************************************/
+		
+		$(".heart").click(function(){
+			var element = $(this);
+				if($(this).attr('alt') == "unfavorite") {
+					$.ajax({
+						type: "POST",
+						url: "<%=request.getContextPath()%>/front/lin/house_track.do",
+						data: {
+							"hou_id":$(this).next().attr('value'),
+							"action":"insert",
+							"mem_id":$(this).next().next().attr("value")
+							},
+						dataType: "json",
+						
+						success: function(){
+							hou_id = element.attr('id');
+							$('img[id=' + hou_id + ']').attr({
+								"src":"<%=request.getContextPath()%>/front/lin/heart_red.png",
+								"title": "取消追蹤",
+								"alt": "favorite"
+							});
+							swal("完成","成功加入追蹤","success");
+						},
+						error: function(){alert("AJAX發生錯誤")}
+					});
+				} else if ($(this).attr("alt") == "favorite") {
+					
+					$.ajax({
+						type: "POST",
+						url: "<%=request.getContextPath()%>/front/lin/house_track.do",
+						data: {
+							"hou_id":$(this).next().attr('value'),
+							"action":"delete",
+							"mem_id":$(this).next().next().attr("value")
+							},
+						dataType: "json",
+						success: function(){
+							hou_id = element.attr('id');
+							$('img[id=' + hou_id + ']').attr({
+								"src": "<%=request.getContextPath()%>/front/lin/heart_white.png",
+								"title": "加入追蹤",
+								"alt": "unfavorite"						
+							});
+							swal("完成","成功取消追蹤","error");
+						},
+						error: function(){alert("AJAX發生錯誤")}
+					});
+				};
+			});
+	
+	
+/****************************以上慈慈的加入最愛追蹤功能************************************/
+ </script>
 
 </body>
 </html>
