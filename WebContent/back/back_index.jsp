@@ -71,7 +71,7 @@
 		  </div>
 		  
 			  <div class="col-sm-4">
-			    <div class="card text-center border-light mb-3"> 
+			    <div class="card text-center border-light mb-3"> 	
 			    
 			    	<div class="col-auto">
 			    		<img class="card-img-left" src="<%=request.getContextPath()%>/images/eleContract.png" alt="Card image cap" style="width:50%">
