@@ -643,7 +643,7 @@ public class HouseServlet extends HttpServlet {
 						com.goodhouse.member.model.MemService memSvc = new com.goodhouse.member.model.MemService();
 						com.goodhouse.member.model.MemVO memVO = memSvc.getOneMem(mem_id);
 						Integer good_total = memVO.getGood_total();
-						good_total = good_total + 100000;
+						good_total = good_total + 1000000;
 						memSvc.updatePointTot(mem_id, good_total);
 						
 						com.goodhouse.good_record.model.Good_recordService gdSvc = new com.goodhouse.good_record.model.Good_recordService();
