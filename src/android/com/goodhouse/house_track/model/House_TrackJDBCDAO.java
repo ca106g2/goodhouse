@@ -22,17 +22,17 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 	String passwd = "123456";
 	
 	private static final String INSERT_STMT=
-			"INSERT INTO HOUSE_TRACK (HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS) VALUES ('HT'||LPAD(HOU_TRA_SEQ.NEXTVAL,8,0),?,?,?)";
+			"INSERT INTO HOUSE_TRACK (HOU_TRA_ID,MEM_ID,HOU_ID) VALUES ('HT'||LPAD(HOU_TRA_SEQ.NEXTVAL,8,0),?,?)";
 	private static final String UPDATE = 
-			"UPDATE HOUSE_TRACK SET MEM_ID=?, HOU_ID=?, HOU_TRA_STATUS=? WHERE HOU_TRA_ID=?";
+			"UPDATE HOUSE_TRACK SET MEM_ID=?, HOU_ID=? WHERE HOU_TRA_ID=?";
 	private static final String DELETE =
 			"DELETE FROM HOUSE_TRACK WHERE HOU_TRA_ID=?";
 	private static final String GET_ONE_STMT =
-			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK WHERE HOU_TRA_ID=?";
+			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID FROM HOUSE_TRACK WHERE HOU_TRA_ID=?";
 	private static final String GET_ONE_MEMID =
-			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK WHERE MEM_ID=?";
+			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID FROM HOUSE_TRACK WHERE MEM_ID=?";
 	private static final String GET_ALL_STMT =
-			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS FROM HOUSE_TRACK ORDER BY HOU_TRA_ID";
+			"SELECT HOU_TRA_ID,MEM_ID,HOU_ID FROM HOUSE_TRACK ORDER BY HOU_TRA_ID";
 	
 	private static final String CHECK_HOUID_EXIST ="SELECT HOU_ID FROM HOUSE_TRACK WHERE HOU_ID =? and MEM_ID=?";
 	
@@ -54,7 +54,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			//INSERT INTO HOUSE_TRACK (HOU_TRA_ID,MEM_ID,HOU_ID,HOU_TRA_STATUS) VALUES ('HT'||LPAD(HOU_TRA_SEQ.NEXTVAL,8,0),?,?,?)
 			pstmt.setString(1, houTraVO.getMem_id());
 			pstmt.setString(2, houTraVO.getHou_id());
-			pstmt.setString(3, houTraVO.getHou_tra_status());
+			
 			
 			pstmt.executeUpdate();
 			
@@ -97,7 +97,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			//UPDATE HOUSE_TRACK SET MEM_ID=?, HOU_ID=?, HOU_TRA_STATUS=? WHERE HOU_TRA_ID=?
 			pstmt.setString(1, houTraVO.getMem_id());
 			pstmt.setString(2, houTraVO.getHou_id());
-			pstmt.setString(3, houTraVO.getHou_tra_status());
+			
 			pstmt.setString(4, houTraVO.getHou_tra_id());
 			
 			pstmt.executeUpdate();
@@ -190,7 +190,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 				houTraVO = new House_TrackVO();
 				houTraVO.setMem_id(rs.getString("mem_id"));
 				houTraVO.setHou_id(rs.getString("hou_id"));
-				houTraVO.setHou_tra_status(rs.getString("hou_tra_status"));
+			
 			
 			}
 
@@ -252,7 +252,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 				houTraVO.setHou_tra_id(rs.getString("hou_tra_id"));
 				houTraVO.setMem_id(rs.getString("mem_id"));
 				houTraVO.setHou_id(rs.getString("hou_id"));
-				houTraVO.setHou_tra_status(rs.getString("hou_tra_status"));
+			
 ;
 				list.add(houTraVO); // Store the row in the list
 			}
@@ -338,7 +338,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 
 			pstmt.setString(1, trackVO.getMem_id());
 			pstmt.setString(2, trackVO.getHou_id());
-			pstmt.setString(3, trackVO.getHou_tra_status());
+		
 			
 			
 			int count = pstmt.executeUpdate();
@@ -347,6 +347,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 			
 			// Handle any driver errors
 					} catch (SQLException se) {
+						se.printStackTrace();
 						throw new RuntimeException("A database error occured. "
 								+ se.getMessage());
 						// Clean up JDBC resources
@@ -425,7 +426,7 @@ public class House_TrackJDBCDAO implements House_TrackDAO_interface{
 				trackVO.setHou_tra_id(rs.getString(1));
 				trackVO.setMem_id(rs.getString(2));
 				trackVO.setHou_id(rs.getString(3));
-				trackVO.setHou_tra_status(rs.getString(4));
+			
 				listtrackVO.add(trackVO);
 			}
 			
