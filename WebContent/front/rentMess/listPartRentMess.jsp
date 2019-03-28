@@ -112,7 +112,7 @@
 			<div class="card">
 
 				<div class="card-header">
-					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的帶客看房行程表 </h3>
+					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的租屋留言列表 </h3>
 				</div>
 
 				<div class="card-body">
