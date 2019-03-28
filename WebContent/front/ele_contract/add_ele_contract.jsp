@@ -263,8 +263,8 @@ $(function(){
 
 $('#magic').click(function(){
 	
-	$('#mem_name').val('PETER');
-	$('#mem_name2').val('PETER');
+	$('#mem_name').val('蕭峰');
+	$('#mem_name2').val('蕭峰');
 	$('#ele_rent_time').val('6');
 // 	$('#ele_rent_money').val('');
 // 	$('#ele_deposit_money').val('');
