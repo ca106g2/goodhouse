@@ -114,7 +114,7 @@ $(".sub").click(function(){
 });
 
 $('.magic').click(function(){
-	$('#rec').val('帥帥');
+	$('#rec').val('大衛');
 	$('#phone').val('0912345678');
 	$('#mail').val('goodhouse3939@gmail.com');
 	$('#num').val('25號6樓');
