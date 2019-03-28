@@ -112,7 +112,7 @@
 			<div class="card">
 
 				<div class="card-header">
-					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的租屋留言列表 </h3>
+					<h3 style="color:red"><%= memVO.getMem_name()%></h3><h3>房東的租屋問題列表 </h3>
 				</div>
 
 				<div class="card-body">
@@ -122,7 +122,7 @@
 							class="table table-bordered table-hover mb-0 text-nowrap text-center">
 							<tbody>
 								<tr style="background-color: #EDF9DE;">
-									<th scope="col">租屋留言編號</th>
+									<th scope="col">租屋問題編號</th>
 									<th scope="col">會員編號</th>
 									<th scope="col">留言日期</th>
 									<th scope="col">提問內容</th>
