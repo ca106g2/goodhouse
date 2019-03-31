@@ -209,8 +209,8 @@ public class HouseServlet extends HttpServlet {
 						houVO.setHou_rent(hou_rent);
 						houVO.setHou_note(hou_note);
 						houVO.setHou_f_picture(baf.toByteArray());
-						houVO.setHou_t_picture(bas.toByteArray());
-						houVO.setHou_s_picture(bat.toByteArray());
+						houVO.setHou_s_picture(bas.toByteArray());
+						houVO.setHou_t_picture(bat.toByteArray());
 
 						/**********************************/
 						System.out.println("檢查1");
@@ -623,8 +623,8 @@ public class HouseServlet extends HttpServlet {
 				houVO.setHou_rent(hou_rent);
 				houVO.setHou_note(hou_note);
 				houVO.setHou_f_picture(pictf);
-				houVO.setHou_t_picture(picts);
-				houVO.setHou_s_picture(pictt);
+				houVO.setHou_s_picture(picts);
+				houVO.setHou_t_picture(pictt);
 				req.setAttribute("houVO", houVO);
 
 				if (!errorMsgs.isEmpty()) {
